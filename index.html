@@ -331,7 +331,7 @@ label.check input { margin-top: 3px; width: auto; min-height: 0; }
 
 /* Steps editor */
 .steps-head, .srow {
-  display: grid; grid-template-columns: 40px 82px minmax(110px, 1fr) 118px 74px 46px auto; gap: 4px; align-items: center;
+  display: grid; grid-template-columns: 50px 82px minmax(110px, 1fr) 118px 74px 52px auto; gap: 4px; align-items: center;
 }
 .steps-head { background: var(--steel); color: #fff; font-weight: bold; font-size: 13px; padding: 6px 4px; }
 .srow { padding: 4px; border-bottom: 1px solid var(--border); }
@@ -373,6 +373,7 @@ label.check input { margin-top: 3px; width: auto; min-height: 0; }
 .tbl .why { white-space: normal; min-width: 120px; }
 .tbl .linkbtn { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: bold; }
 .warn { border: 1px solid var(--warn-line); background: var(--warn-bg); padding: 8px 10px; margin: 10px 0; }
+.warn-act { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }
 .kv { margin-bottom: 10px; }
 
 /* Log */
@@ -938,6 +939,52 @@ var L = (function () {
     }).join('\n');
   }
 
+  // Turns walks and waits recorded with W and A into steps of the list, placed right after the step they follow.
+  // Consecutive W (or A) presses are merged first: a walk split by a double press stays one walk. Times do not change.
+  // nameFn(kind, prevStep, n) gives the name of the new step (n = 1 for the first walk after that step, 2 for the second...).
+  function genericToSteps(tl, nameFn) {
+    var ev = tl.events, merged = [], i;
+    for (i = 0; i < ev.length; i++) {
+      var e = ev[i], p = merged[merged.length - 1];
+      if (p && (e.kind === 'walk' || e.kind === 'wait') && p.kind === e.kind) {
+        if (!p.issue && e.issue) p.issue = e.issue;
+        if (e.note) p.note = p.note ? p.note + ' / ' + e.note : e.note;
+        continue;
+      }
+      merged.push(e);
+    }
+    var slots = {}, order = [], assign = [], prev = null, count = {}, pos = 0, left = 0;
+    merged.forEach(function (x, j) {
+      if (x.kind === 'step') { prev = findStep(tl, x.stepId) ? x.stepId : null; count = {}; pos = 0; return; }
+      if (x.kind !== 'walk' && x.kind !== 'wait') return;
+      if (!prev) { left++; return; }
+      count[x.kind] = (count[x.kind] || 0) + 1;
+      var key = prev + '|' + x.kind + '|' + count[x.kind];
+      if (!slots[key]) { slots[key] = { key: key, prev: prev, kind: x.kind, n: count[x.kind], minPos: pos, first: j }; order.push(slots[key]); }
+      else slots[key].minPos = Math.min(slots[key].minPos, pos);
+      assign.push([x, key]);
+      pos++;
+    });
+    var byPrev = {}, made = {};
+    order.forEach(function (sl) { (byPrev[sl.prev] = byPrev[sl.prev] || []).push(sl); });
+    var list = [];
+    tl.steps.forEach(function (st) {
+      list.push(st);
+      var g = byPrev[st.id];
+      if (!g) return;
+      g.sort(function (a, b) { return a.minPos - b.minPos || a.first - b.first; });
+      g.forEach(function (sl, k) {
+        var step = { id: uid(), code: st.code ? st.code + String.fromCharCode(97 + Math.min(k, 25)) : '', name: nameFn(sl.kind, st, sl.n), type: sl.kind === 'walk' ? 'Walk' : 'Wait', dist: null };
+        made[sl.key] = step;
+        list.push(step);
+      });
+    });
+    assign.forEach(function (a) { a[0].kind = 'step'; a[0].stepId = made[a[1]].id; });
+    tl.steps = list;
+    tl.events = merged;
+    return { converted: assign.length, merged: ev.length - merged.length, created: order.length, left: left };
+  }
+
   // ---------- Formatting and export ----------
   function fmtClock(t) {
     if (t == null || !isFinite(t)) return '\u2013';
@@ -1142,7 +1189,7 @@ var L = (function () {
     indexAt: indexAt, plannedNext: plannedNext, insertEvent: insertEvent, analyze: analyze,
     parseType: parseType, parseStepList: parseStepList, mergeStepList: mergeStepList, stepListText: stepListText,
     fmtClock: fmtClock, fmtNum: fmtNum, csvRow: csvRow, logRows: logRows, summaryRows: summaryRows, LOG_HEAD: LOG_HEAD,
-    apgBlocks: apgBlocks, toTSV: toTSV, setStrings: setStrings, typeLabel: typeLabel, catLabel: catLabel, str: str,
+    apgBlocks: apgBlocks, toTSV: toTSV, genericToSteps: genericToSteps, setStrings: setStrings, typeLabel: typeLabel, catLabel: catLabel, str: str,
     newTimeline: newTimeline, newStudy: newStudy, sanitizeStudy: sanitizeStudy
   };
 })();
@@ -1317,7 +1364,15 @@ var I18N = {
     'help.g.saveOnline': 'The study is saved in this browser only. Copy your results to Excel when you finish.',
     'help.g.azerty': 'French keyboard: number keys work without Shift. For [ and ], use AltGr or the numeric keypad \u2212 and +.',
     'help.g.video': 'The video never leaves the computer. If a format does not play, convert it to MP4 with VLC (free).',
-    'help.colours': 'Colours'
+    'help.colours': 'Colours',
+    'gen.btn': 'Put them in the list', 'gen.title': 'Put the walks and waits in the list',
+    'gen.stepsBox.one': '{n} walk or wait was recorded with W or A and is not in the list.', 'gen.stepsBox.other': '{n} walks or waits were recorded with W or A and are not in the list.',
+    'gen.text.one': '{n} walk or wait recorded with W or A becomes a step of the list, placed right after the step it follows (for example \u201cWalk after 011\u201d).',
+    'gen.text.other': '{n} walks and waits recorded with W or A become steps of the list, placed right after the step they follow (for example \u201cWalk after 011\u201d).',
+    'gen.text2': 'The times do not change. A double press on W or A counts as one walk or wait. Ctrl+Z puts everything back.', 'gen.ok': 'Put them in the list',
+    'gen.done.one': '{n} walk or wait put in the list as {steps}. Rename them and add the distances.', 'gen.done.other': '{n} walks and waits put in the list as {steps}. Rename them and add the distances.',
+    'gen.left.one': '{n} before the first step stays as it is.', 'gen.left.other': '{n} before the first step stay as they are.',
+    'gen.none': 'No walk or wait recorded with W or A.', 'gen.nothing': 'Nothing to put in the list.', 'gen.walkName': 'Walk after {step}', 'gen.waitName': 'Wait after {step}'
   },
   fr: {
     'hdr.credit': 'Cr\u00e9\u00e9 par Ilyas Baqloul', 'hdr.help': 'Aide', 'hdr.offline': 'Copie hors ligne',
@@ -1486,7 +1541,15 @@ var I18N = {
     'help.g.saveOnline': 'L\u2019\u00e9tude est enregistr\u00e9e dans ce navigateur uniquement. Copiez vos r\u00e9sultats dans Excel quand vous avez fini.',
     'help.g.azerty': 'Clavier AZERTY : les chiffres marchent sans Maj. Pour [ et ], utilisez AltGr ou le pav\u00e9 num\u00e9rique \u2212 et +.',
     'help.g.video': 'La vid\u00e9o ne quitte jamais l\u2019ordinateur. Si un format ne passe pas, convertissez-le en MP4 avec VLC (gratuit).',
-    'help.colours': 'Couleurs'
+    'help.colours': 'Couleurs',
+    'gen.btn': 'Les ranger dans la liste', 'gen.title': 'Ranger les marches et attentes dans la liste',
+    'gen.stepsBox.one': '{n} marche ou attente a \u00e9t\u00e9 enregistr\u00e9e avec W ou A et n\u2019est pas dans la liste.', 'gen.stepsBox.other': '{n} marches ou attentes ont \u00e9t\u00e9 enregistr\u00e9es avec W ou A et ne sont pas dans la liste.',
+    'gen.text.one': '{n} marche ou attente enregistr\u00e9e avec W ou A devient une \u00e9tape de la liste, plac\u00e9e juste apr\u00e8s l\u2019\u00e9tape qu\u2019elle suit (par exemple \u00ab Marche apr\u00e8s 011 \u00bb).',
+    'gen.text.other': '{n} marches et attentes enregistr\u00e9es avec W ou A deviennent des \u00e9tapes de la liste, plac\u00e9es juste apr\u00e8s l\u2019\u00e9tape qu\u2019elles suivent (par exemple \u00ab Marche apr\u00e8s 011 \u00bb).',
+    'gen.text2': 'Les temps ne changent pas. Un double appui sur W ou A compte comme une seule marche ou attente. Ctrl+Z remet tout comme avant.', 'gen.ok': 'Les ranger dans la liste',
+    'gen.done.one': '{n} marche ou attente rang\u00e9e dans la liste en {steps}. Renommez-les et ajoutez les distances.', 'gen.done.other': '{n} marches et attentes rang\u00e9es dans la liste en {steps}. Renommez-les et ajoutez les distances.',
+    'gen.left.one': '{n} avant la premi\u00e8re \u00e9tape reste telle quelle.', 'gen.left.other': '{n} avant la premi\u00e8re \u00e9tape restent telles quelles.',
+    'gen.none': 'Aucune marche ou attente enregistr\u00e9e avec W ou A.', 'gen.nothing': 'Rien \u00e0 ranger dans la liste.', 'gen.walkName': 'Marche apr\u00e8s {step}', 'gen.waitName': 'Attente apr\u00e8s {step}'
   }
 };
 var I18N_LOGIC = {
@@ -1826,6 +1889,8 @@ var I18N_LOGIC = {
       '<div class="btn-row"><button type="button" class="btn" data-act="addOp">' + esc(T('tl.addOperator')) + '</button><button type="button" class="btn" data-act="addMach">' + esc(T('tl.addMachine')) + '</button>' +
       '<button type="button" class="btn danger" data-act="delTl">' + esc(T('tl.delete')) + '</button></div></div>';
     html += '<div class="sec"><h2>' + esc(T('steps.of', { name: tl.name })) + '</h2>';
+    var gen = tl.events.filter(function (e) { return e.kind === 'walk' || e.kind === 'wait'; }).length;
+    if (gen && tl.steps.length) html += '<div class="warn warn-act"><span>' + esc(TP(gen, 'gen.stepsBox')) + '</span><button type="button" class="btn small primary" data-act="genToSteps">' + esc(T('gen.btn')) + '</button></div>';
     if (tl.steps.length) {
       html += '<div class="inline-field"><label for="startStep"><b>' + esc(T('steps.cycleStart')) + '</b></label><select id="startStep">' + tl.steps.map(function (s) {
         return opt(s.id, sid, stepLabel(s));
@@ -1877,7 +1942,7 @@ var I18N_LOGIC = {
       '<button type="button" class="btn primary" data-act="copyTct"' + (b.ref ? '' : ' disabled') + '>' + esc(T('apg.copyTct')) + '</button></div>' +
       '<p class="note mt"><b>' + esc(T('apg.mct')) + '</b> ' + esc(T('apg.mctText', { list: b.cycles.length ? 'C' + b.cycles.join(', C') : '\u2013' })) + (b.truncated ? ' ' + esc(T('apg.first20')) : '') + '</p>' +
       '<p class="note"><b>' + esc(T('apg.tct')) + '</b> ' + esc(T('apg.tctText', { ref: b.ref ? 'C' + b.ref : '\u2013' })) + (b.waitSteps ? ' ' + esc(T('apg.waitEmpty')) : '') + '</p>' +
-      (b.generic ? '<div class="warn">' + esc(TP(b.generic, 'apg.generic')) + '</div>' : '') + '</div>';
+      (b.generic ? '<div class="warn warn-act"><span>' + esc(TP(b.generic, 'apg.generic')) + '</span><button type="button" class="btn small primary" data-act="genToSteps">' + esc(T('gen.btn')) + '</button></div>' : '') + '</div>';
 
     html += '<div class="sec"><h2>' + esc(T('res.cycles')) + '</h2><p class="note">' + esc(T('res.cyclesNote')) + '</p>' +
       '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>' + esc(T('th.cycle')) + '</th><th class="num">' + esc(T('th.start')) + '</th><th class="num">' + esc(T('th.cycleTime')) + '</th><th class="num">' + esc(T('th.periodic')) + '</th><th class="num">(a)</th><th class="num">' + esc(T('th.b')) + '</th><th class="num">' + esc(T('th.c')) + '</th><th class="num">' + esc(T('th.interrupt')) + '</th><th class="num">' + esc(T('th.oov')) + '</th><th class="num">' + esc(T('th.issues')) + '</th><th>' + esc(T('th.used')) + '</th></tr></thead><tbody>';
@@ -2754,6 +2819,32 @@ var I18N_LOGIC = {
     openPanel({ title: T('paste.title', { name: tl.name }), body: body, buttons: buttons, wide: true, focus: body.querySelector('#pasteBox'), enterSaves: false });
   }
 
+  // Walks and waits recorded with W and A become steps of the list (times unchanged, Ctrl+Z puts everything back).
+  function convertGeneric() {
+    var tl = activeTl();
+    var n = tl.events.filter(function (e) { return e.kind === 'walk' || e.kind === 'wait'; }).length;
+    if (!n) { toast(T('gen.none')); return; }
+    openPanel({
+      title: T('gen.title'), body: '<p>' + esc(TP(n, 'gen.text')) + '</p><p>' + esc(T('gen.text2')) + '</p>', backdrop: true,
+      buttons: [
+        { label: T('gen.ok'), kind: 'primary', onClick: function () {
+          closePanel();
+          var res = null;
+          mutate(function () {
+            res = L.genericToSteps(activeTl(), function (kind, st, k) {
+              return T(kind === 'walk' ? 'gen.walkName' : 'gen.waitName', { step: st.code || st.name }) + (k > 1 ? ' (' + k + ')' : '');
+            });
+            if (!res.converted && !res.merged) return false;
+          });
+          if (!res || (!res.converted && !res.merged)) { toast(T('gen.nothing')); return; }
+          setTab('steps');
+          toast(TP(res.converted, 'gen.done', { steps: TP(res.created, 'n.step') }) + (res.left ? ' ' + TP(res.left, 'gen.left') : ''), { label: T('act.undo'), fn: function () { undo(); } });
+        } },
+        { label: T('act.cancel'), onClick: function () { cancelPanel(); } }
+      ]
+    });
+  }
+
   // ---------- New study ----------
   function openNewStudy() {
     var hasVideo = !!(V.ready && V.file);
@@ -3150,7 +3241,8 @@ var I18N_LOGIC = {
       var b = e.target.closest('[data-act]');
       if (!b || b.disabled) return;
       var a = b.getAttribute('data-act'), row = b.closest('.srow'), id = row ? row.getAttribute('data-id') : null;
-      if (a === 'addStep') addStep();
+      if (a === 'genToSteps') convertGeneric();
+      else if (a === 'addStep') addStep();
       else if (a === 'paste') openPastePanel();
       else if (a === 'copyList') copyText(L.stepListText(activeTl()), T('copy.list'));
       else if (a === 'addOp') addTimeline('operator');
@@ -3174,6 +3266,7 @@ var I18N_LOGIC = {
       var b = e.target.closest('button');
       if (!b) return;
       if (b.hasAttribute('data-t')) { if (V.ready) seek(Number(b.getAttribute('data-t'))); else toast(T('toast.chooseVideo')); return; }
+      if (b.getAttribute('data-act') === 'genToSteps') { convertGeneric(); return; }
       handleExportAct(b.getAttribute('data-act'));
     });
 
