@@ -597,7 +597,7 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
 <footer class="footer">
   <span><b>Video Time Study</b></span>
   <span data-i18n="hdr.credit">Created by Ilyas Baqloul</span>
-  <span>Version 2.2</span>
+  <span>Version 2.3</span>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
@@ -800,13 +800,16 @@ var L = (function () {
       evCycle[i] = k;
     }
     for (j = 0; j < cycles.length; j++) cycles[j].end = j + 1 < cycles.length ? cycles[j + 1].start : null;
-    function dur(x) { return x + 1 < n ? ev[x + 1].t - ev[x].t : null; }
+    // One rounding rule everywhere: the times of the key presses are rounded to 0.1 s, durations follow
+    // (continuous timing). The site, the Excel sheets and the TCT then show the same figures.
+    function R(t) { return Math.round(t * 10) / 10; }
+    function dur(x) { return x + 1 < n ? r3(R(ev[x + 1].t) - R(ev[x].t)) : null; }
 
     var pre = { count: cycles.length ? cycles[0].i0 : n, start: n ? ev[0].t : null, end: cycles.length ? cycles[0].start : null };
 
     cycles.forEach(function (c) {
       c.complete = c.end !== null;
-      c.time = c.complete ? r3(c.end - c.start) : null;
+      c.time = c.complete ? r3(R(c.end) - R(c.start)) : null;
       var periodic = 0, wait = 0, interrupt = 0, oov = 0, nInt = 0, nOov = 0, nEnd = 0, issues = 0, unknown = 0, nPer = 0;
       for (var x = c.i0; x <= c.i1; x++) {
         var e = ev[x];
@@ -1258,7 +1261,7 @@ var L = (function () {
         }
         if (items.length) notes.push('C' + c.n + ': ' + items.join('; '));
       });
-      var st = findStep(tl, sid), lines = [str('apg.c.intro', { step: st ? ((st.code ? st.code + ' ' : '') + st.name) : '' })];
+      var st = findStep(tl, sid), lines = [str('apg.c.intro', { step: st ? ((st.code ? st.code + ' ' : '') + st.name).replace(/[.\s]+$/, '') : '' })];
       var tail = [str('apg.c.usable', { n: use.length, list: cyc(use) || '\u2013' }) + (use.length < 10 ? ' ' + str('apg.c.need10') : '')];
       if (!t1info) tail.push(str('apg.c.noT1'));
       else {
@@ -1797,7 +1800,7 @@ var X = (function () {
     });
     var w = wb.pkg.text('xl/workbook.xml');
     wb.pkg.setText('xl/workbook.xml', mapTagX(w, 'definedName', function (f) { return shiftF(f, name, false, at, n); }));
-    eachChart(wb, function (p, x) { return mapTagX(x, 'c:f', function (f) { return shiftF(f, name, false, at, n); }); });
+    eachChart(wb, function (p, x) { return chartRefs(x, function (f) { return shiftF(f, name, false, at, n); }); });
     sheets(wb).forEach(function (o) {
       if (o.path === si.path) return;
       var om = wb.models[o.path];
@@ -1805,6 +1808,7 @@ var X = (function () {
       else if (wb.pkg.text(o.path).indexOf(name) >= 0) wb.pkg.setText(o.path, mapFX(wb.pkg.text(o.path), function (f) { return shiftF(f, name, false, at, n); }));
     });
   }
+  function chartRefs(x, fn) { ['c:f', 'c15:sqref', 'c15:f'].forEach(function (t) { x = mapTagX(x, t, fn); }); return x; }
   function eachChart(wb, fn) {
     wb.pkg.order.slice().forEach(function (p) { if (/^xl\/charts\/chart\d+\.xml$/.test(p)) wb.pkg.setText(p, fn(p, wb.pkg.text(p))); });
   }
@@ -1842,7 +1846,7 @@ var X = (function () {
     w = w.replace(/<sheet\b[^>]*\/>/g, function (m) { return same(unesc(attr(m, 'name')), from) ? m.replace(/name="[^"]*"/, 'name="' + escA(to) + '"') : m; });
     w = mapTagX(w, 'definedName', function (f) { return renameF(f, from, to); });
     wb.pkg.setText('xl/workbook.xml', w);
-    eachChart(wb, function (p, x) { return mapTagX(x, 'c:f', function (f) { return renameF(f, from, to); }); });
+    eachChart(wb, function (p, x) { return chartRefs(x, function (f) { return renameF(f, from, to); }); });
     sheets(wb).forEach(function (o) {
       var x = wb.pkg.text(o.path);
       if (x.indexOf(from) >= 0) wb.pkg.setText(o.path, mapFX(x, function (f) { return renameF(f, from, to); }));
@@ -1877,7 +1881,7 @@ var X = (function () {
       });
       pkg.setText(relsPath(dst), relsXml(out));
     }
-    if (/chart\d+\.xml$/.test(dst)) pkg.setText(dst, mapTagX(pkg.text(dst), 'c:f', function (f) { return renameF(f, ctx.from, ctx.to); }));
+    if (/chart\d+\.xml$/.test(dst)) pkg.setText(dst, chartRefs(pkg.text(dst), function (f) { return renameF(f, ctx.from, ctx.to); }));
     return dst;
   }
   function copySheet(wb, srcName, newName, afterName) {
@@ -1969,9 +1973,19 @@ var X = (function () {
       return bad ? m.replace(/>[\s\S]*?<\/definedName>$/, '>#REF!</definedName>') : m;
     });
   }
+  function dropLinks(wb) {
+    var pkg = wb.pkg, used = sheets(wb).some(function (s) { return /<f\b[^>]*>[^<]*\[\d+\]/.test(pkg.text(s.path)); });
+    if (used) return;
+    var w = pkg.text('xl/workbook.xml').replace(/<externalReferences>[\s\S]*?<\/externalReferences>/, '');
+    w = w.replace(/<definedName\b[^>]*>([^<]*)<\/definedName>/g, function (m, t) { return /\[\d+\]/.test(t) ? '' : m; }).replace(/<definedNames>\s*<\/definedNames>/, '');
+    pkg.setText('xl/workbook.xml', w);
+    var rp = 'xl/_rels/workbook.xml.rels';
+    pkg.setText(rp, relsXml(parseRels(pkg.text(rp)).filter(function (r) { return !/externalLink$/.test(r.type); })));
+  }
   function finish(wb) {
     flush(wb);
     fixNames(wb);
+    dropLinks(wb);
     var pkg = wb.pkg, w = pkg.text('xl/workbook.xml');
     var wr = parseRels(pkg.text('xl/_rels/workbook.xml.rels'));
     if (wr.some(function (r) { return /calcChain$/.test(r.type); })) pkg.setText('xl/_rels/workbook.xml.rels', relsXml(wr.filter(function (r) { return !/calcChain$/.test(r.type); })));
@@ -2015,21 +2029,29 @@ var X = (function () {
       g = { first: +mm[1], last: +mm[2], sum: row.r };
     });
     if (!g) return null;
-    g.per = [];
+    // Two layouts: periodic time in J with its frequency in K (current standard), or time in M and frequency in O (older).
+    var perJ = [], perM = [];
     m.rows.forEach(function (row) {
-      var fj = formulaOf(row.cells.get(10)), fo = formulaOf(row.cells.get(15)), fp = formulaOf(row.cells.get(16));
+      var fj = formulaOf(row.cells.get(10)), fl = formulaOf(row.cells.get(12)), fm = formulaOf(row.cells.get(13)), fo = formulaOf(row.cells.get(15)), fp = formulaOf(row.cells.get(16));
       if (fj && /^ROUND\(AU4-/.test(fj)) g.wait = row.r;
+      if (fm && new RegExp('^ROUND\\(M' + g.sum + '\\+IFERROR\\(').test(fm)) g.typeRow = row.r;
       if (fo && /^ROUND\(M\d+\+L\d+/.test(fo)) g.opTotal = row.r;
-      if (fp && /^IF\(O\d+=0,"",M\d+\/O\d+\)$/.test(fp) && row.r > g.sum) g.per.push(row.r);
+      if (row.r > g.sum && fl && /^IFERROR\(J(\d+)\/K\1,0\)$/.test(fl)) perJ.push(row.r);
+      if (row.r > g.sum && fp && /^IF\(O\d+=0,"",M\d+\/O\d+\)$/.test(fp)) perM.push(row.r);
     });
-    g.per.sort(function (a, b) { return a - b; });
+    g.perCol = perJ.length ? 'J' : 'M';
+    g.per = (perJ.length ? perJ : perM).sort(function (a, b) { return a - b; });
     return g.wait ? g : null;
   }
-  function coGeo(m) {
+  function coGeo(m, wb) {
     var r = null;
+    var is = function (c, k) {
+      if (numOf(c) === k) return true;
+      return !!(wb && c && new RegExp('^\\s*op\\.?\\s*' + k + '\\s*$', 'i').test(textOf(wb, c)));
+    };
     m.rows.forEach(function (row) {
       if (r) return;
-      if (numOf(row.cells.get(24)) === 1 && numOf(row.cells.get(25)) === 2 && numOf(row.cells.get(26)) === 3) r = row.r;
+      if (is(row.cells.get(24), 1) && is(row.cells.get(25), 2) && is(row.cells.get(26), 3)) r = row.r;
     });
     return r ? { head: r } : null;
   }
@@ -2041,7 +2063,7 @@ var X = (function () {
       var m = parseSheet(wb.pkg.text(s.path));
       if (mctGeo(m)) out.mct.push(s.name);
       else if (tctGeo(m)) out.tct.push(s.name);
-      else if (coGeo(m)) out.co.push(s.name);
+      else if (coGeo(m, wb)) out.co.push(s.name);
     });
     out.macros = wb.pkg.has('xl/vbaProject.bin');
     return out;
@@ -2162,21 +2184,17 @@ var X = (function () {
     dropCache(m);
   }
 
+  function notExample(list) { return list.filter(function (n) { return !/\b(example|exemple)\b/i.test(n); })[0] || list[0]; }
   async function fillMct(buf, d, codec) {
-    var wb = await open(buf, codec), all = sheets(wb), mcts = [];
-    all.forEach(function (s) { if (s.path && wb.pkg.has(s.path) && mctGeo(parseSheet(wb.pkg.text(s.path)))) mcts.push(s.name); });
+    var wb = await open(buf, codec), mcts = [];
+    sheets(wb).forEach(function (s) { if (s.path && wb.pkg.has(s.path) && mctGeo(parseSheet(wb.pkg.text(s.path)))) mcts.push(s.name); });
     if (!mcts.length) throw Err('notMct');
     if (!d.ops.length) throw Err('noOperator');
-    var names = [], i;
-    for (i = 0; i < d.ops.length; i++) {
-      if (i < mcts.length) names.push(mcts[i]);
-      else {
-        var nm = numbered(mcts[0], i + 1);
-        while (sheetByName(wb, nm)) nm = (nm + ' ').slice(0, 28) + '(' + (i + 1) + ')';
-        names.push(copySheet(wb, mcts[0], nm, names[i - 1]).name);
-      }
-    }
-    mcts.slice(d.ops.length).forEach(function (n) { deleteSheet(wb, n); });
+    var base = notExample(mcts), names = [], i;
+    sheets(wb).forEach(function (s) { if (!same(s.name, base)) deleteSheet(wb, s.name); });
+    for (i = 1; i <= d.ops.length; i++) names.push('MCT Op.' + i);
+    for (i = 2; i <= d.ops.length; i++) copySheet(wb, base, names[i - 1], i === 2 ? base : names[i - 2]);
+    renameSheet(wb, base, names[0]);
     names.forEach(function (n, k) { fillMctSheet(wb, sheetByName(wb, n), d, d.ops[k]); });
     finish(wb);
     return await wb.pkg.save();
@@ -2233,11 +2251,13 @@ var X = (function () {
       setNum(m, 13, rr, row.M); setNum(m, 14, rr, row.N); setNum(m, 15, rr, row.O);
       setNum(m, 16, rr + 1, row.P); setNum(m, 17, rr + 1, row.Q);
     });
-    var pr = g.per.slice(0, 5);
+    var pr = g.per.slice(0, 5), tcol = g.perCol === 'J' ? 10 : 13;
     pr.forEach(function (rr, k2) {
-      setStr(m, 3, rr, ''); clear(m, 13, rr); clear(m, 15, rr);
+      setStr(m, 3, rr, '');
+      if (g.perCol === 'J') { clear(m, 10, rr); clear(m, 11, rr); for (j = 13; j <= 17; j++) clear(m, j, rr); }
+      else { clear(m, 13, rr); clear(m, 15, rr); }
       var p = op.periodic[k2];
-      if (p) { setStr(m, 3, rr, p.name); setNum(m, 13, rr, p.time); }
+      if (p) { setStr(m, 3, rr, p.name); setNum(m, tcol, rr, p.time); }
     });
     var perTotal = 'L' + g.wait;
     if (op.aRef != null) setF(m, 47, 4, Math.round(op.aRef * 10) / 10 + '+' + perTotal);
@@ -2250,20 +2270,23 @@ var X = (function () {
     setStr(m, 74, 5, d.meta.observer);
     setStr(m, 74, 7, d.meta.date);
     dropCache(m);
-    return { name: si.name, sum: g.sum, wait: g.wait, opTotal: g.opTotal };
+    return { name: si.name, sum: g.sum, wait: g.wait, opTotal: g.opTotal, typeRow: g.typeRow };
   }
   function fillCo(wb, si, d, refs) {
     var m = model(wb, si);
     unshare(m);
-    var h = coGeo(m).head;
+    var h = coGeo(m, wb).head;
     for (var i = 0; i < 6; i++) {
       var col = 24 + i, t = refs[i];
       for (var k = 1; k <= 4; k++) clear(m, col, h + k);
       if (!t) continue;
+      // Same cells as the TCT's own "Operator Saturation" chart.
       var s = q(t.name) + '!';
-      setF(m, col, h + 1, s + (t.opTotal ? 'O' + t.opTotal : 'M' + t.sum));
-      setF(m, col, h + 2, s + 'N' + t.sum);
-      setF(m, col, h + 3, s + 'P' + t.sum);
+      if (t.typeRow) {
+        setF(m, col, h + 1, s + 'M' + t.typeRow); setF(m, col, h + 2, s + 'N' + t.typeRow); setF(m, col, h + 3, s + 'P' + t.typeRow);
+      } else {
+        setF(m, col, h + 1, s + (t.opTotal ? 'O' + t.opTotal : 'M' + t.sum)); setF(m, col, h + 2, s + 'N' + t.sum); setF(m, col, h + 3, s + 'P' + t.sum);
+      }
       setF(m, col, h + 4, s + 'J' + t.wait);
     }
     setStr(m, 18, 3, d.meta.line);
@@ -2278,20 +2301,17 @@ var X = (function () {
     all.forEach(function (s) {
       if (!s.path || !wb.pkg.has(s.path)) return;
       var m = parseSheet(wb.pkg.text(s.path));
-      if (tctGeo(m)) tcts.push(s.name); else if (coGeo(m)) cos.push(s.name);
+      if (tctGeo(m)) tcts.push(s.name); else if (coGeo(m, wb)) cos.push(s.name);
     });
     if (!tcts.length) throw Err('notTct');
     if (!d.ops.length) throw Err('noOperator');
-    var base = tcts.filter(function (n) { return /tct/i.test(n) && /op/i.test(n); })[0] || tcts[0];
-    var co = cos.filter(function (n) { return !/exam/i.test(n); })[0] || null;
+    var base = notExample(tcts);
+    var co = cos.filter(function (n) { return !/\b(example|exemple)\b/i.test(n); })[0] || null;
     sheets(wb).forEach(function (s) { if (!same(s.name, base) && (!co || !same(s.name, co))) deleteSheet(wb, s.name); });
-    var names = [numbered(base, 1)], i;
-    for (i = 2; i <= d.ops.length; i++) {
-      var nm = numbered(base, i);
-      if (same(nm, base) || (co && same(nm, co))) nm = (nm + ' ').slice(0, 27) + '(' + i + ')';
-      names.push(copySheet(wb, base, nm, i === 2 ? base : names[i - 2]).name);
-    }
-    if (!same(names[0], base)) renameSheet(wb, base, names[0]);
+    var names = [], i;
+    for (i = 1; i <= d.ops.length; i++) names.push('#2 TCT Op. ' + i);
+    for (i = 2; i <= d.ops.length; i++) copySheet(wb, base, names[i - 1], i === 2 ? base : names[i - 2]);
+    renameSheet(wb, base, names[0]);
     var refs = names.map(function (n, k) { return fillTctSheet(wb, sheetByName(wb, n), d, d.ops[k], k); });
     if (co) fillCo(wb, sheetByName(wb, co), d, refs);
     finish(wb);
