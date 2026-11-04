@@ -462,6 +462,34 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
   .tb-title h1 { font-size: 17px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Quick fix of recorded steps (Record tab, event menu) */
+.st-click { cursor: pointer; }
+.st-click:hover .st-value, .st-click:focus-visible .st-value { text-decoration: underline; }
+.fix-list { display: grid; gap: 4px; margin-bottom: 10px; }
+.fix-list .note { margin: 0; }
+.fix-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 6px; align-items: center; }
+.fix-go { display: flex; align-items: center; gap: 7px; min-width: 0; min-height: 30px; padding: 3px 8px; text-align: left; font: inherit; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+.fix-go:hover { background: var(--btn-hover); }
+.fix-row.is-cur .fix-go { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); font-weight: bold; }
+.fx-t { flex: none; color: var(--muted); font-variant-numeric: tabular-nums; font-weight: normal; }
+.fx-n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.em-what { margin: 0 0 12px; }
+.em-what .muted { color: var(--muted); }
+.em-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.em-grid .btn.primary, .em-grid .btn.danger { grid-column: 1 / -1; }
+@media (pointer: coarse) { .fix-go { min-height: 40px; } }
+
+/* APG templates */
+.tpl-list { display: grid; gap: 6px; margin: 8px 0 12px; }
+.tpl-row { display: grid; grid-template-columns: minmax(10em, auto) minmax(0, 1fr) auto; align-items: center; gap: 6px 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+.tpl-l { font-weight: bold; }
+.tpl-f { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tpl-f.muted { color: var(--muted); }
+@media (max-width: 560px) {
+  .tpl-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .tpl-f { grid-column: 1 / -1; grid-row: 2; }
+}
 </style>
 </head>
 <body>
@@ -541,7 +569,7 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
     <div class="status" id="status">
       <div class="st-head"><span class="st-tl" id="stTl"></span><span class="st-keys" id="stKeys"></span></div>
       <div class="st"><div class="st-label" data-i18n="st.cycle">Cycle</div><div class="st-value" id="stCycle">&ndash;</div><div class="st-sub" id="stCycleT">&nbsp;</div></div>
-      <div class="st"><div class="st-label" data-i18n="st.current">Current step</div><div class="st-value" id="stCur">&ndash;</div><div class="st-sub" id="stCurT">&nbsp;</div></div>
+      <div class="st st-click" id="stCurBox" role="button" data-i18n-title="st.fix"><div class="st-label" data-i18n="st.current">Current step</div><div class="st-value" id="stCur">&ndash;</div><div class="st-sub" id="stCurT">&nbsp;</div></div>
       <div class="st"><div class="st-label" data-i18n="st.next">Next planned</div><div class="st-value" id="stNext">&ndash;</div><div class="st-sub" id="stNextK">&nbsp;</div></div>
     </div>
   </section>
@@ -569,13 +597,15 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
 <footer class="footer">
   <span><b>Video Time Study</b></span>
   <span data-i18n="hdr.credit">Created by Ilyas Baqloul</span>
-  <span>Version 2.0</span>
+  <span>Version 2.2</span>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <input type="file" id="fileVideo" accept="video/*,.mp4,.m4v,.mov,.webm,.mkv,.avi,.wmv,.mts,.m2ts,.3gp,.mpg,.mpeg,.flv,.ogv" hidden>
 <input type="file" id="fileStudy" accept=".json,application/json" hidden>
+<input type="file" id="fileMct" accept=".xlsx,.xlsm" hidden>
+<input type="file" id="fileTct" accept=".xlsm,.xlsx" hidden>
 </div>
 <script id="vts-script">
 /* LOGIC-START */
@@ -629,7 +659,15 @@ var L = (function () {
     'sum.yes': 'Yes', 'sum.no': 'No',
     'sum.stepHead': ['Code', 'Step', 'Type', 'Distance (m)', 'n', 'Min (s)', 'Median (s)', 'Max (s)', 'Min repeatable (s)', 'Reference cycle (s)'],
     'sum.total': 'Total reference cycle (a)',
-    'parse.unknownType': 'Line {line}: unknown type \u201c{type}\u201d, {def} used.'
+    'parse.unknownType': 'Line {line}: unknown type \u201c{type}\u201d, {def} used.',
+    'apg.c.intro': 'Times from Video Time Study, continuous timing. Cycle starts at {step}.',
+    'apg.c.int': 'interruption {s} s', 'apg.c.oov': 'out of view {s} s', 'apg.c.end': 'end of study',
+    'apg.c.usable': 'Cycles without disturbance: {n} ({list}).', 'apg.c.need10': 'At least 10 are needed.',
+    'apg.c.noT1': 'T1: no usable cycle.', 'apg.c.t1one': 'T1: {v} s, only one usable cycle ({ref}).',
+    'apg.c.t1': 'T1: lowest (c) {d} s ({dc}) left out. Next minimum repeatable: {v} s ({list}). Reference cycle {ref}.',
+    'apg.c.t1norep': 'T1: lowest (c) {d} s ({dc}) left out. No time repeats, lowest remaining: {v} s ({list}). Reference cycle {ref}.',
+    'apg.c.morePer': 'Other periodic tasks: {list}.', 'apg.c.conv': 'Walks and waits recorded with W and A are listed as steps.',
+    'apg.nOp1': '1 operator', 'apg.nOps': '{n} operators'
   };
   var S = S_EN;
   function setStrings(o) { S = {}; var k; for (k in S_EN) S[k] = S_EN[k]; if (o) for (k in o) S[k] = o[k]; }
@@ -1119,6 +1157,137 @@ var L = (function () {
     };
   }
   function toTSV(rows) { return rows.map(function (r) { return csvRow(r, '\t'); }).join('\r\n') + '\r\n'; }
+  // ---------- Data for the APG sheets (one block per operator timeline) ----------
+  // Relevé: one row per step (cycle start first), complete cycles (max 20, usable ones first), times to 0.1 s.
+  // TCT: times of the reference cycle; a walk goes in Transp. of the step before it, waits get no row
+  // (the sheet works out the wait from the process cycle time).
+  function r1(v) { return v == null ? null : Math.round(v * 10) / 10; }
+  function apgData(study, opts) {
+    opts = opts || {};
+    var maxC = opts.maxCycles || 20, dec = opts.dec || '.';
+    var num = function (v) { return Math.abs(v - Math.round(v)) < 0.05 ? String(Math.round(v)) : fmtNum(v, 1, dec); };
+    var cyc = function (list) { return list.map(function (c) { return 'C' + c.n; }).join(', '); };
+    var ops = [];
+    study.timelines.forEach(function (tl0) {
+      if (tl0.kind !== 'operator' || !tl0.steps.length) return;
+      var tl = JSON.parse(JSON.stringify(tl0)), conv = 0;
+      if (tl.events.some(function (e) { return e.kind === 'walk' || e.kind === 'wait'; })) {
+        conv = genericToSteps(tl, opts.nameFn || function (kind, st, n) { return str('kind.' + kind + '.label') + ' ' + (st.code || st.name) + (n > 1 ? ' (' + n + ')' : ''); }).converted;
+      }
+      var ev = tl.events, a = analyze(tl), sid = startStepId(tl), k0 = Math.max(0, stepIndex(tl, sid));
+      var steps = tl.steps.slice(k0).concat(tl.steps.slice(0, k0));
+      var complete = a.cycles.filter(function (c) { return c.complete; }), sel = complete;
+      if (complete.length > maxC) {
+        sel = complete.filter(function (c) { return c.usable; }).concat(complete.filter(function (c) { return !c.usable; })).slice(0, maxC);
+        sel.sort(function (x, y) { return x.n - y.n; });
+      }
+      // Times come from the times of the key presses rounded to 0.1 s: a cycle's steps add up to its rounded cycle time.
+      var R = function (x) { return Math.round(x * 10) / 10; };
+      var sums = function (c) {
+        var m = {};
+        for (var x = c.i0; x <= c.i1; x++) {
+          var e = ev[x];
+          if (e.kind !== 'step' || x + 1 >= ev.length) continue;
+          m[e.stepId] = (m[e.stepId] || 0) + R(ev[x + 1].t) - R(e.t);
+        }
+        return m;
+      };
+      var maps = sel.map(sums);
+      var rows = steps.map(function (s) { return { code: s.code || '', name: (s.name || '').toUpperCase(), type: s.type, wait: s.type === 'Wait' }; });
+      var vals = steps.map(function (s) {
+        return maps.map(function (m) { return m[s.id] != null ? r1(m[s.id]) : (s.type === 'Wait' ? 0 : null); });
+      });
+      // (a), (b), (c) as the sheet computes them, so T1 and the reference cycle match what the sheet shows.
+      sel.forEach(function (c, j) {
+        var sa = 0, sb = 0;
+        steps.forEach(function (s, k) { var v = vals[k][j]; if (v == null) return; sa += v; if (s.type === 'Wait') sb += v; });
+        c.sa = r1(sa); c.sb = r1(sb); c.sc = r1(sa - sb);
+      });
+      var use = sel.filter(function (c) { return c.usable; });
+      var t1info = lowestRepeatable(use.map(function (c) { return c.sc; })), t1 = t1info ? t1info.value : null;
+      var medA = median(use.map(function (c) { return c.sa; })), ref = null;
+      if (t1 !== null) use.forEach(function (c) {
+        if (Math.round(r3(c.sc)) !== t1) return;
+        if (!ref || Math.abs(c.sa - medA) < Math.abs(ref.sa - medA) - 1e-9) ref = c;
+      });
+      var refCol = ref ? sel.indexOf(ref) : -1, aRef = ref ? ref.sa : null;
+      // TCT rows
+      var refMap = ref ? maps[refCol] : {}, tct = [], lead = null;
+      var hasWork = steps.some(function (s) { return s.type !== 'Walk' && s.type !== 'Wait'; });
+      steps.forEach(function (s) {
+        var d = refMap[s.id] != null ? refMap[s.id] : null;
+        if (s.type === 'Wait') return;
+        if (s.type === 'Walk' && hasWork) {
+          var to = tct.length ? tct[tct.length - 1] : (lead = lead || { P: null, Q: null });
+          if (d != null) { to.P = (to.P || 0) + d; if (s.dist != null) to.Q = (to.Q || 0) + s.dist; }
+          return;
+        }
+        var row = { code: s.code || '', name: (s.name || '').toUpperCase(), M: null, N: null, O: null, P: null, Q: null };
+        if (d != null) {
+          if (s.type === 'Inspection') row.N = d; else if (s.type === 'Machine') row.O = d;
+          else if (s.type === 'Walk') { row.P = d; if (s.dist != null) row.Q = s.dist; }
+          else row.M = d;
+        }
+        tct.push(row);
+      });
+      if (lead && tct.length) {
+        var lastRow = tct[tct.length - 1];
+        if (lead.P != null) lastRow.P = (lastRow.P || 0) + lead.P;
+        if (lead.Q != null) lastRow.Q = (lastRow.Q || 0) + lead.Q;
+      }
+      tct.forEach(function (r) { ['M', 'N', 'O', 'P', 'Q'].forEach(function (k) { r[k] = r1(r[k]); }); });
+      // Periodic tasks: every P of the study, grouped by name, average time.
+      var per = [], byName = {};
+      ev.forEach(function (e, x) {
+        if (e.kind !== 'periodic' || x + 1 >= ev.length) return;
+        var nm = evName(tl, e), key = nm.trim().toLowerCase();
+        if (!byName[key]) { byName[key] = { name: nm, sum: 0, n: 0 }; per.push(byName[key]); }
+        byName[key].sum += R(ev[x + 1].t) - R(e.t); byName[key].n++;
+      });
+      per = per.map(function (p) { return { name: p.name, time: r1(p.sum / p.n), count: p.n }; });
+      // Comments
+      var notes = [];
+      sel.forEach(function (c) {
+        var items = [];
+        for (var x = c.i0; x <= c.i1; x++) {
+          var e = ev[x], d = x + 1 < ev.length ? ev[x + 1].t - e.t : 0, note = e.note ? ': ' + e.note : '';
+          if (e.kind === 'interrupt') items.push(str('apg.c.int', { s: num(d) }) + (e.issue ? ', ' + catLabel(e.issue) : '') + note);
+          else if (e.kind === 'oov') items.push(str('apg.c.oov', { s: num(d) }) + note);
+          else if (e.kind === 'end') items.push(str('apg.c.end'));
+          else if (e.issue && canHaveIssue(e)) items.push(catLabel(e.issue) + ', ' + evLabel(tl, e) + note);
+        }
+        if (items.length) notes.push('C' + c.n + ': ' + items.join('; '));
+      });
+      var st = findStep(tl, sid), lines = [str('apg.c.intro', { step: st ? ((st.code ? st.code + ' ' : '') + st.name) : '' })];
+      var tail = [str('apg.c.usable', { n: use.length, list: cyc(use) || '\u2013' }) + (use.length < 10 ? ' ' + str('apg.c.need10') : '')];
+      if (!t1info) tail.push(str('apg.c.noT1'));
+      else {
+        var at = function (v) { return use.filter(function (c) { return Math.round(r3(c.sc)) === v; }); };
+        var dl = t1info.discarded == null ? [] : at(t1info.discarded).slice(0, 1), vl = at(t1info.value).filter(function (c) { return dl.indexOf(c) < 0; });
+        var p = { v: t1info.value, d: t1info.discarded, dc: cyc(dl), list: cyc(vl), ref: ref ? 'C' + ref.n : '\u2013' };
+        tail.push(t1info.discarded == null ? str('apg.c.t1one', p) : str(t1info.repeated ? 'apg.c.t1' : 'apg.c.t1norep', p));
+      }
+      if (per.length > 4) tail.push(str('apg.c.morePer', { list: per.slice(4).map(function (x) { return x.name + ' (' + num(x.time) + ' s)'; }).join(', ') }));
+      if (conv) tail.push(str('apg.c.conv'));
+      var room = 9 - lines.length - tail.length;
+      if (notes.length > room) {
+        var per1 = Math.ceil(notes.length / Math.max(1, room)), packed = [];
+        for (var i = 0; i < notes.length; i += per1) packed.push(notes.slice(i, i + per1).join(' | '));
+        notes = packed;
+      }
+      ops.push({
+        id: tl0.id, name: tl.name, rows: rows, cols: sel.map(function (c) { return { n: c.n, usable: c.usable }; }), vals: vals,
+        refCol: refCol, refN: ref ? ref.n : null, t1: t1, aRef: aRef, periodic: per, abc: sel.map(function (c) { return [c.sa, c.sb, c.sc]; }), comments: lines.concat(notes, tail).slice(0, 9),
+        tct: tct, nComplete: complete.length, converted: conv
+      });
+    });
+    var m = study.meta || {}, dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(m.date || '');
+    return {
+      meta: { name: m.name || '', plant: m.plant || '', line: m.line || '', observer: m.observer || '', date: dm ? dm[3] + '/' + dm[2] + '/' + dm[1] : (m.date || '') },
+      ops: ops, nOpsText: str(ops.length === 1 ? 'apg.nOp1' : 'apg.nOps', { n: ops.length })
+    };
+  }
+
 
   // ---------- Study ----------
   function newTimeline(kind, name) {
@@ -1189,11 +1358,964 @@ var L = (function () {
     indexAt: indexAt, plannedNext: plannedNext, insertEvent: insertEvent, analyze: analyze,
     parseType: parseType, parseStepList: parseStepList, mergeStepList: mergeStepList, stepListText: stepListText,
     fmtClock: fmtClock, fmtNum: fmtNum, csvRow: csvRow, logRows: logRows, summaryRows: summaryRows, LOG_HEAD: LOG_HEAD,
-    apgBlocks: apgBlocks, toTSV: toTSV, genericToSteps: genericToSteps, setStrings: setStrings, typeLabel: typeLabel, catLabel: catLabel, str: str,
+    apgBlocks: apgBlocks, apgData: apgData, toTSV: toTSV, genericToSteps: genericToSteps, setStrings: setStrings, typeLabel: typeLabel, catLabel: catLabel, str: str,
     newTimeline: newTimeline, newStudy: newStudy, sanitizeStudy: sanitizeStudy
   };
 })();
 /* LOGIC-END */
+
+/* XLSX-START */
+/* Fills the APG templates (Time Measurement Sheet .xlsx, TCT .xlsm) without Excel: zip and XML text only.
+   No DOM. The deflate codec is given by the caller (CompressionStream in the browser, zlib in the tests).
+   Untouched parts (macros, images) are copied byte for byte. */
+var X = (function () {
+  'use strict';
+  var enc = new TextEncoder(), dec = new TextDecoder('utf-8');
+
+  function Err(code) { var e = new Error(code); e.code = code; return e; }
+
+  // ---------- CRC32 and zip ----------
+  var CRC = (function () {
+    var t = new Uint32Array(256);
+    for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+    return t;
+  })();
+  function crc32(u8) {
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function u16(b, o) { return b[o] | (b[o + 1] << 8); }
+  function u32(b, o) { return (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0; }
+  function zipRead(buf) {
+    var b = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+    var e = -1;
+    for (var i = b.length - 22; i >= Math.max(0, b.length - 65557); i--) if (u32(b, i) === 0x06054b50) { e = i; break; }
+    if (e < 0) throw Err('notZip');
+    var n = u16(b, e + 10), off = u32(b, e + 16), out = [];
+    for (var k = 0; k < n; k++) {
+      if (u32(b, off) !== 0x02014b50) throw Err('notZip');
+      var method = u16(b, off + 10), csize = u32(b, off + 20), nl = u16(b, off + 28), xl = u16(b, off + 30), cl = u16(b, off + 32), lho = u32(b, off + 42);
+      var name = dec.decode(b.subarray(off + 46, off + 46 + nl));
+      var start = lho + 30 + u16(b, lho + 26) + u16(b, lho + 28);
+      out.push({ name: name, method: method, time: u16(b, off + 12), date: u16(b, off + 14), crc: u32(b, off + 16), csize: csize, usize: u32(b, off + 24), raw: b.subarray(start, start + csize) });
+      off += 46 + nl + xl + cl;
+    }
+    return out;
+  }
+  function zipWrite(entries) {
+    var parts = [], central = [], offset = 0;
+    entries.forEach(function (en) {
+      var nm = enc.encode(en.name);
+      var h = new Uint8Array(30 + nm.length), d = new DataView(h.buffer);
+      d.setUint32(0, 0x04034b50, true); d.setUint16(4, 20, true); d.setUint16(6, 0x0800, true); d.setUint16(8, en.method, true);
+      d.setUint16(10, en.time || 0, true); d.setUint16(12, en.date || 0x21, true); d.setUint32(14, en.crc, true);
+      d.setUint32(18, en.csize, true); d.setUint32(22, en.usize, true); d.setUint16(26, nm.length, true); h.set(nm, 30);
+      var c = new Uint8Array(46 + nm.length), v = new DataView(c.buffer);
+      v.setUint32(0, 0x02014b50, true); v.setUint16(4, 20, true); v.setUint16(6, 20, true); v.setUint16(8, 0x0800, true); v.setUint16(10, en.method, true);
+      v.setUint16(12, en.time || 0, true); v.setUint16(14, en.date || 0x21, true); v.setUint32(16, en.crc, true);
+      v.setUint32(20, en.csize, true); v.setUint32(24, en.usize, true); v.setUint16(28, nm.length, true); v.setUint32(42, offset, true); c.set(nm, 46);
+      parts.push(h, en.raw); central.push(c);
+      offset += h.length + en.raw.length;
+    });
+    var cd = 0; central.forEach(function (c) { cd += c.length; });
+    var eo = new Uint8Array(22), w = new DataView(eo.buffer);
+    w.setUint32(0, 0x06054b50, true); w.setUint16(8, entries.length, true); w.setUint16(10, entries.length, true); w.setUint32(12, cd, true); w.setUint32(16, offset, true);
+    var out = new Uint8Array(offset + cd + 22), p = 0;
+    parts.concat(central, [eo]).forEach(function (x) { out.set(x, p); p += x.length; });
+    return out;
+  }
+
+  // ---------- Package: parts kept as text (xml, rels, vml) or as raw zip data ----------
+  var TEXT = /\.(xml|rels|vml)$/i;
+  async function openPackage(buf, codec) {
+    var list = zipRead(buf), files = {}, order = [];
+    for (var i = 0; i < list.length; i++) {
+      var en = list[i];
+      if (/\/$/.test(en.name)) continue;
+      order.push(en.name);
+      var f = { en: en, text: null, dirty: false };
+      if (TEXT.test(en.name)) {
+        var u = en.method === 0 ? en.raw : (en.method === 8 ? await codec.inflate(en.raw) : null);
+        if (!u) throw Err('notZip');
+        f.text = dec.decode(u);
+      }
+      files[en.name] = f;
+    }
+    if (!files['[Content_Types].xml'] || !files['xl/workbook.xml']) throw Err('notExcel');
+    return {
+      order: order, files: files,
+      has: function (n) { return !!files[n]; },
+      text: function (n) { var f = files[n]; if (!f || f.text == null) throw Err('missing:' + n); return f.text; },
+      setText: function (n, s) {
+        if (!files[n]) { files[n] = { en: null, text: s, dirty: true }; order.push(n); return; }
+        if (files[n].text !== s) { files[n].text = s; files[n].dirty = true; }
+      },
+      copy: function (from, to) {
+        var f = files[from];
+        if (!f) throw Err('missing:' + from);
+        files[to] = { en: f.en, text: f.text, dirty: f.text != null || f.dirty };
+        order.push(to);
+      },
+      remove: function (n) { if (!files[n]) return; delete files[n]; order.splice(order.indexOf(n), 1); },
+      save: async function () {
+        var out = [];
+        for (var i = 0; i < order.length; i++) {
+          var n = order[i], f = files[n];
+          if (!f.dirty && f.en) { out.push({ name: n, method: f.en.method, time: f.en.time, date: f.en.date, crc: f.en.crc, csize: f.en.csize, usize: f.en.usize, raw: f.en.raw }); continue; }
+          var u = enc.encode(f.text), z = await codec.deflate(u);
+          out.push({ name: n, method: 8, time: f.en ? f.en.time : 0, date: f.en ? f.en.date : 0x21, crc: crc32(u), csize: z.length, usize: u.length, raw: z });
+        }
+        return zipWrite(out);
+      }
+    };
+  }
+
+  // ---------- Small XML helpers ----------
+  function escT(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function escA(s) { return escT(s).replace(/"/g, '&quot;'); }
+  function unesc(s) {
+    return String(s).replace(/&(lt|gt|quot|apos|amp|#(\d+)|#x([0-9a-fA-F]+));/g, function (m, n, d, h) {
+      if (n === 'lt') return '<'; if (n === 'gt') return '>'; if (n === 'quot') return '"'; if (n === 'apos') return "'"; if (n === 'amp') return '&';
+      return String.fromCodePoint(d ? +d : parseInt(h, 16));
+    });
+  }
+  function attr(a, n) { var m = a.match(new RegExp('(?:^|\\s)' + n.replace(':', '\\:') + '="([^"]*)"')); return m ? m[1] : null; }
+  function colNum(s) { var n = 0; for (var i = 0; i < s.length; i++) n = n * 26 + s.charCodeAt(i) - 64; return n; }
+  function colName(n) { var s = ''; while (n > 0) { var m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = (n - m - 1) / 26; } return s; }
+  function guid() {
+    var h = '0123456789ABCDEF', s = '';
+    for (var i = 0; i < 32; i++) s += h[Math.floor(Math.random() * 16)];
+    return '{' + s.slice(0, 8) + '-' + s.slice(8, 12) + '-' + s.slice(12, 16) + '-' + s.slice(16, 20) + '-' + s.slice(20) + '}';
+  }
+
+  // ---------- Formulas: references found outside strings ----------
+  var REF = /(?:('(?:[^']|'')+'|[A-Za-z_\u00C0-\uFFFF][A-Za-z0-9_.\u00C0-\uFFFF]*)!)?(\$?)([A-Z]{1,3})(\$?)(\d+)(?::(\$?)([A-Z]{1,3})(\$?)(\d+))?(?![A-Za-z0-9_(])/y;
+  function unq(s) { return s[0] === "'" ? s.slice(1, -1).replace(/''/g, "'") : s; }
+  function q(name) { return "'" + name.replace(/'/g, "''") + "'"; }
+  function same(a, b) { return String(a).toLowerCase() === String(b).toLowerCase(); }
+  function mapRefs(f, fn) {
+    var out = '', i = 0, n = f.length;
+    while (i < n) {
+      var ch = f[i];
+      if (ch === '"') {
+        var j = i + 1;
+        while (j < n) { if (f[j] === '"') { if (f[j + 1] === '"') { j += 2; continue; } break; } j++; }
+        out += f.slice(i, j + 1); i = j + 1; continue;
+      }
+      if (!i || !/[A-Za-z0-9_.$\]]/.test(f[i - 1])) {
+        REF.lastIndex = i;
+        var m = REF.exec(f);
+        if (m) {
+          var p = { sheet: m[1] ? unq(m[1]) : null, ca1: m[2], c1: colNum(m[3]), ra1: m[4], r1: +m[5], two: !!m[7], ca2: m[6] || '', c2: m[7] ? colNum(m[7]) : 0, ra2: m[8] || '', r2: m[9] ? +m[9] : 0 };
+          var res = fn(p);
+          out += res ? (res.sheet ? q(res.sheet) + '!' : '') + res.ca1 + colName(res.c1) + res.ra1 + res.r1 + (res.two ? ':' + res.ca2 + colName(res.c2) + res.ra2 + res.r2 : '') : m[0];
+          i += m[0].length; continue;
+        }
+      }
+      out += ch; i++;
+    }
+    return out;
+  }
+  function shiftF(f, sheet, own, at, n) {
+    return mapRefs(f, function (p) {
+      if (p.sheet ? !same(p.sheet, sheet) : !own) return null;
+      if (p.r1 >= at) p.r1 += n;
+      if (p.two && p.r2 >= at) p.r2 += n;
+      return p;
+    });
+  }
+  function moveF(f, dr, dc) {
+    return mapRefs(f, function (p) {
+      if (!p.ra1) p.r1 += dr;
+      if (!p.ca1) p.c1 += dc;
+      if (p.two) { if (!p.ra2) p.r2 += dr; if (!p.ca2) p.c2 += dc; }
+      return p;
+    });
+  }
+  function renameF(f, from, to) {
+    return mapRefs(f, function (p) { if (!p.sheet || !same(p.sheet, from)) return null; p.sheet = to; return p; });
+  }
+  // Applies fn to the text of every <f> element (unescaped, then escaped back).
+  function mapFX(xml, fn) {
+    return xml.replace(/(<f\b[^>]*>)([\s\S]*?)(<\/f>)/g, function (m, a, t, b) { return a + escT(fn(unesc(t))) + b; });
+  }
+  // Same for element texts like <formula>, <c:f>, <definedName>.
+  function mapTagX(xml, tag, fn) {
+    var re = new RegExp('(<' + tag + '\\b[^>]*>)([\\s\\S]*?)(</' + tag + '>)', 'g');
+    return xml.replace(re, function (m, a, t, b) { return a + escT(fn(unesc(t))) + b; });
+  }
+  function parseRange(s) {
+    var m = s.match(/^\$?([A-Z]+)\$?(\d+)(?::\$?([A-Z]+)\$?(\d+))?$/);
+    if (!m) return null;
+    return { c1: colNum(m[1]), r1: +m[2], c2: colNum(m[3] || m[1]), r2: +(m[4] || m[2]) };
+  }
+  function fmtRange(r) { var a = colName(r.c1) + r.r1, b = colName(r.c2) + r.r2; return a === b ? a : a + ':' + b; }
+  function shiftSqref(sq, at, n) {
+    return sq.split(/\s+/).map(function (s) {
+      var r = parseRange(s); if (!r) return s;
+      if (r.r1 >= at) r.r1 += n; if (r.r2 >= at) r.r2 += n;
+      return fmtRange(r);
+    }).join(' ');
+  }
+
+  // ---------- Relationships and content types ----------
+  function relsPath(part) { var i = part.lastIndexOf('/'); return part.slice(0, i + 1) + '_rels/' + part.slice(i + 1) + '.rels'; }
+  function dirOf(part) { return part.slice(0, part.lastIndexOf('/') + 1); }
+  function resolve(base, target) {
+    if (target[0] === '/') return target.slice(1);
+    var out = [];
+    (base + target).split('/').forEach(function (p) { if (p === '..') out.pop(); else if (p !== '.' && p !== '') out.push(p); });
+    return out.join('/');
+  }
+  function relTarget(from, to) {
+    var a = dirOf(from).split('/').filter(Boolean), b = to.split('/'), i = 0;
+    while (i < a.length && i < b.length - 1 && a[i] === b[i]) i++;
+    var up = ''; for (var k = i; k < a.length; k++) up += '../';
+    return up + b.slice(i).join('/');
+  }
+  function parseRels(xml) {
+    var out = [], re = /<Relationship\b([^>]*?)\/?>/g, m;
+    while ((m = re.exec(xml))) out.push({ id: attr(m[1], 'Id'), type: attr(m[1], 'Type'), target: unesc(attr(m[1], 'Target') || ''), mode: attr(m[1], 'TargetMode'), raw: m[0] });
+    return out;
+  }
+  function relsOf(pkg, part) {
+    var rp = relsPath(part);
+    if (!pkg.has(rp)) return [];
+    return parseRels(pkg.text(rp)).map(function (r) { r.path = r.mode === 'External' ? null : resolve(dirOf(part), r.target); return r; });
+  }
+  function relsXml(list) {
+    return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\r\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+      list.map(function (r) { return '<Relationship Id="' + escA(r.id) + '" Type="' + escA(r.type) + '" Target="' + escA(r.target) + '"' + (r.mode ? ' TargetMode="' + r.mode + '"' : '') + '/>'; }).join('') + '</Relationships>';
+  }
+  function ctType(pkg, part) {
+    var x = pkg.text('[Content_Types].xml');
+    var m = x.match(new RegExp('<Override\\b[^>]*PartName="/' + part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[^>]*/>'));
+    if (m) return attr(m[0], 'ContentType');
+    var ext = part.slice(part.lastIndexOf('.') + 1).toLowerCase();
+    m = x.match(new RegExp('<Default\\b[^>]*Extension="' + ext + '"[^>]*/>', 'i'));
+    return m ? attr(m[0], 'ContentType') : null;
+  }
+  function ctOverride(pkg, part, type) {
+    var x = pkg.text('[Content_Types].xml');
+    if (x.indexOf('PartName="/' + part + '"') >= 0) return;
+    var ext = part.slice(part.lastIndexOf('.') + 1).toLowerCase();
+    var def = x.match(new RegExp('<Default\\b[^>]*Extension="' + ext + '"[^>]*/>', 'i'));
+    if (def && attr(def[0], 'ContentType') === type) return;
+    pkg.setText('[Content_Types].xml', x.replace('</Types>', '<Override PartName="/' + part + '" ContentType="' + type + '"/></Types>'));
+  }
+  function freePath(pkg, prefix, ext) {
+    var n = 1;
+    while (pkg.has(prefix + n + ext)) n++;
+    return prefix + n + ext;
+  }
+
+  // ---------- Workbook ----------
+  async function open(buf, codec) {
+    var pkg = await openPackage(buf, codec);
+    var wb = { pkg: pkg, sst: [], models: {} };
+    if (pkg.has('xl/sharedStrings.xml')) wb.sst = parseSST(pkg.text('xl/sharedStrings.xml'));
+    return wb;
+  }
+  function parseSST(xml) {
+    var out = [], re = /<si>([\s\S]*?)<\/si>/g, m;
+    while ((m = re.exec(xml))) {
+      var body = m[1].replace(/<rPh\b[\s\S]*?<\/rPh>/g, ''), t = '', tr = /<t\b[^>]*>([\s\S]*?)<\/t>/g, mm;
+      while ((mm = tr.exec(body))) t += mm[1];
+      out.push(unesc(t));
+    }
+    return out;
+  }
+  function sheets(wb) {
+    var x = wb.pkg.text('xl/workbook.xml'), rels = relsOf(wb.pkg, 'xl/workbook.xml');
+    var out = [], re = /<sheet\b([^>]*?)\/>/g, m;
+    while ((m = re.exec(x))) {
+      var a = m[1], rid = attr(a, 'r:id'), rel = null;
+      for (var i = 0; i < rels.length; i++) if (rels[i].id === rid) rel = rels[i];
+      out.push({ name: unesc(attr(a, 'name')), rid: rid, id: +attr(a, 'sheetId'), path: rel ? rel.path : null, index: out.length });
+    }
+    return out;
+  }
+  function sheetByName(wb, name) { var s = sheets(wb); for (var i = 0; i < s.length; i++) if (same(s[i].name, name)) return s[i]; return null; }
+
+  // ---------- Sheet model: rows and cells parsed, the rest kept as text ----------
+  function parseSheet(xml) {
+    var a = xml.indexOf('<sheetData'), head = xml.slice(0, a), inner = '', tail;
+    var sc = xml.slice(a).match(/^<sheetData\s*\/>/);
+    if (sc) tail = xml.slice(a + sc[0].length);
+    else { var s = xml.indexOf('>', a) + 1, b = xml.indexOf('</sheetData>', s); inner = xml.slice(s, b); tail = xml.slice(b + 12); }
+    var rows = new Map(), rowRe = /<row\b([^>]*?)(\/>|>([\s\S]*?)<\/row>)/g, m;
+    while ((m = rowRe.exec(inner))) {
+      var r = +m[1].match(/(?:^|\s)r="(\d+)"/)[1];
+      var row = { r: r, attrs: m[1].replace(/\s+r="\d+"/, ''), cells: new Map() };
+      var body = m[3] || '', cre = /<c\b([^>]*?)(\/>|>([\s\S]*?)<\/c>)/g, cm;
+      while ((cm = cre.exec(body))) {
+        var ca = cm[1], ref = ca.match(/(?:^|\s)r="([A-Z]+)(\d+)"/);
+        row.cells.set(colNum(ref[1]), { s: attr(ca, 's'), t: attr(ca, 't'), other: ca.replace(/\s+(r|s|t)="[^"]*"/g, ''), inner: cm[3] || '' });
+      }
+      rows.set(r, row);
+    }
+    return { head: head, tail: tail, rows: rows };
+  }
+  function serializeSheet(m) {
+    var rows = Array.from(m.rows.values()).sort(function (x, y) { return x.r - y.r; });
+    var minR = Infinity, maxR = 0, minC = Infinity, maxC = 0;
+    var body = rows.map(function (row) {
+      var cells = Array.from(row.cells.entries()).sort(function (x, y) { return x[0] - y[0]; }).map(function (e) {
+        var c = e[1], col = e[0];
+        if (row.r < minR) minR = row.r; if (row.r > maxR) maxR = row.r; if (col < minC) minC = col; if (col > maxC) maxC = col;
+        var s = '<c r="' + colName(col) + row.r + '"' + (c.s != null ? ' s="' + c.s + '"' : '') + (c.t ? ' t="' + c.t + '"' : '') + c.other;
+        return c.inner ? s + '>' + c.inner + '</c>' : s + '/>';
+      }).join('');
+      return '<row r="' + row.r + '"' + row.attrs + (cells ? '>' + cells + '</row>' : '/>');
+    }).join('');
+    var head = m.head;
+    if (maxR) head = head.replace(/<dimension ref="[^"]*"\/>/, '<dimension ref="' + colName(minC) + minR + ':' + colName(maxC) + maxR + '"/>');
+    return head + '<sheetData>' + body + '</sheetData>' + m.tail;
+  }
+  function model(wb, si) {
+    if (!wb.models[si.path]) wb.models[si.path] = parseSheet(wb.pkg.text(si.path));
+    return wb.models[si.path];
+  }
+  function flush(wb) {
+    Object.keys(wb.models).forEach(function (p) { if (wb.pkg.has(p)) wb.pkg.setText(p, serializeSheet(wb.models[p])); });
+    wb.models = {};
+  }
+  function cell(m, col, r) { var row = m.rows.get(r); return row ? row.cells.get(col) || null : null; }
+  function ensure(m, col, r) {
+    var row = m.rows.get(r);
+    if (!row) { row = { r: r, attrs: '', cells: new Map() }; m.rows.set(r, row); }
+    var c = row.cells.get(col);
+    if (!c) {
+      var left = null; row.cells.forEach(function (x, k) { if (k < col && (!left || k > left.k)) left = { k: k, c: x }; });
+      c = { s: left ? left.c.s : null, t: null, other: '', inner: '' };
+      row.cells.set(col, c);
+    }
+    return c;
+  }
+  function formulaOf(c) { if (!c) return null; var m = c.inner.match(/<f\b[^>]*>([\s\S]*?)<\/f>/); return m ? unesc(m[1]) : null; }
+  function textOf(wb, c) {
+    if (!c) return '';
+    var v = c.inner.match(/<v\b[^>]*>([\s\S]*?)<\/v>/);
+    if (c.t === 's') return v ? wb.sst[+v[1]] || '' : '';
+    if (c.t === 'inlineStr') { var t = '', re = /<t\b[^>]*>([\s\S]*?)<\/t>/g, mm; while ((mm = re.exec(c.inner))) t += unesc(mm[1]); return t; }
+    return v ? unesc(v[1]) : '';
+  }
+  function numOf(c) { if (!c || c.t) return null; var v = c.inner.match(/<v>([\s\S]*?)<\/v>/); return v && v[1] !== '' && isFinite(+v[1]) ? +v[1] : null; }
+  function setStr(m, col, r, s) {
+    var c = ensure(m, col, r);
+    if (s == null || s === '') { c.t = null; c.inner = ''; return; }
+    c.t = 'inlineStr'; c.inner = '<is><t xml:space="preserve">' + escT(s) + '</t></is>';
+  }
+  function setNum(m, col, r, v) {
+    var c = ensure(m, col, r);
+    if (v == null || !isFinite(v)) { c.t = null; c.inner = ''; return; }
+    c.t = null; c.inner = '<v>' + (Math.round(v * 1000) / 1000) + '</v>';
+  }
+  function setF(m, col, r, f) { var c = ensure(m, col, r); c.t = null; c.inner = '<f>' + escT(f) + '</f>'; }
+  function clear(m, col, r) { var c = cell(m, col, r); if (c && !/<f\b/.test(c.inner)) { c.t = null; c.inner = ''; } }
+  // Shared formulas become plain formulas, so rows can move safely.
+  function unshare(m) {
+    var masters = {};
+    m.rows.forEach(function (row) {
+      row.cells.forEach(function (c, col) {
+        var f = c.inner.match(/<f\b([^>]*)>([\s\S]*?)<\/f>/);
+        if (f && attr(f[1], 't') === 'shared' && attr(f[1], 'ref')) masters[attr(f[1], 'si')] = { r: row.r, c: col, f: unesc(f[2]) };
+      });
+    });
+    m.rows.forEach(function (row) {
+      row.cells.forEach(function (c, col) {
+        var f = c.inner.match(/<f\b([^>]*?)(\/>|>([\s\S]*?)<\/f>)/);
+        if (!f || attr(f[1], 't') !== 'shared') return;
+        var ms = masters[attr(f[1], 'si')];
+        if (!ms) return;
+        c.inner = c.inner.replace(f[0], '<f>' + escT(moveF(ms.f, row.r - ms.r, col - ms.c)) + '</f>');
+      });
+    });
+  }
+  // Cached results are dropped: Excel computes everything again when the file opens.
+  function dropCache(m) {
+    m.rows.forEach(function (row) {
+      row.cells.forEach(function (c) {
+        if (!/<f\b/.test(c.inner)) return;
+        c.inner = c.inner.replace(/<v\b[^>]*>[\s\S]*?<\/v>|<v\b[^>]*\/>/g, '');
+        c.t = null;
+      });
+    });
+  }
+  function getMerges(m) {
+    var out = [], re = /<mergeCell ref="([^"]+)"\s*\/>/g, x;
+    while ((x = re.exec(m.tail))) out.push(parseRange(x[1]));
+    return out;
+  }
+  function setMerges(m, list) {
+    var xml = list.length ? '<mergeCells count="' + list.length + '">' + list.map(function (r) { return '<mergeCell ref="' + fmtRange(r) + '"/>'; }).join('') + '</mergeCells>' : '';
+    if (/<mergeCells\b[\s\S]*?<\/mergeCells>/.test(m.tail)) m.tail = m.tail.replace(/<mergeCells\b[\s\S]*?<\/mergeCells>/, xml);
+    else if (xml) m.tail = m.tail.replace(/^/, xml);
+  }
+
+  // ---------- Inserting rows (Excel rules: anything at or below "at" moves down) ----------
+  function shiftAnchors(xml, at, n) {
+    xml = xml.replace(/(<xdr:(?:from|to)>[\s\S]*?<xdr:row>)(\d+)(<\/xdr:row>)/g, function (m, a, r, b) { return a + (+r >= at - 1 ? +r + n : r) + b; });
+    return xml.replace(/(<x:Anchor>)([\s\S]*?)(<\/x:Anchor>)/g, function (m, a, t, b) {
+      var v = t.split(',').map(function (s) { return s.trim(); });
+      if (v.length !== 8) return m;
+      if (+v[2] >= at - 1) v[2] = String(+v[2] + n);
+      if (+v[6] >= at - 1) v[6] = String(+v[6] + n);
+      return a + '\r\n    ' + v.join(', ') + b;
+    });
+  }
+  function insertRows(wb, si, at, n, pat, patLen) {
+    var m = model(wb, si), name = si.name;
+    var moved = new Map();
+    m.rows.forEach(function (row) { if (row.r >= at) row.r += n; moved.set(row.r, row); });
+    m.rows = moved;
+    m.rows.forEach(function (row) { row.cells.forEach(function (c) { if (/<f\b/.test(c.inner)) c.inner = mapFX(c.inner, function (f) { return shiftF(f, name, true, at, n); }); }); });
+    for (var j = 0; j < n; j++) {
+      var src = m.rows.get(pat + (j % patLen)), r = at + j, dr = r - src.r;
+      var nr = { r: r, attrs: src.attrs.replace(/\s+hidden="1"/, ''), cells: new Map() };
+      src.cells.forEach(function (c, col) { nr.cells.set(col, { s: c.s, t: c.t, other: c.other, inner: /<f\b/.test(c.inner) ? mapFX(c.inner, function (f) { return moveF(f, dr, 0); }) : c.inner }); });
+      m.rows.set(r, nr);
+    }
+    var merges = getMerges(m), added = [];
+    merges.forEach(function (g) {
+      if (g.r1 >= pat && g.r2 < pat + patLen) for (var b = 0; b < n / patLen; b++) added.push({ c1: g.c1, c2: g.c2, r1: g.r1 + at - pat + b * patLen, r2: g.r2 + at - pat + b * patLen });
+      if (g.r1 >= at) g.r1 += n;
+      if (g.r2 >= at) g.r2 += n;
+    });
+    setMerges(m, merges.concat(added));
+    m.tail = m.tail.replace(/(<conditionalFormatting\b[^>]*sqref=")([^"]*)(")/g, function (x, a, s, b) { return a + shiftSqref(s, at, n) + b; })
+      .replace(/(<dataValidation\b[^>]*sqref=")([^"]*)(")/g, function (x, a, s, b) { return a + shiftSqref(s, at, n) + b; })
+      .replace(/(<hyperlink\b[^>]*ref=")([^"]*)(")/g, function (x, a, s, b) { return a + shiftSqref(s, at, n) + b; })
+      .replace(/(<brk\b[^>]*id=")(\d+)(")/g, function (x, a, s, b) { return a + (+s >= at ? +s + n : s) + b; });
+    m.tail = mapTagX(m.tail, 'formula', function (f) { return shiftF(f, name, true, at, n); });
+    m.tail = mapTagX(m.tail, 'xm:f', function (f) { return shiftF(f, name, true, at, n); });
+    m.tail = shiftAnchors(m.tail, at, n);
+    relsOf(wb.pkg, si.path).forEach(function (r) {
+      if (!r.path || !wb.pkg.has(r.path) || !/\.(xml|vml)$/.test(r.path)) return;
+      if (/drawing/i.test(r.type)) wb.pkg.setText(r.path, shiftAnchors(wb.pkg.text(r.path), at, n));
+    });
+    var w = wb.pkg.text('xl/workbook.xml');
+    wb.pkg.setText('xl/workbook.xml', mapTagX(w, 'definedName', function (f) { return shiftF(f, name, false, at, n); }));
+    eachChart(wb, function (p, x) { return mapTagX(x, 'c:f', function (f) { return shiftF(f, name, false, at, n); }); });
+    sheets(wb).forEach(function (o) {
+      if (o.path === si.path) return;
+      var om = wb.models[o.path];
+      if (om) om.rows.forEach(function (row) { row.cells.forEach(function (c) { if (/<f\b/.test(c.inner)) c.inner = mapFX(c.inner, function (f) { return shiftF(f, name, false, at, n); }); }); });
+      else if (wb.pkg.text(o.path).indexOf(name) >= 0) wb.pkg.setText(o.path, mapFX(wb.pkg.text(o.path), function (f) { return shiftF(f, name, false, at, n); }));
+    });
+  }
+  function eachChart(wb, fn) {
+    wb.pkg.order.slice().forEach(function (p) { if (/^xl\/charts\/chart\d+\.xml$/.test(p)) wb.pkg.setText(p, fn(p, wb.pkg.text(p))); });
+  }
+
+  // ---------- Sheets: delete, rename, copy ----------
+  function nameIndex(wb, fn) {
+    var w = wb.pkg.text('xl/workbook.xml');
+    w = w.replace(/<definedName\b([^>]*)>([\s\S]*?)<\/definedName>/g, function (m, a, t) { return fn(m, a, t); });
+    w = w.replace(/<definedNames>\s*<\/definedNames>/, '');
+    wb.pkg.setText('xl/workbook.xml', w);
+  }
+  function deleteSheet(wb, name) {
+    flush(wb);
+    var si = sheetByName(wb, name);
+    if (!si) return;
+    var w = wb.pkg.text('xl/workbook.xml');
+    w = w.replace(new RegExp('<sheet\\b[^>]*r:id="' + si.rid + '"[^>]*/>'), '');
+    wb.pkg.setText('xl/workbook.xml', w);
+    nameIndex(wb, function (m, a, t) {
+      var l = attr(a, 'localSheetId');
+      if (l == null) return m;
+      if (+l === si.index) return '';
+      if (+l > si.index) return m.replace('localSheetId="' + l + '"', 'localSheetId="' + (+l - 1) + '"');
+      return m;
+    });
+    var rp = 'xl/_rels/workbook.xml.rels';
+    wb.pkg.setText(rp, relsXml(parseRels(wb.pkg.text(rp)).filter(function (r) { return r.id !== si.rid; })));
+    wb.pkg.remove(si.path);
+    wb.pkg.remove(relsPath(si.path));
+  }
+  function renameSheet(wb, from, to) {
+    if (from === to) return;
+    flush(wb);
+    var w = wb.pkg.text('xl/workbook.xml');
+    w = w.replace(/<sheet\b[^>]*\/>/g, function (m) { return same(unesc(attr(m, 'name')), from) ? m.replace(/name="[^"]*"/, 'name="' + escA(to) + '"') : m; });
+    w = mapTagX(w, 'definedName', function (f) { return renameF(f, from, to); });
+    wb.pkg.setText('xl/workbook.xml', w);
+    eachChart(wb, function (p, x) { return mapTagX(x, 'c:f', function (f) { return renameF(f, from, to); }); });
+    sheets(wb).forEach(function (o) {
+      var x = wb.pkg.text(o.path);
+      if (x.indexOf(from) >= 0) wb.pkg.setText(o.path, mapFX(x, function (f) { return renameF(f, from, to); }));
+    });
+  }
+  function maxVmlBlock(wb) {
+    var mx = 0;
+    wb.pkg.order.forEach(function (p) {
+      if (!/\.vml$/i.test(p)) return;
+      var re = /<o:idmap\b[^>]*data="([^"]*)"/g, m;
+      while ((m = re.exec(wb.pkg.text(p)))) m[1].split(',').forEach(function (d) { if (+d > mx) mx = +d; });
+    });
+    return mx;
+  }
+  // Copies a part and what it points to (drawings, charts, buttons). Images and printer settings are shared or copied as they are.
+  function copyPart(wb, src, dstPrefix, ext, ctx) {
+    var pkg = wb.pkg, dst = freePath(pkg, dstPrefix, ext);
+    pkg.copy(src, dst);
+    var type = ctType(pkg, src);
+    if (type) ctOverride(pkg, dst, type);
+    var rels = relsOf(pkg, src);
+    if (rels.length) {
+      var out = rels.map(function (r) {
+        var o = { id: r.id, type: r.type, target: r.target, mode: r.mode };
+        if (!r.path || !pkg.has(r.path)) return o;
+        var nt = null;
+        if (/\/chart$/.test(r.type)) nt = copyPart(wb, r.path, 'xl/charts/chart', '.xml', ctx);
+        else if (/chartStyle$|chartColorStyle$/.test(r.type)) nt = copyPart(wb, r.path, 'xl/charts/' + (/Color/.test(r.type) ? 'colors' : 'style'), '.xml', ctx);
+        else if (/themeOverride$/.test(r.type)) nt = copyPart(wb, r.path, 'xl/theme/themeOverride', '.xml', ctx);
+        if (nt) o.target = relTarget(dst, nt);
+        return o;
+      });
+      pkg.setText(relsPath(dst), relsXml(out));
+    }
+    if (/chart\d+\.xml$/.test(dst)) pkg.setText(dst, mapTagX(pkg.text(dst), 'c:f', function (f) { return renameF(f, ctx.from, ctx.to); }));
+    return dst;
+  }
+  function copySheet(wb, srcName, newName, afterName) {
+    flush(wb);
+    var pkg = wb.pkg, list = sheets(wb), src = sheetByName(wb, srcName), after = sheetByName(wb, afterName || srcName);
+    var dst = freePath(pkg, 'xl/worksheets/sheet', '.xml');
+    var x = pkg.text(src.path).replace(/\s+tabSelected="1"/g, '').replace(/(<sheetPr\b[^>]*?)\s+codeName="[^"]*"/, '$1')
+      .replace(/xr:uid="\{[^}]*\}"/, 'xr:uid="' + guid() + '"');
+    pkg.setText(dst, x);
+    ctOverride(pkg, dst, ctType(pkg, src.path));
+    var ctx = { from: srcName, to: newName }, idMap = {};
+    var rels = relsOf(pkg, src.path).map(function (r) {
+      var o = { id: r.id, type: r.type, target: r.target, mode: r.mode };
+      if (!r.path || !pkg.has(r.path)) return o;
+      var nt;
+      if (/\/drawing$/.test(r.type)) nt = copyPart(wb, r.path, 'xl/drawings/drawing', '.xml', ctx);
+      else if (/vmlDrawing$/.test(r.type)) {
+        nt = freePath(pkg, 'xl/drawings/vmlDrawing', '.vml');
+        var blk = maxVmlBlock(wb) + 1, v = pkg.text(r.path), old = (v.match(/<o:idmap\b[^>]*data="(\d+)"/) || [])[1];
+        v = v.replace(/(<o:idmap\b[^>]*data=")[^"]*(")/, '$1' + blk + '$2').replace(/_x0000_s(\d+)/g, function (m, id) {
+          var nid = blk * 1024 + (+id - (old ? +old * 1024 : 0));
+          idMap[id] = String(nid);
+          return '_x0000_s' + nid;
+        });
+        pkg.setText(nt, v);
+        if (pkg.has(relsPath(r.path))) pkg.setText(relsPath(nt), pkg.text(relsPath(r.path)));
+      } else if (/ctrlProp$/.test(r.type)) nt = copyPart(wb, r.path, 'xl/ctrlProps/ctrlProp', '.xml', ctx);
+      else if (/printerSettings$/.test(r.type)) { nt = freePath(pkg, 'xl/printerSettings/printerSettings', '.bin'); pkg.copy(r.path, nt); var pt = ctType(pkg, r.path); if (pt) ctOverride(pkg, nt, pt); }
+      if (nt) o.target = relTarget(dst, nt);
+      return o;
+    });
+    if (rels.length) pkg.setText(relsPath(dst), relsXml(rels));
+    // Buttons: the sheet and the drawing name their VML shapes by number.
+    var ids = Object.keys(idMap);
+    if (ids.length) {
+      pkg.setText(dst, pkg.text(dst).replace(/(<control\b[^>]*shapeId=")(\d+)(")/g, function (m, a, id, b) { return a + (idMap[id] || id) + b; }));
+      rels.forEach(function (o) {
+        if (!/\/drawing$/.test(o.type)) return;
+        var p = resolve(dirOf(dst), o.target);
+        pkg.setText(p, pkg.text(p).replace(/spid="_x0000_s(\d+)"/g, function (m, id) { return 'spid="_x0000_s' + (idMap[id] || id) + '"'; }));
+      });
+    }
+    // Workbook: the new sheet goes right after "after"; sheet-level names follow.
+    var rp = 'xl/_rels/workbook.xml.rels', wr = parseRels(pkg.text(rp)), rid = 'rId' + (wr.length + 1), k = wr.length + 1;
+    while (wr.some(function (r) { return r.id === rid; })) rid = 'rId' + (++k);
+    wr.push({ id: rid, type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet', target: relTarget('xl/workbook.xml', dst) });
+    pkg.setText(rp, relsXml(wr));
+    var maxId = 0; list.forEach(function (s) { if (s.id > maxId) maxId = s.id; });
+    var pos = after.index + 1, w = pkg.text('xl/workbook.xml');
+    var tags = w.match(/<sheet\b[^>]*\/>/g), last = tags[after.index];
+    w = w.replace(last, last + '<sheet name="' + escA(newName) + '" sheetId="' + (maxId + 1) + '" r:id="' + rid + '"/>');
+    pkg.setText('xl/workbook.xml', w);
+    var copies = [];
+    nameIndex(wb, function (m, a, t) {
+      var l = attr(a, 'localSheetId');
+      if (l == null) return m;
+      var out = m;
+      if (+l >= pos) out = m.replace('localSheetId="' + l + '"', 'localSheetId="' + (+l + 1) + '"');
+      if (+l === src.index) copies.push(m.replace('localSheetId="' + l + '"', 'localSheetId="' + pos + '"').replace(/>([\s\S]*?)<\/definedName>$/, function (z, f) { return '>' + escT(renameF(unesc(f), srcName, newName)) + '</definedName>'; }));
+      return out;
+    });
+    if (copies.length) pkg.setText('xl/workbook.xml', pkg.text('xl/workbook.xml').replace('</definedNames>', copies.join('') + '</definedNames>'));
+    return sheetByName(wb, newName);
+  }
+
+  // Removes parts that nothing points to any more.
+  function collect(wb) {
+    var pkg = wb.pkg, keep = {};
+    keep['[Content_Types].xml'] = true;
+    (function walk(part) {
+      var rp = part ? relsPath(part) : '_rels/.rels';
+      if (!pkg.has(rp)) return;
+      keep[rp] = true;
+      relsOf(pkg, part || '').forEach(function (r) {
+        if (!r.path || keep[r.path] || !pkg.has(r.path)) return;
+        keep[r.path] = true;
+        walk(r.path);
+      });
+    })('');
+    pkg.order.slice().forEach(function (p) { if (!keep[p]) pkg.remove(p); });
+    var x = pkg.text('[Content_Types].xml').replace(/<Override\b[^>]*PartName="\/([^"]+)"[^>]*\/>/g, function (m, p) { return pkg.has(p) ? m : ''; });
+    pkg.setText('[Content_Types].xml', x);
+  }
+  function fixNames(wb) {
+    var names = sheets(wb).map(function (s) { return s.name.toLowerCase(); });
+    nameIndex(wb, function (m, a, t) {
+      var bad = false;
+      mapRefs(unesc(t), function (p) { if (p.sheet && p.sheet[0] !== '[' && names.indexOf(p.sheet.toLowerCase()) < 0) bad = true; return null; });
+      return bad ? m.replace(/>[\s\S]*?<\/definedName>$/, '>#REF!</definedName>') : m;
+    });
+  }
+  function finish(wb) {
+    flush(wb);
+    fixNames(wb);
+    var pkg = wb.pkg, w = pkg.text('xl/workbook.xml');
+    var wr = parseRels(pkg.text('xl/_rels/workbook.xml.rels'));
+    if (wr.some(function (r) { return /calcChain$/.test(r.type); })) pkg.setText('xl/_rels/workbook.xml.rels', relsXml(wr.filter(function (r) { return !/calcChain$/.test(r.type); })));
+    if (/<calcPr\b/.test(w)) w = w.replace(/<calcPr\b([^>]*?)\/>/, function (m, a) { return '<calcPr' + a.replace(/\s+fullCalcOnLoad="[^"]*"/, '') + ' fullCalcOnLoad="1"/>'; });
+    else w = w.replace(/(<\/sheets>(?:<functionGroups[\s\S]*?<\/functionGroups>|<functionGroups\/>)?(?:<externalReferences>[\s\S]*?<\/externalReferences>)?(?:<definedNames>[\s\S]*?<\/definedNames>)?)/, '$1<calcPr fullCalcOnLoad="1"/>');
+    w = w.replace(/(<workbookView\b[^>]*?)\s+activeTab="\d+"/, '$1').replace(/(<workbookView\b[^>]*?)\s+firstSheet="\d+"/, '$1');
+    pkg.setText('xl/workbook.xml', w);
+    sheets(wb).forEach(function (s, i) {
+      var x = pkg.text(s.path).replace(/\s+tabSelected="1"/g, '');
+      if (i === 0) x = x.replace(/<sheetView\b/, '<sheetView tabSelected="1"');
+      pkg.setText(s.path, x);
+    });
+    if (pkg.has('docProps/app.xml')) pkg.setText('docProps/app.xml', pkg.text('docProps/app.xml').replace(/<HeadingPairs>[\s\S]*?<\/HeadingPairs>/, '').replace(/<TitlesOfParts>[\s\S]*?<\/TitlesOfParts>/, ''));
+    collect(wb);
+  }
+
+  // ---------- Recognising the templates ----------
+  function mctGeo(m) {
+    var g = null;
+    m.rows.forEach(function (row) {
+      if (g) return;
+      var f = formulaOf(row.cells.get(12));
+      var mm = f && f.match(/SUM\(L(\d+):L(\d+)\)/);
+      if (!mm || +mm[1] >= +mm[2] || (+mm[2] - +mm[1] + 1) % 2) return;
+      var fc = formulaOf(cell(m, 12, row.r + 2));
+      if (!fc || fc.indexOf('L' + row.r) < 0 || fc.indexOf('L' + (row.r + 1)) < 0) return;
+      var n = 0; for (var c = 12; c < 12 + 60; c++) { if (formulaOf(row.cells.get(c))) n++; else break; }
+      g = { first: +mm[1], last: +mm[2], a: row.r, nCols: n };
+    });
+    return g;
+  }
+  function tctGeo(m) {
+    var g = null;
+    m.rows.forEach(function (row) {
+      if (g) return;
+      var f = formulaOf(row.cells.get(12));
+      var mm = f && f.match(/^SUM\(L(\d+):L(\d+)\)$/);
+      if (!mm) return;
+      var f1 = formulaOf(cell(m, 12, +mm[1]));
+      if (!f1 || !/^SUM\(M\d+:N\d+\)$/.test(f1)) return;
+      g = { first: +mm[1], last: +mm[2], sum: row.r };
+    });
+    if (!g) return null;
+    g.per = [];
+    m.rows.forEach(function (row) {
+      var fj = formulaOf(row.cells.get(10)), fo = formulaOf(row.cells.get(15)), fp = formulaOf(row.cells.get(16));
+      if (fj && /^ROUND\(AU4-/.test(fj)) g.wait = row.r;
+      if (fo && /^ROUND\(M\d+\+L\d+/.test(fo)) g.opTotal = row.r;
+      if (fp && /^IF\(O\d+=0,"",M\d+\/O\d+\)$/.test(fp) && row.r > g.sum) g.per.push(row.r);
+    });
+    g.per.sort(function (a, b) { return a - b; });
+    return g.wait ? g : null;
+  }
+  function coGeo(m) {
+    var r = null;
+    m.rows.forEach(function (row) {
+      if (r) return;
+      if (numOf(row.cells.get(24)) === 1 && numOf(row.cells.get(25)) === 2 && numOf(row.cells.get(26)) === 3) r = row.r;
+    });
+    return r ? { head: r } : null;
+  }
+  async function inspect(buf, codec) {
+    var wb = await open(buf, codec), out = { mct: [], tct: [], co: [], sheets: [] };
+    sheets(wb).forEach(function (s) {
+      if (!s.path || !wb.pkg.has(s.path)) return;
+      out.sheets.push(s.name);
+      var m = parseSheet(wb.pkg.text(s.path));
+      if (mctGeo(m)) out.mct.push(s.name);
+      else if (tctGeo(m)) out.tct.push(s.name);
+      else if (coGeo(m)) out.co.push(s.name);
+    });
+    out.macros = wb.pkg.has('xl/vbaProject.bin');
+    return out;
+  }
+
+  // ---------- Filling ----------
+  function labelOf(wb, m, col, r) {
+    var t = textOf(wb, cell(m, col, r)), i = t.indexOf(':');
+    return i >= 0 ? t.slice(0, i + 1) + ' ' : (t ? t + ' ' : '');
+  }
+  function setLabelled(wb, m, col, r, value) { setStr(m, col, r, labelOf(wb, m, col, r) + (value || '')); }
+  function numbered(base, i) {
+    var b = base.replace(/\b(example|exemple)\b\s*/ig, '').replace(/\s+/g, ' ').trim();
+    var out = /\d+\s*$/.test(b) ? b.replace(/\d+\s*$/, String(i)) : b + ' ' + i;
+    return out.replace(/[\\/?*[\]:]/g, '-').slice(0, 31);
+  }
+
+
+  // ---------- Tidying a filled example used as template ----------
+  // Every step row gets its standard horizontal merge back (some examples were unmerged by hand).
+  function rowMerges(m, rows, c1, c2) {
+    var want = {}; rows.forEach(function (r) { want[r] = true; });
+    var list = getMerges(m).filter(function (g) { return !(g.r1 === g.r2 && want[g.r1] && g.c2 >= c1 && g.c1 <= c2); });
+    rows.forEach(function (r) { list.push({ c1: c1, c2: c2, r1: r, r2: r }); });
+    setMerges(m, list);
+  }
+  function hiFills(wb) {
+    if (wb.hi) return wb.hi;
+    var x = wb.pkg.has('xl/styles.xml') ? wb.pkg.text('xl/styles.xml') : '', fills = [], hi = [];
+    var fb = (x.match(/<fills\b[^>]*>([\s\S]*?)<\/fills>/) || [])[1] || '';
+    (fb.match(/<fill\b[\s\S]*?<\/fill>|<fill\s*\/>/g) || []).forEach(function (f) {
+      var solid = /patternType="solid"/.test(f), fg = (f.match(/<fgColor\b[^>]*rgb="([0-9A-Fa-f]{8})"/) || [])[1];
+      fills.push(solid && !(fg && /^..FFFFFF$/i.test(fg)));
+    });
+    var xb = (x.match(/<cellXfs\b[^>]*>([\s\S]*?)<\/cellXfs>/) || [])[1] || '';
+    (xb.match(/<xf\b[^>]*?(?:\/>|>[\s\S]*?<\/xf>)/g) || []).forEach(function (xf) { hi.push(!!fills[+(attr(xf, 'fillId') || 0)]); });
+    wb.hi = hi;
+    return hi;
+  }
+  // Cells coloured by hand in an example (a fill the rest of the column does not have) get the column's usual style back.
+  function cleanFills(wb, m, rows, c1, c2) {
+    var hi = hiFills(wb);
+    for (var c = c1; c <= c2; c++) {
+      [0, 1].forEach(function (par) {
+        var count = {}, best = null;
+        rows.forEach(function (r, i) { if (i % 2 !== par) return; var x = cell(m, c, r); if (x && x.s != null) count[x.s] = (count[x.s] || 0) + 1; });
+        Object.keys(count).forEach(function (k) { if (best == null || count[k] > count[best]) best = k; });
+        if (best == null || hi[+best]) return;
+        rows.forEach(function (r, i) { if (i % 2 !== par) return; var x = cell(m, c, r); if (x && x.s != null && hi[+x.s]) x.s = best; });
+      });
+    }
+  }
+  // Shapes drawn by hand over the time columns of the step rows belong to the old steps.
+  function clearShapes(wb, si, r1, r2, c1, c2) {
+    relsOf(wb.pkg, si.path).forEach(function (r) {
+      if (!/\/drawing$/.test(r.type) || !r.path || !wb.pkg.has(r.path)) return;
+      wb.pkg.setText(r.path, wb.pkg.text(r.path).replace(/<xdr:twoCellAnchor\b[\s\S]*?<\/xdr:twoCellAnchor>/g, function (an) {
+        if (/<xdr:graphicFrame\b/.test(an)) return an;
+        var fr = an.match(/<xdr:from><xdr:col>(\d+)<\/xdr:col>[\s\S]*?<xdr:row>(\d+)<\/xdr:row>/);
+        if (!fr) return an;
+        var row = +fr[2] + 1, col = +fr[1] + 1;
+        return row >= r1 && row <= r2 && col >= c1 && col <= c2 ? '' : an;
+      }));
+    });
+  }
+
+  function fillMctSheet(wb, si, d, op) {
+    var m = model(wb, si);
+    unshare(m);
+    var g = mctGeo(m), cap = (g.last - g.first + 1) / 2, need = Math.max(op.rows.length, 1);
+    if (need > cap) { insertRows(wb, si, g.last - 1, 2 * (need - cap), g.last - 3, 2); g = mctGeo(m); }
+    var C1 = 12, NC = g.nCols, a = g.a, slots = (g.last - g.first + 1) / 2, k, j, r, all = [];
+    for (r = g.first; r <= g.last; r++) all.push(r);
+    rowMerges(m, all, 2, 10);
+    cleanFills(wb, m, all, C1, C1 + NC - 1);
+    for (k = 0; k < slots; k++) {
+      r = g.first + 2 * k;
+      setStr(m, 1, r, '');
+      setLabelled(wb, m, 2, r, '');
+      for (j = 3; j <= 10; j++) { clear(m, j, r); clear(m, j, r + 1); }
+      setStr(m, 2, r + 1, '');
+      for (j = 0; j < NC; j++) { clear(m, C1 + j, r); clear(m, C1 + j, r + 1); }
+    }
+    op.rows.forEach(function (row, k2) {
+      var rr = g.first + 2 * k2;
+      setStr(m, 1, rr, row.code);
+      setStr(m, 2, rr + 1, row.name);
+      for (var c = 0; c < NC && c < op.cols.length; c++) setNum(m, C1 + c, rr, op.vals[k2][c]);
+    });
+    var waits = [];
+    op.rows.forEach(function (row, k2) { if (row.wait) waits.push(g.first + 2 * k2); });
+    for (j = 0; j < NC; j++) {
+      var cn = colName(C1 + j);
+      setF(m, C1 + j, a + 1, waits.length ? 'SUM(' + waits.map(function (x) { return cn + x; }).join(',') + ')' : '0');
+    }
+    if (op.cols.some(function (c, i) { return c.n !== i + 1; })) for (j = 0; j < NC; j++) { if (j < op.cols.length) setNum(m, C1 + j, g.first - 1, op.cols[j].n); else clear(m, C1 + j, g.first - 1); }
+    var T1 = 30;
+    if (op.refCol >= 0) {
+      var rc = colName(C1 + op.refCol);
+      setF(m, T1, a + 3, 'ROUND(' + rc + (a + 2) + ',0)');
+      setF(m, T1, a + 11, 'IFERROR(' + rc + a + '+' + colName(T1) + (a + 7) + ',\" \")');
+    } else {
+      setStr(m, T1, a + 3, ''); setStr(m, T1, a + 11, '');
+    }
+    for (k = 0; k < 4; k++) {
+      r = a + 5 + 2 * k;
+      setStr(m, 2, r, ''); clear(m, 12, r); clear(m, 13, r);
+      var p = op.periodic[k];
+      if (p) { setStr(m, 2, r, p.name); setNum(m, 12, r, p.time); }
+    }
+    for (k = 0; k < 9; k++) setStr(m, 15, a + 4 + k, op.comments[k] || '');
+    setLabelled(wb, m, 1, 5, d.meta.plant);
+    setLabelled(wb, m, 21, 5, d.meta.observer);
+    setLabelled(wb, m, 27, 5, d.meta.date);
+    setLabelled(wb, m, 1, 7, d.meta.line);
+    setLabelled(wb, m, 11, 7, d.nOpsText);
+    setLabelled(wb, m, 21, 7, op.name);
+    dropCache(m);
+  }
+
+  async function fillMct(buf, d, codec) {
+    var wb = await open(buf, codec), all = sheets(wb), mcts = [];
+    all.forEach(function (s) { if (s.path && wb.pkg.has(s.path) && mctGeo(parseSheet(wb.pkg.text(s.path)))) mcts.push(s.name); });
+    if (!mcts.length) throw Err('notMct');
+    if (!d.ops.length) throw Err('noOperator');
+    var names = [], i;
+    for (i = 0; i < d.ops.length; i++) {
+      if (i < mcts.length) names.push(mcts[i]);
+      else {
+        var nm = numbered(mcts[0], i + 1);
+        while (sheetByName(wb, nm)) nm = (nm + ' ').slice(0, 28) + '(' + (i + 1) + ')';
+        names.push(copySheet(wb, mcts[0], nm, names[i - 1]).name);
+      }
+    }
+    mcts.slice(d.ops.length).forEach(function (n) { deleteSheet(wb, n); });
+    names.forEach(function (n, k) { fillMctSheet(wb, sheetByName(wb, n), d, d.ops[k]); });
+    finish(wb);
+    return await wb.pkg.save();
+  }
+
+  var BAR_NAMES = { manualLine: 1, autoLine: 1, walkLine: 1, idleLine: 1, TCTTemplate: 1, TTTemplate: 1, CTTemplate: 1 };
+  // Same as the sheet's "DELETE TCT" button: old bars go, the templates under the table stay.
+  function clearBars(wb, si, lastRow) {
+    relsOf(wb.pkg, si.path).forEach(function (r) {
+      if (!/\/drawing$/.test(r.type) || !r.path || !wb.pkg.has(r.path)) return;
+      var x = wb.pkg.text(r.path);
+      x = x.replace(/<xdr:twoCellAnchor\b[\s\S]*?<\/xdr:twoCellAnchor>/g, function (an) {
+        var nm = (an.match(/<xdr:cNvPr\b[^>]*name="([^"]*)"/) || [])[1];
+        var fr = an.match(/<xdr:from><xdr:col>(\d+)<\/xdr:col>[\s\S]*?<xdr:row>(\d+)<\/xdr:row>/);
+        if (!nm || !BAR_NAMES[nm] || !fr) return an;
+        var row = +fr[2] + 1, col = +fr[1] + 1;
+        return row >= 7 && row <= lastRow && col >= 13 ? '' : an;
+      });
+      wb.pkg.setText(r.path, x);
+    });
+  }
+  function fillTctSheet(wb, si, d, op, idx) {
+    var m = model(wb, si);
+    unshare(m);
+    var g = tctGeo(m);
+    clearBars(wb, si, g.wait - 1);
+    var cap = (g.last - g.first + 1) / 2, need = Math.max(op.tct.length, 1), k, j, r;
+    if (need > cap) {
+      insertRows(wb, si, g.last - 1, 2 * (need - cap), g.last - 3, 2);
+      g = tctGeo(m);
+      var last = g.last, merges = getMerges(m).filter(function (x) { return !((x.c1 === 16 || x.c1 === 17) && x.c1 === x.c2 && x.r1 > g.first && x.r1 <= last + 1); });
+      for (k = 0; k < (last - g.first + 1) / 2; k++) { r = g.first + 2 * k; merges.push({ c1: 16, c2: 16, r1: r + 1, r2: r + 2 }, { c1: 17, c2: 17, r1: r + 1, r2: r + 2 }); }
+      setMerges(m, merges);
+    }
+    var slots = (g.last - g.first + 1) / 2, all = [];
+    for (r = g.first; r <= g.last; r++) all.push(r);
+    rowMerges(m, all, 3, 11);
+    cleanFills(wb, m, all, 13, 15);
+    clearShapes(wb, si, g.first, g.last + 1, 13, 17);
+    for (k = 0; k < slots; k++) {
+      r = g.first + 2 * k;
+      if (numOf(cell(m, 1, r)) != null || !cell(m, 1, r) || !textOf(wb, cell(m, 1, r))) setNum(m, 1, r, k + 1);
+      setStr(m, 2, r, '');
+      setLabelled(wb, m, 3, r, '');
+      setStr(m, 3, r + 1, '');
+      for (j = 4; j <= 11; j++) { clear(m, j, r); clear(m, j, r + 1); }
+      for (j = 13; j <= 17; j++) { clear(m, j, r); clear(m, j, r + 1); }
+    }
+    clear(m, 16, g.last + 1); clear(m, 17, g.last + 1);
+    op.tct.forEach(function (row, k2) {
+      var rr = g.first + 2 * k2;
+      setStr(m, 2, rr, row.code);
+      setStr(m, 3, rr + 1, row.name);
+      setNum(m, 13, rr, row.M); setNum(m, 14, rr, row.N); setNum(m, 15, rr, row.O);
+      setNum(m, 16, rr + 1, row.P); setNum(m, 17, rr + 1, row.Q);
+    });
+    var pr = g.per.slice(0, 5);
+    pr.forEach(function (rr, k2) {
+      setStr(m, 3, rr, ''); clear(m, 13, rr); clear(m, 15, rr);
+      var p = op.periodic[k2];
+      if (p) { setStr(m, 3, rr, p.name); setNum(m, 13, rr, p.time); }
+    });
+    var perTotal = 'L' + g.wait;
+    if (op.aRef != null) setF(m, 47, 4, Math.round(op.aRef * 10) / 10 + '+' + perTotal);
+    else setStr(m, 47, 4, '');
+    setStr(m, 11, 4, d.meta.line);
+    setStr(m, 3, 6, d.meta.name);
+    setNum(m, 11, 6, idx + 1);
+    setStr(m, 11, 7, d.meta.plant);
+    setNum(m, 47, 6, d.ops.length);
+    setStr(m, 74, 5, d.meta.observer);
+    setStr(m, 74, 7, d.meta.date);
+    dropCache(m);
+    return { name: si.name, sum: g.sum, wait: g.wait, opTotal: g.opTotal };
+  }
+  function fillCo(wb, si, d, refs) {
+    var m = model(wb, si);
+    unshare(m);
+    var h = coGeo(m).head;
+    for (var i = 0; i < 6; i++) {
+      var col = 24 + i, t = refs[i];
+      for (var k = 1; k <= 4; k++) clear(m, col, h + k);
+      if (!t) continue;
+      var s = q(t.name) + '!';
+      setF(m, col, h + 1, s + (t.opTotal ? 'O' + t.opTotal : 'M' + t.sum));
+      setF(m, col, h + 2, s + 'N' + t.sum);
+      setF(m, col, h + 3, s + 'P' + t.sum);
+      setF(m, col, h + 4, s + 'J' + t.wait);
+    }
+    setStr(m, 18, 3, d.meta.line);
+    setStr(m, 28, 3, d.meta.plant);
+    setNum(m, 28, 4, d.ops.length);
+    setStr(m, 10, 3, d.meta.date);
+    setStr(m, 11, 4, d.meta.observer);
+    dropCache(m);
+  }
+  async function fillTct(buf, d, codec) {
+    var wb = await open(buf, codec), all = sheets(wb), tcts = [], cos = [];
+    all.forEach(function (s) {
+      if (!s.path || !wb.pkg.has(s.path)) return;
+      var m = parseSheet(wb.pkg.text(s.path));
+      if (tctGeo(m)) tcts.push(s.name); else if (coGeo(m)) cos.push(s.name);
+    });
+    if (!tcts.length) throw Err('notTct');
+    if (!d.ops.length) throw Err('noOperator');
+    var base = tcts.filter(function (n) { return /tct/i.test(n) && /op/i.test(n); })[0] || tcts[0];
+    var co = cos.filter(function (n) { return !/exam/i.test(n); })[0] || null;
+    sheets(wb).forEach(function (s) { if (!same(s.name, base) && (!co || !same(s.name, co))) deleteSheet(wb, s.name); });
+    var names = [numbered(base, 1)], i;
+    for (i = 2; i <= d.ops.length; i++) {
+      var nm = numbered(base, i);
+      if (same(nm, base) || (co && same(nm, co))) nm = (nm + ' ').slice(0, 27) + '(' + i + ')';
+      names.push(copySheet(wb, base, nm, i === 2 ? base : names[i - 2]).name);
+    }
+    if (!same(names[0], base)) renameSheet(wb, base, names[0]);
+    var refs = names.map(function (n, k) { return fillTctSheet(wb, sheetByName(wb, n), d, d.ops[k], k); });
+    if (co) fillCo(wb, sheetByName(wb, co), d, refs);
+    finish(wb);
+    return await wb.pkg.save();
+  }
+
+  // ---------- Codec for the browser ----------
+  function browserCodec() {
+    if (typeof CompressionStream === 'undefined' || typeof DecompressionStream === 'undefined') return null;
+    try { new CompressionStream('deflate-raw'); } catch (e) { return null; }
+    var through = async function (u8, ts) { return new Uint8Array(await new Response(new Blob([u8]).stream().pipeThrough(ts)).arrayBuffer()); };
+    return {
+      inflate: function (u8) { return through(u8, new DecompressionStream('deflate-raw')); },
+      deflate: function (u8) { return through(u8, new CompressionStream('deflate-raw')); }
+    };
+  }
+
+  return {
+    crc32: crc32, zipRead: zipRead, zipWrite: zipWrite, open: open, sheets: sheets, inspect: inspect,
+    fillMct: fillMct, fillTct: fillTct, browserCodec: browserCodec,
+    _: { mapRefs: mapRefs, shiftF: shiftF, moveF: moveF, renameF: renameF, colName: colName, colNum: colNum, parseSheet: parseSheet, serializeSheet: serializeSheet, numbered: numbered }
+  };
+})();
+/* XLSX-END */
 
 /* I18N-START */
 var I18N = {
@@ -1233,7 +2355,7 @@ var I18N = {
     'ev.end.title': 'Ends the last step',
     'act.undo': 'Undo', 'act.redo': 'Redo', 'act.cancel': 'Cancel', 'act.close': 'Close', 'act.save': 'Save', 'act.delete': 'Delete', 'act.edit': 'Edit',
     'guide.title': 'Get started in 3 steps', 'guide.s1': 'Choose the video', 'guide.s1.text': 'It stays on this computer.',
-    'guide.s2': 'List the steps of {name}', 'guide.s2.text': 'In order, with their type. You can paste them from Excel.', 'guide.s2.btn': 'Open Steps',
+    'guide.s2': 'List the steps of {name}', 'guide.s2.text': 'In order, with their type. Put each walk and each wait as a step too. You can paste them from Excel.', 'guide.s2.btn': 'Open Steps',
     'guide.s3': 'Press a key when each step starts', 'guide.s3.text': 'Enter records the next step of the list. A step ends when the next one starts.',
     'steps.timeline': 'Timeline', 'steps.name': 'Name', 'steps.kind': 'Kind', 'steps.of': 'Steps of {name}', 'steps.cycleStart': 'Cycle starts with',
     'steps.h.key': 'Key', 'steps.h.code': 'Code', 'steps.h.name': 'Name', 'steps.h.type': 'Type', 'steps.h.dist': 'Dist. (m)', 'steps.h.used': 'Used',
@@ -1253,15 +2375,15 @@ var I18N = {
     'th.interrupt': 'Interruption', 'th.oov': 'Out of view', 'th.issues': 'Issues', 'th.used': 'Used', 'th.step': 'Step', 'th.median': 'Median', 'th.minRep': 'Min. repeatable',
     't1.single': 'T1 = {v} s (only one usable cycle).', 't1.discarded': 'Smallest (c) discarded: {d} s.',
     't1.repeat': 'T1 = {v} s, the smallest value that repeats ({n} times, rounded to the second).', 't1.noRepeat': 'No value repeats: T1 = {v} s, the smallest remaining value.',
-    'apg.title': 'Copy to the APG sheets', 'apg.cycles': 'Cycles', 'apg.usable': 'Usable cycles ({n})', 'apg.all': 'All complete cycles ({n})',
+    'apg.title': 'Filled APG sheets', 'apg.cycles': 'Cycles', 'apg.usable': 'Usable cycles ({n})', 'apg.all': 'All complete cycles ({n})',
     'apg.rows': 'Rows per step', 'apg.rows2': '2, as in the APG sheets', 'apg.times': 'Times', 'apg.whole': 'Whole seconds', 'apg.tenth': 'To 0.1 s',
     'apg.copyMct': 'Copy for Time Measurement Sheet', 'apg.copyTct': 'Copy for TCT',
     'apg.mct': 'Time Measurement Sheet:', 'apg.mctText': 'one row per step, in the order of the list, one column per cycle ({list}). In Excel, click the cycle 1 cell of the first step, then Ctrl+V.',
-    'apg.first20': 'Only the first 20 cycles fit the sheet.',
+    'apg.first20': 'More than 20 complete cycles: the 20 kept put the usable ones first.',
     'apg.tct': 'TCT:', 'apg.tctText': 'times of the reference cycle {ref} in the columns Operation, Insp., Machine, Transp. and Distance. Click the Operation cell of the first step, then Ctrl+V.',
     'apg.waitEmpty': 'Wait steps have no column in the TCT: their row stays empty.',
-    'apg.generic.one': '{n} walk or wait recorded with W or A is not in the copy. Add it as a step in the list.',
-    'apg.generic.other': '{n} walks or waits recorded with W or A are not in the copy. Add them as steps in the list.',
+    'apg.generic.one': '{n} walk or wait was recorded with W or A. The sheets list it as a step; you can also put it in the list now.',
+    'apg.generic.other': '{n} walks or waits were recorded with W or A. The sheets list them as steps; you can also put them in the list now.',
     'apg.leftOut.one': '{n} walk or wait not in the list left out.', 'apg.leftOut.other': '{n} walks or waits not in the list left out.',
     'apg.mctCopied': 'Time Measurement Sheet copied ({steps} \u00d7 {cycles}). Click the cycle 1 cell of the first step, then Ctrl+V.',
     'apg.tctCopied': 'TCT copied ({steps}, reference cycle {ref}). Click the Operation cell of the first step, then Ctrl+V.',
@@ -1341,10 +2463,10 @@ var I18N = {
     'toast.speed': 'Speed {s}\u00d7', 'toast.restored': 'Study restored from this browser. Choose the video again to continue.',
     'help.title': 'Help', 'help.quick': 'Quick start',
     'help.s1': 'Choose the video', 'help.s1.text': 'Button in the middle of the video area, or drop the file there. The video stays on your computer.',
-    'help.s2': 'List the steps', 'help.s2.text': 'In Steps, write the steps of the operator in order, with their type: Operation, Inspection, Walk or Wait. You can paste them from Excel.',
+    'help.s2': 'List the steps', 'help.s2.text': 'In Steps, write the operator\u2019s steps in the order of the cycle, with their type: Operation, Inspection, Walk or Wait. Put every walk and every wait as a step of the list, where it happens in the cycle: the filled APG sheets need them. W and A are only for walks and waits you did not plan. If you used them, the \u201cPut them in the list\u201d button turns them into steps.',
     'help.s3': 'Record', 'help.s3.text': 'Play the video. When a step starts, press its key, or Enter for the next step of the list. A step ends when the next one starts.',
     'help.s4': 'Mark the problems', 'help.s4.text': 'F when a step goes wrong, I when the operator stops, P for a periodic task. Those cycles are left out of the results.',
-    'help.s5': 'Read and copy the results', 'help.s5.text': 'In Results, read T1 and the reference cycle, then copy the times into the APG sheets with one button.',
+    'help.s5': 'Read the results and fill the sheets', 'help.s5.text': 'In Results, read T1 and the reference cycle. Choose your two APG templates once, then download the filled Time Measurement Sheet and TCT.',
     'help.keys': 'Keys',
     'help.k.space': 'Play or pause', 'help.k.arrows': 'Back or forward 1 s (with Shift: 5 s)', 'help.k.frame': 'Previous or next frame',
     'help.k.speed': 'Slower or faster (numeric keypad: \u2212 and +)', 'help.k.enter': 'Record the next step of the list', 'help.k.steps': 'Record that step (then letters, shown on each step)',
@@ -1358,7 +2480,7 @@ var I18N = {
     'help.w.t1': 'T1', 'help.w.t1.text': 'The smallest work content is dropped (it may be a mistake). T1 is then the smallest time that comes back at least twice, rounded to the second.',
     'help.w.ref': 'Reference cycle', 'help.w.ref.text': 'A usable cycle whose work content equals T1. Its step times go into the TCT.',
     'help.good': 'Good to know',
-    'help.g.mistake': 'Made a mistake? Go back in the video and press the right key: the rest is recorded again. Ctrl+Z brings it back.',
+    'help.g.mistake': 'Wrong key? Ctrl+Z right away. Later: in Record, \u201cFix a step\u201d lists the step in progress and the 4 before it, with Change and Delete. You can also click the current step under the video, or long press a step on the band (right-click on a computer). The Delete key deletes the step in progress.',
     'help.g.speed': 'Record at speed 1 or slower: at speed 2, your reaction time counts double.',
     'help.g.saveFile': 'The study is saved in this browser only. Save a study file to keep it or send it.',
     'help.g.saveOnline': 'The study is saved in this browser only. Copy your results to Excel when you finish.',
@@ -1372,7 +2494,44 @@ var I18N = {
     'gen.text2': 'The times do not change. A double press on W or A counts as one walk or wait. Ctrl+Z puts everything back.', 'gen.ok': 'Put them in the list',
     'gen.done.one': '{n} walk or wait put in the list as {steps}. Rename them and add the distances.', 'gen.done.other': '{n} walks and waits put in the list as {steps}. Rename them and add the distances.',
     'gen.left.one': '{n} before the first step stays as it is.', 'gen.left.other': '{n} before the first step stay as they are.',
-    'gen.none': 'No walk or wait recorded with W or A.', 'gen.nothing': 'Nothing to put in the list.', 'gen.walkName': 'Walk after {step}', 'gen.waitName': 'Wait after {step}'
+    'gen.none': 'No walk or wait recorded with W or A.', 'gen.nothing': 'Nothing to put in the list.', 'gen.walkName': 'Walk after {step}', 'gen.waitName': 'Wait after {step}',
+    'fix.title': 'Fix a step',
+    'fix.empty': 'No step recorded yet.',
+    'fix.before': 'The video is before the first step.',
+    'fix.go': 'Go to this step',
+    'fix.change': 'Change',
+    'fix.del': 'Delete',
+    'fix.none': 'No step at this point.',
+    'fix.menuTitle': 'Fix this step',
+    'fix.changeStep': 'Change the step',
+    'fix.m01': '\u22120.1 s',
+    'fix.p01': '+0.1 s',
+    'fix.setNow': 'Start it at the video position',
+    'st.fix': 'Click to fix this step',
+    'key.del': 'Delete',
+    'help.k.del': 'Delete the step in progress',
+    'apg.intro': 'Choose your two APG templates once. The site fills them for every operator timeline, one sheet per operator, and keeps the formulas and the macros. The templates stay on this computer.',
+    'apg.mctFile': 'Time Measurement Sheet',
+    'apg.tctFile': 'TCT (with macros)',
+    'apg.none': 'No template',
+    'apg.choose': 'Choose',
+    'apg.change': 'Change',
+    'apg.download': 'Download the filled sheets',
+    'apg.chooseFirst': 'Choose at least one template first.',
+    'apg.noDownload': 'Downloads are not available here. Use the online site or the offline copy.',
+    'apg.noOps': 'No operator timeline with steps.',
+    'apg.opLine': 'Time Measurement Sheet: {cycles}, {usable} usable. TCT: reference cycle {ref}, T1 = {t1}.',
+    'apg.opNone': 'No complete cycle yet.',
+    'apg.mctName': 'Time Measurement Sheet',
+    'apg.working': 'Filling the sheets\u2026',
+    'apg.done.one': '{n} file downloaded. In Excel: allow the macros, then press CREATE TCT to draw the chart.',
+    'apg.done.other': '{n} files downloaded. In Excel: allow the macros, then press CREATE TCT to draw the chart.',
+    'apg.fillErr': 'The sheets could not be filled ({why}).',
+    'apg.oldBrowser': 'This browser is too old to build Excel files. Use a recent Chrome, Edge or Firefox.',
+    'apg.notMct': '{name} does not look like the APG Time Measurement Sheet.',
+    'apg.notTct': '{name} does not look like the APG TCT file.',
+    'apg.tplOk': 'Template kept: {name}',
+    'apg.readErr': '{name} could not be read.'
   },
   fr: {
     'hdr.credit': 'Cr\u00e9\u00e9 par Ilyas Baqloul', 'hdr.help': 'Aide', 'hdr.offline': 'Copie hors ligne',
@@ -1410,7 +2569,7 @@ var I18N = {
     'ev.end.title': 'Termine la derni\u00e8re \u00e9tape',
     'act.undo': 'Annuler', 'act.redo': 'R\u00e9tablir', 'act.cancel': 'Annuler', 'act.close': 'Fermer', 'act.save': 'Enregistrer', 'act.delete': 'Supprimer', 'act.edit': 'Modifier',
     'guide.title': 'Bien d\u00e9marrer en 3 \u00e9tapes', 'guide.s1': 'Choisir la vid\u00e9o', 'guide.s1.text': 'Elle reste sur cet ordinateur.',
-    'guide.s2': 'Lister les \u00e9tapes de {name}', 'guide.s2.text': 'Dans l\u2019ordre, avec leur type. Vous pouvez les coller depuis Excel.', 'guide.s2.btn': 'Ouvrir \u00c9tapes',
+    'guide.s2': 'Lister les \u00e9tapes de {name}', 'guide.s2.text': 'Dans l\u2019ordre, avec leur type. Mettez aussi chaque marche et chaque attente comme une \u00e9tape. Vous pouvez les coller depuis Excel.', 'guide.s2.btn': 'Ouvrir \u00c9tapes',
     'guide.s3': 'Appuyer sur une touche au d\u00e9but de chaque \u00e9tape', 'guide.s3.text': 'Entr\u00e9e enregistre l\u2019\u00e9tape suivante de la liste. Une \u00e9tape se termine quand la suivante commence.',
     'steps.timeline': 'Ligne de temps', 'steps.name': 'Nom', 'steps.kind': 'Nature', 'steps.of': '\u00c9tapes de {name}', 'steps.cycleStart': 'Le cycle commence par',
     'steps.h.key': 'Touche', 'steps.h.code': 'Code', 'steps.h.name': 'Nom', 'steps.h.type': 'Type', 'steps.h.dist': 'Dist. (m)', 'steps.h.used': 'Utilis\u00e9e',
@@ -1430,15 +2589,15 @@ var I18N = {
     'th.interrupt': 'Interruption', 'th.oov': 'Hors champ', 'th.issues': 'Anomalies', 'th.used': 'Utilis\u00e9', 'th.step': '\u00c9tape', 'th.median': 'M\u00e9diane', 'th.minRep': 'Min. r\u00e9p\u00e9table',
     't1.single': 'T1 = {v} s (un seul cycle utilisable).', 't1.discarded': 'Plus petit (c) \u00e9cart\u00e9 : {d} s.',
     't1.repeat': 'T1 = {v} s, la plus petite valeur qui se r\u00e9p\u00e8te ({n} fois, arrondi \u00e0 la seconde).', 't1.noRepeat': 'Aucune valeur ne se r\u00e9p\u00e8te : T1 = {v} s, la plus petite valeur restante.',
-    'apg.title': 'Copier vers les fiches APG', 'apg.cycles': 'Cycles', 'apg.usable': 'Cycles utilisables ({n})', 'apg.all': 'Tous les cycles complets ({n})',
+    'apg.title': 'Fiches APG remplies', 'apg.cycles': 'Cycles', 'apg.usable': 'Cycles utilisables ({n})', 'apg.all': 'Tous les cycles complets ({n})',
     'apg.rows': 'Lignes par \u00e9tape', 'apg.rows2': '2, comme sur les fiches APG', 'apg.times': 'Temps', 'apg.whole': 'Secondes enti\u00e8res', 'apg.tenth': 'Au dixi\u00e8me',
     'apg.copyMct': 'Copier pour le relev\u00e9 de temps', 'apg.copyTct': 'Copier pour la TCT',
     'apg.mct': 'Relev\u00e9 de temps :', 'apg.mctText': 'une ligne par \u00e9tape, dans l\u2019ordre de la liste, une colonne par cycle ({list}). Dans Excel, cliquez la case du cycle 1 de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
-    'apg.first20': 'Seuls les 20 premiers cycles tiennent sur la fiche.',
+    'apg.first20': 'Plus de 20 cycles complets : les 20 gard\u00e9s prennent d\u2019abord les utilisables.',
     'apg.tct': 'TCT :', 'apg.tctText': 'temps du cycle de r\u00e9f\u00e9rence {ref} dans les colonnes Operation, Insp., Machine, Transp. et Distance. Cliquez la case Operation de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
     'apg.waitEmpty': 'Les \u00e9tapes d\u2019attente n\u2019ont pas de colonne dans la TCT : leur ligne reste vide.',
-    'apg.generic.one': '{n} marche ou attente enregistr\u00e9e avec W ou A n\u2019est pas dans la copie. Ajoutez-la comme \u00e9tape dans la liste.',
-    'apg.generic.other': '{n} marches ou attentes enregistr\u00e9es avec W ou A ne sont pas dans la copie. Ajoutez-les comme \u00e9tapes dans la liste.',
+    'apg.generic.one': '{n} marche ou attente a \u00e9t\u00e9 faite avec W ou A. Les fiches la mettent comme une \u00e9tape ; vous pouvez aussi la ranger dans la liste maintenant.',
+    'apg.generic.other': '{n} marches ou attentes ont \u00e9t\u00e9 faites avec W ou A. Les fiches les mettent comme des \u00e9tapes ; vous pouvez aussi les ranger dans la liste maintenant.',
     'apg.leftOut.one': '{n} marche ou attente hors liste laiss\u00e9e de c\u00f4t\u00e9.', 'apg.leftOut.other': '{n} marches ou attentes hors liste laiss\u00e9es de c\u00f4t\u00e9.',
     'apg.mctCopied': 'Relev\u00e9 de temps copi\u00e9 ({steps} \u00d7 {cycles}). Cliquez la case du cycle 1 de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
     'apg.tctCopied': 'TCT copi\u00e9e ({steps}, cycle de r\u00e9f\u00e9rence {ref}). Cliquez la case Operation de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
@@ -1518,10 +2677,10 @@ var I18N = {
     'toast.speed': 'Vitesse {s}\u00d7', 'toast.restored': '\u00c9tude r\u00e9cup\u00e9r\u00e9e dans ce navigateur. Choisissez \u00e0 nouveau la vid\u00e9o pour continuer.',
     'help.title': 'Aide', 'help.quick': 'D\u00e9marrage rapide',
     'help.s1': 'Choisir la vid\u00e9o', 'help.s1.text': 'Bouton au milieu de la zone vid\u00e9o, ou d\u00e9posez le fichier dessus. La vid\u00e9o reste sur votre ordinateur.',
-    'help.s2': 'Lister les \u00e9tapes', 'help.s2.text': 'Dans \u00c9tapes, \u00e9crivez les \u00e9tapes de l\u2019op\u00e9rateur dans l\u2019ordre, avec leur type : Op\u00e9ration, Contr\u00f4le, Marche ou Attente. Vous pouvez les coller depuis Excel.',
+    'help.s2': 'Lister les \u00e9tapes', 'help.s2.text': 'Dans \u00c9tapes, \u00e9crivez les \u00e9tapes de l\u2019op\u00e9rateur dans l\u2019ordre du cycle, avec leur type : Op\u00e9ration, Contr\u00f4le, Marche ou Attente. Mettez chaque marche et chaque attente comme une \u00e9tape de la liste, \u00e0 sa place dans le cycle : les fiches APG en ont besoin. W et A servent seulement aux marches et attentes impr\u00e9vues. Si vous les avez utilis\u00e9es, le bouton \u00ab Les ranger dans la liste \u00bb les transforme en \u00e9tapes.',
     'help.s3': 'Chronom\u00e9trer', 'help.s3.text': 'Lancez la vid\u00e9o. Quand une \u00e9tape commence, appuyez sur sa touche, ou sur Entr\u00e9e pour l\u2019\u00e9tape suivante de la liste. Une \u00e9tape se termine quand la suivante commence.',
     'help.s4': 'Signaler les probl\u00e8mes', 'help.s4.text': 'F quand une \u00e9tape se passe mal, I quand l\u2019op\u00e9rateur s\u2019arr\u00eate, P pour une t\u00e2che p\u00e9riodique. Ces cycles sont mis de c\u00f4t\u00e9 dans les r\u00e9sultats.',
-    'help.s5': 'Lire et copier les r\u00e9sultats', 'help.s5.text': 'Dans R\u00e9sultats, lisez T1 et le cycle de r\u00e9f\u00e9rence, puis copiez les temps dans les fiches APG en un clic.',
+    'help.s5': 'Lire les r\u00e9sultats et remplir les fiches', 'help.s5.text': 'Dans R\u00e9sultats, lisez T1 et le cycle de r\u00e9f\u00e9rence. Choisissez une fois vos deux mod\u00e8les APG, puis t\u00e9l\u00e9chargez le relev\u00e9 de temps et la TCT remplis.',
     'help.keys': 'Touches',
     'help.k.space': 'Lecture ou pause', 'help.k.arrows': 'Reculer ou avancer de 1 s (avec Maj : 5 s)', 'help.k.frame': 'Image pr\u00e9c\u00e9dente ou suivante',
     'help.k.speed': 'Plus lent ou plus rapide (pav\u00e9 num\u00e9rique : \u2212 et +)', 'help.k.enter': 'Enregistrer l\u2019\u00e9tape suivante de la liste', 'help.k.steps': 'Enregistrer cette \u00e9tape (puis des lettres, affich\u00e9es sur chaque \u00e9tape)',
@@ -1535,7 +2694,7 @@ var I18N = {
     'help.w.t1': 'T1', 'help.w.t1.text': 'On \u00e9carte le plus petit contenu de travail (il peut \u00eatre une erreur). T1 est ensuite le plus petit temps qui revient au moins deux fois, arrondi \u00e0 la seconde.',
     'help.w.ref': 'Cycle de r\u00e9f\u00e9rence', 'help.w.ref.text': 'Un cycle utilisable dont le contenu de travail vaut T1. Ses temps par \u00e9tape vont dans la TCT.',
     'help.good': '\u00c0 savoir',
-    'help.g.mistake': 'Une erreur ? Revenez en arri\u00e8re dans la vid\u00e9o et appuyez sur la bonne touche : la suite est r\u00e9enregistr\u00e9e. Ctrl+Z la r\u00e9cup\u00e8re.',
+    'help.g.mistake': 'Mauvaise touche ? Ctrl+Z tout de suite. Plus tard : dans Chrono, \u00ab Corriger une \u00e9tape \u00bb montre l\u2019\u00e9tape en cours et les 4 d\u2019avant, avec Changer et Supprimer. Vous pouvez aussi cliquer sur l\u2019\u00e9tape en cours sous la vid\u00e9o, ou faire un appui long sur une \u00e9tape de la bande (clic droit sur ordinateur). La touche Suppr supprime l\u2019\u00e9tape en cours.',
     'help.g.speed': 'Chronom\u00e9trez \u00e0 vitesse 1 ou moins : \u00e0 vitesse 2, votre temps de r\u00e9action compte double.',
     'help.g.saveFile': 'L\u2019\u00e9tude est enregistr\u00e9e dans ce navigateur uniquement. Enregistrez un fichier d\u2019\u00e9tude pour la garder ou l\u2019envoyer.',
     'help.g.saveOnline': 'L\u2019\u00e9tude est enregistr\u00e9e dans ce navigateur uniquement. Copiez vos r\u00e9sultats dans Excel quand vous avez fini.',
@@ -1549,7 +2708,44 @@ var I18N = {
     'gen.text2': 'Les temps ne changent pas. Un double appui sur W ou A compte comme une seule marche ou attente. Ctrl+Z remet tout comme avant.', 'gen.ok': 'Les ranger dans la liste',
     'gen.done.one': '{n} marche ou attente rang\u00e9e dans la liste en {steps}. Renommez-les et ajoutez les distances.', 'gen.done.other': '{n} marches et attentes rang\u00e9es dans la liste en {steps}. Renommez-les et ajoutez les distances.',
     'gen.left.one': '{n} avant la premi\u00e8re \u00e9tape reste telle quelle.', 'gen.left.other': '{n} avant la premi\u00e8re \u00e9tape restent telles quelles.',
-    'gen.none': 'Aucune marche ou attente enregistr\u00e9e avec W ou A.', 'gen.nothing': 'Rien \u00e0 ranger dans la liste.', 'gen.walkName': 'Marche apr\u00e8s {step}', 'gen.waitName': 'Attente apr\u00e8s {step}'
+    'gen.none': 'Aucune marche ou attente enregistr\u00e9e avec W ou A.', 'gen.nothing': 'Rien \u00e0 ranger dans la liste.', 'gen.walkName': 'Marche apr\u00e8s {step}', 'gen.waitName': 'Attente apr\u00e8s {step}',
+    'fix.title': 'Corriger une \u00e9tape',
+    'fix.empty': 'Aucune \u00e9tape enregistr\u00e9e.',
+    'fix.before': 'La vid\u00e9o est avant la premi\u00e8re \u00e9tape.',
+    'fix.go': 'Aller \u00e0 cette \u00e9tape',
+    'fix.change': 'Changer',
+    'fix.del': 'Supprimer',
+    'fix.none': 'Aucune \u00e9tape \u00e0 cet endroit.',
+    'fix.menuTitle': 'Corriger cette \u00e9tape',
+    'fix.changeStep': 'Changer d\u2019\u00e9tape',
+    'fix.m01': '\u22120,1 s',
+    'fix.p01': '+0,1 s',
+    'fix.setNow': 'Caler sur la vid\u00e9o',
+    'st.fix': 'Cliquez pour corriger cette \u00e9tape',
+    'key.del': 'Suppr',
+    'help.k.del': 'Supprimer l\u2019\u00e9tape en cours',
+    'apg.intro': 'Choisissez une fois vos deux mod\u00e8les APG. Le site les remplit pour chaque ligne de temps op\u00e9rateur, une feuille par op\u00e9rateur, et garde les formules et les macros. Les mod\u00e8les restent sur cet ordinateur.',
+    'apg.mctFile': 'Relev\u00e9 de temps',
+    'apg.tctFile': 'TCT (avec macros)',
+    'apg.none': 'Aucun mod\u00e8le',
+    'apg.choose': 'Choisir',
+    'apg.change': 'Changer',
+    'apg.download': 'T\u00e9l\u00e9charger les fiches remplies',
+    'apg.chooseFirst': 'Choisissez d\u2019abord au moins un mod\u00e8le.',
+    'apg.noDownload': 'Les t\u00e9l\u00e9chargements ne sont pas possibles ici. Utilisez le site en ligne ou la copie hors ligne.',
+    'apg.noOps': 'Aucune ligne de temps op\u00e9rateur avec des \u00e9tapes.',
+    'apg.opLine': 'Relev\u00e9 : {cycles}, dont {usable} utilisables. TCT : cycle de r\u00e9f\u00e9rence {ref}, T1 = {t1}.',
+    'apg.opNone': 'Pas encore de cycle complet.',
+    'apg.mctName': 'Relev\u00e9 de temps',
+    'apg.working': 'Remplissage des fiches\u2026',
+    'apg.done.one': '{n} fichier t\u00e9l\u00e9charg\u00e9. Dans Excel : autorisez les macros, puis cliquez sur CREATE TCT pour tracer le graphique.',
+    'apg.done.other': '{n} fichiers t\u00e9l\u00e9charg\u00e9s. Dans Excel : autorisez les macros, puis cliquez sur CREATE TCT pour tracer le graphique.',
+    'apg.fillErr': 'Les fiches n\u2019ont pas pu \u00eatre remplies ({why}).',
+    'apg.oldBrowser': 'Ce navigateur est trop ancien pour cr\u00e9er des fichiers Excel. Utilisez un Chrome, Edge ou Firefox r\u00e9cent.',
+    'apg.notMct': '{name} ne ressemble pas au relev\u00e9 de temps APG.',
+    'apg.notTct': '{name} ne ressemble pas au fichier TCT APG.',
+    'apg.tplOk': 'Mod\u00e8le gard\u00e9 : {name}',
+    'apg.readErr': 'Impossible de lire {name}.'
   }
 };
 var I18N_LOGIC = {
@@ -1579,7 +2775,21 @@ var I18N_LOGIC = {
     'sum.yes': 'Oui', 'sum.no': 'Non',
     'sum.stepHead': ['Code', '\u00c9tape', 'Type', 'Distance (m)', 'n', 'Min (s)', 'M\u00e9diane (s)', 'Max (s)', 'Min r\u00e9p\u00e9table (s)', 'Cycle de r\u00e9f\u00e9rence (s)'],
     'sum.total': 'Total cycle de r\u00e9f\u00e9rence (a)',
-    'parse.unknownType': 'Ligne {line} : type \u00ab {type} \u00bb inconnu, {def} utilis\u00e9.'
+    'parse.unknownType': 'Ligne {line} : type \u00ab {type} \u00bb inconnu, {def} utilis\u00e9.',
+    'apg.c.intro': 'Temps relev\u00e9s avec Video Time Study, chronom\u00e9trage continu. Le cycle commence \u00e0 {step}.',
+    'apg.c.int': 'interruption {s} s',
+    'apg.c.oov': 'hors champ {s} s',
+    'apg.c.end': 'fin de l\u2019\u00e9tude',
+    'apg.c.usable': 'Cycles sans perturbation : {n} ({list}).',
+    'apg.c.need10': 'Il en faut au moins 10.',
+    'apg.c.noT1': 'T1 : aucun cycle utilisable.',
+    'apg.c.t1one': 'T1 : {v} s, un seul cycle utilisable ({ref}).',
+    'apg.c.t1': 'T1 : plus petit (c) {d} s ({dc}) \u00e9cart\u00e9. Minimum r\u00e9p\u00e9table suivant : {v} s ({list}). Cycle de r\u00e9f\u00e9rence {ref}.',
+    'apg.c.t1norep': 'T1 : plus petit (c) {d} s ({dc}) \u00e9cart\u00e9. Aucun temps ne se r\u00e9p\u00e8te, plus petit restant : {v} s ({list}). Cycle de r\u00e9f\u00e9rence {ref}.',
+    'apg.c.morePer': 'Autres t\u00e2ches p\u00e9riodiques : {list}.',
+    'apg.c.conv': 'Les marches et attentes enregistr\u00e9es avec W et A sont list\u00e9es comme \u00e9tapes.',
+    'apg.nOp1': '1 op\u00e9rateur',
+    'apg.nOps': '{n} op\u00e9rateurs'
   }
 };
 /* I18N-END */
@@ -1629,7 +2839,7 @@ var I18N_LOGIC = {
   var anCache = {};
   var V = { el: $('video'), url: null, file: null, ready: false, fps: null, loadTimer: 0, cspBlocked: false, msgKind: null, msgCode: 0 };
   var savedAt = null, saveFailed = false, saveTimer = 0, conflict = false;
-  var lastHL = null, lastPlay = null, lastLogIdx = null, logSel = null, keysState = '';
+  var lastHL = null, lastPlay = null, lastLogIdx = null, logSel = null, keysState = '', lastFix = null;
   var alerts = {};
 
   // ---------- Language ----------
@@ -1705,7 +2915,7 @@ var I18N_LOGIC = {
   function loadSettings() {
     var d = {
       theme: 'auto', zoom: 60, speed: 1, csvSep: NAV_FR ? ';' : ',', decSep: NAV_FR ? ',' : '.', fps: 'auto', tab: 'record', muted: false,
-      apgCycles: 'usable', apgRows: 2, apgRound: 0, lang: NAV_FR ? 'fr' : 'en'
+      lang: NAV_FR ? 'fr' : 'en'
     };
     try {
       var o = JSON.parse(localStorage.getItem(SET_KEY) || '{}');
@@ -1717,9 +2927,6 @@ var I18N_LOGIC = {
     if (FPS_OPTS.indexOf(d.fps) < 0) d.fps = 'auto';
     if (d.csvSep !== ';') d.csvSep = ',';
     if (d.decSep !== ',') d.decSep = '.';
-    if (d.apgCycles !== 'all') d.apgCycles = 'usable';
-    if (d.apgRows !== 1) d.apgRows = 2;
-    if (d.apgRound !== 1) d.apgRound = 0;
     if (d.lang !== 'fr') d.lang = 'en';
     return d;
   }
@@ -1859,12 +3066,13 @@ var I18N_LOGIC = {
           '<span class="sb-key">' + esc(key) + '</span><span class="sb-lbl"><span class="sb-code"><i class="sw"></i>' + esc(s.code || '\u2013') + '</span><span class="sb-name">' + esc(s.name) + '</span></span></button>';
       }).join('') + '</div>';
     }
+    if (tl.steps.length) html += '<h3>' + esc(T('fix.title')) + '</h3><div class="fix-list" id="fixList"></div>';
     html += '<h3>' + esc(T('rec.events')) + '</h3><div class="ev-grid">' + EV_BUTTONS.map(function (b) {
       return '<button type="button" class="ev-btn ' + b.ty + '" data-ev="' + b.id + '" title="' + esc(T('ev.' + b.id + '.title')) + '"><span class="ev-l"><i class="sw"></i>' + esc(T('ev.' + b.id)) + '</span><span class="ev-k">' + b.key + '</span></button>';
     }).join('') + '</div>';
     html += '<div class="rec-tools"><button type="button" class="btn small" data-act="undo" title="Ctrl+Z">' + esc(T('act.undo')) + '</button><button type="button" class="btn small" data-act="redo" title="Ctrl+Y">' + esc(T('act.redo')) + '</button></div>';
     $('tab-record').innerHTML = html;
-    lastHL = null;
+    lastHL = null; lastFix = null;
   }
   function startGuide(tl) {
     var v = V.ready, s = tl.steps.length > 0;
@@ -1933,16 +3141,7 @@ var I18N_LOGIC = {
     if (a.t1info) html += '<p class="note">' + esc(t1Explain(a.t1info)) + '</p>';
     html += '</div>';
 
-    var b = L.apgBlocks(tl, apgOpts());
-    html += '<div class="sec"><h2>' + esc(T('apg.title')) + '</h2><div class="form-grid">' +
-      '<div class="field"><label for="apgCycles">' + esc(T('apg.cycles')) + '</label><select id="apgCycles">' + opt('usable', settings.apgCycles, T('apg.usable', { n: a.usable.length })) + opt('all', settings.apgCycles, T('apg.all', { n: a.nComplete })) + '</select></div>' +
-      '<div class="field"><label for="apgRows">' + esc(T('apg.rows')) + '</label><select id="apgRows">' + opt(2, settings.apgRows, T('apg.rows2')) + opt(1, settings.apgRows, '1') + '</select></div>' +
-      '<div class="field"><label for="apgRound">' + esc(T('apg.times')) + '</label><select id="apgRound">' + opt(0, settings.apgRound, T('apg.whole')) + opt(1, settings.apgRound, T('apg.tenth')) + '</select></div></div>' +
-      '<div class="btn-row"><button type="button" class="btn primary" data-act="copyMct"' + (b.cycles.length ? '' : ' disabled') + '>' + esc(T('apg.copyMct')) + '</button>' +
-      '<button type="button" class="btn primary" data-act="copyTct"' + (b.ref ? '' : ' disabled') + '>' + esc(T('apg.copyTct')) + '</button></div>' +
-      '<p class="note mt"><b>' + esc(T('apg.mct')) + '</b> ' + esc(T('apg.mctText', { list: b.cycles.length ? 'C' + b.cycles.join(', C') : '\u2013' })) + (b.truncated ? ' ' + esc(T('apg.first20')) : '') + '</p>' +
-      '<p class="note"><b>' + esc(T('apg.tct')) + '</b> ' + esc(T('apg.tctText', { ref: b.ref ? 'C' + b.ref : '\u2013' })) + (b.waitSteps ? ' ' + esc(T('apg.waitEmpty')) : '') + '</p>' +
-      (b.generic ? '<div class="warn warn-act"><span>' + esc(TP(b.generic, 'apg.generic')) + '</span><button type="button" class="btn small primary" data-act="genToSteps">' + esc(T('gen.btn')) + '</button></div>' : '') + '</div>';
+    html += apgSection(tl);
 
     html += '<div class="sec"><h2>' + esc(T('res.cycles')) + '</h2><p class="note">' + esc(T('res.cyclesNote')) + '</p>' +
       '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>' + esc(T('th.cycle')) + '</th><th class="num">' + esc(T('th.start')) + '</th><th class="num">' + esc(T('th.cycleTime')) + '</th><th class="num">' + esc(T('th.periodic')) + '</th><th class="num">(a)</th><th class="num">' + esc(T('th.b')) + '</th><th class="num">' + esc(T('th.c')) + '</th><th class="num">' + esc(T('th.interrupt')) + '</th><th class="num">' + esc(T('th.oov')) + '</th><th class="num">' + esc(T('th.issues')) + '</th><th>' + esc(T('th.used')) + '</th></tr></thead><tbody>';
@@ -2104,6 +3303,7 @@ var I18N_LOGIC = {
         b.classList.toggle('is-next', !!nx && b.getAttribute('data-step') === nx.id);
       });
     }
+    renderFix(tl, idx);
     setPlayLabel();
     drawBand(t);
     drawOverview(t);
@@ -2302,28 +3502,95 @@ var I18N_LOGIC = {
     ctx.strokeRect(Math.round(X(t - settings.zoom / 2)) + 0.5, 0.5, Math.max(3, Math.round(X(settings.zoom))), 13);
     ctx.fillStyle = col.cursor; ctx.fillRect(Math.round(X(t)) - 1, 0, 2, 14);
   }
+  // Quick fix: the step under the video position and the 4 before it, newest first.
+  function renderFix(tl, idx) {
+    var el = $('fixList');
+    if (!el) return;
+    var ev = tl.events, list = [];
+    for (var i = idx; i >= 0 && list.length < 5; i--) list.push(i);
+    var key = tl.id + '|' + idx + '|' + list.map(function (k) { var e = ev[k]; return e.id + e.kind + (e.stepId || '') + e.t + (e.issue || ''); }).join(',');
+    if (key === lastFix) return;
+    lastFix = key;
+    if (!list.length) { el.innerHTML = '<p class="note">' + esc(T(ev.length ? 'fix.before' : 'fix.empty')) + '</p>'; return; }
+    el.innerHTML = list.map(function (k) {
+      var e = ev[k];
+      return '<div class="fix-row' + (k === idx ? ' is-cur' : '') + '" data-id="' + esc(e.id) + '"><button type="button" class="fix-go" data-fix="go" title="' + esc(T('fix.go')) + '">' +
+        '<span class="fx-t">' + esc(L.fmtClock(e.t)) + '</span>' + swatch(L.evType(tl, e)) + '<span class="fx-n">' + esc(L.evLabel(tl, e)) + '</span></button>' +
+        '<button type="button" class="btn small" data-fix="chg">' + esc(T('fix.change')) + '</button>' +
+        '<button type="button" class="btn small danger" data-fix="del">' + esc(T('fix.del')) + '</button></div>';
+    }).join('');
+  }
+  function eventAtX(clientX) {
+    var cv = $('band'), r = cv.getBoundingClientRect();
+    var t = now() + (clientX - r.left - r.width / 2) / (r.width / settings.zoom);
+    var tl = activeTl(), i = L.indexAt(tl.events, t);
+    return i >= 0 ? tl.events[i].id : null;
+  }
+  function openEventMenu(id) {
+    var f = findEvent(id);
+    if (!f || P.open) return;
+    var e = f.ev, tl = f.tl;
+    var body = '<p class="em-what">' + swatch(L.evType(tl, e)) + '<b>' + esc(L.evLabel(tl, e)) + '</b> <span class="muted">' + esc(L.fmtClock(e.t)) + '</span></p>' +
+      '<div class="em-grid"><button type="button" class="btn primary" data-m="chg">' + esc(T('fix.changeStep')) + '</button>' +
+      '<button type="button" class="btn" data-m="m01">' + esc(T('fix.m01')) + '</button><button type="button" class="btn" data-m="p01">' + esc(T('fix.p01')) + '</button>' +
+      '<button type="button" class="btn" data-m="now">' + esc(T('fix.setNow')) + '</button><button type="button" class="btn danger" data-m="del">' + esc(T('fix.del')) + '</button></div>';
+    var panel = openPanel({ title: T('fix.menuTitle'), body: body, backdrop: true, enterSaves: false, buttons: [{ label: T('act.close'), onClick: function () { closePanel(); } }] });
+    panel.addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-m]');
+      if (!b) return;
+      var m = b.getAttribute('data-m');
+      closePanel();
+      if (m === 'chg') openChangePanel(id);
+      else if (m === 'del') deleteEvent(id);
+      else if (m === 'm01') nudge(id, -0.1);
+      else if (m === 'p01') nudge(id, 0.1);
+      else if (m === 'now') setToVideoTime(id);
+    });
+  }
+  function currentEventId() {
+    var tl = activeTl(), i = L.indexAt(tl.events, now());
+    return i >= 0 ? tl.events[i].id : null;
+  }
+  function deleteCurrent() {
+    var id = currentEventId();
+    if (!id) { toast(T('fix.none')); return; }
+    deleteEvent(id);
+  }
   function bindBand() {
-    var cv = $('band'), drag = null;
+    var cv = $('band'), drag = null, hold = null;
+    var menuAt = function (x) { var id = eventAtX(x); if (id) openEventMenu(id); else toast(T('fix.none')); };
     cv.addEventListener('pointerdown', function (e) {
       if (!V.ready) return;
       try { cv.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
-      drag = { x: e.clientX, t: now(), moved: false };
+      drag = { x: e.clientX, t: now(), moved: false, menu: false };
+      clearTimeout(hold);
+      if (e.pointerType !== 'mouse') {
+        var x = e.clientX;
+        hold = setTimeout(function () { if (drag && !drag.moved) { drag.menu = true; menuAt(x); } }, 550);
+      }
+    });
+    cv.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      if (!V.ready || (drag && drag.menu)) return;
+      menuAt(e.clientX);
     });
     cv.addEventListener('pointermove', function (e) {
       if (!drag) return;
       var dx = e.clientX - drag.x;
-      if (Math.abs(dx) > 4) drag.moved = true;
+      if (Math.abs(dx) > 4) { drag.moved = true; clearTimeout(hold); }
       if (drag.moved) seek(drag.t - dx / (cv.clientWidth / settings.zoom));
     });
     cv.addEventListener('pointerup', function (e) {
+      clearTimeout(hold);
       if (!drag) return;
+      if (drag.menu || e.button === 2) { drag = null; return; }
       if (!drag.moved) {
         var r = cv.getBoundingClientRect();
         seek(drag.t + (e.clientX - r.left - r.width / 2) / (r.width / settings.zoom));
       }
       drag = null;
     });
-    cv.addEventListener('pointercancel', function () { drag = null; });
+    cv.addEventListener('pointercancel', function () { drag = null; clearTimeout(hold); });
     var ov = $('overview'), od = false;
     var ovSeek = function (e) { var r = ov.getBoundingClientRect(), d = videoDuration(); if (d) seek((e.clientX - r.left) / r.width * d); };
     ov.addEventListener('pointerdown', function (e) {
@@ -2931,28 +4198,100 @@ var I18N_LOGIC = {
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, manual);
     else manual();
   }
-  function apgOpts() { return { cycles: settings.apgCycles, rows: settings.apgRows, decimals: settings.apgRound, dec: dec() }; }
-  function copyApg(which) {
-    var tl = activeTl();
-    if (!tl.steps.length) { toast(T('toast.addStepsFirst')); return; }
-    var b = L.apgBlocks(tl, apgOpts());
-    var left = which === 'tct' ? b.refGeneric : b.generic;
-    var extra = left ? ' ' + TP(left, 'apg.leftOut') : '';
-    if (which === 'tct') {
-      if (!b.ref) { toast(T('toast.noRef')); return; }
-      copyText(L.toTSV(b.tct), T('apg.tctCopied', { steps: TP(tl.steps.length, 'n.step'), ref: 'C' + b.ref }) + extra);
-    } else {
-      if (!b.cycles.length) { toast(settings.apgCycles === 'all' ? T('toast.noComplete') : T('toast.noUsable')); return; }
-      copyText(L.toTSV(b.mct), T('apg.mctCopied', { steps: TP(tl.steps.length, 'n.step'), cycles: TP(b.cycles.length, 'n.cycle') }) + (b.truncated ? ' ' + T('apg.first20') : '') + extra);
-    }
+  // ---------- Filled APG sheets ----------
+  // The templates are chosen once and kept in this browser (IndexedDB). They never leave the computer.
+  var TPL = { mct: null, tct: null };
+  function idb() {
+    return new Promise(function (res, rej) {
+      try {
+        var r = indexedDB.open('vts-templates', 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('tpl'); };
+        r.onsuccess = function () { res(r.result); };
+        r.onerror = function () { rej(r.error); };
+      } catch (e) { rej(e); }
+    });
+  }
+  function tplLoad() {
+    idb().then(function (db) {
+      var st = db.transaction('tpl', 'readonly').objectStore('tpl');
+      ['mct', 'tct'].forEach(function (k) {
+        var q = st.get(k);
+        q.onsuccess = function () { if (q.result && q.result.data) { TPL[k] = q.result; if (tab === 'results') renderResults(); } };
+      });
+    }).catch(function () { /* templates stay for this visit only */ });
+  }
+  function tplSave(k, rec) {
+    TPL[k] = rec;
+    idb().then(function (db) { db.transaction('tpl', 'readwrite').objectStore('tpl').put(rec, k); }).catch(function () { /* memory only */ });
+  }
+  function pickTpl(k) { var i = $(k === 'mct' ? 'fileMct' : 'fileTct'); i.value = ''; i.click(); }
+  function onTplFile(k, f) {
+    var codec = X.browserCodec();
+    if (!codec) { toast(T('apg.oldBrowser')); return; }
+    f.arrayBuffer().then(function (buf) {
+      return X.inspect(buf, codec).then(function (info) {
+        if (!(k === 'mct' ? info.mct.length : info.tct.length)) { toast(T(k === 'mct' ? 'apg.notMct' : 'apg.notTct', { name: f.name })); return; }
+        tplSave(k, { name: f.name, size: f.size, date: Date.now(), data: buf, ext: /\.xlsm$/i.test(f.name) ? 'xlsm' : 'xlsx' });
+        toast(T('apg.tplOk', { name: f.name }));
+        if (tab === 'results') renderResults();
+      });
+    }).catch(function () { toast(T('apg.readErr', { name: f.name })); });
+  }
+  function genName(kind, st, k) { return T(kind === 'walk' ? 'gen.walkName' : 'gen.waitName', { step: st.code || st.name }) + (k > 1 ? ' (' + k + ')' : ''); }
+  function apgData() { return L.apgData(study, { dec: dec(), nameFn: genName }); }
+  function apgSection(tl) {
+    var d = apgData(), ready = d.ops.some(function (o) { return o.cols.length; });
+    var row = function (k, label) {
+      var t = TPL[k];
+      return '<div class="tpl-row"><span class="tpl-l">' + esc(label) + '</span><span class="tpl-f' + (t ? '' : ' muted') + '">' + esc(t ? t.name : T('apg.none')) + '</span>' +
+        '<button type="button" class="btn small" data-act="tpl-' + k + '">' + esc(T(t ? 'apg.change' : 'apg.choose')) + '</button></div>';
+    };
+    var html = '<div class="sec" id="apgSec"><h2>' + esc(T('apg.title')) + '</h2>' +
+      '<p class="note">' + esc(T('apg.intro')) + '</p>' +
+      '<div class="tpl-list">' + row('mct', T('apg.mctFile')) + row('tct', T('apg.tctFile')) + '</div>' +
+      '<div class="btn-row"><button type="button" class="btn primary" data-act="dlApg"' + ((TPL.mct || TPL.tct) && ready && CAN_DOWNLOAD ? '' : ' disabled') + '>' + esc(T('apg.download')) + '</button></div>';
+    if (!CAN_DOWNLOAD) html += '<p class="note">' + esc(T('apg.noDownload')) + '</p>';
+    else if (!TPL.mct && !TPL.tct) html += '<p class="note">' + esc(T('apg.chooseFirst')) + '</p>';
+    if (!d.ops.length) html += '<p class="note">' + esc(T('apg.noOps')) + '</p>';
+    d.ops.forEach(function (o) {
+      var use = o.cols.filter(function (c) { return c.usable; }).length;
+      html += '<p class="note"><b>' + esc(o.name) + '</b> ' + esc(o.cols.length ?
+        T('apg.opLine', { cycles: TP(o.cols.length, 'n.cycle'), usable: use, ref: o.refN ? 'C' + o.refN : '\u2013', t1: o.t1 == null ? '\u2013' : o.t1 + ' s' }) + (o.nComplete > o.cols.length ? ' ' + T('apg.first20') : '') :
+        T('apg.opNone')) + '</p>';
+    });
+    var nGen = tl.events.filter(function (e) { return e.kind === 'walk' || e.kind === 'wait'; }).length;
+    if (nGen) html += '<div class="warn warn-act"><span>' + esc(TP(nGen, 'apg.generic')) + '</span><button type="button" class="btn small primary" data-act="genToSteps">' + esc(T('gen.btn')) + '</button></div>';
+    return html + '</div>';
+  }
+  function apgFileBase() {
+    return (study.meta.name || T('file.base')).trim().replace(/[\\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').slice(0, 60) || 'time-study';
+  }
+  function downloadApg(btn) {
+    if (!CAN_DOWNLOAD) { toast(T('toast.noFiles')); return; }
+    var codec = X.browserCodec();
+    if (!codec) { toast(T('apg.oldBrowser')); return; }
+    var d = apgData();
+    if (!d.ops.length) { toast(T('apg.noOps')); return; }
+    if (!d.ops.some(function (o) { return o.cols.length; })) { toast(T('toast.noComplete')); return; }
+    var base = apgFileBase(), mime = { xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', xlsm: 'application/vnd.ms-excel.sheet.macroEnabled.12' };
+    var jobs = [], files = [];
+    if (TPL.mct) jobs.push(X.fillMct(TPL.mct.data, d, codec).then(function (u) { files.push([base + ' - ' + T('apg.mctName') + '.' + TPL.mct.ext, u, mime[TPL.mct.ext]]); }));
+    if (TPL.tct) jobs.push(X.fillTct(TPL.tct.data, d, codec).then(function (u) { files.push([base + ' - TCT.' + TPL.tct.ext, u, mime[TPL.tct.ext]]); }));
+    if (btn) btn.disabled = true;
+    toast(T('apg.working'));
+    Promise.all(jobs).then(function () {
+      files.sort(function (a, b) { return a[0] < b[0] ? 1 : -1; });
+      files.forEach(function (f, i) { setTimeout(function () { saveFile(f[0], f[1], f[2]); }, i * 400); });
+      toast(TP(files.length, 'apg.done'));
+    }).catch(function (err) {
+      toast(T('apg.fillErr', { why: err && err.code ? err.code : '' }));
+    }).then(function () { if (btn) btn.disabled = false; });
   }
   function handleExportAct(a) {
     if (a === 'logCsv') saveFile(fileBase() + '-log.csv', toCSV(L.logRows(study, dec())), 'text/csv');
     else if (a === 'sumCsv') saveFile(fileBase() + '-summary.csv', toCSV(L.summaryRows(study, dec())), 'text/csv');
     else if (a === 'logCopy') copyText(toTSV(L.logRows(study, dec())), T('copy.log'));
     else if (a === 'sumCopy') copyText(toTSV(L.summaryRows(study, dec())), T('copy.sum'));
-    else if (a === 'copyMct') copyApg('mct');
-    else if (a === 'copyTct') copyApg('tct');
   }
   function offlineHtml() {
     return '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
@@ -3070,7 +4409,7 @@ var I18N_LOGIC = {
     var keys = [
       [T('key.space'), 'help.k.space'], ['\u2190 \u2192', 'help.k.arrows'], [', .', 'help.k.frame'], ['[ ]', 'help.k.speed'],
       [T('key.enter'), 'help.k.enter'], ['1 \u2026 9, 0', 'help.k.steps'], ['F', 'help.k.f'], ['I', 'help.k.i'], ['P', 'help.k.p'],
-      ['V', 'help.k.v'], ['W', 'help.k.w'], ['A', 'help.k.a'], ['X', 'help.k.x'], ['Ctrl+Z', 'help.k.undo'], ['Ctrl+Y', 'help.k.redo'], ['?', 'help.k.help']
+      ['V', 'help.k.v'], ['W', 'help.k.w'], ['A', 'help.k.a'], ['X', 'help.k.x'], [T('key.del'), 'help.k.del'], ['Ctrl+Z', 'help.k.undo'], ['Ctrl+Y', 'help.k.redo'], ['?', 'help.k.help']
     ];
     var steps = [1, 2, 3, 4, 5].map(function (i) {
       return '<li><span class="gn">' + i + '</span><span class="gt"><b>' + esc(T('help.s' + i)) + '</b><span>' + esc(T('help.s' + i + '.text')) + '</span></span></li>';
@@ -3122,6 +4461,7 @@ var I18N_LOGIC = {
     if (k === ']' || e.code === 'NumpadAdd') { e.preventDefault(); speedStep(1); return; }
     if (k === '?') { e.preventDefault(); openHelp(); return; }
     if (k === 'Enter') { e.preventDefault(); if (!e.repeat) recordNext(); return; }
+    if (k === 'Delete') { e.preventDefault(); if (!e.repeat) deleteCurrent(); return; }
     if (altGr) return;
     var m = /^(?:Digit|Numpad)([0-9])$/.exec(e.code || '');
     var key = m ? m[1] : (/^[0-9]$/.test(k) ? k : (k && k.length === 1 && /[a-z]/i.test(k) ? k.toUpperCase() : null));
@@ -3151,6 +4491,9 @@ var I18N_LOGIC = {
     $('btnChangeVideo').addEventListener('click', pickVideo);
     $('fileVideo').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) openVideo(f); });
     $('fileStudy').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) openStudyFile(f); });
+    $('fileMct').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) onTplFile('mct', f); });
+    $('fileTct').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) onTplFile('tct', f); });
+    $('stCurBox').addEventListener('click', function () { var id = currentEventId(); if (id) openEventMenu(id); else toast(T('fix.none')); });
     var vb = $('videoBox');
     ['dragenter', 'dragover'].forEach(function (n) { vb.addEventListener(n, function (e) { e.preventDefault(); vb.classList.add('drag'); }); });
     ['dragleave', 'drop'].forEach(function (n) { vb.addEventListener(n, function () { vb.classList.remove('drag'); }); });
@@ -3194,6 +4537,15 @@ var I18N_LOGIC = {
       var b = e.target.closest('button');
       if (!b) return;
       if (b.id === 'btnRecNext') { recordNext(); return; }
+      var fx = b.getAttribute('data-fix');
+      if (fx) {
+        var fr = b.closest('.fix-row'), fid = fr ? fr.getAttribute('data-id') : null, fe = findEvent(fid);
+        if (!fe) return;
+        if (fx === 'go') { if (V.ready) seek(fe.ev.t); else toast(T('toast.chooseVideo')); }
+        else if (fx === 'chg') openChangePanel(fid);
+        else if (fx === 'del') deleteEvent(fid);
+        return;
+      }
       if (b.hasAttribute('data-step')) { recordStep(b.getAttribute('data-step')); return; }
       if (b.hasAttribute('data-go-tab')) { setTab(b.getAttribute('data-go-tab')); return; }
       var ev = b.getAttribute('data-ev');
@@ -3254,20 +4606,15 @@ var I18N_LOGIC = {
     });
 
     // Results tab
-    $('tab-results').addEventListener('change', function (e) {
-      var id = e.target.id;
-      if (id === 'apgCycles') settings.apgCycles = e.target.value === 'all' ? 'all' : 'usable';
-      else if (id === 'apgRows') settings.apgRows = e.target.value === '1' ? 1 : 2;
-      else if (id === 'apgRound') settings.apgRound = e.target.value === '1' ? 1 : 0;
-      else return;
-      saveSettings(); renderResults();
-    });
     $('tab-results').addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
       if (b.hasAttribute('data-t')) { if (V.ready) seek(Number(b.getAttribute('data-t'))); else toast(T('toast.chooseVideo')); return; }
-      if (b.getAttribute('data-act') === 'genToSteps') { convertGeneric(); return; }
-      handleExportAct(b.getAttribute('data-act'));
+      var ra = b.getAttribute('data-act');
+      if (ra === 'genToSteps') { convertGeneric(); return; }
+      if (ra === 'tpl-mct' || ra === 'tpl-tct') { pickTpl(ra.slice(4)); return; }
+      if (ra === 'dlApg') { downloadApg(b); return; }
+      handleExportAct(ra);
     });
 
     // Log tab
@@ -3381,13 +4728,14 @@ var I18N_LOGIC = {
   applyTheme();
   $('btnOffline').hidden = !CAN_DOWNLOAD;
   renderAll();
+  tplLoad();
   showExpected();
   updateKeys();
   if (restored) toast(T('toast.restored'));
   if (window.__VTS_TEST__) {
     window.__vts = {
       get study() { return study; }, L: L, V: V, an: an, activeTl: activeTl, undo: undo, redo: redo, offlineHtml: offlineHtml,
-      settings: settings, hist: hist, recordNext: recordNext, seek: seek, CAN_DOWNLOAD: CAN_DOWNLOAD, setLang: setLang, T: T
+      settings: settings, hist: hist, recordNext: recordNext, seek: seek, CAN_DOWNLOAD: CAN_DOWNLOAD, setLang: setLang, T: T, TPL: TPL, X: X
     };
   }
 })();
