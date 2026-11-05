@@ -10,37 +10,41 @@
 <title>Video Time Study</title>
 <style id="vts-style">
 :root {
-  --navy: #26398F;
-  --steel: #336699;
-  --steel-line: #2B5680;
+  --navy: #27398F;
+  --navy-deep: #1D2B70;
+  --steel: #27398F;
+  --steel-line: #27398F;
   --c-op: #00B050; --c-insp: #0070C0; --c-walk: #FFC000; --c-wait: #C00000; --c-mach: #7F7F7F;
   --c-per: #7030A0; --c-int: #404040; --c-oov: #A6A6A6; --c-issue: #FF6600;
-  --bg: #E9ECF0;
+  --bg: #F3F5FA;
   --surface: #FFFFFF;
-  --surface-2: #F3F4F6;
-  --text: #222222;
-  --muted: #5C6168;
-  --border: #C9CDD2;
-  --border-strong: #8E949B;
+  --surface-2: #F6F7FC;
+  --tint: #EDF0FA;
+  --text: #1C2333;
+  --muted: #5F6780;
+  --border: #E0E4EE;
+  --border-strong: #C3C9D8;
   --input-bg: #FFFFFF;
-  --btn-bg: #F4F5F7;
-  --btn-hover: #E3E6EA;
-  --focus: #26398F;
-  --accent: #26398F;
-  --row-alt: #F6F8FA;
-  --row-now: #DDE4F5;
-  --ref-bg: #FFF2CC;
-  --warn-bg: #FFF2CC;
-  --warn-line: #BF9000;
-  --danger: #C00000;
+  --btn-bg: #FFFFFF;
+  --btn-hover: #EFF2FA;
+  --focus: #27398F;
+  --accent: #27398F;
+  --row-alt: #FAFBFD;
+  --row-now: #E7ECFA;
+  --ref-bg: #FFF5D1;
+  --warn-bg: #FFF7DE;
+  --warn-line: #E2B437;
+  --danger: #B42318;
   --band-bg: #FFFFFF;
-  --band-grid: #D5D9DE;
-  --band-out: #EEF0F2;
-  --band-text: #3F444A;
-  --cursor: #26398F;
-  --cycle-line: #26398F;
-  --ref-col: #EEF2FA;
-  --title: #26398F;
+  --band-grid: #DCE1EC;
+  --band-out: #F1F3F8;
+  --band-text: #3D4558;
+  --cursor: #27398F;
+  --cycle-line: #27398F;
+  --ref-col: #F0F3FB;
+  --title: #27398F;
+  --on-navy: #FFFFFF;
+  --shadow: 0 1px 2px rgba(28, 35, 51, .06);
   color-scheme: light;
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
@@ -48,27 +52,31 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15171A; --surface: #1E2125; --surface-2: #25292E; --text: #E6E8EA; --muted: #A2A8AF;
-    --border: #3A3F45; --border-strong: #5E656D; --input-bg: #16191C; --btn-bg: #2A2E33; --btn-hover: #353A41;
-    --focus: #9DB1FF; --accent: #9DB1FF; --row-alt: #22262A; --row-now: #2B3556; --ref-bg: #3B331C; --warn-bg: #3B331C;
-    --warn-line: #D9A520; --danger: #FF7B7B; --band-bg: #121417; --band-grid: #363B41; --band-out: #1B1E22;
-    --band-text: #C7CBD0; --cursor: #FFFFFF; --cycle-line: #9DB1FF; --ref-col: #262D3F; --title: #C9D3FF;
+    --bg: #0D1222; --surface: #141A2E; --surface-2: #19203A; --tint: #1F2850; --text: #E5E8F2; --muted: #98A1BC;
+    --border: #252E4D; --border-strong: #38446B; --input-bg: #10162A; --btn-bg: #18203A; --btn-hover: #222C50;
+    --navy: #3A4FC4; --navy-deep: #4B60D6; --steel: #3A4FC4; --steel-line: #3A4FC4;
+    --focus: #9CACFF; --accent: #9CACFF; --row-alt: #121830; --row-now: #24306A; --ref-bg: #3A3217; --warn-bg: #2E2914;
+    --warn-line: #C9A02C; --danger: #FF8A80; --band-bg: #0F1529; --band-grid: #2A3354; --band-out: #161D35;
+    --band-text: #C3C9DB; --cursor: #FFFFFF; --cycle-line: #9CACFF; --ref-col: #1B2445; --title: #C3CDFF;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #15171A; --surface: #1E2125; --surface-2: #25292E; --text: #E6E8EA; --muted: #A2A8AF;
-  --border: #3A3F45; --border-strong: #5E656D; --input-bg: #16191C; --btn-bg: #2A2E33; --btn-hover: #353A41;
-  --focus: #9DB1FF; --accent: #9DB1FF; --row-alt: #22262A; --row-now: #2B3556; --ref-bg: #3B331C; --warn-bg: #3B331C;
-  --warn-line: #D9A520; --danger: #FF7B7B; --band-bg: #121417; --band-grid: #363B41; --band-out: #1B1E22;
-  --band-text: #C7CBD0; --cursor: #FFFFFF; --cycle-line: #9DB1FF; --ref-col: #262D3F; --title: #C9D3FF;
+  --bg: #0D1222; --surface: #141A2E; --surface-2: #19203A; --tint: #1F2850; --text: #E5E8F2; --muted: #98A1BC;
+  --border: #252E4D; --border-strong: #38446B; --input-bg: #10162A; --btn-bg: #18203A; --btn-hover: #222C50;
+  --navy: #3A4FC4; --navy-deep: #4B60D6; --steel: #3A4FC4; --steel-line: #3A4FC4;
+  --focus: #9CACFF; --accent: #9CACFF; --row-alt: #121830; --row-now: #24306A; --ref-bg: #3A3217; --warn-bg: #2E2914;
+  --warn-line: #C9A02C; --danger: #FF8A80; --band-bg: #0F1529; --band-grid: #2A3354; --band-out: #161D35;
+  --band-text: #C3C9DB; --cursor: #FFFFFF; --cycle-line: #9CACFF; --ref-col: #1B2445; --title: #C3CDFF;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3);
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
-  font: 14px/1.4 Arial, Helvetica, sans-serif;
+  font: 14px/1.45 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 [hidden] { display: none !important; }
@@ -320,7 +328,7 @@ label.check input { margin-top: 3px; width: auto; min-height: 0; }
 .help-list { margin: 0; padding-left: 20px; }
 .help-list li { margin-bottom: 5px; }
 
-/* Form grid, APG document style */
+/* Form grid, like the standard sheets */
 .form-grid { border-top: 1px solid var(--border); border-left: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .field { display: grid; grid-template-columns: 118px minmax(0, 1fr); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .field > label, .field > .flabel { background: var(--surface-2); padding: 7px 8px; font-weight: bold; font-size: 13px; border-right: 1px solid var(--border); display: flex; align-items: center; }
@@ -480,7 +488,7 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
 .em-grid .btn.primary, .em-grid .btn.danger { grid-column: 1 / -1; }
 @media (pointer: coarse) { .fix-go { min-height: 40px; } }
 
-/* APG templates */
+/* Templates for the filled sheets */
 .tpl-list { display: grid; gap: 6px; margin: 8px 0 12px; }
 .tpl-row { display: grid; grid-template-columns: minmax(10em, auto) minmax(0, 1fr) auto; align-items: center; gap: 6px 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
 .tpl-l { font-weight: bold; }
@@ -490,6 +498,122 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
   .tpl-row { grid-template-columns: minmax(0, 1fr) auto; }
   .tpl-f { grid-column: 1 / -1; grid-row: 2; }
 }
+
+/* ---------- 2.4: lighter look, logo navy ----------
+   One strong element (the "Next step" button in navy), everything else on white with hairlines.
+   Table headers keep the navy of the standard sheets, as a thin rule rather than a solid band. */
+h2 { font-size: 16px; font-weight: 600; letter-spacing: -.005em; }
+h3 { font-size: 13px; font-weight: 600; color: var(--text); }
+.sec + .sec { margin-top: 22px; padding-top: 18px; }
+
+/* Header: white bar, navy name */
+.topbar { background: var(--surface); color: var(--text); border-bottom: 1px solid var(--border); padding: 10px 18px; }
+.tb-logo { stroke: var(--title); }
+.tb-title h1 { color: var(--title); font-weight: 650; font-size: 19px; letter-spacing: -.01em; }
+.tb-credit { color: var(--muted); }
+.tb-study { color: var(--text); border-left-color: var(--border-strong); }
+.tb-btn { color: var(--text); background: transparent; border: 1px solid var(--border); border-radius: 6px; }
+.tb-btn:hover { background: var(--btn-hover); }
+.tb-btn:focus-visible { outline: 2px solid var(--focus); }
+.tb-lang .tb-btn { border-radius: 0; }
+.tb-lang .tb-btn:first-child { border-radius: 6px 0 0 6px; }
+.tb-lang .tb-btn:last-child { border-radius: 0 6px 6px 0; }
+.tb-lang .tb-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }
+
+/* Buttons and inputs */
+.btn { border-radius: 6px; border-color: var(--border-strong); background: var(--btn-bg); }
+.btn.primary { background: var(--navy); border-color: var(--navy); color: var(--on-navy); font-weight: 600; }
+.btn.primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+.btn.danger { background: transparent; border-color: transparent; color: var(--danger); }
+.btn.danger:hover { background: color-mix(in srgb, var(--danger) 9%, transparent); border-color: color-mix(in srgb, var(--danger) 35%, transparent); }
+.btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }
+.seg .btn { border-radius: 0; }
+.seg .btn:first-child { border-radius: 6px 0 0 6px; }
+.seg .btn:last-child { border-radius: 0 6px 6px 0; }
+input[type="text"], input[type="number"], input[type="date"], select, textarea { border-radius: 6px; border-color: var(--border-strong); }
+.field > input, .field > select { border-radius: 0; }
+
+/* Video column */
+.video-box { border: 0; border-radius: 10px; }
+.video-empty { background: #121A33; }
+.band-wrap { border-color: var(--border); border-radius: 8px; overflow: hidden; }
+.legend { gap: 3px 14px; }
+
+/* Status under the video */
+.status { border-color: var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+.st-head { background: var(--surface-2); color: var(--title); border-bottom: 1px solid var(--border); padding: 5px 12px; }
+.st-keys.k-on { color: #1E7A46; }
+.st { border-left-color: var(--border); padding: 7px 12px; }
+
+/* Timeline selector and tabs: underline tabs, one card */
+.tl-tab { border-color: var(--border-strong); border-radius: 6px; }
+.tl-tab[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); }
+.tabs { background: var(--surface); border: 1px solid var(--border); border-bottom: 0; border-radius: 10px 10px 0 0; padding: 0 6px; gap: 2px; }
+.tab { background: transparent; border: 0; border-bottom: 2px solid transparent; margin: 0; color: var(--muted); padding: 11px 12px 9px; font-weight: 500; }
+.tab:hover { background: transparent; color: var(--text); }
+.tab[aria-selected="true"] { background: transparent; color: var(--title); border-bottom-color: var(--navy); font-weight: 600; }
+.tab-panel { border-color: var(--border); border-radius: 0 0 10px 10px; padding: 16px; box-shadow: var(--shadow); }
+@media (max-width: 520px) { .tab { padding: 10px 9px 8px; } .tab-panel { padding: 12px 10px; } }
+
+/* Record panel */
+.rec-next { border-radius: 10px; min-height: 64px; padding: 10px 16px; background: var(--navy); border-color: var(--navy); }
+.rec-next:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+.rn-step, .rn-key { color: rgba(255, 255, 255, .78); }
+.step-grid { gap: 8px; margin-top: 12px; }
+.step-btn { border-color: var(--border); border-radius: 8px; overflow: hidden; }
+.step-btn .sb-key { background: var(--surface-2); border-right-color: var(--border); }
+.step-btn:hover { background: var(--btn-hover); }
+.step-btn.is-current { background: var(--row-now); border-color: color-mix(in srgb, var(--navy) 30%, var(--border)); }
+.step-btn.is-next { outline: 2px solid var(--accent); outline-offset: -2px; }
+.ev-grid { gap: 8px; }
+.ev-btn { border-color: var(--border); border-radius: 8px; background: var(--surface); }
+.ev-btn:hover { background: var(--btn-hover); }
+.fix-go { border-color: var(--border); border-radius: 8px; }
+.fix-row .btn.small { min-height: 30px; }
+.fix-row .btn:not(.danger) { border-color: var(--border); }
+
+/* Start guide */
+.guide { border-color: var(--border); border-radius: 10px; background: var(--surface-2); }
+.gn { border-radius: 50%; }
+
+/* Results */
+.tile { border: 1px solid var(--border); border-top: 3px solid var(--navy); border-radius: 8px; padding: 10px 14px; }
+.tile.tile-warn { border-top-color: var(--warn-line); }
+.tile-v { font-weight: 650; letter-spacing: -.01em; }
+.tbl-wrap { border-color: var(--border); border-radius: 8px; }
+.tbl th { background: var(--surface-2); color: var(--title); border: 0; border-bottom: 2px solid var(--navy); font-weight: 600; padding: 7px 8px; }
+.tbl td { border: 0; border-bottom: 1px solid var(--border); padding: 6px 8px; }
+.tbl tbody tr:last-child td { border-bottom: 0; }
+.tbl tr.total td { border-top: 2px solid var(--border-strong); }
+.steps-head { background: var(--surface-2); color: var(--title); border-bottom: 2px solid var(--navy); border-radius: 8px 8px 0 0; }
+.warn { border-color: var(--warn-line); border-radius: 8px; }
+.tpl-row { border-color: var(--border); border-radius: 8px; }
+
+/* Study form */
+.form-grid { border-color: var(--border); border-radius: 8px; overflow: hidden; }
+.field, .field > label, .field > .flabel { border-color: var(--border); }
+
+/* Journal */
+.lcyc { background: var(--surface-2); }
+
+/* Dialogs */
+.overlay { background: rgba(13, 18, 34, .45); }
+.panel { border: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px rgba(13, 18, 34, .28); }
+.panel-head { background: var(--surface); color: var(--title); border-bottom: 1px solid var(--border); padding: 14px 16px 12px; }
+.panel-body { padding: 14px 16px; }
+.panel-foot { padding: 12px 16px; background: var(--surface-2); }
+.cat-btn { border-radius: 8px; }
+.cat-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); }
+.kcap { border-radius: 4px; }
+
+/* Toast */
+.toast { background: #1C2333; border-radius: 8px; box-shadow: 0 8px 24px rgba(13, 18, 34, .25); }
+.toast button { border-radius: 6px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .toast { background: #2A3354; } :root:not([data-theme="light"]) .st-keys.k-on { color: #7FD6A4; } }
+:root[data-theme="dark"] .toast { background: #2A3354; }
+:root[data-theme="dark"] .st-keys.k-on { color: #7FD6A4; }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
@@ -597,7 +721,7 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
 <footer class="footer">
   <span><b>Video Time Study</b></span>
   <span data-i18n="hdr.credit">Created by Ilyas Baqloul</span>
-  <span>Version 2.3</span>
+  <span>Version 2.4</span>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
@@ -1109,10 +1233,10 @@ var L = (function () {
     return R;
   }
 
-  // ---------- Blocks to paste into the APG sheets ----------
+  // ---------- Blocks to paste into the standard sheets ----------
   // Time Measurement Sheet: one row per step (list order), one column per cycle (max 20, as on the sheet).
   // TCT: one row per step, columns Operation | Insp. | Machine | Transp. | Distance (m), values of the reference cycle.
-  // rows = 2 adds an empty row after each step (APG sheets use a Starting point row and a name row per step).
+  // rows = 2 adds an empty row after each step (the standard sheets use a Starting point row and a name row per step).
   function apgBlocks(tl, opts) {
     var o = opts || {};
     var an = analyze(tl), ev = tl.events;
@@ -1160,7 +1284,7 @@ var L = (function () {
     };
   }
   function toTSV(rows) { return rows.map(function (r) { return csvRow(r, '\t'); }).join('\r\n') + '\r\n'; }
-  // ---------- Data for the APG sheets (one block per operator timeline) ----------
+  // ---------- Data for the standard sheets (one block per operator timeline) ----------
   // Relevé: one row per step (cycle start first), complete cycles (max 20, usable ones first), times to 0.1 s.
   // TCT: times of the reference cycle; a walk goes in Transp. of the step before it, waits get no row
   // (the sheet works out the wait from the process cycle time).
@@ -1368,7 +1492,7 @@ var L = (function () {
 /* LOGIC-END */
 
 /* XLSX-START */
-/* Fills the APG templates (Time Measurement Sheet .xlsx, TCT .xlsm) without Excel: zip and XML text only.
+/* Fills the standard templates (Time Measurement Sheet .xlsx, TCT .xlsm) without Excel: zip and XML text only.
    No DOM. The deflate codec is given by the caller (CompressionStream in the browser, zlib in the tests).
    Untouched parts (macros, images) are copied byte for byte. */
 var X = (function () {
@@ -2395,18 +2519,10 @@ var I18N = {
     'th.interrupt': 'Interruption', 'th.oov': 'Out of view', 'th.issues': 'Issues', 'th.used': 'Used', 'th.step': 'Step', 'th.median': 'Median', 'th.minRep': 'Min. repeatable',
     't1.single': 'T1 = {v} s (only one usable cycle).', 't1.discarded': 'Smallest (c) discarded: {d} s.',
     't1.repeat': 'T1 = {v} s, the smallest value that repeats ({n} times, rounded to the second).', 't1.noRepeat': 'No value repeats: T1 = {v} s, the smallest remaining value.',
-    'apg.title': 'Filled APG sheets', 'apg.cycles': 'Cycles', 'apg.usable': 'Usable cycles ({n})', 'apg.all': 'All complete cycles ({n})',
-    'apg.rows': 'Rows per step', 'apg.rows2': '2, as in the APG sheets', 'apg.times': 'Times', 'apg.whole': 'Whole seconds', 'apg.tenth': 'To 0.1 s',
-    'apg.copyMct': 'Copy for Time Measurement Sheet', 'apg.copyTct': 'Copy for TCT',
-    'apg.mct': 'Time Measurement Sheet:', 'apg.mctText': 'one row per step, in the order of the list, one column per cycle ({list}). In Excel, click the cycle 1 cell of the first step, then Ctrl+V.',
+    'apg.title': 'Filled standard sheets',
     'apg.first20': 'More than 20 complete cycles: the 20 kept put the usable ones first.',
-    'apg.tct': 'TCT:', 'apg.tctText': 'times of the reference cycle {ref} in the columns Operation, Insp., Machine, Transp. and Distance. Click the Operation cell of the first step, then Ctrl+V.',
-    'apg.waitEmpty': 'Wait steps have no column in the TCT: their row stays empty.',
     'apg.generic.one': '{n} walk or wait was recorded with W or A. The sheets list it as a step; you can also put it in the list now.',
     'apg.generic.other': '{n} walks or waits were recorded with W or A. The sheets list them as steps; you can also put them in the list now.',
-    'apg.leftOut.one': '{n} walk or wait not in the list left out.', 'apg.leftOut.other': '{n} walks or waits not in the list left out.',
-    'apg.mctCopied': 'Time Measurement Sheet copied ({steps} \u00d7 {cycles}). Click the cycle 1 cell of the first step, then Ctrl+V.',
-    'apg.tctCopied': 'TCT copied ({steps}, reference cycle {ref}). Click the Operation cell of the first step, then Ctrl+V.',
     'log.showCurrent': 'Show current event', 'log.c0': 'Before the first cycle start, excluded', 'log.cycle': 'Cycle {time}, (c) {c}',
     'log.used': 'Used', 'log.notUsed': 'Not used: {why}', 'log.running': 'running', 'log.cause': 'Cause:', 'log.issue': 'Issue:',
     'log.causeBtn': 'Cause', 'log.nameBtn': 'Name', 'log.editIssue': 'Edit issue', 'log.go': 'Go to this time', 'log.change': 'Change step',
@@ -2483,10 +2599,10 @@ var I18N = {
     'toast.speed': 'Speed {s}\u00d7', 'toast.restored': 'Study restored from this browser. Choose the video again to continue.',
     'help.title': 'Help', 'help.quick': 'Quick start',
     'help.s1': 'Choose the video', 'help.s1.text': 'Button in the middle of the video area, or drop the file there. The video stays on your computer.',
-    'help.s2': 'List the steps', 'help.s2.text': 'In Steps, write the operator\u2019s steps in the order of the cycle, with their type: Operation, Inspection, Walk or Wait. Put every walk and every wait as a step of the list, where it happens in the cycle: the filled APG sheets need them. W and A are only for walks and waits you did not plan. If you used them, the \u201cPut them in the list\u201d button turns them into steps.',
+    'help.s2': 'List the steps', 'help.s2.text': 'In Steps, write the operator\u2019s steps in the order of the cycle, with their type: Operation, Inspection, Walk or Wait. Put every walk and every wait as a step of the list, where it happens in the cycle: the filled sheets need them. W and A are only for walks and waits you did not plan. If you used them, the \u201cPut them in the list\u201d button turns them into steps.',
     'help.s3': 'Record', 'help.s3.text': 'Play the video. When a step starts, press its key, or Enter for the next step of the list. A step ends when the next one starts.',
     'help.s4': 'Mark the problems', 'help.s4.text': 'F when a step goes wrong, I when the operator stops, P for a periodic task. Those cycles are left out of the results.',
-    'help.s5': 'Read the results and fill the sheets', 'help.s5.text': 'In Results, read T1 and the reference cycle. Choose your two APG templates once, then download the filled Time Measurement Sheet and TCT.',
+    'help.s5': 'Read the results and fill the sheets', 'help.s5.text': 'In Results, read T1 and the reference cycle. Choose your two templates once, then download the filled Time Measurement Sheet and TCT.',
     'help.keys': 'Keys',
     'help.k.space': 'Play or pause', 'help.k.arrows': 'Back or forward 1 s (with Shift: 5 s)', 'help.k.frame': 'Previous or next frame',
     'help.k.speed': 'Slower or faster (numeric keypad: \u2212 and +)', 'help.k.enter': 'Record the next step of the list', 'help.k.steps': 'Record that step (then letters, shown on each step)',
@@ -2530,7 +2646,7 @@ var I18N = {
     'st.fix': 'Click to fix this step',
     'key.del': 'Delete',
     'help.k.del': 'Delete the step in progress',
-    'apg.intro': 'Choose your two APG templates once. The site fills them for every operator timeline, one sheet per operator, and keeps the formulas and the macros. The templates stay on this computer.',
+    'apg.intro': 'Choose your two templates once: the Time Measurement Sheet and the Standardized Work file with the TCT. The site fills them for every operator timeline, one sheet per operator, and keeps the formulas and the macros. The templates stay on this computer.',
     'apg.mctFile': 'Time Measurement Sheet',
     'apg.tctFile': 'TCT (with macros)',
     'apg.none': 'No template',
@@ -2548,8 +2664,8 @@ var I18N = {
     'apg.done.other': '{n} files downloaded. In Excel: allow the macros, then press CREATE TCT to draw the chart.',
     'apg.fillErr': 'The sheets could not be filled ({why}).',
     'apg.oldBrowser': 'This browser is too old to build Excel files. Use a recent Chrome, Edge or Firefox.',
-    'apg.notMct': '{name} does not look like the APG Time Measurement Sheet.',
-    'apg.notTct': '{name} does not look like the APG TCT file.',
+    'apg.notMct': '{name} does not look like a Time Measurement Sheet.',
+    'apg.notTct': '{name} does not look like a Standardized Work file with a TCT.',
     'apg.tplOk': 'Template kept: {name}',
     'apg.readErr': '{name} could not be read.'
   },
@@ -2609,18 +2725,10 @@ var I18N = {
     'th.interrupt': 'Interruption', 'th.oov': 'Hors champ', 'th.issues': 'Anomalies', 'th.used': 'Utilis\u00e9', 'th.step': '\u00c9tape', 'th.median': 'M\u00e9diane', 'th.minRep': 'Min. r\u00e9p\u00e9table',
     't1.single': 'T1 = {v} s (un seul cycle utilisable).', 't1.discarded': 'Plus petit (c) \u00e9cart\u00e9 : {d} s.',
     't1.repeat': 'T1 = {v} s, la plus petite valeur qui se r\u00e9p\u00e8te ({n} fois, arrondi \u00e0 la seconde).', 't1.noRepeat': 'Aucune valeur ne se r\u00e9p\u00e8te : T1 = {v} s, la plus petite valeur restante.',
-    'apg.title': 'Fiches APG remplies', 'apg.cycles': 'Cycles', 'apg.usable': 'Cycles utilisables ({n})', 'apg.all': 'Tous les cycles complets ({n})',
-    'apg.rows': 'Lignes par \u00e9tape', 'apg.rows2': '2, comme sur les fiches APG', 'apg.times': 'Temps', 'apg.whole': 'Secondes enti\u00e8res', 'apg.tenth': 'Au dixi\u00e8me',
-    'apg.copyMct': 'Copier pour le relev\u00e9 de temps', 'apg.copyTct': 'Copier pour la TCT',
-    'apg.mct': 'Relev\u00e9 de temps :', 'apg.mctText': 'une ligne par \u00e9tape, dans l\u2019ordre de la liste, une colonne par cycle ({list}). Dans Excel, cliquez la case du cycle 1 de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
+    'apg.title': 'Fiches standard remplies',
     'apg.first20': 'Plus de 20 cycles complets : les 20 gard\u00e9s prennent d\u2019abord les utilisables.',
-    'apg.tct': 'TCT :', 'apg.tctText': 'temps du cycle de r\u00e9f\u00e9rence {ref} dans les colonnes Operation, Insp., Machine, Transp. et Distance. Cliquez la case Operation de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
-    'apg.waitEmpty': 'Les \u00e9tapes d\u2019attente n\u2019ont pas de colonne dans la TCT : leur ligne reste vide.',
     'apg.generic.one': '{n} marche ou attente a \u00e9t\u00e9 faite avec W ou A. Les fiches la mettent comme une \u00e9tape ; vous pouvez aussi la ranger dans la liste maintenant.',
     'apg.generic.other': '{n} marches ou attentes ont \u00e9t\u00e9 faites avec W ou A. Les fiches les mettent comme des \u00e9tapes ; vous pouvez aussi les ranger dans la liste maintenant.',
-    'apg.leftOut.one': '{n} marche ou attente hors liste laiss\u00e9e de c\u00f4t\u00e9.', 'apg.leftOut.other': '{n} marches ou attentes hors liste laiss\u00e9es de c\u00f4t\u00e9.',
-    'apg.mctCopied': 'Relev\u00e9 de temps copi\u00e9 ({steps} \u00d7 {cycles}). Cliquez la case du cycle 1 de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
-    'apg.tctCopied': 'TCT copi\u00e9e ({steps}, cycle de r\u00e9f\u00e9rence {ref}). Cliquez la case Operation de la premi\u00e8re \u00e9tape, puis Ctrl+V.',
     'log.showCurrent': 'Afficher l\u2019\u00e9v\u00e9nement en cours', 'log.c0': 'Avant le premier d\u00e9but de cycle, exclu', 'log.cycle': 'Cycle {time}, (c) {c}',
     'log.used': 'Utilis\u00e9', 'log.notUsed': 'Non utilis\u00e9 : {why}', 'log.running': 'en cours', 'log.cause': 'Cause :', 'log.issue': 'Anomalie :',
     'log.causeBtn': 'Cause', 'log.nameBtn': 'Nom', 'log.editIssue': 'Modifier l\u2019anomalie', 'log.go': 'Aller \u00e0 cet instant', 'log.change': 'Changer d\u2019\u00e9tape',
@@ -2697,10 +2805,10 @@ var I18N = {
     'toast.speed': 'Vitesse {s}\u00d7', 'toast.restored': '\u00c9tude r\u00e9cup\u00e9r\u00e9e dans ce navigateur. Choisissez \u00e0 nouveau la vid\u00e9o pour continuer.',
     'help.title': 'Aide', 'help.quick': 'D\u00e9marrage rapide',
     'help.s1': 'Choisir la vid\u00e9o', 'help.s1.text': 'Bouton au milieu de la zone vid\u00e9o, ou d\u00e9posez le fichier dessus. La vid\u00e9o reste sur votre ordinateur.',
-    'help.s2': 'Lister les \u00e9tapes', 'help.s2.text': 'Dans \u00c9tapes, \u00e9crivez les \u00e9tapes de l\u2019op\u00e9rateur dans l\u2019ordre du cycle, avec leur type : Op\u00e9ration, Contr\u00f4le, Marche ou Attente. Mettez chaque marche et chaque attente comme une \u00e9tape de la liste, \u00e0 sa place dans le cycle : les fiches APG en ont besoin. W et A servent seulement aux marches et attentes impr\u00e9vues. Si vous les avez utilis\u00e9es, le bouton \u00ab Les ranger dans la liste \u00bb les transforme en \u00e9tapes.',
+    'help.s2': 'Lister les \u00e9tapes', 'help.s2.text': 'Dans \u00c9tapes, \u00e9crivez les \u00e9tapes de l\u2019op\u00e9rateur dans l\u2019ordre du cycle, avec leur type : Op\u00e9ration, Contr\u00f4le, Marche ou Attente. Mettez chaque marche et chaque attente comme une \u00e9tape de la liste, \u00e0 sa place dans le cycle : les fiches remplies en ont besoin. W et A servent seulement aux marches et attentes impr\u00e9vues. Si vous les avez utilis\u00e9es, le bouton \u00ab Les ranger dans la liste \u00bb les transforme en \u00e9tapes.',
     'help.s3': 'Chronom\u00e9trer', 'help.s3.text': 'Lancez la vid\u00e9o. Quand une \u00e9tape commence, appuyez sur sa touche, ou sur Entr\u00e9e pour l\u2019\u00e9tape suivante de la liste. Une \u00e9tape se termine quand la suivante commence.',
     'help.s4': 'Signaler les probl\u00e8mes', 'help.s4.text': 'F quand une \u00e9tape se passe mal, I quand l\u2019op\u00e9rateur s\u2019arr\u00eate, P pour une t\u00e2che p\u00e9riodique. Ces cycles sont mis de c\u00f4t\u00e9 dans les r\u00e9sultats.',
-    'help.s5': 'Lire les r\u00e9sultats et remplir les fiches', 'help.s5.text': 'Dans R\u00e9sultats, lisez T1 et le cycle de r\u00e9f\u00e9rence. Choisissez une fois vos deux mod\u00e8les APG, puis t\u00e9l\u00e9chargez le relev\u00e9 de temps et la TCT remplis.',
+    'help.s5': 'Lire les r\u00e9sultats et remplir les fiches', 'help.s5.text': 'Dans R\u00e9sultats, lisez T1 et le cycle de r\u00e9f\u00e9rence. Choisissez une fois vos deux mod\u00e8les, puis t\u00e9l\u00e9chargez le relev\u00e9 de temps et la TCT remplis.',
     'help.keys': 'Touches',
     'help.k.space': 'Lecture ou pause', 'help.k.arrows': 'Reculer ou avancer de 1 s (avec Maj : 5 s)', 'help.k.frame': 'Image pr\u00e9c\u00e9dente ou suivante',
     'help.k.speed': 'Plus lent ou plus rapide (pav\u00e9 num\u00e9rique : \u2212 et +)', 'help.k.enter': 'Enregistrer l\u2019\u00e9tape suivante de la liste', 'help.k.steps': 'Enregistrer cette \u00e9tape (puis des lettres, affich\u00e9es sur chaque \u00e9tape)',
@@ -2744,7 +2852,7 @@ var I18N = {
     'st.fix': 'Cliquez pour corriger cette \u00e9tape',
     'key.del': 'Suppr',
     'help.k.del': 'Supprimer l\u2019\u00e9tape en cours',
-    'apg.intro': 'Choisissez une fois vos deux mod\u00e8les APG. Le site les remplit pour chaque ligne de temps op\u00e9rateur, une feuille par op\u00e9rateur, et garde les formules et les macros. Les mod\u00e8les restent sur cet ordinateur.',
+    'apg.intro': 'Choisissez une fois vos deux mod\u00e8les : le relev\u00e9 de temps et le fichier Standardized Work avec la TCT. Le site les remplit pour chaque ligne de temps op\u00e9rateur, une feuille par op\u00e9rateur, et garde les formules et les macros. Les mod\u00e8les restent sur cet ordinateur.',
     'apg.mctFile': 'Relev\u00e9 de temps',
     'apg.tctFile': 'TCT (avec macros)',
     'apg.none': 'Aucun mod\u00e8le',
@@ -2762,8 +2870,8 @@ var I18N = {
     'apg.done.other': '{n} fichiers t\u00e9l\u00e9charg\u00e9s. Dans Excel : autorisez les macros, puis cliquez sur CREATE TCT pour tracer le graphique.',
     'apg.fillErr': 'Les fiches n\u2019ont pas pu \u00eatre remplies ({why}).',
     'apg.oldBrowser': 'Ce navigateur est trop ancien pour cr\u00e9er des fichiers Excel. Utilisez un Chrome, Edge ou Firefox r\u00e9cent.',
-    'apg.notMct': '{name} ne ressemble pas au relev\u00e9 de temps APG.',
-    'apg.notTct': '{name} ne ressemble pas au fichier TCT APG.',
+    'apg.notMct': '{name} ne ressemble pas \u00e0 un relev\u00e9 de temps.',
+    'apg.notTct': '{name} ne ressemble pas \u00e0 un fichier Standardized Work avec une TCT.',
     'apg.tplOk': 'Mod\u00e8le gard\u00e9 : {name}',
     'apg.readErr': 'Impossible de lire {name}.'
   }
@@ -4218,7 +4326,7 @@ var I18N_LOGIC = {
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, manual);
     else manual();
   }
-  // ---------- Filled APG sheets ----------
+  // ---------- Filled standard sheets ----------
   // The templates are chosen once and kept in this browser (IndexedDB). They never leave the computer.
   var TPL = { mct: null, tct: null };
   function idb() {
