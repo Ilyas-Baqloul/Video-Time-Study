@@ -468,6 +468,10 @@ label.check { display: inline-flex; align-items: center; gap: 6px; }
 .footer b { color: var(--text); }
 .footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .footer a:hover { color: var(--text); }
+.footer .ftr-link { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.footer .ftr-link:hover { color: var(--text); }
+.help.legal p { margin: 0 0 4px; }
+.help.legal a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 /* Phone layout */
 .sm, .narrow-only { display: none; }
 @media (max-width: 599px) {
@@ -677,9 +681,19 @@ input[type="text"], input[type="number"], input[type="date"], select, textarea {
   .rp-tbl td { padding: 3px 6px; border-bottom: 1px solid #E0E4EE; }
   .rp-tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
   .rp-tbl tr { break-inside: avoid; }
-  .rp-chart .load-svg { max-height: 92mm; }
+  .rp-chart .load-svg { max-height: 72mm; }
+  .rp-load { break-inside: avoid; }
   .rp-op { break-before: page; }
   .rp-foot { margin-top: 10px; font-size: 9px; color: #5F6780; }
+  .rp-info { width: 100%; border-collapse: collapse; margin: 6px 0 2px; }
+  .rp-info th { text-align: left; font-weight: 600; color: #5F6780; padding: 2px 10px 2px 0; width: 18%; vertical-align: top; }
+  .rp-info td { padding: 2px 18px 2px 0; width: 32%; color: #1C2333; }
+  #printReport h3 { margin: 10px 0 4px; font-size: 12px; color: #253470; }
+  .rp-note { margin: 4px 0; color: #5F6780; }
+  .rp-warn { color: #B42318; font-weight: 600; }
+  .rp-tbl tr.is-ref td { background: #FFF5D1; font-weight: 600; }
+  .rp-tbl tr.is-off td { color: #8A90A2; }
+  .rp-split, .rp-per { width: auto; min-width: 45%; }
 }
 </style>
 </head>
@@ -790,7 +804,8 @@ input[type="text"], input[type="number"], input[type="date"], select, textarea {
   <span><b>Video Time Study</b></span>
   <span data-i18n="ftr.rights">© 2026 Ilyas Baqloul. All rights reserved. Free to use.</span>
   <a href="https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="ftr.terms">Terms of use</a>
-  <span>Version 2.7</span>
+  <button type="button" class="ftr-link" id="btnLegal" data-i18n="ftr.legal">Legal notice</button>
+  <span>Version 2.8</span>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
@@ -1370,7 +1385,7 @@ var L = (function () {
       });
       LOAD_TYPES.forEach(function (t) { parts[t] = r1(parts[t]); });
       var total = o.refCol >= 0 ? o.abc[o.refCol][0] : null, work = o.refCol >= 0 ? o.abc[o.refCol][2] : null;
-      return { name: o.name, refN: o.refN, t1: o.t1, usable: use.length, cycles: o.cols.length, a: total, b: o.refCol >= 0 ? o.abc[o.refCol][1] : null, c: work,
+      return { id: o.id, name: o.name, periodic: o.periodic, refN: o.refN, t1: o.t1, usable: use.length, cycles: o.cols.length, a: total, b: o.refCol >= 0 ? o.abc[o.refCol][1] : null, c: work,
         parts: parts, sat: takt && work != null ? Math.round(work / takt * 100) : null, steps: steps };
     }) };
   }
@@ -1503,7 +1518,7 @@ var L = (function () {
     });
     var m = study.meta || {}, dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(m.date || '');
     return {
-      meta: { name: m.name || '', plant: m.plant || '', line: m.line || '', observer: m.observer || '', date: dm ? dm[3] + '/' + dm[2] + '/' + dm[1] : (m.date || ''), takt: taktOf(m.takt) },
+      meta: { name: m.name || '', ref: m.ref || '', plant: m.plant || '', line: m.line || '', observer: m.observer || '', date: dm ? dm[3] + '/' + dm[2] + '/' + dm[1] : (m.date || ''), takt: taktOf(m.takt) },
       ops: ops, nOpsText: str(ops.length === 1 ? 'apg.nOp1' : 'apg.nOps', { n: ops.length })
     };
   }
@@ -1515,7 +1530,7 @@ var L = (function () {
   }
   function newStudy(firstName) {
     var tl = newTimeline('operator', firstName || 'Operator 1');
-    return { app: 'video-time-study', version: 1, meta: { name: '', plant: '', line: '', observer: '', date: today(), takt: null }, video: null, timelines: [tl], activeId: tl.id };
+    return { app: 'video-time-study', version: 1, meta: { name: '', ref: '', plant: '', line: '', observer: '', date: today(), takt: null }, video: null, timelines: [tl], activeId: tl.id };
   }
   function sanitizeStudy(o) {
     if (!o || typeof o !== 'object' || !Array.isArray(o.timelines)) throw new Error('This file is not a Video Time Study file.');
@@ -1531,7 +1546,7 @@ var L = (function () {
     var m = o.meta || {};
     var s = {
       app: 'video-time-study', version: 1,
-      meta: { name: str(m.name), plant: str(m.plant), line: str(m.line), observer: str(m.observer), date: str(m.date), takt: taktOf(m.takt) },
+      meta: { name: str(m.name), ref: str(m.ref), plant: str(m.plant), line: str(m.line), observer: str(m.observer), date: str(m.date), takt: taktOf(m.takt) },
       video: null, timelines: [], activeId: null
     };
     if (o.video && typeof o.video === 'object' && o.video.name) {
@@ -2398,6 +2413,7 @@ var X = (function () {
     setLabelled(wb, m, 1, 7, d.meta.line);
     setLabelled(wb, m, 11, 7, d.nOpsText);
     setLabelled(wb, m, 21, 7, op.name);
+    setLabelled(wb, m, 11, 5, d.meta.ref);
     dropCache(m);
   }
 
@@ -2481,7 +2497,7 @@ var X = (function () {
     else setStr(m, 47, 4, '');
     if (d.meta.takt) setNum(m, 18, 4, d.meta.takt);
     setStr(m, 11, 4, d.meta.line);
-    setStr(m, 3, 6, d.meta.name);
+    setStr(m, 3, 6, d.meta.ref);
     setNum(m, 11, 6, idx + 1);
     setStr(m, 11, 7, d.meta.plant);
     setNum(m, 47, 6, d.ops.length);
@@ -2510,6 +2526,7 @@ var X = (function () {
     setStr(m, 18, 3, d.meta.line);
     setStr(m, 28, 3, d.meta.plant);
     setNum(m, 28, 4, d.ops.length);
+    setStr(m, 4, 4, d.meta.ref);
     setStr(m, 10, 3, d.meta.date);
     setStr(m, 11, 4, d.meta.observer);
     dropCache(m);
@@ -2771,6 +2788,34 @@ var I18N = {
     've.what': 'Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.',
     'study.takt': 'Customer takt time (s)',
     'study.taktPh': 'e.g. 60',
+    'rep.ops': 'Operators',
+    'rep.line': 'Line indicators',
+    'rep.bottleneck': 'Bottleneck (longest cycle (a))',
+    'rep.bottleneckV': '{name}: {v} s',
+    'rep.output': 'Output at the bottleneck',
+    'rep.demand': 'Customer demand (takt)',
+    'rep.perH': '{n} parts/h',
+    'rep.sumC': 'Total work content \u03a3(c)',
+    'rep.theoOps': 'Theoretical operators \u03a3(c) / takt',
+    'rep.balance': 'Line balance \u03a3(c) / (n \u00d7 max (c))',
+    'rep.overTakt': 'The cycle (a) of {name} is longer than the takt: the demand is not met.',
+    'rep.split': 'Reference cycle by type',
+    'rep.time': 'Time (s)',
+    'rep.share': '% of (a)',
+    'rep.periodic': 'Periodic tasks (average time)',
+    'study.ref': 'Reference',
+    'study.refPh': 'For example: Rear wall panel',
+    'study.metaNote': 'The study name is used for the names of your files. The reference goes into the standard sheets.',
+    'ftr.legal': 'Legal notice',
+    'legal.title': 'Legal notice',
+    'legal.pub': 'Publisher',
+    'legal.pubText': 'Ilyas Baqloul, as a private individual (non-professional). Publication director: Ilyas Baqloul. Contact: github.com/Ilyas-Baqloul',
+    'legal.host': 'Host',
+    'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Phone: +1 877 448 4820.',
+    'legal.data': 'Personal data',
+    'legal.dataText': 'This site collects no personal data: no account, no cookies, no audience measurement. The video and your study stay on your device and are never uploaded. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service.',
+    'legal.ip': 'Intellectual property',
+    'legal.ipText': '\u00a9 2026 Ilyas Baqloul. All rights reserved. The tool is free to use, including at work.',
     'load.title': 'Operator load',
     'load.note': 'Reference cycle of each operator, by type of step. Periodic tasks are not counted.',
     'load.noTakt': 'Enter the takt time in the Study tab to draw the takt line.',
@@ -3006,6 +3051,34 @@ var I18N = {
     've.what': 'Appuyez sur une touche au d\u00e9but de chaque \u00e9tape. Le site calcule les temps de cycle et T1, et remplit vos fiches standard. Gratuit.',
     'study.takt': 'Takt time client (s)',
     'study.taktPh': 'ex. 60',
+    'rep.ops': 'Op\u00e9rateurs',
+    'rep.line': 'Indicateurs de la ligne',
+    'rep.bottleneck': 'Goulot (cycle (a) le plus long)',
+    'rep.bottleneckV': '{name} : {v} s',
+    'rep.output': 'Cadence au goulot',
+    'rep.demand': 'Cadence demand\u00e9e (takt)',
+    'rep.perH': '{n} pi\u00e8ces/h',
+    'rep.sumC': 'Contenu de travail total \u03a3(c)',
+    'rep.theoOps': 'Op\u00e9rateurs th\u00e9oriques \u03a3(c) / takt',
+    'rep.balance': 'Taux d\u2019\u00e9quilibrage \u03a3(c) / (n \u00d7 max (c))',
+    'rep.overTakt': 'Le cycle (a) de {name} d\u00e9passe le takt : la demande n\u2019est pas tenue.',
+    'rep.split': 'Cycle de r\u00e9f\u00e9rence par type',
+    'rep.time': 'Temps (s)',
+    'rep.share': '% de (a)',
+    'rep.periodic': 'T\u00e2ches p\u00e9riodiques (temps moyen)',
+    'study.ref': 'R\u00e9f\u00e9rence',
+    'study.refPh': 'Par exemple : Panneau arri\u00e8re',
+    'study.metaNote': 'Le nom de l\u2019\u00e9tude sert \u00e0 nommer vos fichiers. La r\u00e9f\u00e9rence va dans les fiches standard.',
+    'ftr.legal': 'Mentions l\u00e9gales',
+    'legal.title': 'Mentions l\u00e9gales',
+    'legal.pub': '\u00c9diteur',
+    'legal.pubText': 'Ilyas Baqloul, \u00e0 titre personnel et non professionnel. Directeur de la publication : Ilyas Baqloul. Contact : github.com/Ilyas-Baqloul',
+    'legal.host': 'H\u00e9bergeur',
+    'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, \u00c9tats-Unis. T\u00e9l\u00e9phone : +1 877 448 4820.',
+    'legal.data': 'Donn\u00e9es personnelles',
+    'legal.dataText': 'Ce site ne collecte aucune donn\u00e9e personnelle : pas de compte, pas de cookies, pas de mesure d\u2019audience. La vid\u00e9o et votre \u00e9tude restent sur votre appareil et ne sont jamais envoy\u00e9es. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez ; vous pouvez les effacer dans les r\u00e9glages du navigateur. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service.',
+    'legal.ip': 'Propri\u00e9t\u00e9 intellectuelle',
+    'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Tous droits r\u00e9serv\u00e9s. L\u2019outil est gratuit, y compris au travail.',
     'load.title': 'Charge des op\u00e9rateurs',
     'load.note': 'Cycle de r\u00e9f\u00e9rence de chaque op\u00e9rateur, par type d\u2019\u00e9tape. Les t\u00e2ches p\u00e9riodiques ne sont pas compt\u00e9es.',
     'load.noTakt': 'Saisissez le takt time dans l\u2019onglet \u00c9tude pour tracer la ligne de takt.',
@@ -3512,10 +3585,12 @@ var I18N_LOGIC = {
   function renderStudy() {
     var m = study.meta, v = study.video;
     var html = '<div class="sec"><h2>' + esc(T('study.title')) + '</h2><div class="form-grid">' +
-      fieldInput(T('sum.studyName'), 'mName', m.name, T('study.namePh')) + fieldInput(T('study.plant'), 'mPlant', m.plant) +
+      fieldInput(T('sum.studyName'), 'mName', m.name, T('study.namePh')) + fieldInput(T('study.ref'), 'mRef', m.ref, T('study.refPh')) +
+      fieldInput(T('study.plant'), 'mPlant', m.plant) +
       fieldInput(T('study.line'), 'mLine', m.line) + fieldInput(T('study.observer'), 'mObserver', m.observer) +
       '<div class="field"><label for="mDate">' + esc(T('study.date')) + '</label><input type="date" id="mDate" value="' + esc(m.date) + '"></div>' +
-      '<div class="field"><label for="mTakt">' + esc(T('study.takt')) + '</label><input type="text" inputmode="decimal" id="mTakt" value="' + esc(m.takt == null ? '' : fmtS(m.takt, m.takt % 1 ? 1 : 0)) + '" placeholder="' + esc(T('study.taktPh')) + '"></div></div></div>';
+      '<div class="field"><label for="mTakt">' + esc(T('study.takt')) + '</label><input type="text" inputmode="decimal" id="mTakt" value="' + esc(m.takt == null ? '' : fmtS(m.takt, m.takt % 1 ? 1 : 0)) + '" placeholder="' + esc(T('study.taktPh')) + '"></div></div>' +
+      '<p class="note mt">' + esc(T('study.metaNote')) + '</p></div>';
     html += '<div class="sec"><h2>' + esc(T('study.video')) + '</h2><div class="form-grid">' +
       fieldRO(T('study.file'), v ? esc(v.name) : esc(T('study.none'))) + fieldRO(T('study.size'), v ? fmtSize(v.size) : '\u2013') + fieldRO(T('study.duration'), v ? L.fmtClock(v.duration) : '\u2013') +
       '<div class="field"><label for="fpsSel">' + esc(T('study.frameStep')) + '</label><select id="fpsSel">' + FPS_OPTS.map(function (f) {
@@ -4440,6 +4515,7 @@ var I18N_LOGIC = {
       });
       study.activeId = old.activeId;
       study.meta.plant = old.meta.plant; study.meta.line = old.meta.line; study.meta.observer = old.meta.observer;
+      study.meta.ref = old.meta.ref || '';
     }
     study.video = info;
     if (!keepVideo) unloadVideo();
@@ -4550,22 +4626,83 @@ var I18N_LOGIC = {
   function printReport() {
     var d = loadData(), m = d.meta;
     if (!d.ops.length) { toast(T('rep.none')); return; }
-    var logo = document.querySelector('.tb-logo'), num = function (v) { return '<td class="num">' + esc(f1(v)) + '</td>'; };
-    var html = '<header class="rp-head">' + (logo ? logo.outerHTML : '') + '<div><h1>' + esc(T('rep.title')) + (m.name ? ' \u00b7 ' + esc(m.name) : '') + '</h1><p>' +
-      [m.plant, m.line, m.observer, m.date, d.takt ? T('load.takt', { v: f1(d.takt) }) : ''].filter(Boolean).map(esc).join(' \u00b7 ') + '</p></div></header>';
-    html += '<h2>' + esc(T('rep.summary')) + '</h2><table class="rp-tbl"><thead><tr><th>' + esc(T('rep.op')) + '</th><th class="num">T1</th><th>' + esc(T('rep.ref')) + '</th><th>' + esc(T('rep.usable')) +
+    var logo = document.querySelector('.tb-logo'), dash = '\u2013', vid = study.video;
+    var num = function (v) { return '<td class="num">' + (v == null ? dash : esc(f1(v))) + '</td>'; };
+    // label / value grid, two pairs per row
+    var kv = function (pairs) {
+      var out = '';
+      for (var i = 0; i < pairs.length; i += 2) {
+        out += '<tr>' + [pairs[i], pairs[i + 1]].map(function (p) {
+          return p ? '<th>' + esc(p[0]) + '</th><td>' + esc(p[1] == null || p[1] === '' ? dash : p[1]) + '</td>' : '<th></th><td></td>';
+        }).join('') + '</tr>';
+      }
+      return '<table class="rp-info"><tbody>' + out + '</tbody></table>';
+    };
+    var html = '<header class="rp-head">' + (logo ? logo.outerHTML : '') + '<div><h1>' + esc(T('rep.title')) + (m.name ? ' \u00b7 ' + esc(m.name) : '') + '</h1>' +
+      (m.ref ? '<p>' + esc(m.ref) + '</p>' : '') + '</div></header>';
+    html += kv([
+      [T('study.ref'), m.ref], [T('study.plant'), m.plant],
+      [T('study.line'), m.line], [T('study.observer'), m.observer],
+      [T('study.date'), m.date], [T('study.video'), vid ? vid.name + (vid.duration ? ' (' + L.fmtClock(vid.duration) + ')' : '') : ''],
+      [T('study.takt'), d.takt ? f1(d.takt) : ''], [T('rep.ops'), String(d.ops.length)]
+    ]);
+    html += '<h2>' + esc(T('rep.summary')) + '</h2><table class="rp-tbl rp-sum"><thead><tr><th>' + esc(T('rep.op')) + '</th><th class="num">T1</th><th>' + esc(T('rep.ref')) + '</th><th>' + esc(T('rep.usable')) +
       '</th><th class="num">(a)</th><th class="num">(b)</th><th class="num">(c)</th><th class="num">' + esc(T('rep.pctTakt')) + '</th></tr></thead><tbody>' +
       d.ops.map(function (o) {
-        return '<tr><td>' + esc(o.name) + '</td><td class="num">' + (o.t1 == null ? '\u2013' : o.t1 + ' s') + '</td><td>' + (o.refN ? 'C' + o.refN : '\u2013') + '</td><td>' + o.usable + ' / ' + o.cycles + '</td>' +
-          num(o.a) + num(o.b) + num(o.c) + '<td class="num">' + (o.sat == null ? '\u2013' : o.sat + ' %') + '</td></tr>';
+        return '<tr><td>' + esc(o.name) + '</td><td class="num">' + (o.t1 == null ? dash : o.t1 + ' s') + '</td><td>' + (o.refN ? 'C' + o.refN : dash) + '</td><td>' + o.usable + ' / ' + o.cycles + '</td>' +
+          num(o.a) + num(o.b) + num(o.c) + '<td class="num">' + (o.sat == null ? dash : o.sat + ' %') + '</td></tr>';
       }).join('') + '</tbody></table>';
-    html += '<h2>' + esc(T('load.title')) + '</h2><div class="rp-chart">' + loadSvg(d) + '</div>' + loadLegend(d);
+    // line indicators: bottleneck, output, demand, theoretical operators, balance
+    var withA = d.ops.filter(function (o) { return o.a != null; }), withC = d.ops.filter(function (o) { return o.c != null; });
+    if (withA.length) {
+      var bott = withA.reduce(function (x, y) { return y.a > x.a ? y : x; });
+      var sumC = withC.reduce(function (s0, o) { return s0 + o.c; }, 0), maxC = withC.length ? Math.max.apply(null, withC.map(function (o) { return o.c; })) : 0;
+      var rows = [[T('rep.bottleneck'), T('rep.bottleneckV', { name: bott.name, v: f1(bott.a) })], [T('rep.output'), T('rep.perH', { n: f1(3600 / bott.a) })]];
+      if (d.takt) rows.push([T('rep.demand'), T('rep.perH', { n: f1(3600 / d.takt) })]);
+      if (withC.length) rows.push([T('rep.sumC'), f1(sumC) + ' s']);
+      if (d.takt && withC.length) rows.push([T('rep.theoOps'), f1(sumC / d.takt) + ' \u2192 ' + Math.ceil(sumC / d.takt - 1e-9)]);
+      if (withC.length > 1 && maxC > 0) rows.push([T('rep.balance'), Math.round(sumC / (withC.length * maxC) * 100) + ' %']);
+      html += '<h2>' + esc(T('rep.line')) + '</h2>' + kv(rows);
+      if (d.takt && bott.a > d.takt) html += '<p class="rp-note rp-warn">' + esc(T('rep.overTakt', { name: bott.name })) + '</p>';
+    }
+    html += '<div class="rp-load"><h2>' + esc(T('load.title')) + '</h2><div class="rp-chart">' + loadSvg(d) + '</div>' + loadLegend(d) + '</div>';
+    // one section per operator: key figures, T1 rule, split by type, steps, cycles, periodic tasks
     d.ops.forEach(function (o) {
-      html += '<section class="rp-op"><h2>' + esc(T('rep.steps', { name: o.name })) + '</h2><table class="rp-tbl"><thead><tr><th>' + esc(T('rep.code')) + '</th><th>' + esc(T('rep.step')) + '</th><th>' + esc(T('rep.type')) +
+      var tl = null;
+      study.timelines.forEach(function (t) { if (t.id === o.id) tl = t; });
+      var a = tl ? an(tl) : null;
+      html += '<section class="rp-op"><h2>' + esc(o.name) + '</h2>' + kv([
+        ['T1', o.t1 == null ? '' : o.t1 + ' s'], [T('rep.ref'), o.refN ? 'C' + o.refN : ''],
+        [T('rep.usable'), o.usable + ' / ' + o.cycles], [T('res.medA'), a && a.medA != null ? f1(a.medA) + ' s' : ''],
+        ['(a) / (b) / (c)', o.a == null ? '' : f1(o.a) + ' / ' + f1(o.b) + ' / ' + f1(o.c) + ' s'], [T('rep.pctTakt'), o.sat == null ? '' : o.sat + ' %']
+      ]);
+      var notes = [];
+      if (a && a.t1info) notes.push(t1Explain(a.t1info));
+      if (o.usable < 10) notes.push(TP(o.usable, 'res.lowUsable'));
+      if (notes.length) html += '<p class="rp-note">' + notes.map(esc).join(' ') + '</p>';
+      if (o.a) {
+        html += '<h3>' + esc(T('rep.split')) + '</h3><table class="rp-tbl rp-split"><thead><tr><th>' + esc(T('rep.type')) + '</th><th class="num">' + esc(T('rep.time')) + '</th><th class="num">' + esc(T('rep.share')) + '</th></tr></thead><tbody>' +
+          Object.keys(o.parts).filter(function (k) { return o.parts[k] > 0; }).map(function (k) {
+            return '<tr><td>' + swatch(k) + esc(L.typeLabel(k)) + '</td>' + num(o.parts[k]) + '<td class="num">' + Math.round(o.parts[k] / o.a * 100) + ' %</td></tr>';
+          }).join('') + '</tbody></table>';
+      }
+      html += '<h3>' + esc(T('res.steps')) + '</h3><table class="rp-tbl rp-steps"><thead><tr><th>' + esc(T('rep.code')) + '</th><th>' + esc(T('rep.step')) + '</th><th>' + esc(T('rep.type')) +
         '</th><th class="num">' + esc(T('rep.ref')) + '</th><th class="num">Min</th><th class="num">' + esc(T('rep.med')) + '</th><th class="num">Max</th></tr></thead><tbody>' +
-        o.steps.map(function (s) {
-          return '<tr><td>' + esc(s.code) + '</td><td>' + esc(s.name) + '</td><td>' + swatch(s.type) + esc(L.typeLabel(s.type)) + '</td>' + num(s.ref) + num(s.min) + num(s.med) + num(s.max) + '</tr>';
-        }).join('') + '</tbody></table></section>';
+        o.steps.map(function (s1) {
+          return '<tr><td>' + esc(s1.code) + '</td><td>' + esc(s1.name) + '</td><td>' + swatch(s1.type) + esc(L.typeLabel(s1.type)) + '</td>' + num(s1.ref) + num(s1.min) + num(s1.med) + num(s1.max) + '</tr>';
+        }).join('') + '</tbody></table>';
+      if (a && a.cycles.length) {
+        html += '<h3>' + esc(T('res.cycles')) + '</h3><table class="rp-tbl rp-cyc"><thead><tr><th>' + esc(T('th.cycle')) + '</th><th class="num">' + esc(T('th.start')) + '</th><th class="num">(a)</th><th class="num">(b)</th><th class="num">(c)</th><th>' + esc(T('th.used')) + '</th></tr></thead><tbody>' +
+          a.cycles.map(function (c) {
+            var used = c.usable ? (a.ref === c ? T('res.yesRef') : T('res.yes')) : (c.complete ? T('res.no', { why: c.reasons.join(', ') }) : T('res.incomplete'));
+            return '<tr' + (a.ref === c ? ' class="is-ref"' : (c.usable ? '' : ' class="is-off"')) + '><td>C' + c.n + '</td><td class="num">' + L.fmtClock(c.start) + '</td>' + num(c.a) + num(c.b) + num(c.c) + '<td>' + esc(used) + '</td></tr>';
+          }).join('') + '</tbody></table>';
+      }
+      if (o.periodic && o.periodic.length) {
+        html += '<h3>' + esc(T('rep.periodic')) + '</h3><table class="rp-tbl rp-per"><thead><tr><th>' + esc(T('rep.step')) + '</th><th class="num">' + esc(T('rep.time')) + '</th></tr></thead><tbody>' +
+          o.periodic.map(function (p) { return '<tr><td>' + esc(p.name) + '</td>' + num(p.time) + '</tr>'; }).join('') + '</tbody></table>';
+      }
+      html += '</section>';
     });
     html += '<p class="rp-foot">' + esc(T('rep.made', { date: new Date().toLocaleDateString(settings.lang === 'fr' ? 'fr-FR' : 'en-GB') })) + '</p>';
     var el = $('printReport');
@@ -4808,6 +4945,15 @@ var I18N_LOGIC = {
     openPanel({ title: T('help.title'), body: body, wide: true, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
   }
 
+  var LICENSE_URL = 'https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE';
+  function openLegal() {
+    var body = '<div class="help legal">' + ['pub', 'host', 'data', 'ip'].map(function (k, i) {
+      return '<h3' + (i ? '' : ' class="first"') + '>' + esc(T('legal.' + k)) + '</h3><p>' + esc(T('legal.' + k + 'Text')) +
+        (k === 'ip' ? ' <a href="' + LICENSE_URL + '" target="_blank" rel="noopener">' + esc(T('ftr.terms')) + '</a>' : '') + '</p>';
+    }).join('') + '</div>';
+    openPanel({ title: T('legal.title'), body: body, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
+  }
+
   // ---------- Theme ----------
   function updateThemeLabel() { setText($('btnTheme'), T('hdr.theme', { v: T('theme.' + settings.theme) })); }
   function applyTheme() {
@@ -4866,6 +5012,7 @@ var I18N_LOGIC = {
       b.addEventListener('click', function () { if (b.getAttribute('data-lang') !== lang) setLang(b.getAttribute('data-lang')); });
     });
     $('btnOffline').addEventListener('click', function () { saveFile('video-time-study.html', offlineHtml(), 'text/html'); });
+    $('btnLegal').addEventListener('click', openLegal);
     $('btnPickVideo').addEventListener('click', pickVideo);
     $('btnChangeVideo').addEventListener('click', pickVideo);
     $('fileVideo').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) openVideo(f); });
@@ -5036,7 +5183,7 @@ var I18N_LOGIC = {
 
     // Study tab
     var tabStudy = $('tab-study');
-    var metaMap = { mName: 'name', mPlant: 'plant', mLine: 'line', mObserver: 'observer', mDate: 'date' };
+    var metaMap = { mName: 'name', mRef: 'ref', mPlant: 'plant', mLine: 'line', mObserver: 'observer', mDate: 'date' };
     tabStudy.addEventListener('input', function (e) {
       if (e.target.id === 'mTakt') { study.meta.takt = L.taktOf(e.target.value); scheduleSave(); return; }
       var k = metaMap[e.target.id];
@@ -5122,7 +5269,5 @@ var I18N_LOGIC = {
 })();
 /* APP-END */
 </script>
-<script data-goatcounter="https://ceriztitan.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
