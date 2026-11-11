@@ -5,7 +5,7 @@ Play the video and press one key each time a new step starts. The tool does the 
 
 It is made for methods, industrial and continuous improvement engineers who time operators from a video.
 
-**Open the tool: https://ilyas-baqloul.github.io/Video-Time-Study/**
+**Open the tool: https://vts-tool.com**
 
 ![Video Time Study: results of a study and load of two operators](screenshot.png)
 
@@ -18,6 +18,7 @@ It is made for methods, industrial and continuous improvement engineers who time
 - A printed report (save it as PDF)
 - Your Excel standard sheets filled in: Time Measurement Sheet and TCT (Standardized Work), one sheet per operator, formulas and macros kept. It works with the template layouts it was built for.
 - CSV exports, a copy for Excel, and a study file you can save and open again
+- Line balancing (Yamazumi): the steps of each operator stacked against the takt, scenarios where you move steps from one operator to another, with the gains shown, and an image for PowerPoint
 
 You can follow several operators and machines on the same video. The tool is in English and French and works on a computer or a phone.
 
