@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Video Time Study. Copyright (c) 2026 Ilyas Baqloul. All rights reserved. Free to use, including at work. The code may not be reused, modified, put online elsewhere or sold without written permission. Terms: https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,21 +6,8 @@
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="Free time study on video, in the browser: press one key when each step starts, get cycle times, T1, the reference cycle and filled standard sheets. The video stays on your computer.">
 <meta name="theme-color" content="#253470">
-<meta name="author" content="Ilyas Baqloul">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1410 1410%22%3E%3Crect width=%221410%22 height=%221410%22 rx=%22282%22 fill=%22%23FFFFFF%22/%3E%3Cg transform=%22translate%28120 318%29%22%3E%3Cpath d=%22M42 0H143L700 362Q734 387 700 412L140 774H42Q0 774 0 732V42Q0 0 42 0Z%22 fill=%22%23253470%22/%3E%3Crect x=%2253%22 y=%22-14%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22140%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22281%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22422%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22563%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22705%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Cpath d=%22M267 280L430 390L267 498Z%22 fill=%22%23FFFFFF%22 stroke=%22%23FFFFFF%22 stroke-width=%2222%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M223 0H705Q727 0 727 22V94Q727 116 705 116H397Z%22 fill=%22%23253470%22/%3E%3Cpath d=%22M468 160H929Q951 160 951 182V252Q951 274 929 274H641Z%22 fill=%22%23FFB700%22/%3E%3Cpath d=%22M729 334H1147Q1169 334 1169 356V424Q1169 446 1147 446H726Q752 390 729 334Z%22 fill=%22%23FFB700%22/%3E%3Cpath d=%22M654 490H929Q951 490 951 512V578Q951 600 929 600H486Z%22 fill=%22%23253470%22/%3E%3Cpath d=%22M388 664H772Q794 664 794 686V752Q794 774 772 774H221Z%22 fill=%22%2314214E%22/%3E%3C/g%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
-<link rel="canonical" href="https://vts-tool.com/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Video Time Study">
-<meta property="og:title" content="Video Time Study: free time study on video">
-<meta property="og:description" content="Time each step of a video with one key. Get cycle times, T1 and filled standard sheets. Free, in the browser, the video stays on your computer.">
-<meta property="og:url" content="https://vts-tool.com/">
-<meta property="og:image" content="https://vts-tool.com/preview.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-<meta property="og:image:alt" content="Video Time Study logo and the colored timeline of a cycle split into steps">
-<meta name="twitter:card" content="summary_large_image">
-<title>Video Time Study: free time study on video</title>
+<title>Video Time Study</title>
 <style id="vts-style">
 :root {
   --navy: #253470;
@@ -770,13 +756,32 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
   .bal-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bal-top-act { margin-left: 0; }
 }
+
+/* ---------- 3.1: example, balancing improvements, balancing report ---------- */
+.ve-ex { margin-top: 8px; }
+.ex-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 7px 16px; background: var(--tint); border-bottom: 1px solid var(--border); font-size: 13px; }
+.ex-bar p { margin: 0 6px 0 0; font-weight: 600; }
+.help-ex { margin: 0 0 12px; }
+.bal-help { margin: 4px 0 10px; padding-left: 18px; }
+.bal-help li { margin: 3px 0; }
+.bal-col-h { height: 64px; }
+.bal-was-l { font-size: 11px; color: var(--muted); }
+.bal-was { position: absolute; left: -6px; right: -6px; height: 0; margin-bottom: -1px; border-top: 2px dotted var(--text); opacity: .5; z-index: 2; pointer-events: none; }
+.bal-b.is-review { background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .38) 0 4px, transparent 4px 9px); }
+.bal-note { margin: -4px 0 10px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }
+.bal-note-in { width: 100%; box-sizing: border-box; font: inherit; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--input-bg); color: var(--text); resize: vertical; }
+@media print {
+  .rp-yama svg { display: block; width: 100%; height: auto; }
+  .rp-det tr.rp-grp td { background: #EDF0FA; font-weight: 600; }
+  .rp-cmp tr.is-shown td { font-weight: 700; }
+}
 </style>
 </head>
 <body>
 <div id="vts-app">
 <header class="topbar">
   <div class="tb-title">
-    <svg class="tb-logo" viewBox="-8 -8 1186 790" aria-hidden="true"><path d="M42 0H143L700 362Q734 387 700 412L140 774H42Q0 774 0 732V42Q0 0 42 0Z" class="lg-ink"/><rect x="53" y="-14" width="74" height="69" rx="10" class="lg-hole"/><rect x="53" y="140" width="74" height="69" rx="10" class="lg-hole"/><rect x="53" y="281" width="74" height="69" rx="10" class="lg-hole"/><rect x="53" y="422" width="74" height="69" rx="10" class="lg-hole"/><rect x="53" y="563" width="74" height="69" rx="10" class="lg-hole"/><rect x="53" y="705" width="74" height="69" rx="10" class="lg-hole"/><path d="M267 280L430 390L267 498Z" class="lg-hole lg-holes" stroke-width="22" stroke-linejoin="round"/><path d="M223 0H705Q727 0 727 22V94Q727 116 705 116H397Z" class="lg-ink"/><path d="M468 160H929Q951 160 951 182V252Q951 274 929 274H641Z" class="lg-acc"/><path d="M729 334H1147Q1169 334 1169 356V424Q1169 446 1147 446H726Q752 390 729 334Z" class="lg-acc"/><path d="M654 490H929Q951 490 951 512V578Q951 600 929 600H486Z" class="lg-ink"/><path d="M388 664H772Q794 664 794 686V752Q794 774 772 774H221Z" class="lg-dark"/></svg>
+    <svg class="tb-logo" viewBox="-8 -8 1186 790" aria-hidden="true"><path d="M42 0H143L700 362Q734 387 700 412L140 774H42Q0 774 0 732V42Q0 0 42 0Z" class="lg-ink"></path><rect x="53" y="-14" width="74" height="69" rx="10" class="lg-hole"></rect><rect x="53" y="140" width="74" height="69" rx="10" class="lg-hole"></rect><rect x="53" y="281" width="74" height="69" rx="10" class="lg-hole"></rect><rect x="53" y="422" width="74" height="69" rx="10" class="lg-hole"></rect><rect x="53" y="563" width="74" height="69" rx="10" class="lg-hole"></rect><rect x="53" y="705" width="74" height="69" rx="10" class="lg-hole"></rect><path d="M267 280L430 390L267 498Z" class="lg-hole lg-holes" stroke-width="22" stroke-linejoin="round"></path><path d="M223 0H705Q727 0 727 22V94Q727 116 705 116H397Z" class="lg-ink"></path><path d="M468 160H929Q951 160 951 182V252Q951 274 929 274H641Z" class="lg-acc"></path><path d="M729 334H1147Q1169 334 1169 356V424Q1169 446 1147 446H726Q752 390 729 334Z" class="lg-acc"></path><path d="M654 490H929Q951 490 951 512V578Q951 600 929 600H486Z" class="lg-ink"></path><path d="M388 664H772Q794 664 794 686V752Q794 774 772 774H221Z" class="lg-dark"></path></svg>
     <h1>Video Time Study</h1>
     <span class="tb-credit" data-i18n="hdr.credit">Created by Ilyas Baqloul</span>
   </div>
@@ -792,31 +797,33 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
     <button type="button" class="tb-btn" id="btnOffline" data-i18n="hdr.offline" data-i18n-title="hdr.offline.title">Offline copy</button>
   </div>
 </header>
-<div class="alert-bar" id="alertBar" role="alert" hidden></div>
+<div class="alert-bar" id="alertBar" role="alert" hidden=""></div>
+<div class="ex-bar" id="exBar" hidden=""></div>
 
 <main class="layout pin" id="layout">
   <section class="col-video" id="colVideo">
     <div class="video-box" id="videoBox">
-      <video id="video" playsinline preload="auto" tabindex="-1"></video>
+      <video id="video" playsinline="" preload="auto" tabindex="-1"></video>
       <div class="video-empty" id="videoEmpty">
-        <svg class="ve-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="12" width="30" height="24" rx="2"/><path d="M34 21l10-6v18l-10-6z"/><path d="M15 20v8l7-4z"/></svg>
+        <svg class="ve-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="12" width="30" height="24" rx="2"></rect><path d="M34 21l10-6v18l-10-6z"></path><path d="M15 20v8l7-4z"></path></svg>
         <p class="ve-title" data-i18n="ve.title">Choose the video to study</p>
         <p class="ve-text ve-what" data-i18n="ve.what">Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.</p>
-        <p class="ve-expected" id="veExpected" hidden></p>
+        <p class="ve-expected" id="veExpected" hidden=""></p>
         <button type="button" class="btn primary" id="btnPickVideo" data-i18n="ve.choose">Choose video file</button>
+        <button type="button" class="btn ve-ex" id="btnExample" data-i18n="ex.try">Try an example</button>
         <p class="ve-text" data-i18n="ve.drop">Or drop the file here.</p>
         <p class="ve-text small" data-i18n="ve.local">The video stays on this device. Nothing is uploaded.</p>
       </div>
     </div>
-    <div class="video-msg" id="videoMsg" role="alert" hidden></div>
+    <div class="video-msg" id="videoMsg" role="alert" hidden=""></div>
 
     <div class="transport">
-      <button type="button" class="btn t-play" id="btnPlay" data-i18n-title="tr.play.title"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg><span>Play</span></button>
+      <button type="button" class="btn t-play" id="btnPlay" data-i18n-title="tr.play.title"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"></path></svg><span>Play</span></button>
       <div class="seg" role="group">
-        <button type="button" class="btn" data-skip="-5" data-i18n-title="tr.back5" data-i18n-aria="tr.back5"><span class="lg">&minus;5 s</span><span class="sm">&minus;5</span></button>
-        <button type="button" class="btn" data-skip="-1" data-i18n-title="tr.back1" data-i18n-aria="tr.back1"><span class="lg">&minus;1 s</span><span class="sm">&minus;1</span></button>
-        <button type="button" class="btn" data-frame="-1" data-i18n-title="tr.prevFrame" data-i18n-aria="tr.prevFrame"><span class="lg" data-i18n="tr.frameBack">&lsaquo; Frame</span><span class="sm">&lsaquo;</span></button>
-        <button type="button" class="btn" data-frame="1" data-i18n-title="tr.nextFrame" data-i18n-aria="tr.nextFrame"><span class="lg" data-i18n="tr.frameFwd">Frame &rsaquo;</span><span class="sm">&rsaquo;</span></button>
+        <button type="button" class="btn" data-skip="-5" data-i18n-title="tr.back5" data-i18n-aria="tr.back5"><span class="lg">−5 s</span><span class="sm">−5</span></button>
+        <button type="button" class="btn" data-skip="-1" data-i18n-title="tr.back1" data-i18n-aria="tr.back1"><span class="lg">−1 s</span><span class="sm">−1</span></button>
+        <button type="button" class="btn" data-frame="-1" data-i18n-title="tr.prevFrame" data-i18n-aria="tr.prevFrame"><span class="lg" data-i18n="tr.frameBack">‹ Frame</span><span class="sm">‹</span></button>
+        <button type="button" class="btn" data-frame="1" data-i18n-title="tr.nextFrame" data-i18n-aria="tr.nextFrame"><span class="lg" data-i18n="tr.frameFwd">Frame ›</span><span class="sm">›</span></button>
         <button type="button" class="btn" data-skip="1" data-i18n-title="tr.fwd1" data-i18n-aria="tr.fwd1"><span class="lg">+1 s</span><span class="sm">+1</span></button>
         <button type="button" class="btn" data-skip="5" data-i18n-title="tr.fwd5" data-i18n-aria="tr.fwd5"><span class="lg">+5 s</span><span class="sm">+5</span></button>
       </div>
@@ -850,9 +857,9 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
 
     <div class="status" id="status">
       <div class="st-head"><span class="st-tl" id="stTl"></span><span class="st-keys" id="stKeys"></span></div>
-      <div class="st"><div class="st-label" data-i18n="st.cycle">Cycle</div><div class="st-value" id="stCycle">&ndash;</div><div class="st-sub" id="stCycleT">&nbsp;</div></div>
-      <div class="st st-click" id="stCurBox" role="button" data-i18n-title="st.fix"><div class="st-label" data-i18n="st.current">Current step</div><div class="st-value" id="stCur">&ndash;</div><div class="st-sub" id="stCurT">&nbsp;</div></div>
-      <div class="st"><div class="st-label" data-i18n="st.next">Next planned</div><div class="st-value" id="stNext">&ndash;</div><div class="st-sub" id="stNextK">&nbsp;</div></div>
+      <div class="st"><div class="st-label" data-i18n="st.cycle">Cycle</div><div class="st-value" id="stCycle">–</div><div class="st-sub" id="stCycleT">&nbsp;</div></div>
+      <div class="st st-click" id="stCurBox" role="button" data-i18n-title="st.fix"><div class="st-label" data-i18n="st.current">Current step</div><div class="st-value" id="stCur">–</div><div class="st-sub" id="stCurT">&nbsp;</div></div>
+      <div class="st"><div class="st-label" data-i18n="st.next">Next planned</div><div class="st-value" id="stNext">–</div><div class="st-sub" id="stNextK">&nbsp;</div></div>
     </div>
   </section>
 
@@ -869,29 +876,29 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
       <button type="button" class="tab" role="tab" data-tab="study" id="tabbtn-study" data-i18n="tab.study">Study</button>
     </div>
     <div class="tab-panel" id="tab-record" role="tabpanel" aria-labelledby="tabbtn-record"></div>
-    <div class="tab-panel" id="tab-steps" role="tabpanel" aria-labelledby="tabbtn-steps" hidden></div>
-    <div class="tab-panel" id="tab-results" role="tabpanel" aria-labelledby="tabbtn-results" hidden></div>
-    <div class="tab-panel" id="tab-log" role="tabpanel" aria-labelledby="tabbtn-log" hidden></div>
-    <div class="tab-panel" id="tab-study" role="tabpanel" aria-labelledby="tabbtn-study" hidden></div>
+    <div class="tab-panel" id="tab-steps" role="tabpanel" aria-labelledby="tabbtn-steps" hidden=""></div>
+    <div class="tab-panel" id="tab-results" role="tabpanel" aria-labelledby="tabbtn-results" hidden=""></div>
+    <div class="tab-panel" id="tab-log" role="tabpanel" aria-labelledby="tabbtn-log" hidden=""></div>
+    <div class="tab-panel" id="tab-study" role="tabpanel" aria-labelledby="tabbtn-study" hidden=""></div>
   </section>
 </main>
-<section class="bal-view" id="balView" aria-labelledby="balTitle" hidden></section>
-<div class="bal-tip" id="balTip" role="tooltip" hidden></div>
+<section class="bal-view" id="balView" aria-labelledby="balTitle" hidden=""></section>
+<div class="bal-tip" id="balTip" role="tooltip" hidden=""></div>
 
 <footer class="footer">
   <span><b>Video Time Study</b></span>
   <span data-i18n="ftr.rights">© 2026 Ilyas Baqloul. All rights reserved. Free to use.</span>
   <a href="https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="ftr.terms">Terms of use</a>
   <button type="button" class="ftr-link" id="btnLegal" data-i18n="ftr.legal">Legal notice</button>
-  <span>Version 3.0</span>
+  <span>Version 3.1</span>
 </footer>
 
-<div class="overlay" id="overlay" hidden></div>
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-<input type="file" id="fileVideo" accept="video/*,.mp4,.m4v,.mov,.webm,.mkv,.avi,.wmv,.mts,.m2ts,.3gp,.mpg,.mpeg,.flv,.ogv" hidden>
-<input type="file" id="fileStudy" accept=".json,application/json" hidden>
-<input type="file" id="fileMct" accept=".xlsx,.xlsm" hidden>
-<input type="file" id="fileTct" accept=".xlsm,.xlsx" hidden>
+<div class="overlay" id="overlay" hidden=""></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden=""></div>
+<input type="file" id="fileVideo" accept="video/*,.mp4,.m4v,.mov,.webm,.mkv,.avi,.wmv,.mts,.m2ts,.3gp,.mpg,.mpeg,.flv,.ogv" hidden="">
+<input type="file" id="fileStudy" accept=".json,application/json" hidden="">
+<input type="file" id="fileMct" accept=".xlsx,.xlsm" hidden="">
+<input type="file" id="fileTct" accept=".xlsm,.xlsx" hidden="">
 </div>
 <script id="vts-script">
 /* Video Time Study. Copyright (c) 2026 Ilyas Baqloul. All rights reserved. Free to use, including at work. The code may not be reused, modified, put online elsewhere or sold without written permission. Terms: https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE */
@@ -1625,7 +1632,7 @@ var L = (function () {
     var s = {
       app: 'video-time-study', version: 1,
       meta: { name: str(m.name), ref: str(m.ref), plant: str(m.plant), line: str(m.line), observer: str(m.observer), date: str(m.date), takt: taktOf(m.takt) },
-      video: null, timelines: [], activeId: null, balance: sanitizeBalance(o.balance)
+      video: null, timelines: [], activeId: null, balance: sanitizeBalance(o.balance), example: !!o.example
     };
     if (o.video && typeof o.video === 'object' && o.video.name) {
       s.video = { name: str(o.video.name), size: num(o.video.size), duration: num(o.video.duration), lastModified: num(o.video.lastModified) };
@@ -1687,7 +1694,7 @@ var L = (function () {
           named.slice(k0).concat(named.slice(0, k0)).concat(a.steps.filter(function (r) { return r.generic; })).forEach(add);
         }
       } else if (ops[tl.id]) ops[tl.id].steps.forEach(add);
-      return { id: tl.id, kind: tl.kind === 'machine' ? 'machine' : 'op', name: tl.name, blocks: blocks };
+      return { id: tl.id, kind: tl.kind === 'machine' ? 'machine' : 'op', name: tl.name, src: tl.id, blocks: blocks };
     }), pool: [] };
   }
   function balTotals(col) {
@@ -1718,12 +1725,19 @@ var L = (function () {
       parts: parts, partsTotal: r1(ptot), mach: mach
     };
   }
-  function balCopyBlock(b) { return { id: uid(), code: b.code || '', name: b.name || '', type: b.type, dur: b.dur, src: b.src || null }; }
-  // A new scenario: copy of the current state or of another scenario, with new ids.
-  function balScenario(base, name) {
-    return { id: uid(), name: name, cols: base.cols.map(function (c) {
-      return { id: uid(), kind: c.kind === 'machine' ? 'machine' : 'op', name: c.name, blocks: c.blocks.map(balCopyBlock) };
+  function balCopyBlock(b) { var c = { id: uid(), code: b.code || '', name: b.name || '', type: b.type, dur: b.dur, src: b.src || null }; if (b.ok) c.ok = true; return c; }
+  // A new scenario: copy of the current state or of another scenario, with new ids. Each column keeps the timeline it
+  // comes from (src), to show the current total beside it. waits: 'pool' puts the measured waits aside.
+  function balScenario(base, name, opts) {
+    var sc = { id: uid(), name: name, note: base.note || '', cols: base.cols.map(function (c) {
+      return { id: uid(), kind: c.kind === 'machine' ? 'machine' : 'op', name: c.name, src: c.src || null, blocks: c.blocks.map(balCopyBlock) };
     }), pool: (base.pool || []).map(balCopyBlock) };
+    if (opts && opts.waits === 'pool') {
+      sc.cols.forEach(function (c) {
+        c.blocks = c.blocks.filter(function (b) { if (b.type === 'Wait' && b.src) { sc.pool.push(b); return false; } return true; });
+      });
+    }
+    return sc;
   }
   function balLocate(sc, id) {
     var lists = [{ col: null, list: sc.pool }].concat(sc.cols.map(function (c) { return { col: c, list: c.blocks }; }));
@@ -1780,14 +1794,16 @@ var L = (function () {
     var blk = function (b) {
       if (!b || typeof b !== 'object' || n >= BAL_LIM.blocks || typeof b.dur !== 'number' || !isFinite(b.dur) || b.dur <= 0) return null;
       n++;
-      return { id: idOf(b.id), code: str(b.code).slice(0, 40), name: str(b.name).slice(0, 200), type: TYPES.indexOf(b.type) >= 0 ? b.type : 'Operation', dur: Math.min(r1(b.dur), 86400), src: typeof b.src === 'string' ? b.src.slice(0, 40) : null };
+      var x = { id: idOf(b.id), code: str(b.code).slice(0, 40), name: str(b.name).slice(0, 200), type: TYPES.indexOf(b.type) >= 0 ? b.type : 'Operation', dur: Math.min(r1(b.dur), 86400), src: typeof b.src === 'string' ? b.src.slice(0, 40) : null };
+      if (b.ok === true) x.ok = true;
+      return x;
     };
     o.scenarios.slice(0, BAL_LIM.scen).forEach(function (s) {
       if (!s || typeof s !== 'object' || !Array.isArray(s.cols)) return;
       out.scenarios.push({
-        id: idOf(s.id), name: str(s.name).slice(0, 80) || 'Scenario',
+        id: idOf(s.id), name: str(s.name).slice(0, 80) || 'Scenario', note: str(s.note).slice(0, 500),
         cols: s.cols.slice(0, BAL_LIM.cols).filter(function (c) { return c && typeof c === 'object'; }).map(function (c) {
-          return { id: idOf(c.id), kind: c.kind === 'machine' ? 'machine' : 'op', name: str(c.name).slice(0, 80), blocks: (Array.isArray(c.blocks) ? c.blocks : []).map(blk).filter(Boolean) };
+          return { id: idOf(c.id), kind: c.kind === 'machine' ? 'machine' : 'op', name: str(c.name).slice(0, 80), src: typeof c.src === 'string' ? c.src.slice(0, 40) : null, blocks: (Array.isArray(c.blocks) ? c.blocks : []).map(blk).filter(Boolean) };
         }),
         pool: (Array.isArray(s.pool) ? s.pool : []).map(blk).filter(Boolean)
       });
@@ -3000,6 +3016,69 @@ var I18N = {
     've.what': 'Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.',
     'study.takt': 'Customer takt time (s)',
     'study.taktPh': 'e.g. 60',
+    'ex.try': 'Try an example',
+    'ex.title': 'Try an example',
+    'ex.name': 'Line A: 2 operators and a press',
+    'ex.desc': 'A fictional video with its study ready: steps listed, about twelve cycles timed, takt time, results, report and a line balancing scenario. You can change everything.',
+    'ex.keep': 'Your current study is put aside. You get it back when you leave the example.',
+    'ex.net': 'The video of the example (0.8 MB) is loaded from vts-tool.com.',
+    'ex.load': 'Load the example',
+    'ex.loading': 'Loading the example\u2026',
+    'ex.loaded': 'Example loaded. Look at Results, then Line balancing.',
+    'ex.fail': 'The example could not be loaded. It needs an internet connection.',
+    'ex.noRoom': 'Not enough room in this browser to put your study aside. Save it as a file first.',
+    'ex.bar': 'You are in the example (fictional video and data).',
+    'ex.quit': 'Leave the example',
+    'ex.quitBack': 'Leave the example and get my study back',
+    'ex.barStash': 'Your study from before the example is put aside.',
+    'ex.restore': 'Get it back',
+    'ex.forget': 'Forget it',
+    'ex.forgetTitle': 'Forget the study put aside',
+    'ex.forgetText': 'The study from before the example will be deleted from this browser.',
+    'ex.back': 'Your study is back.',
+    'ex.left': 'Example closed.',
+    'ex.helpLine': 'No video at hand?',
+    'bal.pdf': 'Report (PDF)',
+    'bal.noteBtn': 'Note',
+    'bal.note': 'Note',
+    'bal.noteTitle': 'Note of the scenario',
+    'bal.noteHint': 'Your assumptions, for example: boxes moved closer, check done while the press runs.',
+    'bal.waitsTitle': 'Measured waits',
+    'bal.waitsText': 'Current has {n} waits ({v} s in all). They often come from the imbalance itself and change once steps move.',
+    'bal.waitsKeep': 'Keep them, to review',
+    'bal.waitsPool': 'Put them aside',
+    'bal.review': 'measured wait, to review',
+    'bal.wasTotal': 'current {v} s',
+    'balr.title': 'Line balancing report',
+    'balr.shown': 'Scenario shown',
+    'balr.detail': 'Detail: {name}',
+    'balr.compare': 'All scenarios compared',
+    'balh.title': 'Help: line balancing',
+    'balh.read': 'Reading the chart',
+    'balh.read1': 'One column per operator, plus the machines. Each block is a step, as high as its time in the reference cycle.',
+    'balh.read2': 'The red dashed line is the customer takt time. A column above it is framed in red.',
+    'balh.read3': 'Above each column: its total, its gap to the takt and its load in % of the takt.',
+    'balh.read4': 'Colours are the step types of the TCT. Hover a block, or tap it, to read it in full.',
+    'balh.scen': 'Current and scenarios',
+    'balh.scen1': 'Current is what you timed. It follows the time study and cannot be changed here.',
+    'balh.scen2': 'A scenario starts as a copy of Current. Make as many as you like: rename, duplicate or delete them.',
+    'balh.scen3': 'In a scenario, measured waits are hatched: they usually change once steps move. Change their time to mark them as reviewed.',
+    'balh.scen4': 'A dotted line shows the total of the same column in Current. Note keeps your assumptions.',
+    'balh.edit': 'Changing a scenario',
+    'balh.edit1': 'Drag a block to another column, or higher or lower in the same one, with the mouse or a finger.',
+    'balh.edit2': 'Click a block to change its time, name, type or column, split it in 2 or delete it.',
+    'balh.edit3': '+ Operator adds a column, + Step adds a step by hand. The \u22ef button of a column renames or deletes it.',
+    'balh.edit4': 'Unassigned steps keep what you take out of the columns.',
+    'balh.kpi': 'The figures',
+    'balh.kpi1': 'Bottleneck: the longest operator column (a). Output at the bottleneck = 3600 / bottleneck, in parts per hour.',
+    'balh.kpi2': 'Theoretical operators = total work content \u03a3(c) / takt, rounded up. (c) is the time without the waits.',
+    'balh.kpi3': 'Line balance = \u03a3(c) / (number of operators \u00d7 largest (c)). 100 % means the work is spread evenly.',
+    'balh.kpi4': 'In a scenario, each figure shows its gap to Current, in green when it is better.',
+    'balh.kpi5': 'Machine columns do not count as operators. A machine above the takt is flagged apart: adding an operator will not help.',
+    'balh.out': 'Sharing',
+    'balh.out1': 'Image (PNG): Current and the scenario side by side, ready for PowerPoint.',
+    'balh.out2': 'Report (PDF): the chart, the figures, the detail of each column and all scenarios compared. Choose Save as PDF in the print window.',
+    'balh.kEsc': 'Cancel a move in progress',
     'hdr.balance': 'Line balancing',
     'bal.title': 'Line balancing (Yamazumi)',
     'bal.back': '\u2190 Time study',
@@ -3322,6 +3401,69 @@ var I18N = {
     've.what': 'Appuyez sur une touche au d\u00e9but de chaque \u00e9tape. Le site calcule les temps de cycle et T1, et remplit vos fiches standard. Gratuit.',
     'study.takt': 'Takt time client (s)',
     'study.taktPh': 'ex. 60',
+    'ex.try': 'Essayer un exemple',
+    'ex.title': 'Essayer un exemple',
+    'ex.name': 'Ligne A : 2 op\u00e9rateurs et une presse',
+    'ex.desc': 'Une vid\u00e9o fictive avec son \u00e9tude pr\u00eate : \u00e9tapes list\u00e9es, une douzaine de cycles chronom\u00e9tr\u00e9s, takt time, r\u00e9sultats, rapport et un sc\u00e9nario d\u2019\u00e9quilibrage. Vous pouvez tout modifier.',
+    'ex.keep': 'Votre \u00e9tude en cours est mise de c\u00f4t\u00e9. Vous la retrouvez en quittant l\u2019exemple.',
+    'ex.net': 'La vid\u00e9o de l\u2019exemple (0,8 Mo) se charge depuis vts-tool.com.',
+    'ex.load': 'Charger l\u2019exemple',
+    'ex.loading': 'Chargement de l\u2019exemple\u2026',
+    'ex.loaded': 'Exemple charg\u00e9. Regardez R\u00e9sultats, puis \u00c9quilibrage.',
+    'ex.fail': 'L\u2019exemple n\u2019a pas pu \u00eatre charg\u00e9. Il faut une connexion internet.',
+    'ex.noRoom': 'Pas assez de place dans ce navigateur pour mettre votre \u00e9tude de c\u00f4t\u00e9. Enregistrez-la d\u2019abord dans un fichier.',
+    'ex.bar': 'Vous \u00eates dans l\u2019exemple (vid\u00e9o et donn\u00e9es fictives).',
+    'ex.quit': 'Quitter l\u2019exemple',
+    'ex.quitBack': 'Quitter l\u2019exemple et reprendre mon \u00e9tude',
+    'ex.barStash': 'Votre \u00e9tude d\u2019avant l\u2019exemple est mise de c\u00f4t\u00e9.',
+    'ex.restore': 'La reprendre',
+    'ex.forget': 'L\u2019oublier',
+    'ex.forgetTitle': 'Oublier l\u2019\u00e9tude mise de c\u00f4t\u00e9',
+    'ex.forgetText': 'L\u2019\u00e9tude d\u2019avant l\u2019exemple sera effac\u00e9e de ce navigateur.',
+    'ex.back': 'Votre \u00e9tude est de retour.',
+    'ex.left': 'Exemple ferm\u00e9.',
+    'ex.helpLine': 'Pas de vid\u00e9o sous la main ?',
+    'bal.pdf': 'Rapport (PDF)',
+    'bal.noteBtn': 'Note',
+    'bal.note': 'Note',
+    'bal.noteTitle': 'Note du sc\u00e9nario',
+    'bal.noteHint': 'Vos hypoth\u00e8ses, par exemple : bacs rapproch\u00e9s, contr\u00f4le fait pendant le cycle presse.',
+    'bal.waitsTitle': 'Attentes mesur\u00e9es',
+    'bal.waitsText': 'L\u2019actuel compte {n} attentes ({v} s en tout). Elles viennent souvent du d\u00e9s\u00e9quilibre et changent d\u00e8s qu\u2019on d\u00e9place des \u00e9tapes.',
+    'bal.waitsKeep': 'Les garder, \u00e0 revoir',
+    'bal.waitsPool': 'Les mettre de c\u00f4t\u00e9',
+    'bal.review': 'attente mesur\u00e9e, \u00e0 revoir',
+    'bal.wasTotal': 'actuel {v} s',
+    'balr.title': 'Rapport d\u2019\u00e9quilibrage',
+    'balr.shown': 'Sc\u00e9nario pr\u00e9sent\u00e9',
+    'balr.detail': 'D\u00e9tail : {name}',
+    'balr.compare': 'Comparaison des sc\u00e9narios',
+    'balh.title': 'Aide : \u00e9quilibrage',
+    'balh.read': 'Lire le graphique',
+    'balh.read1': 'Une colonne par op\u00e9rateur, plus les machines. Chaque bloc est une \u00e9tape, aussi haut que son temps dans le cycle de r\u00e9f\u00e9rence.',
+    'balh.read2': 'La ligne rouge en pointill\u00e9s est le takt time client. Une colonne qui la d\u00e9passe est encadr\u00e9e en rouge.',
+    'balh.read3': 'En haut de chaque colonne : son total, son \u00e9cart au takt et sa charge en % du takt.',
+    'balh.read4': 'Les couleurs sont les types d\u2019\u00e9tapes de la TCT. Survolez un bloc, ou touchez-le, pour le lire en entier.',
+    'balh.scen': 'Actuel et sc\u00e9narios',
+    'balh.scen1': 'Actuel, c\u2019est ce que vous avez chronom\u00e9tr\u00e9. Il suit le chrono et ne se modifie pas ici.',
+    'balh.scen2': 'Un sc\u00e9nario part d\u2019une copie de l\u2019actuel. Faites-en autant que vous voulez : renommez, dupliquez ou supprimez-les.',
+    'balh.scen3': 'Dans un sc\u00e9nario, les attentes mesur\u00e9es sont hachur\u00e9es : elles changent souvent quand on d\u00e9place des \u00e9tapes. Modifiez leur dur\u00e9e pour les marquer comme revues.',
+    'balh.scen4': 'Un trait pointill\u00e9 rappelle le total de la m\u00eame colonne dans l\u2019actuel. Note garde vos hypoth\u00e8ses.',
+    'balh.edit': 'Modifier un sc\u00e9nario',
+    'balh.edit1': 'Glissez un bloc vers une autre colonne, ou plus haut ou plus bas dans la m\u00eame, \u00e0 la souris ou au doigt.',
+    'balh.edit2': 'Cliquez sur un bloc pour changer sa dur\u00e9e, son nom, son type ou sa colonne, le scinder en 2 ou le supprimer.',
+    'balh.edit3': '+ Op\u00e9rateur ajoute une colonne, + \u00c9tape ajoute une \u00e9tape \u00e0 la main. Le bouton \u22ef d\u2019une colonne la renomme ou la supprime.',
+    'balh.edit4': 'Les \u00e9tapes non affect\u00e9es gardent ce que vous sortez des colonnes.',
+    'balh.kpi': 'Les indicateurs',
+    'balh.kpi1': 'Goulot : la colonne op\u00e9rateur la plus longue (a). Cadence au goulot = 3600 / goulot, en pi\u00e8ces par heure.',
+    'balh.kpi2': 'Effectif th\u00e9orique = contenu de travail total \u03a3(c) / takt, arrondi au-dessus. (c) est le temps sans les attentes.',
+    'balh.kpi3': 'Taux d\u2019\u00e9quilibrage = \u03a3(c) / (nombre d\u2019op\u00e9rateurs \u00d7 plus grand (c)). 100 % veut dire que le travail est bien r\u00e9parti.',
+    'balh.kpi4': 'Dans un sc\u00e9nario, chaque indicateur montre son \u00e9cart avec l\u2019actuel, en vert quand c\u2019est mieux.',
+    'balh.kpi5': 'Les colonnes machine ne comptent pas comme op\u00e9rateurs. Une machine au-dessus du takt est signal\u00e9e \u00e0 part : ajouter un op\u00e9rateur n\u2019y changera rien.',
+    'balh.out': 'Partager',
+    'balh.out1': 'Image (PNG) : l\u2019actuel et le sc\u00e9nario c\u00f4te \u00e0 c\u00f4te, pr\u00eats pour PowerPoint.',
+    'balh.out2': 'Rapport (PDF) : le graphique, les indicateurs, le d\u00e9tail de chaque colonne et la comparaison de tous les sc\u00e9narios. Choisissez Enregistrer au format PDF dans la fen\u00eatre d\u2019impression.',
+    'balh.kEsc': 'Annuler un d\u00e9placement en cours',
     'hdr.balance': '\u00c9quilibrage',
     'bal.title': '\u00c9quilibrage (Yamazumi)',
     'bal.back': '\u2190 Retour au chrono',
@@ -3707,6 +3849,7 @@ var I18N_LOGIC = {
     lastHL = null; lastLogIdx = null;
     requestLive();
     if (balActive()) balRender();
+    exBar();
   }
   function renderHeader() { setText($('hdrStudy'), study.meta.name ? T('hdr.study', { name: study.meta.name }) : ''); }
   function renderTlTabs() {
@@ -5253,6 +5396,7 @@ var I18N_LOGIC = {
   function hideToast() { $('toast').hidden = true; }
 
   function openHelp() {
+    if (balActive()) { balHelp(); return; }
     var keys = [
       [T('key.space'), 'help.k.space'], ['\u2190 \u2192', 'help.k.arrows'], [', .', 'help.k.frame'], ['[ ]', 'help.k.speed'],
       [T('key.enter'), 'help.k.enter'], ['1 \u2026 9, 0', 'help.k.steps'], ['F', 'help.k.f'], ['I', 'help.k.i'], ['P', 'help.k.p'],
@@ -5265,7 +5409,7 @@ var I18N_LOGIC = {
       return '<tr><td><b>' + esc(T('help.w.' + k)) + '</b></td><td>' + esc(T('help.w.' + k + '.text')) + '</td></tr>';
     }).join('');
     var good = ['mistake', 'speed', CAN_DOWNLOAD ? 'saveFile' : 'saveOnline', 'azerty', 'video'].map(function (k) { return '<li>' + esc(T('help.g.' + k)) + '</li>'; }).join('');
-    var body = '<div class="help">' +
+    var body = '<div class="help"><p class="help-ex">' + esc(T('ex.helpLine')) + ' <button type="button" class="btn small" id="helpExample">' + esc(T('ex.try')) + '</button></p>' +
       '<h3 class="first">' + esc(T('help.quick')) + '</h3><ol class="guide-list">' + steps + '</ol>' +
       '<h3>' + esc(T('help.keys')) + '</h3><div class="keys">' + keys.map(function (k) {
         return '<div class="krow"><span class="kcap">' + esc(k[0]) + '</span><span>' + esc(T(k[1])) + '</span></div>';
@@ -5274,6 +5418,8 @@ var I18N_LOGIC = {
       '<h3>' + esc(T('help.good')) + '</h3><ul class="help-list">' + good + '</ul>' +
       '<h3>' + esc(T('help.colours')) + '</h3><div class="legend">' + $('legend').innerHTML + '</div></div>';
     openPanel({ title: T('help.title'), body: body, wide: true, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
+    var hx = $('helpExample');
+    if (hx) hx.addEventListener('click', function () { closePanel(); exOpen(); });
   }
 
   var LICENSE_URL = 'https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE';
@@ -5599,6 +5745,10 @@ var I18N_LOGIC = {
     };
   }
 
+  // Sample study for "Try an example" (made by example/make_example.py: fictional video, no factory footage).
+// Sample study for "Try an example" (made by example/make_example.py: fictional video, no factory footage).
+  var EX_DATA = {"video":{"name":"vts-example.mp4","size":780392,"lastModified":1767225600000},"fr":{"app":"video-time-study","version":1,"example":true,"meta":{"name":"Exemple : ligne A","ref":"Panneau de porte","plant":"Usine exemple","line":"Ligne A","observer":"Video Time Study","date":"2026-11-11","takt":7},"video":{"name":"vts-example.mp4","size":780392,"duration":104.067,"lastModified":1767225600000},"timelines":[{"id":"t086","name":"Op\u00e9rateur 1","kind":"operator","steps":[{"id":"s001","code":"M10","name":"Prendre la pi\u00e8ce","type":"Operation","dist":null},{"id":"s002","code":"M20","name":"Aller \u00e0 la presse","type":"Walk","dist":null},{"id":"s003","code":"M30","name":"Charger la presse","type":"Operation","dist":null},{"id":"s004","code":"M40","name":"Attendre la presse","type":"Wait","dist":null},{"id":"s005","code":"M50","name":"D\u00e9charger et poser","type":"Operation","dist":null},{"id":"s006","code":"M60","name":"Retourner au bac","type":"Walk","dist":null}],"startStepId":"s001","events":[{"id":"e007","t":1.0,"kind":"step","stepId":"s001"},{"id":"e008","t":2.0667,"kind":"step","stepId":"s002"},{"id":"e009","t":2.8667,"kind":"step","stepId":"s003"},{"id":"e010","t":3.8,"kind":"step","stepId":"s004"},{"id":"e011","t":5.8667,"kind":"step","stepId":"s005"},{"id":"e012","t":6.8667,"kind":"step","stepId":"s006"},{"id":"e013","t":7.5333,"kind":"step","stepId":"s001"},{"id":"e014","t":8.7333,"kind":"step","stepId":"s002"},{"id":"e015","t":9.5333,"kind":"step","stepId":"s003"},{"id":"e016","t":10.4667,"kind":"step","stepId":"s004"},{"id":"e017","t":12.6,"kind":"step","stepId":"s005"},{"id":"e018","t":13.6,"kind":"step","stepId":"s006"},{"id":"e019","t":14.2667,"kind":"step","stepId":"s001"},{"id":"e020","t":15.4,"kind":"step","stepId":"s002"},{"id":"e021","t":16.2667,"kind":"step","stepId":"s003"},{"id":"e022","t":17.0667,"kind":"step","stepId":"s004"},{"id":"e023","t":19.2,"kind":"step","stepId":"s005"},{"id":"e024","t":20.1333,"kind":"step","stepId":"s006"},{"id":"e025","t":20.7333,"kind":"step","stepId":"s001"},{"id":"e026","t":21.8667,"kind":"step","stepId":"s002"},{"id":"e027","t":22.6,"kind":"step","stepId":"s003"},{"id":"e028","t":23.6,"kind":"step","stepId":"s004"},{"id":"e029","t":25.7333,"kind":"step","stepId":"s005"},{"id":"e030","t":26.8,"kind":"step","stepId":"s006"},{"id":"e031","t":27.5333,"kind":"step","stepId":"s001"},{"id":"e032","t":28.5333,"kind":"step","stepId":"s002"},{"id":"e033","t":29.2667,"kind":"step","stepId":"s003"},{"id":"e034","t":30.2,"kind":"step","stepId":"s004"},{"id":"e035","t":32.3333,"kind":"step","stepId":"s005"},{"id":"e036","t":33.2667,"kind":"step","stepId":"s006"},{"id":"e037","t":33.9333,"kind":"step","stepId":"s001"},{"id":"e038","t":34.9333,"kind":"step","stepId":"s002"},{"id":"e039","t":35.7333,"kind":"step","stepId":"s003"},{"id":"e040","t":36.6,"kind":"step","stepId":"s004"},{"id":"e041","t":38.6667,"kind":"step","stepId":"s005"},{"id":"e042","t":39.7333,"kind":"step","stepId":"s006"},{"id":"e043","t":40.4667,"kind":"step","stepId":"s001"},{"id":"e044","t":41.5333,"kind":"step","stepId":"s002"},{"id":"e045","t":42.3333,"kind":"step","stepId":"s003"},{"id":"e046","t":43.2,"kind":"step","stepId":"s004"},{"id":"e047","t":45.3333,"kind":"step","stepId":"s005"},{"id":"e048","t":46.2667,"kind":"step","stepId":"s006"},{"id":"e049","t":47.0667,"kind":"step","stepId":"s001"},{"id":"e050","t":48.2667,"kind":"step","stepId":"s002"},{"id":"e051","t":49.1333,"kind":"step","stepId":"s003"},{"id":"e052","t":50.0,"kind":"step","stepId":"s004"},{"id":"e053","t":52.1333,"kind":"step","stepId":"s005"},{"id":"e054","t":53.0667,"kind":"step","stepId":"s006"},{"id":"e055","t":53.7333,"kind":"step","stepId":"s001"},{"id":"e056","t":54.8667,"kind":"step","stepId":"s002"},{"id":"e057","t":55.6667,"kind":"step","stepId":"s003"},{"id":"e058","t":56.6667,"kind":"step","stepId":"s004"},{"id":"e059","t":58.7333,"kind":"step","stepId":"s005"},{"id":"e060","t":59.7333,"kind":"step","stepId":"s006"},{"id":"e061","t":60.5333,"kind":"step","stepId":"s001"},{"id":"e062","t":61.5333,"kind":"step","stepId":"s002"},{"id":"e063","t":62.2667,"kind":"step","stepId":"s003"},{"id":"e064","t":63.2667,"kind":"step","stepId":"s004"},{"id":"e065","t":65.4,"kind":"step","stepId":"s005"},{"id":"e066","t":66.4,"kind":"step","stepId":"s006"},{"id":"e067","t":67.2,"kind":"step","stepId":"s001"},{"id":"e068","t":68.2,"kind":"step","stepId":"s002"},{"id":"e069","t":69.0,"kind":"step","stepId":"s003"},{"id":"e070","t":69.9333,"kind":"step","stepId":"s004"},{"id":"e071","t":72.0,"kind":"step","stepId":"s005"},{"id":"e072","t":72.9333,"kind":"step","stepId":"s006"},{"id":"e073","t":73.5333,"kind":"step","stepId":"s001"},{"id":"e074","t":74.7333,"kind":"step","stepId":"s002"},{"id":"e075","t":75.6,"kind":"step","stepId":"s003"},{"id":"e076","t":76.4,"kind":"step","stepId":"s004"},{"id":"e077","t":78.4667,"kind":"step","stepId":"s005"},{"id":"e078","t":79.4,"kind":"step","stepId":"s006"},{"id":"e079","t":80.0,"kind":"step","stepId":"s001"},{"id":"e080","t":81.1333,"kind":"step","stepId":"s002"},{"id":"e081","t":81.8667,"kind":"step","stepId":"s003"},{"id":"e082","t":82.8,"kind":"step","stepId":"s004"},{"id":"e083","t":84.8667,"kind":"step","stepId":"s005"},{"id":"e084","t":85.8667,"kind":"step","stepId":"s006"},{"id":"e085","t":86.5333,"kind":"step","stepId":"s001"}]},{"id":"t167","name":"Op\u00e9rateur 2","kind":"operator","steps":[{"id":"s087","code":"A10","name":"Prendre la pi\u00e8ce","type":"Operation","dist":null},{"id":"s088","code":"A20","name":"Clipser les agrafes","type":"Operation","dist":null},{"id":"s089","code":"A30","name":"Contr\u00f4ler la pi\u00e8ce","type":"Inspection","dist":null},{"id":"s090","code":"A40","name":"Aller au carton","type":"Walk","dist":null},{"id":"s091","code":"A50","name":"Emballer","type":"Operation","dist":null},{"id":"s092","code":"A60","name":"Revenir au poste","type":"Walk","dist":null}],"startStepId":"s087","events":[{"id":"e093","t":6.8667,"kind":"step","stepId":"s087"},{"id":"e094","t":7.5333,"kind":"step","stepId":"s088"},{"id":"e095","t":10.5333,"kind":"step","stepId":"s089"},{"id":"e096","t":12.1333,"kind":"step","stepId":"s090"},{"id":"e097","t":12.9333,"kind":"step","stepId":"s091"},{"id":"e098","t":13.5333,"kind":"step","stepId":"s092"},{"id":"e099","t":14.3333,"kind":"step","stepId":"s087"},{"id":"e100","t":15.0,"kind":"step","stepId":"s088"},{"id":"e101","t":18.0667,"kind":"step","stepId":"s089"},{"id":"e102","t":19.6,"kind":"step","stepId":"s090"},{"id":"e103","t":20.3333,"kind":"step","stepId":"s091"},{"id":"e104","t":20.8667,"kind":"step","stepId":"s092"},{"id":"e105","t":21.6,"kind":"step","stepId":"s087"},{"id":"e106","t":22.3333,"kind":"step","stepId":"s088"},{"id":"e107","t":25.2667,"kind":"step","stepId":"s089"},{"id":"e108","t":26.8667,"kind":"step","stepId":"s090"},{"id":"e109","t":27.6667,"kind":"step","stepId":"s091"},{"id":"e110","t":28.2667,"kind":"step","stepId":"s092"},{"id":"e111","t":29.1333,"kind":"step","stepId":"s087"},{"id":"e112","t":29.8,"kind":"step","stepId":"s088"},{"id":"e113","t":32.8,"kind":"step","stepId":"s089"},{"id":"e114","t":34.4667,"kind":"step","stepId":"s090"},{"id":"e115","t":35.2,"kind":"step","stepId":"s091"},{"id":"e116","t":35.7333,"kind":"step","stepId":"s092"},{"id":"e117","t":36.6,"kind":"step","stepId":"s087"},{"id":"e118","t":37.3333,"kind":"step","stepId":"s088","issue":"Material issue","note":"Agrafe tomb\u00e9e"},{"id":"e119","t":41.9333,"kind":"step","stepId":"s089"},{"id":"e120","t":43.4667,"kind":"step","stepId":"s090"},{"id":"e121","t":44.3333,"kind":"step","stepId":"s091"},{"id":"e122","t":45.0,"kind":"step","stepId":"s092"},{"id":"e123","t":45.7333,"kind":"step","stepId":"s087"},{"id":"e124","t":46.5333,"kind":"step","stepId":"s088"},{"id":"e125","t":49.6,"kind":"step","stepId":"s089"},{"id":"e126","t":51.2,"kind":"step","stepId":"s090"},{"id":"e127","t":52.0,"kind":"step","stepId":"s091"},{"id":"e128","t":52.5333,"kind":"step","stepId":"s092"},{"id":"e129","t":53.2667,"kind":"periodic","label":"Changer le carton"},{"id":"e130","t":57.2667,"kind":"step","stepId":"s087"},{"id":"e131","t":58.0667,"kind":"step","stepId":"s088"},{"id":"e132","t":61.0,"kind":"step","stepId":"s089"},{"id":"e133","t":62.6667,"kind":"step","stepId":"s090"},{"id":"e134","t":63.4,"kind":"step","stepId":"s091"},{"id":"e135","t":64.0667,"kind":"step","stepId":"s092"},{"id":"e136","t":64.8667,"kind":"step","stepId":"s087"},{"id":"e137","t":65.5333,"kind":"step","stepId":"s088"},{"id":"e138","t":68.4667,"kind":"step","stepId":"s089"},{"id":"e139","t":70.1333,"kind":"step","stepId":"s090"},{"id":"e140","t":70.8667,"kind":"step","stepId":"s091"},{"id":"e141","t":71.4,"kind":"step","stepId":"s092"},{"id":"e142","t":72.2,"kind":"step","stepId":"s087"},{"id":"e143","t":73.0,"kind":"step","stepId":"s088"},{"id":"e144","t":76.0,"kind":"step","stepId":"s089"},{"id":"e145","t":77.5333,"kind":"step","stepId":"s090"},{"id":"e146","t":78.4,"kind":"step","stepId":"s091"},{"id":"e147","t":78.9333,"kind":"step","stepId":"s092"},{"id":"e148","t":79.6667,"kind":"step","stepId":"s087"},{"id":"e149","t":80.3333,"kind":"step","stepId":"s088"},{"id":"e150","t":83.3333,"kind":"step","stepId":"s089"},{"id":"e151","t":84.8667,"kind":"step","stepId":"s090"},{"id":"e152","t":85.6,"kind":"step","stepId":"s091"},{"id":"e153","t":86.2,"kind":"step","stepId":"s092"},{"id":"e154","t":87.0,"kind":"step","stepId":"s087"},{"id":"e155","t":87.6,"kind":"step","stepId":"s088"},{"id":"e156","t":90.6,"kind":"step","stepId":"s089"},{"id":"e157","t":92.2667,"kind":"step","stepId":"s090"},{"id":"e158","t":93.1333,"kind":"step","stepId":"s091"},{"id":"e159","t":93.7333,"kind":"step","stepId":"s092"},{"id":"e160","t":94.6,"kind":"step","stepId":"s087"},{"id":"e161","t":95.3333,"kind":"step","stepId":"s088"},{"id":"e162","t":98.2667,"kind":"step","stepId":"s089"},{"id":"e163","t":99.8,"kind":"step","stepId":"s090"},{"id":"e164","t":100.5333,"kind":"step","stepId":"s091"},{"id":"e165","t":101.2,"kind":"step","stepId":"s092"},{"id":"e166","t":102.0667,"kind":"step","stepId":"s087"}]},{"id":"t208","name":"Presse","kind":"machine","steps":[{"id":"s168","code":"P10","name":"Presser","type":"Machine","dist":null},{"id":"s169","code":"P20","name":"Ouvrir et \u00e9jecter","type":"Machine","dist":null},{"id":"s170","code":"P30","name":"Attendre le chargement","type":"Wait","dist":null}],"startStepId":"s168","events":[{"id":"e171","t":3.8,"kind":"step","stepId":"s168"},{"id":"e172","t":5.8667,"kind":"step","stepId":"s169"},{"id":"e173","t":6.8667,"kind":"step","stepId":"s170"},{"id":"e174","t":10.4667,"kind":"step","stepId":"s168"},{"id":"e175","t":12.6,"kind":"step","stepId":"s169"},{"id":"e176","t":13.6,"kind":"step","stepId":"s170"},{"id":"e177","t":17.0667,"kind":"step","stepId":"s168"},{"id":"e178","t":19.2,"kind":"step","stepId":"s169"},{"id":"e179","t":20.1333,"kind":"step","stepId":"s170"},{"id":"e180","t":23.6,"kind":"step","stepId":"s168"},{"id":"e181","t":25.7333,"kind":"step","stepId":"s169"},{"id":"e182","t":26.8,"kind":"step","stepId":"s170"},{"id":"e183","t":30.2,"kind":"step","stepId":"s168"},{"id":"e184","t":32.3333,"kind":"step","stepId":"s169"},{"id":"e185","t":33.2667,"kind":"step","stepId":"s170"},{"id":"e186","t":36.6,"kind":"step","stepId":"s168"},{"id":"e187","t":38.6667,"kind":"step","stepId":"s169"},{"id":"e188","t":39.7333,"kind":"step","stepId":"s170"},{"id":"e189","t":43.2,"kind":"step","stepId":"s168"},{"id":"e190","t":45.3333,"kind":"step","stepId":"s169"},{"id":"e191","t":46.2667,"kind":"step","stepId":"s170"},{"id":"e192","t":50.0,"kind":"step","stepId":"s168"},{"id":"e193","t":52.1333,"kind":"step","stepId":"s169"},{"id":"e194","t":53.0667,"kind":"step","stepId":"s170"},{"id":"e195","t":56.6667,"kind":"step","stepId":"s168"},{"id":"e196","t":58.7333,"kind":"step","stepId":"s169"},{"id":"e197","t":59.7333,"kind":"step","stepId":"s170"},{"id":"e198","t":63.2667,"kind":"step","stepId":"s168"},{"id":"e199","t":65.4,"kind":"step","stepId":"s169"},{"id":"e200","t":66.4,"kind":"step","stepId":"s170"},{"id":"e201","t":69.9333,"kind":"step","stepId":"s168"},{"id":"e202","t":72.0,"kind":"step","stepId":"s169"},{"id":"e203","t":72.9333,"kind":"step","stepId":"s170"},{"id":"e204","t":76.4,"kind":"step","stepId":"s168"},{"id":"e205","t":78.4667,"kind":"step","stepId":"s169"},{"id":"e206","t":79.4,"kind":"step","stepId":"s170"},{"id":"e207","t":82.8,"kind":"step","stepId":"s168"}]}],"activeId":"t086"},"en":{"app":"video-time-study","version":1,"example":true,"meta":{"name":"Example: line A","ref":"Door panel","plant":"Sample plant","line":"Line A","observer":"Video Time Study","date":"2026-11-11","takt":7},"video":{"name":"vts-example.mp4","size":780392,"duration":104.067,"lastModified":1767225600000},"timelines":[{"id":"t294","name":"Operator 1","kind":"operator","steps":[{"id":"s209","code":"M10","name":"Take the part","type":"Operation","dist":null},{"id":"s210","code":"M20","name":"Walk to the press","type":"Walk","dist":null},{"id":"s211","code":"M30","name":"Load the press","type":"Operation","dist":null},{"id":"s212","code":"M40","name":"Wait for the press","type":"Wait","dist":null},{"id":"s213","code":"M50","name":"Unload and put down","type":"Operation","dist":null},{"id":"s214","code":"M60","name":"Walk back to the bin","type":"Walk","dist":null}],"startStepId":"s209","events":[{"id":"e215","t":1.0,"kind":"step","stepId":"s209"},{"id":"e216","t":2.0667,"kind":"step","stepId":"s210"},{"id":"e217","t":2.8667,"kind":"step","stepId":"s211"},{"id":"e218","t":3.8,"kind":"step","stepId":"s212"},{"id":"e219","t":5.8667,"kind":"step","stepId":"s213"},{"id":"e220","t":6.8667,"kind":"step","stepId":"s214"},{"id":"e221","t":7.5333,"kind":"step","stepId":"s209"},{"id":"e222","t":8.7333,"kind":"step","stepId":"s210"},{"id":"e223","t":9.5333,"kind":"step","stepId":"s211"},{"id":"e224","t":10.4667,"kind":"step","stepId":"s212"},{"id":"e225","t":12.6,"kind":"step","stepId":"s213"},{"id":"e226","t":13.6,"kind":"step","stepId":"s214"},{"id":"e227","t":14.2667,"kind":"step","stepId":"s209"},{"id":"e228","t":15.4,"kind":"step","stepId":"s210"},{"id":"e229","t":16.2667,"kind":"step","stepId":"s211"},{"id":"e230","t":17.0667,"kind":"step","stepId":"s212"},{"id":"e231","t":19.2,"kind":"step","stepId":"s213"},{"id":"e232","t":20.1333,"kind":"step","stepId":"s214"},{"id":"e233","t":20.7333,"kind":"step","stepId":"s209"},{"id":"e234","t":21.8667,"kind":"step","stepId":"s210"},{"id":"e235","t":22.6,"kind":"step","stepId":"s211"},{"id":"e236","t":23.6,"kind":"step","stepId":"s212"},{"id":"e237","t":25.7333,"kind":"step","stepId":"s213"},{"id":"e238","t":26.8,"kind":"step","stepId":"s214"},{"id":"e239","t":27.5333,"kind":"step","stepId":"s209"},{"id":"e240","t":28.5333,"kind":"step","stepId":"s210"},{"id":"e241","t":29.2667,"kind":"step","stepId":"s211"},{"id":"e242","t":30.2,"kind":"step","stepId":"s212"},{"id":"e243","t":32.3333,"kind":"step","stepId":"s213"},{"id":"e244","t":33.2667,"kind":"step","stepId":"s214"},{"id":"e245","t":33.9333,"kind":"step","stepId":"s209"},{"id":"e246","t":34.9333,"kind":"step","stepId":"s210"},{"id":"e247","t":35.7333,"kind":"step","stepId":"s211"},{"id":"e248","t":36.6,"kind":"step","stepId":"s212"},{"id":"e249","t":38.6667,"kind":"step","stepId":"s213"},{"id":"e250","t":39.7333,"kind":"step","stepId":"s214"},{"id":"e251","t":40.4667,"kind":"step","stepId":"s209"},{"id":"e252","t":41.5333,"kind":"step","stepId":"s210"},{"id":"e253","t":42.3333,"kind":"step","stepId":"s211"},{"id":"e254","t":43.2,"kind":"step","stepId":"s212"},{"id":"e255","t":45.3333,"kind":"step","stepId":"s213"},{"id":"e256","t":46.2667,"kind":"step","stepId":"s214"},{"id":"e257","t":47.0667,"kind":"step","stepId":"s209"},{"id":"e258","t":48.2667,"kind":"step","stepId":"s210"},{"id":"e259","t":49.1333,"kind":"step","stepId":"s211"},{"id":"e260","t":50.0,"kind":"step","stepId":"s212"},{"id":"e261","t":52.1333,"kind":"step","stepId":"s213"},{"id":"e262","t":53.0667,"kind":"step","stepId":"s214"},{"id":"e263","t":53.7333,"kind":"step","stepId":"s209"},{"id":"e264","t":54.8667,"kind":"step","stepId":"s210"},{"id":"e265","t":55.6667,"kind":"step","stepId":"s211"},{"id":"e266","t":56.6667,"kind":"step","stepId":"s212"},{"id":"e267","t":58.7333,"kind":"step","stepId":"s213"},{"id":"e268","t":59.7333,"kind":"step","stepId":"s214"},{"id":"e269","t":60.5333,"kind":"step","stepId":"s209"},{"id":"e270","t":61.5333,"kind":"step","stepId":"s210"},{"id":"e271","t":62.2667,"kind":"step","stepId":"s211"},{"id":"e272","t":63.2667,"kind":"step","stepId":"s212"},{"id":"e273","t":65.4,"kind":"step","stepId":"s213"},{"id":"e274","t":66.4,"kind":"step","stepId":"s214"},{"id":"e275","t":67.2,"kind":"step","stepId":"s209"},{"id":"e276","t":68.2,"kind":"step","stepId":"s210"},{"id":"e277","t":69.0,"kind":"step","stepId":"s211"},{"id":"e278","t":69.9333,"kind":"step","stepId":"s212"},{"id":"e279","t":72.0,"kind":"step","stepId":"s213"},{"id":"e280","t":72.9333,"kind":"step","stepId":"s214"},{"id":"e281","t":73.5333,"kind":"step","stepId":"s209"},{"id":"e282","t":74.7333,"kind":"step","stepId":"s210"},{"id":"e283","t":75.6,"kind":"step","stepId":"s211"},{"id":"e284","t":76.4,"kind":"step","stepId":"s212"},{"id":"e285","t":78.4667,"kind":"step","stepId":"s213"},{"id":"e286","t":79.4,"kind":"step","stepId":"s214"},{"id":"e287","t":80.0,"kind":"step","stepId":"s209"},{"id":"e288","t":81.1333,"kind":"step","stepId":"s210"},{"id":"e289","t":81.8667,"kind":"step","stepId":"s211"},{"id":"e290","t":82.8,"kind":"step","stepId":"s212"},{"id":"e291","t":84.8667,"kind":"step","stepId":"s213"},{"id":"e292","t":85.8667,"kind":"step","stepId":"s214"},{"id":"e293","t":86.5333,"kind":"step","stepId":"s209"}]},{"id":"t375","name":"Operator 2","kind":"operator","steps":[{"id":"s295","code":"A10","name":"Take the part","type":"Operation","dist":null},{"id":"s296","code":"A20","name":"Clip the fasteners","type":"Operation","dist":null},{"id":"s297","code":"A30","name":"Check the part","type":"Inspection","dist":null},{"id":"s298","code":"A40","name":"Walk to the box","type":"Walk","dist":null},{"id":"s299","code":"A50","name":"Pack","type":"Operation","dist":null},{"id":"s300","code":"A60","name":"Walk back","type":"Walk","dist":null}],"startStepId":"s295","events":[{"id":"e301","t":6.8667,"kind":"step","stepId":"s295"},{"id":"e302","t":7.5333,"kind":"step","stepId":"s296"},{"id":"e303","t":10.5333,"kind":"step","stepId":"s297"},{"id":"e304","t":12.1333,"kind":"step","stepId":"s298"},{"id":"e305","t":12.9333,"kind":"step","stepId":"s299"},{"id":"e306","t":13.5333,"kind":"step","stepId":"s300"},{"id":"e307","t":14.3333,"kind":"step","stepId":"s295"},{"id":"e308","t":15.0,"kind":"step","stepId":"s296"},{"id":"e309","t":18.0667,"kind":"step","stepId":"s297"},{"id":"e310","t":19.6,"kind":"step","stepId":"s298"},{"id":"e311","t":20.3333,"kind":"step","stepId":"s299"},{"id":"e312","t":20.8667,"kind":"step","stepId":"s300"},{"id":"e313","t":21.6,"kind":"step","stepId":"s295"},{"id":"e314","t":22.3333,"kind":"step","stepId":"s296"},{"id":"e315","t":25.2667,"kind":"step","stepId":"s297"},{"id":"e316","t":26.8667,"kind":"step","stepId":"s298"},{"id":"e317","t":27.6667,"kind":"step","stepId":"s299"},{"id":"e318","t":28.2667,"kind":"step","stepId":"s300"},{"id":"e319","t":29.1333,"kind":"step","stepId":"s295"},{"id":"e320","t":29.8,"kind":"step","stepId":"s296"},{"id":"e321","t":32.8,"kind":"step","stepId":"s297"},{"id":"e322","t":34.4667,"kind":"step","stepId":"s298"},{"id":"e323","t":35.2,"kind":"step","stepId":"s299"},{"id":"e324","t":35.7333,"kind":"step","stepId":"s300"},{"id":"e325","t":36.6,"kind":"step","stepId":"s295"},{"id":"e326","t":37.3333,"kind":"step","stepId":"s296","issue":"Material issue","note":"Fastener dropped"},{"id":"e327","t":41.9333,"kind":"step","stepId":"s297"},{"id":"e328","t":43.4667,"kind":"step","stepId":"s298"},{"id":"e329","t":44.3333,"kind":"step","stepId":"s299"},{"id":"e330","t":45.0,"kind":"step","stepId":"s300"},{"id":"e331","t":45.7333,"kind":"step","stepId":"s295"},{"id":"e332","t":46.5333,"kind":"step","stepId":"s296"},{"id":"e333","t":49.6,"kind":"step","stepId":"s297"},{"id":"e334","t":51.2,"kind":"step","stepId":"s298"},{"id":"e335","t":52.0,"kind":"step","stepId":"s299"},{"id":"e336","t":52.5333,"kind":"step","stepId":"s300"},{"id":"e337","t":53.2667,"kind":"periodic","label":"Change the box"},{"id":"e338","t":57.2667,"kind":"step","stepId":"s295"},{"id":"e339","t":58.0667,"kind":"step","stepId":"s296"},{"id":"e340","t":61.0,"kind":"step","stepId":"s297"},{"id":"e341","t":62.6667,"kind":"step","stepId":"s298"},{"id":"e342","t":63.4,"kind":"step","stepId":"s299"},{"id":"e343","t":64.0667,"kind":"step","stepId":"s300"},{"id":"e344","t":64.8667,"kind":"step","stepId":"s295"},{"id":"e345","t":65.5333,"kind":"step","stepId":"s296"},{"id":"e346","t":68.4667,"kind":"step","stepId":"s297"},{"id":"e347","t":70.1333,"kind":"step","stepId":"s298"},{"id":"e348","t":70.8667,"kind":"step","stepId":"s299"},{"id":"e349","t":71.4,"kind":"step","stepId":"s300"},{"id":"e350","t":72.2,"kind":"step","stepId":"s295"},{"id":"e351","t":73.0,"kind":"step","stepId":"s296"},{"id":"e352","t":76.0,"kind":"step","stepId":"s297"},{"id":"e353","t":77.5333,"kind":"step","stepId":"s298"},{"id":"e354","t":78.4,"kind":"step","stepId":"s299"},{"id":"e355","t":78.9333,"kind":"step","stepId":"s300"},{"id":"e356","t":79.6667,"kind":"step","stepId":"s295"},{"id":"e357","t":80.3333,"kind":"step","stepId":"s296"},{"id":"e358","t":83.3333,"kind":"step","stepId":"s297"},{"id":"e359","t":84.8667,"kind":"step","stepId":"s298"},{"id":"e360","t":85.6,"kind":"step","stepId":"s299"},{"id":"e361","t":86.2,"kind":"step","stepId":"s300"},{"id":"e362","t":87.0,"kind":"step","stepId":"s295"},{"id":"e363","t":87.6,"kind":"step","stepId":"s296"},{"id":"e364","t":90.6,"kind":"step","stepId":"s297"},{"id":"e365","t":92.2667,"kind":"step","stepId":"s298"},{"id":"e366","t":93.1333,"kind":"step","stepId":"s299"},{"id":"e367","t":93.7333,"kind":"step","stepId":"s300"},{"id":"e368","t":94.6,"kind":"step","stepId":"s295"},{"id":"e369","t":95.3333,"kind":"step","stepId":"s296"},{"id":"e370","t":98.2667,"kind":"step","stepId":"s297"},{"id":"e371","t":99.8,"kind":"step","stepId":"s298"},{"id":"e372","t":100.5333,"kind":"step","stepId":"s299"},{"id":"e373","t":101.2,"kind":"step","stepId":"s300"},{"id":"e374","t":102.0667,"kind":"step","stepId":"s295"}]},{"id":"t416","name":"Press","kind":"machine","steps":[{"id":"s376","code":"P10","name":"Press","type":"Machine","dist":null},{"id":"s377","code":"P20","name":"Open and eject","type":"Machine","dist":null},{"id":"s378","code":"P30","name":"Wait for loading","type":"Wait","dist":null}],"startStepId":"s376","events":[{"id":"e379","t":3.8,"kind":"step","stepId":"s376"},{"id":"e380","t":5.8667,"kind":"step","stepId":"s377"},{"id":"e381","t":6.8667,"kind":"step","stepId":"s378"},{"id":"e382","t":10.4667,"kind":"step","stepId":"s376"},{"id":"e383","t":12.6,"kind":"step","stepId":"s377"},{"id":"e384","t":13.6,"kind":"step","stepId":"s378"},{"id":"e385","t":17.0667,"kind":"step","stepId":"s376"},{"id":"e386","t":19.2,"kind":"step","stepId":"s377"},{"id":"e387","t":20.1333,"kind":"step","stepId":"s378"},{"id":"e388","t":23.6,"kind":"step","stepId":"s376"},{"id":"e389","t":25.7333,"kind":"step","stepId":"s377"},{"id":"e390","t":26.8,"kind":"step","stepId":"s378"},{"id":"e391","t":30.2,"kind":"step","stepId":"s376"},{"id":"e392","t":32.3333,"kind":"step","stepId":"s377"},{"id":"e393","t":33.2667,"kind":"step","stepId":"s378"},{"id":"e394","t":36.6,"kind":"step","stepId":"s376"},{"id":"e395","t":38.6667,"kind":"step","stepId":"s377"},{"id":"e396","t":39.7333,"kind":"step","stepId":"s378"},{"id":"e397","t":43.2,"kind":"step","stepId":"s376"},{"id":"e398","t":45.3333,"kind":"step","stepId":"s377"},{"id":"e399","t":46.2667,"kind":"step","stepId":"s378"},{"id":"e400","t":50.0,"kind":"step","stepId":"s376"},{"id":"e401","t":52.1333,"kind":"step","stepId":"s377"},{"id":"e402","t":53.0667,"kind":"step","stepId":"s378"},{"id":"e403","t":56.6667,"kind":"step","stepId":"s376"},{"id":"e404","t":58.7333,"kind":"step","stepId":"s377"},{"id":"e405","t":59.7333,"kind":"step","stepId":"s378"},{"id":"e406","t":63.2667,"kind":"step","stepId":"s376"},{"id":"e407","t":65.4,"kind":"step","stepId":"s377"},{"id":"e408","t":66.4,"kind":"step","stepId":"s378"},{"id":"e409","t":69.9333,"kind":"step","stepId":"s376"},{"id":"e410","t":72.0,"kind":"step","stepId":"s377"},{"id":"e411","t":72.9333,"kind":"step","stepId":"s378"},{"id":"e412","t":76.4,"kind":"step","stepId":"s376"},{"id":"e413","t":78.4667,"kind":"step","stepId":"s377"},{"id":"e414","t":79.4,"kind":"step","stepId":"s378"},{"id":"e415","t":82.8,"kind":"step","stepId":"s376"}]}],"activeId":"t294"},"scenario":{"move":"A30","after":"M40","wait":"M40","waitDur":0.5,"fr":{"name":"Contr\u00f4le par l\u2019op\u00e9rateur 1","note":"L\u2019op\u00e9rateur 1 contr\u00f4le la pi\u00e8ce pendant le cycle de la presse : son attente passe de 2,1 s \u00e0 0,5 s."},"en":{"name":"Check by operator 1","note":"Operator 1 checks the part while the press runs: the wait goes from 2.1 s to 0.5 s."}}};
+
   // ---------- Line balancing view (Yamazumi) ----------
   // Its own view in the same page (#equilibrage). It reads the study and only writes study.balance: the
   // timelines are never changed here. Own undo history; the keys of the time study are off while it is open.
@@ -5707,30 +5857,35 @@ var I18N_LOGIC = {
     for (var i = 0; i < study.timelines.length; i++) if (study.timelines[i].id === id) return study.timelines[i].name;
     return '';
   }
-  function balBlockHtml(b, col, colTotal, scale, chip) {
+  function balBlockHtml(b, col, colTotal, scale, chip, scen) {
     var label = ((b.code ? b.code + ' ' : '') + b.name).trim() || T('bal.step');
-    balS.info[b.id] = { label: label, type: b.type, dur: b.dur, colTotal: col ? colTotal : null, src: balSrcName(b.src) };
-    var aria = ' aria-label="' + esc(label + ', ' + fmtS(b.dur, 1) + ' s, ' + L.typeLabel(b.type)) + '"';
-    if (chip) return '<button type="button" class="bal-b bal-chip ' + ty(b.type) + '" data-id="' + esc(b.id) + '"' + aria + '><span class="bal-bl">' + esc(label) + '</span><span class="bal-bd">' + esc(fmtS(b.dur, 1)) + ' s</span></button>';
+    var review = !!(scen && b.type === 'Wait' && b.src && !b.ok);
+    balS.info[b.id] = { label: label, type: b.type, dur: b.dur, colTotal: col ? colTotal : null, src: balSrcName(b.src), review: review };
+    var cls = 'bal-b ' + ty(b.type) + (review ? ' is-review' : '');
+    var aria = ' aria-label="' + esc(label + ', ' + fmtS(b.dur, 1) + ' s, ' + L.typeLabel(b.type) + (review ? ', ' + T('bal.review') : '')) + '"';
+    if (chip) return '<button type="button" class="' + cls + ' bal-chip" data-id="' + esc(b.id) + '"' + aria + '><span class="bal-bl">' + esc(label) + '</span><span class="bal-bd">' + esc(fmtS(b.dur, 1)) + ' s</span></button>';
     var h = Math.max(3, b.dur * scale);
     var txt = h >= 16 ? '<span class="bal-bl">' + esc(label) + '</span>' + (h >= 31 ? '<span class="bal-bd">' + esc(fmtS(b.dur, 1)) + ' s</span>' : '') : '';
-    return '<button type="button" class="bal-b ' + ty(b.type) + '" data-id="' + esc(b.id) + '" data-h="' + h.toFixed(1) + '"' + aria + '>' + txt + '</button>';
+    return '<button type="button" class="' + cls + '" data-id="' + esc(b.id) + '" data-h="' + h.toFixed(1) + '"' + aria + '>' + txt + '</button>';
   }
   function balColHtml(c, sc, takt, scale, H, step, maxV) {
     var t = L.bal.totals(c), over = takt && t.total > takt + 1e-9;
     balS.totals[c.id] = t.total;
     var gap = takt ? Math.round((t.total - takt) * 10) / 10 : null;
+    var was = sc && c.src && balS.actTotals[c.src] != null ? balS.actTotals[c.src] : null;
     var grid = '';
     for (var v = step; v <= maxV + 1e-9; v += step) grid += '<i class="bal-grid" data-b="' + (v * scale).toFixed(1) + '"></i>';
     return '<div class="bal-col' + (over ? ' is-over' : '') + (c.kind === 'machine' ? ' is-mach' : '') + '" data-col="' + esc(c.id) + '">' +
       '<div class="bal-col-h"><div class="bal-col-name" title="' + esc(c.name) + '">' + esc(c.name) + '</div>' +
       (c.kind === 'machine' ? '<span class="bal-badge">' + esc(T('bal.machine')) + '</span> ' : '') +
       '<span class="bal-tot" data-col="' + esc(c.id) + '">' + esc(fmtS(t.total, 1)) + ' s</span>' +
-      (gap != null && c.blocks.length ? ' <span class="bal-gap' + (over ? ' over' : '') + '">' + esc(Math.abs(gap) < 0.05 ? '= takt' : balSign(gap, 1) + ' s') + '</span>' : '') +
+      (gap != null && c.blocks.length ? ' <span class="bal-gap' + (over ? ' over' : '') + '">' + esc((Math.abs(gap) < 0.05 ? '= takt' : balSign(gap, 1) + ' s') + ' \u00b7 ' + Math.round(t.total / takt * 100) + ' %') + '</span>' : '') +
+      (was != null && Math.abs(was - t.total) > 0.05 ? '<div class="bal-was-l">' + esc(T('bal.wasTotal', { v: fmtS(was, 1) })) + '</div>' : '') +
       (sc ? '<button type="button" class="bal-col-menu" data-bal="col" data-col="' + esc(c.id) + '" aria-label="' + esc(T('bal.colMenu', { name: c.name })) + '">\u22ef</button>' : '') + '</div>' +
       '<div class="bal-stack" data-h="' + H + '">' + grid +
       (takt ? '<i class="bal-takt" data-b="' + (takt * scale).toFixed(1) + '"></i>' : '') +
-      c.blocks.map(function (b) { return balBlockHtml(b, c, t.total, scale, false); }).join('') +
+      (was != null ? '<i class="bal-was" data-b="' + (was * scale).toFixed(1) + '"></i>' : '') +
+      c.blocks.map(function (b) { return balBlockHtml(b, c, t.total, scale, false, !!sc); }).join('') +
       (c.blocks.length ? '' : '<p class="bal-empty">' + esc(T(sc ? 'bal.colEmpty' : 'bal.noRef')) + '</p>') + '</div></div>';
   }
   function balRender() {
@@ -5738,7 +5893,8 @@ var I18N_LOGIC = {
     var s = BS(), b = study.balance, sc = balScen(), takt = L.taktOf(study.meta.takt);
     var act = s.actual = L.bal.actual(study), state = sc || act;
     var ka = L.bal.kpis(act, takt), k = sc ? L.bal.kpis(sc, takt) : ka;
-    s.info = {}; s.totals = {};
+    s.info = {}; s.totals = {}; s.actTotals = {};
+    act.cols.forEach(function (c) { s.actTotals[c.id] = L.bal.totals(c).total; });
     // one scale for the current state and the scenario, so the heights compare
     var maxV = takt || 0;
     [act, sc].forEach(function (st) { if (st) st.cols.forEach(function (c) { var t = L.bal.totals(c).total; if (t > maxV) maxV = t; }); });
@@ -5750,15 +5906,18 @@ var I18N_LOGIC = {
       '<h2 id="balTitle" tabindex="-1">' + esc(T('bal.title')) + '</h2><div class="bal-top-act">' +
       '<button type="button" class="btn small" data-bal="undo"' + (s.undo.length ? '' : ' disabled') + '>' + esc(T('bal.undo')) + '</button>' +
       '<button type="button" class="btn small" data-bal="redo"' + (s.redo.length ? '' : ' disabled') + '>' + esc(T('bal.redo')) + '</button>' +
-      '<button type="button" class="btn small" data-bal="png">' + esc(T('bal.png')) + '</button></div></div>';
+      '<button type="button" class="btn small" data-bal="png">' + esc(T('bal.png')) + '</button>' +
+      '<button type="button" class="btn small" data-bal="pdf">' + esc(T('bal.pdf')) + '</button></div></div>';
     html += '<div class="tl-tabs bal-tabs" role="group" aria-label="' + esc(T('bal.scenarios')) + '"><button type="button" class="tl-tab" data-bal="tab" data-sc="actual" aria-pressed="' + !sc + '">' + esc(T('bal.actual')) + '</button>' +
       b.scenarios.map(function (x) { return '<button type="button" class="tl-tab" data-bal="tab" data-sc="' + esc(x.id) + '" aria-pressed="' + (sc === x) + '">' + esc(x.name) + '</button>'; }).join('') +
       '<button type="button" class="tl-tab tl-add" data-bal="new">' + esc(T('bal.newScenario')) + '</button></div>';
     html += '<div class="bal-bar">' + (sc
       ? '<button type="button" class="btn small" data-bal="rename">' + esc(T('bal.rename')) + '</button><button type="button" class="btn small" data-bal="dup">' + esc(T('bal.duplicate')) + '</button>' +
         '<button type="button" class="btn small danger" data-bal="del">' + esc(T('bal.delete')) + '</button><span class="bal-sep"></span>' +
-        '<button type="button" class="btn small" data-bal="addOp">' + esc(T('bal.addOp')) + '</button><button type="button" class="btn small" data-bal="addStep">' + esc(T('bal.addStep')) + '</button>'
-      : '<p class="note">' + esc(T('bal.actualNote')) + '</p><button type="button" class="btn small primary" data-bal="new">' + esc(T('bal.createScenario')) + '</button>') + '</div>';
+        '<button type="button" class="btn small" data-bal="addOp">' + esc(T('bal.addOp')) + '</button><button type="button" class="btn small" data-bal="addStep">' + esc(T('bal.addStep')) + '</button>' +
+        '<button type="button" class="btn small" data-bal="note">' + esc(T('bal.noteBtn')) + '</button>'
+      : '<p class="note">' + esc(T('bal.actualNote')) + '</p><button type="button" class="btn small primary" data-bal="new">' + esc(T('bal.createScenario')) + '</button>') + '</div>' +
+      (sc && sc.note ? '<p class="bal-note">' + esc(T('bal.note')) + ' : ' + esc(sc.note) + '</p>' : '');
     var cards = balKpiList(k, ka, takt, !!sc);
     html += '<div class="bal-kpis"><div class="bal-kpi"><div class="k-l">' + esc(T('bal.kTakt')) + '</div><div class="k-v">' + (takt ? esc(fmtS(takt, 1)) + ' s' : '\u2013') + '</div></div>' +
       cards.map(function (c) {
@@ -5782,7 +5941,7 @@ var I18N_LOGIC = {
       (sc ? '<button type="button" class="btn small bal-add-col" data-bal="addOp">' + esc(T('bal.addOp')) + '</button>' : '') + '</div></div>';
     if (sc) {
       html += '<div class="bal-pool" data-pool="1"><div class="bal-pool-h">' + esc(T('bal.pool')) + ' (' + sc.pool.length + ')</div><div class="bal-pool-list">' +
-        (sc.pool.length ? sc.pool.map(function (x) { return balBlockHtml(x, null, 0, scale, true); }).join('') : '<p class="note">' + esc(T('bal.poolEmpty')) + '</p>') + '</div></div>';
+        (sc.pool.length ? sc.pool.map(function (x) { return balBlockHtml(x, null, 0, scale, true, true); }).join('') : '<p class="note">' + esc(T('bal.poolEmpty')) + '</p>') + '</div></div>';
     }
     var used = {};
     state.cols.forEach(function (c) { c.blocks.forEach(function (x) { used[x.type] = true; }); });
@@ -5822,6 +5981,8 @@ var I18N_LOGIC = {
     else if (a === 'undo') balUndo();
     else if (a === 'redo') balRedo();
     else if (a === 'png') balPng();
+    else if (a === 'pdf') balReport();
+    else if (a === 'note' && sc) balNotePanel(sc);
     else if (a === 'toStudy') { balOpen(false); setTab('study'); }
     else if (a === 'tab') { study.balance.active = t.getAttribute('data-sc'); scheduleSave(); balRender(); }
     else if (a === 'new') balNewScenario();
@@ -5842,15 +6003,39 @@ var I18N_LOGIC = {
     for (var n = 1; n < 999; n++) { var x = T('tl.operatorN', { n: n }); if (!names[x]) return x; }
     return T('tl.operatorN', { n: sc.cols.length + 1 });
   }
+  // A new scenario starts from the current state. Measured waits often come from the imbalance itself, so ask first.
   function balNewScenario() {
-    var names = {}, n = 1;
-    study.balance.scenarios.forEach(function (x) { names[x.name] = true; });
-    while (names[T('bal.scenarioN', { n: n })]) n++;
-    balMutate(function () {
-      var sc = L.bal.scenario(BS().actual || L.bal.actual(study), T('bal.scenarioN', { n: n }));
-      study.balance.scenarios.push(sc); study.balance.active = sc.id;
-      return true;
-    });
+    var act = BS().actual || L.bal.actual(study), waits = 0, nW = 0;
+    act.cols.forEach(function (c) { c.blocks.forEach(function (b) { if (b.type === 'Wait') { waits += b.dur; nW++; } }); });
+    var go = function (mode) {
+      var names = {}, n = 1;
+      study.balance.scenarios.forEach(function (x) { names[x.name] = true; });
+      while (names[T('bal.scenarioN', { n: n })]) n++;
+      balMutate(function () {
+        var sc = L.bal.scenario(act, T('bal.scenarioN', { n: n }), { waits: mode });
+        study.balance.scenarios.push(sc); study.balance.active = sc.id;
+        return true;
+      });
+    };
+    if (!nW) { go('keep'); return; }
+    openPanel({ title: T('bal.waitsTitle'), backdrop: true, body: '<p>' + esc(T('bal.waitsText', { n: nW, v: fmtS(waits, 1) })) + '</p>',
+      buttons: [
+        { label: T('act.cancel'), onClick: function () { cancelPanel(); } },
+        { label: T('bal.waitsPool'), onClick: function () { closePanel(); go('pool'); } },
+        { label: T('bal.waitsKeep'), kind: 'primary', onClick: function () { closePanel(); go('keep'); } }
+      ] });
+  }
+  function balNotePanel(sc) {
+    openPanel({ title: T('bal.noteTitle'), backdrop: true, enterSaves: false,
+      body: '<p class="note">' + esc(T('bal.noteHint')) + '</p><textarea id="balNote" class="bal-note-in" rows="4" maxlength="500">' + esc(sc.note || '') + '</textarea>',
+      buttons: [
+        { label: T('act.cancel'), onClick: function () { cancelPanel(); } },
+        { label: T('bal.apply'), kind: 'primary', onClick: function () {
+          var v = $('balNote').value.trim();
+          closePanel();
+          if (v !== (sc.note || '')) balMutate(function () { sc.note = v; return true; });
+        } }
+      ] });
   }
   function balNum(v) { var n = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isFinite(n) ? Math.round(n * 10) / 10 : null; }
   function balField(label, html) { return '<div class="field"><label>' + esc(label) + '</label>' + html + '</div>'; }
@@ -5893,6 +6078,7 @@ var I18N_LOGIC = {
         balMutate(function () {
           var g = L.bal.locate(sc, id);
           if (!g) return false;
+          if (g.block.type === 'Wait' && Math.abs(g.block.dur - d) > 1e-9) g.block.ok = true;
           g.block.dur = d; if (name) g.block.name = name;
           if (L.TYPES.indexOf(type) >= 0) g.block.type = type;
           if (to !== from) L.bal.move(sc, id, to, null);
@@ -6085,7 +6271,8 @@ var I18N_LOGIC = {
     var info = BS().info[b.getAttribute('data-id')], tip = $('balTip');
     if (!info) return;
     tip.innerHTML = '<b>' + esc(info.label) + '</b>' + swatch(info.type) + esc(L.typeLabel(info.type)) + ' \u00b7 ' + esc(fmtS(info.dur, 1)) + ' s' +
-      (info.colTotal ? ' \u00b7 ' + esc(T('bal.share', { p: Math.round(info.dur / info.colTotal * 100) })) : '') + (info.src ? '<br>' + esc(T('bal.from', { name: info.src })) : '');
+      (info.colTotal ? ' \u00b7 ' + esc(T('bal.share', { p: Math.round(info.dur / info.colTotal * 100) })) : '') + (info.src ? '<br>' + esc(T('bal.from', { name: info.src })) : '') +
+      (info.review ? '<br>' + esc(T('bal.review')) : '');
     tip.hidden = false;
     balTipMove(x, y);
   }
@@ -6109,20 +6296,20 @@ var I18N_LOGIC = {
   }
 
   // ---------- Image for PowerPoint (current state and scenario side by side) ----------
-  function balSvg(panels, takt, W, H) {
+  function balSvg(panels, takt, W, H, bare) {
     var COL = { Operation: '#00B050', Inspection: '#0070C0', Walk: '#FFC000', Wait: '#C00000', Machine: '#7F7F7F' };
     var r = function (v) { return Math.round(v * 10) / 10; };
     var cut = function (t, n) { t = String(t || ''); return t.length > n ? t.slice(0, Math.max(1, n - 1)) + '\u2026' : t; };
     var maxV = takt || 0;
     panels.forEach(function (p) { p[1].cols.forEach(function (c) { var t = L.bal.totals(c).total; if (t > maxV) maxV = t; }); });
     maxV = (maxV || 60) * 1.1;
-    var top = 140, chartH = 540, base = top + chartH, m = 60, gap = 70, step = balStep(maxV), sc = chartH / maxV;
+    var top = bare ? 70 : 140, chartH = bare ? 500 : 540, base = top + chartH, m = 60, gap = 70, step = balStep(maxV), sc = chartH / maxV;
     var pw = (W - 2 * m - gap * (panels.length - 1)) / panels.length;
     var o = ['<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" font-family="Segoe UI, Arial, sans-serif">', '<rect width="100%" height="100%" fill="#ffffff"/>'];
     var mt = study.meta;
-    o.push('<text x="' + m + '" y="66" font-size="36" font-weight="700" fill="#253470">' + esc(cut(T('bal.pngTitle') + (mt.name ? ' \u00b7 ' + mt.name : '') + (mt.ref ? ' \u00b7 ' + mt.ref : ''), 80)) + '</text>');
-    o.push('<text x="' + (W - m) + '" y="66" font-size="20" fill="#5F6780" text-anchor="end">' + esc([mt.plant, mt.line, mt.date].filter(Boolean).join(' \u00b7 ')) + '</text>');
-    o.push('<rect x="' + m + '" y="84" width="' + (W - 2 * m) + '" height="3" fill="#253470"/>');
+    if (!bare) o.push('<text x="' + m + '" y="66" font-size="36" font-weight="700" fill="#253470">' + esc(cut(T('bal.pngTitle') + (mt.name ? ' \u00b7 ' + mt.name : '') + (mt.ref ? ' \u00b7 ' + mt.ref : ''), 80)) + '</text>');
+    if (!bare) o.push('<text x="' + (W - m) + '" y="66" font-size="20" fill="#5F6780" text-anchor="end">' + esc([mt.plant, mt.line, mt.date].filter(Boolean).join(' \u00b7 ')) + '</text>');
+    if (!bare) o.push('<rect x="' + m + '" y="84" width="' + (W - 2 * m) + '" height="3" fill="#253470"/>');
     var ka = L.bal.kpis(panels[0][1], takt), used = {};
     panels.forEach(function (p, pi) {
       var st = p[1], x0 = m + pi * (pw + gap), ax = 54, cw = pw - ax, n = Math.max(1, st.cols.length), slot = cw / n, bw = Math.min(140, slot * 0.64);
@@ -6156,22 +6343,23 @@ var I18N_LOGIC = {
         var y = ky + ri * 34;
         o.push('<text x="' + x0 + '" y="' + y + '" font-size="18" fill="#5F6780">' + esc(row.l) + '</text>');
         o.push('<text x="' + r(x0 + pw * 0.42) + '" y="' + y + '" font-size="19" font-weight="700" fill="#1C2333">' + esc(cut(row.v + (row.s && row.l === T('bal.kBott') ? ' (' + row.s + ')' : ''), 34)) + '</text>');
-        if (row.d) o.push('<text x="' + r(x0 + pw) + '" y="' + y + '" font-size="17" font-weight="700" text-anchor="end" fill="' + (row.d.cls === 'good' ? '#12803C' : row.d.cls === 'bad' ? '#C00000' : '#5F6780') + '">' + esc(row.d.txt + ' ' + T('bal.vsActual')) + '</text>');
+        if (row.d && pi > 0) o.push('<text x="' + r(x0 + pw) + '" y="' + y + '" font-size="17" font-weight="700" text-anchor="end" fill="' + (row.d.cls === 'good' ? '#12803C' : row.d.cls === 'bad' ? '#C00000' : '#5F6780') + '">' + esc(row.d.txt + ' ' + T('bal.vsActual')) + '</text>');
       });
+      if (!bare && p[2]) o.push('<text x="' + x0 + '" y="' + (ky + rows.length * 34 + 8) + '" font-size="16" fill="#5F6780">' + esc(cut(p[2], Math.floor(pw / 8.5))) + '</text>');
     });
     var lx = m;
     L.TYPES.filter(function (t) { return used[t]; }).forEach(function (t) {
-      o.push('<rect x="' + lx + '' + '" y="' + (H - 66) + '" width="18" height="18" fill="' + (COL[t] || COL.Operation) + '"/>');
-      o.push('<text x="' + (lx + 26) + '" y="' + (H - 51) + '" font-size="17" fill="#1C2333">' + esc(L.typeLabel(t)) + '</text>');
+      o.push('<rect x="' + lx + '" y="' + (H - (bare ? 40 : 66)) + '" width="18" height="18" fill="' + (COL[t] || COL.Operation) + '"/>');
+      o.push('<text x="' + (lx + 26) + '" y="' + (H - (bare ? 25 : 51)) + '" font-size="17" fill="#1C2333">' + esc(L.typeLabel(t)) + '</text>');
       lx += 40 + L.typeLabel(t).length * 10;
     });
-    o.push('<text x="' + (W - m) + '" y="' + (H - 51) + '" font-size="16" fill="#5F6780" text-anchor="end">Video Time Study \u00b7 vts-tool.com</text>');
+    if (!bare) o.push('<text x="' + (W - m) + '" y="' + (H - 51) + '" font-size="16" fill="#5F6780" text-anchor="end">Video Time Study \u00b7 vts-tool.com</text>');
     o.push('</svg>');
     return o.join('');
   }
   function balPng() {
     var s = BS(), sc = balScen(), act = s.actual || L.bal.actual(study), takt = L.taktOf(study.meta.takt);
-    var panels = sc ? [[T('bal.actual'), act], [sc.name, sc]] : [[T('bal.actual'), act]];
+    var panels = sc ? [[T('bal.actual'), act], [sc.name, sc, sc.note]] : [[T('bal.actual'), act]];
     var W = 1920, H = 1080, img = new Image();
     img.onload = function () {
       try {
@@ -6190,6 +6378,324 @@ var I18N_LOGIC = {
     img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(balSvg(panels, takt, W, H));
   }
 
+
+  // ---------- Help of this view ----------
+  function balHelp() {
+    var sec = function (h, n) {
+      var li = '';
+      for (var i = 1; i <= n; i++) li += '<li>' + esc(T(h + i)) + '</li>';
+      return '<h3>' + esc(T(h)) + '</h3><ul class="bal-help">' + li + '</ul>';
+    };
+    var keys = [['Ctrl+Z', 'help.k.undo'], ['Ctrl+Y', 'help.k.redo'], ['Esc', 'balh.kEsc'], ['?', 'help.k.help']];
+    var body = '<div class="help">' + sec('balh.read', 4) + sec('balh.scen', 4) + sec('balh.edit', 4) + sec('balh.kpi', 5) + sec('balh.out', 2) +
+      '<h3>' + esc(T('help.keys')) + '</h3><div class="help-keys">' + keys.map(function (k) {
+        return '<div class="krow"><span class="kcap">' + esc(k[0]) + '</span><span>' + esc(T(k[1])) + '</span></div>';
+      }).join('') + '</div></div>';
+    openPanel({ title: T('balh.title'), body: body, wide: true, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
+  }
+
+  // ---------- Printed report of the balancing (Save as PDF) ----------
+  function balReport() {
+    var s = BS(), sc = balScen(), act = s.actual || L.bal.actual(study), takt = L.taktOf(study.meta.takt), m = study.meta, dash = '\u2013';
+    var main = sc || act;
+    var kv = function (pairs) {
+      var out = '';
+      for (var i = 0; i < pairs.length; i += 2) {
+        out += '<tr>' + [pairs[i], pairs[i + 1]].map(function (p) {
+          return p ? '<th>' + esc(p[0]) + '</th><td>' + esc(p[1] == null || p[1] === '' ? dash : p[1]) + '</td>' : '<th></th><td></td>';
+        }).join('') + '</tr>';
+      }
+      return '<table class="rp-info"><tbody>' + out + '</tbody></table>';
+    };
+    var logo = document.querySelector('.tb-logo');
+    var html = '<header class="rp-head">' + (logo ? logo.outerHTML : '') + '<div><h1>' + esc(T('balr.title')) + (m.name ? ' \u00b7 ' + esc(m.name) : '') + '</h1>' +
+      (m.ref ? '<p>' + esc(m.ref) + '</p>' : '') + '</div></header>';
+    html += kv([[T('study.ref'), m.ref], [T('study.plant'), m.plant], [T('study.line'), m.line], [T('study.observer'), m.observer],
+      [T('study.date'), m.date], [T('study.takt'), takt ? fmtS(takt, 1) : ''], [T('balr.shown'), sc ? sc.name : T('bal.actual')], [T('bal.scenarios'), String(study.balance.scenarios.length)]]);
+    var panels = sc ? [[T('bal.actual'), act], [sc.name, sc]] : [[T('bal.actual'), act]];
+    html += '<div class="rp-yama">' + balSvg(panels, takt, 1920, 880, true) + '</div>';
+    if (sc && sc.note) html += '<p class="rp-note"><b>' + esc(T('bal.note')) + ' :</b> ' + esc(sc.note) + '</p>';
+    // detail of every column of the state shown
+    var row = function (b) { return '<tr><td>' + esc(b.code) + '</td><td>' + esc(b.name) + '</td><td>' + swatch(b.type) + esc(L.typeLabel(b.type)) + '</td><td class="num">' + esc(fmtS(b.dur, 1)) + '</td></tr>'; };
+    var head = '<thead><tr><th>' + esc(T('rep.code')) + '</th><th>' + esc(T('rep.step')) + '</th><th>' + esc(T('rep.type')) + '</th><th class="num">' + esc(T('rep.time')) + '</th></tr></thead>';
+    html += '<section class="rp-op"><h2>' + esc(T('balr.detail', { name: sc ? sc.name : T('bal.actual') })) + '</h2><table class="rp-tbl rp-det">' + head + '<tbody>' +
+      main.cols.map(function (c) {
+        var t = L.bal.totals(c), was = sc && c.src && s.actTotals && s.actTotals[c.src] != null ? s.actTotals[c.src] : null;
+        var info = [fmtS(t.total, 1) + ' s'];
+        if (takt) info.push((t.total > takt + 1e-9 ? '+' : '') + fmtS(Math.round((t.total - takt) * 10) / 10, 1) + ' s / takt', Math.round(t.total / takt * 100) + ' %');
+        if (was != null && Math.abs(was - t.total) > 0.05) info.push(T('bal.wasTotal', { v: fmtS(was, 1) }));
+        return '<tr class="rp-grp"><td colspan="4">' + esc(c.name) + (c.kind === 'machine' ? ' (' + esc(T('bal.machine')) + ')' : '') + ' \u00b7 ' + esc(info.join(' \u00b7 ')) + '</td></tr>' + c.blocks.map(row).join('');
+      }).join('') + '</tbody></table>';
+    if (sc && sc.pool.length) html += '<h3>' + esc(T('bal.pool')) + '</h3><table class="rp-tbl rp-det">' + head + '<tbody>' + sc.pool.map(row).join('') + '</tbody></table>';
+    // every scenario against the current state
+    var states = [[T('bal.actual'), act, !sc]].concat(study.balance.scenarios.map(function (x) { return [x.name, x, x === sc]; }));
+    html += '<h2>' + esc(T('balr.compare')) + '</h2><table class="rp-tbl rp-cmp"><thead><tr><th></th><th class="num">' + esc(T('bal.kOps')) + '</th><th class="num">' + esc(T('bal.kBott')) +
+      '</th><th class="num">' + esc(T('bal.kOutput')) + '</th><th class="num">' + esc(T('bal.kTheo')) + '</th><th class="num">' + esc(T('bal.kBalance')) + '</th><th>' + esc(T('bal.note')) + '</th></tr></thead><tbody>' +
+      states.map(function (x) {
+        var k = L.bal.kpis(x[1], takt);
+        return '<tr' + (x[2] ? ' class="is-shown"' : '') + '><td>' + esc(x[0]) + '</td><td class="num">' + k.nOps + '</td><td class="num">' + (k.bott ? esc(fmtS(k.bott.v, 1) + ' s') : dash) + '</td><td class="num">' +
+          (k.output ? esc(T('rep.perH', { n: fmtS(k.output, 1) })) : dash) + '</td><td class="num">' + (k.theo != null ? esc(fmtS(k.theo, 1) + ' \u2192 ' + k.theoN) : dash) + '</td><td class="num">' +
+          (k.balance != null ? k.balance + ' %' : dash) + '</td><td>' + esc(x[1].note || '') + '</td></tr>';
+      }).join('') + '</tbody></table></section>';
+    html += '<p class="rp-foot">' + esc(T('rep.made', { date: new Date().toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB') })) + '</p>';
+    var el = $('printReport');
+    if (!el) { el = document.createElement('div'); el.id = 'printReport'; document.body.appendChild(el); }
+    el.innerHTML = html;
+    document.body.classList.add('printing');
+    var done = function () { document.body.classList.remove('printing'); window.removeEventListener('afterprint', done); };
+    window.addEventListener('afterprint', done);
+    window.print();
+  }
+
+ // ---------- Example (fictional video and study, loaded on demand) ----------
+  function exKey() { return 'vts-study-before-example'; }
+  function exHasWork(st) { return st.timelines.some(function (t) { return t.steps.length || t.events.length; }); }
+  function exOpen() {
+    var keep = !study.example && exHasWork(study);
+    openPanel({ title: T('ex.title'), backdrop: true,
+      body: '<p><b>' + esc(T('ex.name')) + '</b></p><p>' + esc(T('ex.desc')) + '</p>' + (keep ? '<p class="note">' + esc(T('ex.keep')) + '</p>' : '') + '<p class="note">Simulation visuelle générée directement dans votre navigateur.</p>',
+      buttons: [
+        { label: T('act.cancel'), onClick: function () { cancelPanel(); } },
+        { label: T('ex.load'), kind: 'primary', onClick: function () { closePanel(); exLoad(); } }
+      ] });
+  }
+
+  // CORRECTION MÉTIER : A30 (Contrôle) est déplacé APRÈS M30 (Chargement), en temps masqué.
+  var EX_SCENARIO_JSON = {"move":"A30","after":"M30","wait":"M40","waitDur":0.5,"fr":{"name":"Contr\u00f4le par l\u2019op\u00e9rateur 1","note":"L\u2019op\u00e9rateur 1 contr\u00f4le la pi\u00e8ce en temps masqu\u00e9 pendant le cycle de la presse : son attente passe de 2,1 s \u00e0 0,5 s."},"en":{"name":"Check by operator 1","note":"Operator 1 checks the part while the press runs: the wait goes from 2.1 s to 0.5 s."}};
+
+  function exScenario(st) {
+    var txt = EX_SCENARIO_JSON[lang === 'fr' ? 'fr' : 'en'];
+    var sc = L.bal.scenario(L.bal.actual(st), txt.name, { waits: 'keep' });
+    var find = function (code) {
+      var f = null;
+      sc.cols.forEach(function (c) { c.blocks.forEach(function (b, i) { if (!f && b.code === code) f = { col: c, i: i, b: b }; }); });
+      return f;
+    };
+    var mv = find(EX_SCENARIO_JSON.move), af = find(EX_SCENARIO_JSON.after);
+    if (mv && af && mv.col !== af.col) L.bal.move(sc, mv.b.id, af.col.id, af.i + 1);
+    var w = find(EX_SCENARIO_JSON.wait);
+    if (w) { w.b.dur = EX_SCENARIO_JSON.waitDur; w.b.ok = true; }
+    sc.note = txt.note;
+    st.balance = { active: 'actual', scenarios: [sc] };
+  }
+
+  var realVideoEl = V.el;
+
+  function exLoad() {
+    if (!study.example && exHasWork(study)) {
+      try { localStorage.setItem(exKey(), JSON.stringify(study)); } catch (e) { toast(T('ex.noRoom')); return; }
+    }
+    
+    var src = EX_DATA[lang === 'fr' ? 'fr' : 'en'];
+    var st = L.sanitizeStudy(JSON.parse(JSON.stringify(src)));
+    st.example = true;
+    exScenario(st);
+    if (balActive()) balOpen(false);
+    study = st; logSel = null; resetHistory(); anCache = {}; restored = true;
+    
+    $('videoEmpty').hidden = true;
+    $('videoBox').style.aspectRatio = "16 / 9";
+    
+    var cvs = document.getElementById('avatarCanvas');
+    if (!cvs) {
+        cvs = document.createElement('canvas');
+        cvs.id = 'avatarCanvas';
+        cvs.style.width = '100%';
+        cvs.style.height = '100%';
+        cvs.style.position = 'absolute';
+        cvs.style.top = '0';
+        cvs.style.left = '0';
+        cvs.style.zIndex = '5';
+        $('videoBox').appendChild(cvs);
+    }
+    cvs.hidden = false;
+
+    V.el = {
+        currentTime: 0, duration: 104.067, paused: true, ended: false, playbackRate: 1,
+        play: function() { this.paused = false; requestLive(); return Promise.resolve(); },
+        pause: function() { this.paused = true; }
+    };
+    V.ready = true;
+    V.file = { name: "Simulation_Ligne_A.mp4", size: 0, duration: 104.067 };
+    study.video = V.file;
+
+    var lastTime = Date.now();
+    function drawAvatar() {
+        if (!study.example) return; 
+        
+        var nowTs = Date.now();
+        var dt = (nowTs - lastTime) / 1000;
+        lastTime = nowTs;
+        
+        if (!V.el.paused) {
+            V.el.currentTime += dt * settings.speed;
+            if (V.el.currentTime >= V.el.duration) {
+                V.el.currentTime = V.el.duration;
+                V.el.pause();
+            }
+        }
+
+        var w = cvs.width = cvs.clientWidth * 2;
+        var h = cvs.height = cvs.clientHeight * 2;
+        var ctx = cvs.getContext('2d');
+        var t = V.el.currentTime;
+        
+        // DÉCOR
+        ctx.fillStyle = "#E8EBEF"; ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = "#C6CBD0"; ctx.fillRect(0, h * 0.7, w, h * 0.3);
+        ctx.strokeStyle = "#A8B0B7"; ctx.lineWidth = 1;
+        for (var i = 1; i < 6; i++) {
+            ctx.beginPath(); ctx.moveTo(w * 0.2 * i, h * 0.7); ctx.lineTo(w * 0.2 * i - w * 0.1, h); ctx.stroke();
+        }
+
+        // PRESSE
+        ctx.fillStyle = "#959EA7"; ctx.fillRect(w * 0.05, h * 0.15, w * 0.22, h * 0.55);
+        ctx.fillStyle = "#1F2F54"; ctx.fillRect(w * 0.09, h * 0.28, w * 0.14, h * 0.2);
+        ctx.fillStyle = "#1BA758"; ctx.beginPath(); ctx.arc(w * 0.24, h * 0.22, w * 0.015, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#F6B600"; ctx.fillRect(w * 0.09, h * 0.55, w * 0.14, h * 0.04);
+        ctx.fillStyle = "#636E78"; ctx.fillRect(w * 0.11, h * 0.65, w * 0.1, h * 0.05);
+
+        // AFFICHAGE
+        ctx.fillStyle = "#FFFFFF"; ctx.fillRect(w * 0.7, h * 0.15, w * 0.25, h * 0.15);
+        ctx.fillStyle = "#1BA758"; ctx.fillRect(w * 0.72, h * 0.2, w * 0.04, h * 0.05); ctx.fillRect(w * 0.77, h * 0.2, w * 0.04, h * 0.05);
+        ctx.fillStyle = "#F6B600"; ctx.fillRect(w * 0.82, h * 0.2, w * 0.04, h * 0.05);
+        ctx.fillStyle = "#1BA758"; ctx.fillRect(w * 0.87, h * 0.2, w * 0.04, h * 0.05);
+
+        // CONVOYEUR
+        ctx.fillStyle = "#C69C6D"; 
+        ctx.fillRect(w * 0.68, h * 0.42, w * 0.06, h * 0.1); ctx.fillRect(w * 0.76, h * 0.42, w * 0.06, h * 0.1); ctx.fillRect(w * 0.84, h * 0.42, w * 0.06, h * 0.1);
+        ctx.fillStyle = "#7D8791"; ctx.fillRect(w * 0.66, h * 0.52, w * 0.26, h * 0.04);
+        ctx.fillStyle = "#4B5560";
+        for (var j = 0; j < 9; j++) { ctx.beginPath(); ctx.arc(w * 0.67 + j * w * 0.03, h * 0.56, w * 0.01, 0, Math.PI * 2); ctx.fill(); }
+
+        // TABLE
+        ctx.fillStyle = "#929CA5";
+        ctx.fillRect(w * 0.35, h * 0.45, w * 0.26, h * 0.03);
+        ctx.fillRect(w * 0.36, h * 0.48, w * 0.02, h * 0.22);
+        ctx.fillRect(w * 0.58, h * 0.48, w * 0.02, h * 0.22);
+
+        // ANIMATION OPÉRATEUR 1
+        var avatarX = w * 0.44;
+        var evs = study.timelines[0].events;
+        var currentEv = null, nextEv = null;
+        for (var k = 0; k < evs.length; k++) { if (evs[k].t <= t) { currentEv = evs[k]; nextEv = evs[k+1] || null; } else break; }
+        if (currentEv && currentEv.kind === 'step') {
+            var step = study.timelines[0].steps.filter(function(s) { return s.id === currentEv.stepId; })[0];
+            if (step) {
+                var code = step.code, posTable = w * 0.44, posPress = w * 0.20;
+                if (code === "M10") avatarX = posTable;
+                else if (code === "M30" || code === "M40" || code === "M50") avatarX = posPress;
+                else if (code === "M20" && nextEv) {
+                    var progress = (t - currentEv.t) / (nextEv.t - currentEv.t);
+                    avatarX = posTable - (posTable - posPress) * progress;
+                }
+                else if (code === "M60" && nextEv) {
+                    var progress = (t - currentEv.t) / (nextEv.t - currentEv.t);
+                    avatarX = posPress + (posTable - posPress) * progress;
+                }
+            }
+        }
+
+        // ANIMATION OPÉRATEUR 2
+        var avatar2X = w * 0.52;
+        var evs2 = study.timelines[1].events;
+        var cur2 = null, next2 = null;
+        for (var m = 0; m < evs2.length; m++) { if (evs2[m].t <= t) { cur2 = evs2[m]; next2 = evs2[m+1] || null; } else break; }
+        if (cur2 && cur2.kind === 'step') {
+            var step2 = study.timelines[1].steps.filter(function(s) { return s.id === cur2.stepId; })[0];
+            if (step2) {
+                var code2 = step2.code, posTable2 = w * 0.52, posConv = w * 0.75;
+                if (code2 === "A10" || code2 === "A20" || code2 === "A30") avatar2X = posTable2;
+                else if (code2 === "A50") avatar2X = posConv;
+                else if (code2 === "A40" && next2) {
+                    var progress2 = (t - cur2.t) / (next2.t - cur2.t);
+                    avatar2X = posTable2 + (posConv - posTable2) * progress2;
+                }
+                else if (code2 === "A60" && next2) {
+                    var progress2 = (t - cur2.t) / (next2.t - cur2.t);
+                    avatar2X = posConv - (posConv - posTable2) * progress2;
+                }
+            }
+        }
+
+        // DESSIN AVATAR 1 (Jaune)
+        ctx.fillStyle = "#303945"; 
+        ctx.fillRect(avatarX - w * 0.025, h * 0.45, w * 0.02, h * 0.24); ctx.fillRect(avatarX + w * 0.005, h * 0.45, w * 0.02, h * 0.24);
+        ctx.fillStyle = "#24376C";
+        ctx.beginPath(); 
+        if (ctx.roundRect) ctx.roundRect(avatarX - w * 0.05, h * 0.26, w * 0.1, h * 0.19, 5); else ctx.rect(avatarX - w * 0.05, h * 0.26, w * 0.1, h * 0.19);
+        ctx.fill();
+        ctx.fillStyle = "#F6B600";
+        ctx.fillRect(avatarX - w * 0.05, h * 0.32, w * 0.1, h * 0.03); ctx.fillRect(avatarX - w * 0.05, h * 0.38, w * 0.1, h * 0.03);
+        ctx.fillStyle = "#E4B897";
+        ctx.beginPath(); ctx.arc(avatarX, h * 0.22, w * 0.03, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#1F2F54";
+        ctx.beginPath(); ctx.arc(avatarX, h * 0.21, w * 0.031, Math.PI, 0); ctx.fill();
+
+        // DESSIN AVATAR 2 (Rouge)
+        ctx.fillStyle = "#303945"; 
+        ctx.fillRect(avatar2X - w * 0.025, h * 0.45, w * 0.02, h * 0.24); ctx.fillRect(avatar2X + w * 0.005, h * 0.45, w * 0.02, h * 0.24);
+        ctx.fillStyle = "#24376C";
+        ctx.beginPath(); 
+        if (ctx.roundRect) ctx.roundRect(avatar2X - w * 0.05, h * 0.26, w * 0.1, h * 0.19, 5); else ctx.rect(avatar2X - w * 0.05, h * 0.26, w * 0.1, h * 0.19);
+        ctx.fill();
+        ctx.fillStyle = "#D64045"; // Couleur distinctive pour Op2
+        ctx.fillRect(avatar2X - w * 0.05, h * 0.32, w * 0.1, h * 0.03); ctx.fillRect(avatar2X - w * 0.05, h * 0.38, w * 0.1, h * 0.03);
+        ctx.fillStyle = "#E4B897";
+        ctx.beginPath(); ctx.arc(avatar2X, h * 0.22, w * 0.03, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#1F2F54";
+        ctx.beginPath(); ctx.arc(avatar2X, h * 0.21, w * 0.031, Math.PI, 0); ctx.fill();
+
+        // BADGE
+        ctx.fillStyle = "#202530"; ctx.fillRect(w * 0.02, h * 0.03, w * 0.15, h * 0.05);
+        ctx.fillStyle = "#FFFFFF"; ctx.font = "bold " + Math.round(w * 0.015) + "px Arial"; ctx.fillText("CAM 1 Station A", w * 0.03, h * 0.06);
+
+        requestAnimationFrame(drawAvatar);
+    }
+    
+    requestAnimationFrame(drawAvatar);
+    
+    saveLocalNow(); renderAll(); showExpected();
+    toast(T('ex.loaded'));
+  }
+
+  function exQuit() {
+    var raw = null, back = null;
+    try { raw = localStorage.getItem(exKey()); } catch (e) { /* ignore */ }
+    if (raw) { try { back = L.sanitizeStudy(JSON.parse(raw)); } catch (e) { back = null; } }
+    if (balActive()) balOpen(false);
+    
+    var cvs = document.getElementById('avatarCanvas');
+    if (cvs) cvs.hidden = true;
+    V.el = realVideoEl; 
+    unloadVideo();
+
+    study = back || L.newStudy(T('tl.operatorN', { n: 1 }));
+    try { localStorage.removeItem(exKey()); } catch (e) { /* ignore */ }
+    logSel = null; resetHistory(); anCache = {}; restored = false;
+    saveLocalNow(); renderAll(); showExpected();
+    toast(T(back ? 'ex.back' : 'ex.left'));
+  }
+  
+  function exForget() {
+    confirmPanel(T('ex.forgetTitle'), T('ex.forgetText'), T('ex.forget'), function () {
+      try { localStorage.removeItem(exKey()); } catch (e) { /* ignore */ }
+      exBar();
+    });
+  }
+  function exBar() {
+    var bar = $('exBar');
+    if (!bar) return;
+    var stash = false;
+    try { stash = !!localStorage.getItem(exKey()); } catch (e) { /* ignore */ }
+    var on = !!(study && study.example);
+    if (!on && !stash) { bar.hidden = true; bar.innerHTML = ''; return; }
+    bar.hidden = false;
+    bar.innerHTML = on
+      ? '<p>' + esc(T('ex.bar')) + '</p><button type="button" class="btn small" data-ex="quit">' + esc(T(stash ? 'ex.quitBack' : 'ex.quit')) + '</button>'
+      : '<p>' + esc(T('ex.barStash')) + '</p><button type="button" class="btn small" data-ex="quit">' + esc(T('ex.restore')) + '</button><button type="button" class="btn small danger" data-ex="forget">' + esc(T('ex.forget')) + '</button>';
+  }
+
   // ---------- Wiring (once, after the start code) ----------
   function balWire() {
     $('btnBal').addEventListener('click', function () { balOpen(!balActive()); });
@@ -6206,11 +6712,31 @@ var I18N_LOGIC = {
     v.addEventListener('scroll', balTipHide, true);
     var rt = 0;
     window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (balActive() && !BS().drag) balRender(); }, 150); });
+    $('btnExample').addEventListener('click', exOpen);
+    $('exBar').addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-ex]') : null;
+      if (!b) return;
+      if (b.getAttribute('data-ex') === 'quit') exQuit(); else exForget();
+    });
+    
+    // CORRECTION ERGONOMIE : Ajout du bouton pour vider la vidéo et retrouver l'exemple
+    var t2right = document.querySelector('.t2-right');
+    if (t2right) {
+        var btnUnload = document.createElement('button');
+        btnUnload.type = 'button';
+        btnUnload.className = 'btn';
+        btnUnload.textContent = lang === 'fr' ? 'Fermer la vidéo' : 'Close video';
+        btnUnload.onclick = function() { unloadVideo(); };
+        t2right.insertBefore(btnUnload, document.getElementById('btnChangeVideo'));
+    }
+
+    exBar();
     if (location.hash === '#equilibrage') balOpen(true, true);
   }
   balWire();
   if (window.__VTS_TEST__ && window.__vts) {
-    window.__vts.bal = { open: balOpen, state: function () { return BS(); }, scen: balScen, render: balRender, svg: balSvg, png: balPng, undo: balUndo, redo: balRedo };
+    window.__vts.bal = { open: balOpen, state: function () { return BS(); }, scen: balScen, render: balRender, svg: balSvg, png: balPng, pdf: balReport, undo: balUndo, redo: balRedo, help: balHelp };
+    window.__vts.ex = { open: exOpen, load: exLoad, quit: exQuit, bar: exBar, data: EX_DATA, key: exKey };
   }
 })();
 /* APP-END */
