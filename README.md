@@ -18,9 +18,11 @@ It is made for methods, industrial and continuous improvement engineers who time
 - A printed report (save it as PDF)
 - Your Excel standard sheets filled in: Time Measurement Sheet and TCT (Standardized Work), one sheet per operator, formulas and macros kept. It works with the template layouts it was built for.
 - CSV exports, a copy for Excel, and a study file you can save and open again
-- Line balancing (Yamazumi): the steps of each operator stacked against the takt, scenarios where you move steps from one operator to another, with the gains shown, and an image for PowerPoint
+- Line balancing (Yamazumi): the steps of each operator stacked against the takt, scenarios where you move steps from one operator to another, with the gains shown, kaizen actions and a PDF report
 
 You can follow several operators and machines on the same video. The tool is in English and French and works on a computer or a phone.
+
+Not sure where to start? Press **Try an example**: a fictional line with two operators and a press, already timed.
 
 ## How it works
 
@@ -53,7 +55,7 @@ You can follow several operators and machines on the same video. The tool is in 
 
 ## Privacy
 
-No account and nothing to install. The video and your data never leave your computer: everything runs in the browser and nothing is uploaded. Your study is kept in this browser; save a study file to keep it or send it.
+No account and nothing to install. The video and your data never leave your computer: everything runs in the browser. Your study is kept in this browser; save a study file to keep it or send it. Visits to the site are counted with GoatCounter, without cookies and without keeping IP addresses.
 
 You can also download an offline copy of the tool (one HTML file) that works without internet.
 
