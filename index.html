@@ -842,6 +842,18 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
 .ln-cycle { border-top: 3px solid var(--accent); }
 .ln-was { border-top: 2px dotted var(--text); opacity: .55; }
 .bal-b.is-idle { background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c-mach) 24%, transparent) 0 4px, transparent 4px 9px), var(--band-bg); color: var(--muted); border: 1px dashed var(--border-strong); border-bottom: 0; }
+
+/* ---------- 3.4: contact and feedback ---------- */
+.contact .ct-intro { margin: 0 0 12px; }
+.ct-choices { display: grid; gap: 8px; }
+.ct-choice { display: block; padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); text-decoration: none; background: var(--surface); }
+.ct-choice:hover, .ct-choice:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+.ct-choice b { display: block; color: var(--accent); }
+.ct-choice span { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
+.ct-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+.contact h3 { margin: 16px 0 6px; font-size: 14px; }
+.ct-direct { margin: 0; line-height: 2.1; }
+.ct-copy { margin-left: 10px; padding: 2px 10px; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -866,6 +878,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
         <button type="button" class="tb-item" id="btnTheme">Theme: auto</button>
         <button type="button" class="tb-item" id="btnNewStudy" data-i18n="new.title">New study</button>
         <button type="button" class="tb-item" id="btnOffline" data-i18n="hdr.offline" data-i18n-title="hdr.offline.title">Offline copy</button>
+        <button type="button" class="tb-item" id="btnContact" data-i18n="contact.menu">Contact and feedback</button>
       </div>
     </div>
   </div>
@@ -962,8 +975,9 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
   <span><b>Video Time Study</b></span>
   <span data-i18n="ftr.rights">© 2026 Ilyas Baqloul. All rights reserved. Free to use.</span>
   <a href="https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="ftr.terms">Terms of use</a>
+  <button type="button" class="ftr-link" id="btnContactF" data-i18n="contact.menu">Contact and feedback</button>
   <button type="button" class="ftr-link" id="btnLegal" data-i18n="ftr.legal">Legal notice</button>
-  <span>Version 3.3.1</span>
+  <span>Version 3.4</span>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
@@ -3094,6 +3108,26 @@ var I18N = {
     've.what': 'Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.',
     'study.takt': 'Customer takt time (s)',
     'study.taktPh': 'e.g. 60',
+    'contact.menu': 'Contact and feedback',
+    'contact.title': 'Contact and feedback',
+    'contact.intro': 'A comment, an idea or a problem? Pick one: your mail app opens with a message ready to fill in.',
+    'contact.review': 'Give your opinion',
+    'contact.reviewHint': 'What you like, what bothers you',
+    'contact.idea': 'Suggest an improvement',
+    'contact.ideaHint': 'What you would like the tool to do',
+    'contact.bug': 'Report a problem',
+    'contact.bugHint': 'Something that does not work as expected',
+    'contact.note': 'Only what you write is sent, plus the version and your browser for a problem. Nothing from your study or your video.',
+    'contact.direct': 'Or write directly',
+    'contact.copy': 'Copy',
+    'contact.copied': 'Address copied',
+    'contact.linkedin': 'Ilyas Baqloul on LinkedIn',
+    'contact.reviewSubj': 'Video Time Study: my opinion',
+    'contact.ideaSubj': 'Video Time Study: improvement idea',
+    'contact.bugSubj': 'Video Time Study: problem',
+    'contact.reviewBody': 'Hello Ilyas,\n\nWhat I think of the tool:\n\n\nWhat I use it for (job, sector), if you like:\n',
+    'contact.ideaBody': 'Hello Ilyas,\n\nWhat I would like to be able to do:\n\n\nIn which situation it would help:\n',
+    'contact.bugBody': 'Hello Ilyas,\n\nWhat I was doing:\n\n\nWhat happened:\n\n\nWhat I expected:\n',
     'bal.cycleLine': 'Line cycle {v} s ({name})',
     'bal.cycleShort': 'Cycle {v} s',
     'bal.waitsFor': 'waits {v} s per cycle',
@@ -3276,11 +3310,11 @@ var I18N = {
     'ftr.legal': 'Legal notice',
     'legal.title': 'Legal notice',
     'legal.pub': 'Publisher',
-    'legal.pubText': 'Ilyas Baqloul, as a private individual (non-professional). Publication director: Ilyas Baqloul. Contact: github.com/Ilyas-Baqloul',
+    'legal.pubText': 'Ilyas Baqloul, as a private individual (non-professional). Publication director: Ilyas Baqloul. Contact: contact@vts-tool.com.',
     'legal.host': 'Host',
     'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Phone: +1 877 448 4820.',
     'legal.data': 'Personal data',
-    'legal.dataText': 'Visits are counted with GoatCounter: page viewed, referring site, browser, screen size and country. No cookies, and IP addresses are not stored. The video and your studies are never uploaded: they stay on your device. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service.',
+    'legal.dataText': 'Visits are counted with GoatCounter: page viewed, referring site, browser, screen size and country. No cookies, and IP addresses are not stored. The video and your studies are never uploaded: they stay on your device. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service. If you write by email, your message and your address are only used to answer you and improve the tool. They are never passed on to anyone.',
     'legal.ip': 'Intellectual property',
     'legal.ipText': '\u00a9 2026 Ilyas Baqloul. All rights reserved. The tool is free to use, including at work.',
     'load.title': 'Operator load',
@@ -3518,6 +3552,26 @@ var I18N = {
     've.what': 'Appuyez sur une touche au d\u00e9but de chaque \u00e9tape. Le site calcule les temps de cycle et T1, et remplit vos fiches standard. Gratuit.',
     'study.takt': 'Takt time client (s)',
     'study.taktPh': 'ex. 60',
+    'contact.menu': 'Contact et avis',
+    'contact.title': 'Contact et avis',
+    'contact.intro': 'Un avis, une id\u00e9e ou un probl\u00e8me ? Choisissez : votre messagerie s\u2019ouvre avec un message pr\u00eat \u00e0 compl\u00e9ter.',
+    'contact.review': 'Donner un avis',
+    'contact.reviewHint': 'Ce qui vous pla\u00eet, ce qui vous g\u00eane',
+    'contact.idea': 'Proposer une am\u00e9lioration',
+    'contact.ideaHint': 'Ce que vous aimeriez que l\u2019outil fasse',
+    'contact.bug': 'Signaler un probl\u00e8me',
+    'contact.bugHint': 'Quelque chose qui ne marche pas comme pr\u00e9vu',
+    'contact.note': 'Seul ce que vous \u00e9crivez est envoy\u00e9, avec la version et le navigateur pour un probl\u00e8me. Rien de votre \u00e9tude ni de votre vid\u00e9o.',
+    'contact.direct': 'Ou \u00e9crivez directement',
+    'contact.copy': 'Copier',
+    'contact.copied': 'Adresse copi\u00e9e',
+    'contact.linkedin': 'Ilyas Baqloul sur LinkedIn',
+    'contact.reviewSubj': 'Video Time Study : mon avis',
+    'contact.ideaSubj': 'Video Time Study : id\u00e9e d\u2019am\u00e9lioration',
+    'contact.bugSubj': 'Video Time Study : probl\u00e8me',
+    'contact.reviewBody': 'Bonjour Ilyas,\n\nCe que je pense de l\u2019outil :\n\n\n\u00c0 quoi je l\u2019utilise (m\u00e9tier, secteur), si vous voulez :\n',
+    'contact.ideaBody': 'Bonjour Ilyas,\n\nCe que j\u2019aimerais pouvoir faire :\n\n\nDans quel cas \u00e7a m\u2019aiderait :\n',
+    'contact.bugBody': 'Bonjour Ilyas,\n\nCe que je faisais :\n\n\nCe qui s\u2019est pass\u00e9 :\n\n\nCe que j\u2019attendais :\n',
     'bal.cycleLine': 'Cycle de la ligne {v} s ({name})',
     'bal.cycleShort': 'Cycle {v} s',
     'bal.waitsFor': 'attend {v} s par cycle',
@@ -3700,11 +3754,11 @@ var I18N = {
     'ftr.legal': 'Mentions l\u00e9gales',
     'legal.title': 'Mentions l\u00e9gales',
     'legal.pub': '\u00c9diteur',
-    'legal.pubText': 'Ilyas Baqloul, \u00e0 titre personnel et non professionnel. Directeur de la publication : Ilyas Baqloul. Contact : github.com/Ilyas-Baqloul',
+    'legal.pubText': 'Ilyas Baqloul, \u00e0 titre personnel et non professionnel. Directeur de la publication : Ilyas Baqloul. Contact : contact@vts-tool.com.',
     'legal.host': 'H\u00e9bergeur',
     'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, \u00c9tats-Unis. T\u00e9l\u00e9phone : +1 877 448 4820.',
     'legal.data': 'Donn\u00e9es personnelles',
-    'legal.dataText': 'Les visites sont compt\u00e9es avec GoatCounter : page vue, site d\u2019origine, navigateur, taille d\u2019\u00e9cran et pays. Pas de cookie, et l\u2019adresse IP n\u2019est pas conserv\u00e9e. La vid\u00e9o et vos \u00e9tudes ne sont jamais envoy\u00e9es : elles restent sur votre appareil. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez ; vous pouvez les effacer dans les r\u00e9glages du navigateur. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service.',
+    'legal.dataText': 'Les visites sont compt\u00e9es avec GoatCounter : page vue, site d\u2019origine, navigateur, taille d\u2019\u00e9cran et pays. Pas de cookie, et l\u2019adresse IP n\u2019est pas conserv\u00e9e. La vid\u00e9o et vos \u00e9tudes ne sont jamais envoy\u00e9es : elles restent sur votre appareil. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez ; vous pouvez les effacer dans les r\u00e9glages du navigateur. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service. Si vous \u00e9crivez par mail, votre message et votre adresse servent seulement \u00e0 vous r\u00e9pondre et \u00e0 am\u00e9liorer l\u2019outil. Ils ne sont jamais transmis \u00e0 personne.',
     'legal.ip': 'Propri\u00e9t\u00e9 intellectuelle',
     'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Tous droits r\u00e9serv\u00e9s. L\u2019outil est gratuit, y compris au travail.',
     'load.title': 'Charge des op\u00e9rateurs',
@@ -5593,6 +5647,48 @@ var I18N_LOGIC = {
   }
 
   var LICENSE_URL = 'https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE';
+  // ---------- Contact and feedback: the visitor's mail app opens with a message ready to fill in ----------
+  var CONTACT = 'contact@vts-tool.com', LINKEDIN = 'https://www.linkedin.com/in/ilyas-baqloul-b7b425368/';
+  function appVersion() { var f = document.querySelector('.footer'), m = /Version\s+([\d.]+)/.exec(f ? f.textContent : ''); return m ? m[1] : ''; }
+  function envInfo() {
+    var ua = navigator.userAgent || '', b = 'Other', o = 'Other', m;
+    if ((m = /Edg\/(\d+)/.exec(ua))) b = 'Edge ' + m[1];
+    else if ((m = /(?:OPR|Opera)\/(\d+)/.exec(ua))) b = 'Opera ' + m[1];
+    else if ((m = /Firefox\/(\d+)/.exec(ua))) b = 'Firefox ' + m[1];
+    else if ((m = /(?:Chrome|CriOS)\/(\d+)/.exec(ua))) b = 'Chrome ' + m[1];
+    else if ((m = /Version\/(\d+)[\d.]* .*Safari/.exec(ua))) b = 'Safari ' + m[1];
+    if (/iPhone|iPad|iPod/.test(ua)) o = 'iOS'; else if (/Android/.test(ua)) o = 'Android'; else if (/Windows/.test(ua)) o = 'Windows';
+    else if (/Mac OS X|Macintosh/.test(ua)) o = 'macOS'; else if (/Linux/.test(ua)) o = 'Linux';
+    return 'Video Time Study ' + appVersion() + ' \u00b7 ' + b + ' \u00b7 ' + o + ' \u00b7 ' + screen.width + ' x ' + screen.height + ' \u00b7 ' + (document.documentElement.lang || '').toUpperCase();
+  }
+  // only what the visitor writes is sent, plus version and browser for a problem: nothing from the study or the video
+  function mailHref(kind) {
+    var body = T('contact.' + kind + 'Body') + '\n\n---\n' + (kind === 'bug' ? envInfo() : 'Video Time Study ' + appVersion());
+    return 'mailto:' + CONTACT + '?subject=' + encodeURIComponent(T('contact.' + kind + 'Subj')) + '&body=' + encodeURIComponent(body.replace(/\r?\n/g, '\r\n'));
+  }
+  function openContact() {
+    var row = function (k) {
+      return '<a class="ct-choice" data-ct="' + k + '" href="' + esc(mailHref(k)) + '"><b>' + esc(T('contact.' + k)) + '</b><span>' + esc(T('contact.' + k + 'Hint')) + '</span></a>';
+    };
+    var body = '<div class="contact"><p class="ct-intro">' + esc(T('contact.intro')) + '</p>' +
+      '<div class="ct-choices">' + ['review', 'idea', 'bug'].map(row).join('') + '</div>' +
+      '<p class="ct-note">' + esc(T('contact.note')) + '</p>' +
+      '<h3>' + esc(T('contact.direct')) + '</h3>' +
+      '<p class="ct-direct"><a class="ct-mail" href="mailto:' + CONTACT + '">' + esc(CONTACT) + '</a><button type="button" class="btn ct-copy" data-ct="copy">' + esc(T('contact.copy')) + '</button><br>' +
+      '<a class="ct-li" href="' + LINKEDIN + '" target="_blank" rel="noopener">' + esc(T('contact.linkedin')) + '</a></p></div>';
+    openPanel({ title: T('contact.title'), body: body, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
+    var cp = P.el && P.el.querySelector('[data-ct="copy"]');
+    if (cp) cp.addEventListener('click', function () {
+      var done = function () { toast(T('contact.copied')); };
+      var old = function () {
+        var i = document.createElement('input'); i.value = CONTACT; document.body.appendChild(i); i.select();
+        try { if (document.execCommand('copy')) done(); } catch (e) { /* ignore */ }
+        i.remove();
+      };
+      try { navigator.clipboard.writeText(CONTACT).then(done, old); } catch (e) { old(); }
+    });
+  }
+
   function openLegal() {
     var body = '<div class="help legal">' + ['pub', 'host', 'data', 'ip'].map(function (k, i) {
       return '<h3' + (i ? '' : ' class="first"') + '>' + esc(T('legal.' + k)) + '</h3><p>' + esc(T('legal.' + k + 'Text')) +
@@ -5661,6 +5757,8 @@ var I18N_LOGIC = {
     });
     $('btnOffline').addEventListener('click', function () { saveFile('video-time-study.html', offlineHtml(), 'text/html'); });
     $('btnLegal').addEventListener('click', openLegal);
+    $('btnContact').addEventListener('click', openContact);
+    $('btnContactF').addEventListener('click', openContact);
     $('btnPickVideo').addEventListener('click', pickVideo);
     $('btnCloseVideo').addEventListener('click', closeVideo);
     $('fileVideo').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) openVideo(f); });
