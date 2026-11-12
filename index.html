@@ -854,6 +854,68 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
 .contact h3 { margin: 16px 0 6px; font-size: 14px; }
 .ct-direct { margin: 0; line-height: 2.1; }
 .ct-copy { margin-left: 10px; padding: 2px 10px; font-size: 12px; }
+
+/* ---------- 3.5: what's new, parts per cycle, periodic tasks ---------- */
+.news-item { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.news-item:last-child { border-bottom: 0; }
+.news-item b { color: var(--accent); }
+.news-item p { margin: 2px 0 0; }
+.field .hint { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+#tlPpc { width: 90px; }
+.pf-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 4px 0; }
+.pf-row .pf-name { min-width: 150px; font-weight: 600; }
+.pf-row input { width: 80px; }
+.bal-badge.ppc { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.exp-grp .note { margin: 0 0 6px; }
+
+/* ---------- 3.6: layout and walking paths ---------- */
+#vts-app.ly-on #layout { display: none; }
+.tb-ly[aria-pressed="true"] { background: var(--accent); color: #fff; }
+@media (max-width: 560px) { #btnLy span { display: none; } }
+.ly-view { padding: 12px 16px 24px; }
+.ly-top { display: flex; align-items: center; gap: 12px; }
+.ly-top h2 { margin: 0; font-size: 20px; color: var(--accent); }
+.ly-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 4px; }
+.ly-bar .btn.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ly-sep { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
+.ly-hint { margin: 4px 0 8px; font-size: 13px; color: var(--muted); }
+.ly-main { display: flex; gap: 14px; align-items: flex-start; }
+.ly-wrap { flex: 1; min-width: 0; overflow: auto; max-height: calc(100vh - 210px); border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.ly-wrap svg { display: block; touch-action: none; user-select: none; }
+.ly-side { width: 290px; flex: none; }
+.ly-side h3 { margin: 4px 0 8px; font-size: 14px; }
+.ly-2 { display: flex; gap: 8px; }
+.ly-2 .field { flex: 1; min-width: 0; }
+.ly-grid { stroke: var(--border); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.ly-grid.m5 { stroke: var(--border-strong); }
+.ly-box { fill: color-mix(in srgb, var(--accent) 10%, var(--surface)); stroke: var(--accent); stroke-width: 2px; vector-effect: non-scaling-stroke; cursor: move; }
+.ly-it.sel .ly-box { fill: color-mix(in srgb, var(--accent) 24%, var(--surface)); stroke-width: 3px; }
+.ly-h { fill: var(--accent); cursor: nwse-resize; }
+.ly-t { font-size: 0.32px; font-weight: 600; fill: var(--text); pointer-events: none; }
+.ly-tl { font-size: 0.45px; fill: var(--danger); }
+.ly-path { stroke-width: 0.07; fill: none; stroke-linecap: round; pointer-events: none; }
+.ly-arrow { pointer-events: none; }
+.ly-bgmiss { fill: none; stroke: var(--danger); stroke-width: 0.05; stroke-dasharray: 0.3 0.2; }
+.ly-cal { fill: var(--danger); }
+.ly-m { display: grid; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.ly-m b { display: flex; align-items: center; gap: 6px; }
+.ly-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.ly-d.good { color: #12803C; font-weight: 700; }
+.ly-d.bad { color: var(--danger); font-weight: 700; }
+@media (max-width: 800px) { .ly-main { flex-direction: column; } .ly-side { width: 100%; } }
+
+.ly-side .field { display: block; margin: 0 0 8px; padding: 0; border: 0; background: none; }
+.ly-side .field label { display: block; margin: 0 0 3px; padding: 0; background: none; border: 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+.ly-side .field input { display: block; width: 100%; box-sizing: border-box; }
+.ly-side .hint { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+.ly-op { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+.ly-op select { width: auto; max-width: 180px; }
+.ly-dot.c0 { background: #0070C0; }
+.ly-dot.c1 { background: #C00000; }
+.ly-dot.c2 { background: #00B050; }
+.ly-dot.c3 { background: #7030A0; }
+.ly-dot.c4 { background: #ED7D31; }
+.ly-dot.c5 { background: #B8860B; }
 </style>
 </head>
 <body>
@@ -867,6 +929,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
   <div class="tb-study"><input type="text" id="hdrName" class="tb-name" maxlength="120" autocomplete="off" spellcheck="false" aria-label="Study name"></div>
   <div class="tb-actions">
     <button type="button" class="tb-btn tb-bal" id="btnBal" aria-pressed="false"><svg class="tb-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 15V9h3.5v6zM6.25 15V2h3.5v13zM11.5 15V6H15v9z"/></svg><span data-i18n="hdr.balance">Line balancing</span></button>
+    <button type="button" class="tb-btn tb-ly" id="btnLy" aria-pressed="false"><svg class="tb-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1h6v5H1zM9 1h6v8H9zM1 8h6v7H1zM9 11h6v4H9z"/></svg><span data-i18n="ly.btn">Layout</span></button>
     <button type="button" class="tb-btn" id="btnHelp" data-i18n="hdr.help">Help</button>
     <div class="tb-menu">
       <button type="button" class="tb-btn tb-menu-btn" id="btnMenu" aria-haspopup="true" aria-expanded="false" data-i18n-aria="hdr.menu" data-i18n-title="hdr.menu"><svg class="tb-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v2H1zM1 7h14v2H1zM1 11h14v2H1z"/></svg></button>
@@ -879,6 +942,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
         <button type="button" class="tb-item" id="btnNewStudy" data-i18n="new.title">New study</button>
         <button type="button" class="tb-item" id="btnOffline" data-i18n="hdr.offline" data-i18n-title="hdr.offline.title">Offline copy</button>
         <button type="button" class="tb-item" id="btnContact" data-i18n="contact.menu">Contact and feedback</button>
+        <button type="button" class="tb-item" id="btnNewsM" data-i18n="news.menu">What’s new</button>
       </div>
     </div>
   </div>
@@ -969,6 +1033,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
   </section>
 </main>
 <section class="bal-view" id="balView" aria-labelledby="balTitle" hidden></section>
+<section class="ly-view" id="lyView" aria-labelledby="lyTitle" hidden></section>
 <div class="bal-tip" id="balTip" role="tooltip" hidden></div>
 
 <footer class="footer">
@@ -977,7 +1042,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
   <a href="https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="ftr.terms">Terms of use</a>
   <button type="button" class="ftr-link" id="btnContactF" data-i18n="contact.menu">Contact and feedback</button>
   <button type="button" class="ftr-link" id="btnLegal" data-i18n="ftr.legal">Legal notice</button>
-  <span>Version 3.4</span>
+  <button type="button" class="ftr-link" id="btnNews" data-i18n-title="news.title">Version 3.6</button>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
@@ -986,6 +1051,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
 <input type="file" id="fileStudy" accept=".json,application/json" hidden>
 <input type="file" id="fileMct" accept=".xlsx,.xlsm" hidden>
 <input type="file" id="fileTct" accept=".xlsm,.xlsx" hidden>
+<input type="file" id="filePlan" accept="image/*" hidden>
 </div>
 <script id="vts-script">
 /* Video Time Study. Copyright (c) 2026 Ilyas Baqloul. All rights reserved. Free to use, including at work. The code may not be reused, modified, put online elsewhere or sold without written permission. Terms: https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE */
@@ -1651,7 +1717,8 @@ var L = (function () {
         if (!byName[key]) { byName[key] = { name: nm, sum: 0, n: 0 }; per.push(byName[key]); }
         byName[key].sum += R(ev[x + 1].t) - R(e.t); byName[key].n++;
       });
-      per = per.map(function (p) { return { name: p.name, time: r1(p.sum / p.n), count: p.n }; });
+      var fq = tl0.perFreq || tl.perFreq || {};
+      per = per.map(function (p) { var f = Math.round(+fq[p.name.trim().toLowerCase()]), o = { name: p.name, time: r1(p.sum / p.n), count: p.n }; if (f >= 1) o.freq = f; return o; });
       // Comments
       var notes = [];
       sel.forEach(function (c) {
@@ -1719,7 +1786,7 @@ var L = (function () {
     var s = {
       app: 'video-time-study', version: 1,
       meta: { name: str(m.name), ref: str(m.ref), plant: str(m.plant), line: str(m.line), observer: str(m.observer), date: str(m.date), takt: taktOf(m.takt) },
-      video: null, timelines: [], activeId: null, balance: sanitizeBalance(o.balance), example: !!o.example
+      video: null, timelines: [], activeId: null, balance: sanitizeBalance(o.balance), example: !!o.example, layout: sanitizeLayout(o.layout)
     };
     if (o.video && typeof o.video === 'object' && o.video.name) {
       s.video = { name: str(o.video.name), size: num(o.video.size), duration: num(o.video.duration), lastModified: num(o.video.lastModified) };
@@ -1727,6 +1794,11 @@ var L = (function () {
     o.timelines.forEach(function (t) {
       if (!t || typeof t !== 'object') return;
       var tl = { id: fresh(t.id), name: str(t.name) || 'Timeline', kind: t.kind === 'machine' ? 'machine' : 'operator', steps: [], startStepId: null, events: [] };
+      var pp = Math.round(+t.ppc); if (pp > 1 && pp <= 99) tl.ppc = pp;
+      if (t.perFreq && typeof t.perFreq === 'object') {
+        var pf = {}; Object.keys(t.perFreq).forEach(function (k) { var f = Math.round(+t.perFreq[k]); if (f >= 1) pf[str(k).trim().toLowerCase()] = f; });
+        if (Object.keys(pf).length) tl.perFreq = pf;
+      }
       var map = {};
       (Array.isArray(t.steps) ? t.steps : []).forEach(function (st) {
         if (!st || typeof st !== 'object') return;
@@ -1769,10 +1841,11 @@ var L = (function () {
     loadData(study).ops.forEach(function (o) { ops[o.id] = o; });
     return { cols: study.timelines.map(function (tl) {
       // names as typed in the Steps tab (the sheets write them in capitals)
-      var blocks = [], typed = {};
+      // parts per cycle (tool with several cavities): the balancing works with the time per part
+      var blocks = [], typed = {}, ppc = Math.max(1, Math.round(+tl.ppc) || 1);
       tl.steps.forEach(function (st) { if (st.code && !(st.code in typed)) typed[st.code] = st.name; });
       var add = function (r, k) {
-        if (r.ref != null && r.ref > 0) blocks.push({ id: tl.id + ':' + k, code: r.code || '', name: (r.code && typed[r.code] != null ? typed[r.code] : r.name) || '', type: TYPES.indexOf(r.type) >= 0 ? r.type : 'Operation', dur: r1(r.ref), src: tl.id });
+        if (r.ref != null && r.ref > 0) blocks.push({ id: tl.id + ':' + k, code: r.code || '', name: (r.code && typed[r.code] != null ? typed[r.code] : r.name) || '', type: TYPES.indexOf(r.type) >= 0 ? r.type : 'Operation', dur: r1((r1(r.ref)) / ppc), src: tl.id });
       };
       if (tl.kind === 'machine') {
         var a = analyze(tl);
@@ -1781,6 +1854,8 @@ var L = (function () {
           named.slice(k0).concat(named.slice(0, k0)).concat(a.steps.filter(function (r) { return r.generic; })).forEach(add);
         }
       } else if (ops[tl.id]) ops[tl.id].steps.forEach(add);
+      // a machine's idle time always sits on top of its active steps, so the line cycle meets the top of the active time
+      if (tl.kind === 'machine') blocks = blocks.filter(function (b) { return b.type !== 'Wait'; }).concat(blocks.filter(function (b) { return b.type === 'Wait'; }));
       return { id: tl.id, kind: tl.kind === 'machine' ? 'machine' : 'op', name: tl.name, src: tl.id, blocks: blocks };
     }), pool: [] };
   }
@@ -1876,6 +1951,30 @@ var L = (function () {
     var b = { id: uid(), code: o.code || '', name: o.name || '', type: TYPES.indexOf(o.type) >= 0 ? o.type : 'Operation', dur: d, src: null };
     to.push(b);
     return b;
+  }
+  // Layout: stations in metres, path of each operator (station ids in visit order), reference distances.
+  function sanitizeLayout(o) {
+    if (!o || typeof o !== 'object') return null;
+    var num = function (v, d) { v = typeof v === 'number' ? v : parseFloat(v); return isFinite(v) ? v : d; }, items = [], ids = {};
+    (Array.isArray(o.items) ? o.items : []).forEach(function (it) {
+      if (!it || typeof it !== 'object' || typeof it.id !== 'string' || !it.id || ids[it.id]) return;
+      ids[it.id] = 1;
+      items.push({ id: it.id, name: String(it.name == null ? '' : it.name).slice(0, 80), x: Math.max(0, num(it.x, 0)), y: Math.max(0, num(it.y, 0)), w: Math.max(0.2, num(it.w, 1)), h: Math.max(0.2, num(it.h, 1)) });
+    });
+    var paths = {};
+    if (o.paths && typeof o.paths === 'object') Object.keys(o.paths).forEach(function (k) {
+      if (!Array.isArray(o.paths[k])) return;
+      var p = o.paths[k].filter(function (x) { return typeof x === 'string' && ids[x]; });
+      if (p.length) paths[k] = p;
+    });
+    var bg = o.bg && typeof o.bg === 'object' && o.bg.name ? { name: String(o.bg.name).slice(0, 200), w: Math.max(0.5, num(o.bg.w, 30)), h: Math.max(0.5, num(o.bg.h, 20)) } : null;
+    var ref = null;
+    if (o.ref && typeof o.ref === 'object' && o.ref.dist && typeof o.ref.dist === 'object') {
+      ref = { dist: {}, date: num(o.ref.date, 0) };
+      Object.keys(o.ref.dist).forEach(function (k) { var v = num(o.ref.dist[k], null); if (v != null && v >= 0) ref.dist[k] = v; });
+    }
+    var step = num(o.step, 0.7), speed = num(o.speed, null);
+    return { items: items, paths: paths, bg: bg, ref: ref, step: step > 0 ? step : 0.7, speed: speed > 0 ? speed : null };
   }
   function sanitizeBalance(o) {
     var out = balEmpty();
@@ -2025,6 +2124,50 @@ var X = (function () {
       }
     };
   }
+
+  // ---------- A plain new workbook (no template): sheets = [{ name, rows: [[cell]], widths }] ----------
+  // cell: number, text, or { v, s (style), f (formula without "=") }. Styles: 1 header, 2 0.0, 3 bold, 4 title, 5 %, 6 0.0 highlighted, 7 note.
+  function newBook(sheets) {
+    var used = {}, names = sheets.map(function (s, i) {
+      var n = String(s.name || ('Sheet' + (i + 1))).replace(/[\[\]:*?\/\\]/g, ' ').trim().slice(0, 31) || ('Sheet' + (i + 1)), b = n, k = 2;
+      while (used[n.toLowerCase()]) { var suf = ' (' + k++ + ')'; n = b.slice(0, 31 - suf.length) + suf; }
+      used[n.toLowerCase()] = 1; return n;
+    });
+    var clean = function (t) { return String(t).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, ''); };
+    var cellX = function (ref, c) {
+      if (c === '' || c == null) return '';
+      if (typeof c !== 'object') c = { v: c };
+      var s = c.s != null ? ' s="' + c.s + '"' : (typeof c.v === 'number' && !Number.isInteger(c.v) ? ' s="2"' : '');
+      if (c.f) return '<c r="' + ref + '"' + s + '><f>' + escT(c.f) + '</f>' + (typeof c.v === 'number' && isFinite(c.v) ? '<v>' + c.v + '</v>' : '') + '</c>';
+      if (typeof c.v === 'number') return isFinite(c.v) ? '<c r="' + ref + '"' + s + '><v>' + c.v + '</v></c>' : '';
+      if (c.v == null || c.v === '') return '';
+      return '<c r="' + ref + '"' + s + ' t="inlineStr"><is><t xml:space="preserve">' + escT(clean(c.v)) + '</t></is></c>';
+    };
+    var NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main', RN = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+    var HD = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>', files = [];
+    var add = function (name, text) { files.push({ name: name, text: text }); };
+    add('[Content_Types].xml', HD + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>' +
+      '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>' +
+      names.map(function (n, i) { return '<Override PartName="/xl/worksheets/sheet' + (i + 1) + '.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'; }).join('') + '</Types>');
+    add('_rels/.rels', HD + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="' + RN + '/officeDocument" Target="xl/workbook.xml"/></Relationships>');
+    add('xl/workbook.xml', HD + '<workbook xmlns="' + NS + '" xmlns:r="' + RN + '"><bookViews><workbookView/></bookViews><sheets>' +
+      names.map(function (n, i) { return '<sheet name="' + escA(n) + '" sheetId="' + (i + 1) + '" r:id="rId' + (i + 1) + '"/>'; }).join('') + '</sheets><calcPr fullCalcOnLoad="1"/></workbook>');
+    add('xl/_rels/workbook.xml.rels', HD + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+      names.map(function (n, i) { return '<Relationship Id="rId' + (i + 1) + '" Type="' + RN + '/worksheet" Target="worksheets/sheet' + (i + 1) + '.xml"/>'; }).join('') +
+      '<Relationship Id="rId' + (names.length + 1) + '" Type="' + RN + '/styles" Target="styles.xml"/></Relationships>');
+    add('xl/styles.xml', NEWBOOK_STYLES);
+    sheets.forEach(function (sh, i) {
+      var rows = (sh.rows || []).map(function (row, r) {
+        var cells = (row || []).map(function (c, k) { return cellX(colName(k + 1) + (r + 1), c); }).join('');
+        return cells ? '<row r="' + (r + 1) + '">' + cells + '</row>' : '';
+      }).join('');
+      var cols = (sh.widths || []).map(function (w, k) { return '<col min="' + (k + 1) + '" max="' + (k + 1) + '" width="' + w + '" customWidth="1"/>'; }).join('');
+      add('xl/worksheets/sheet' + (i + 1) + '.xml', HD + '<worksheet xmlns="' + NS + '" xmlns:r="' + RN + '"><sheetViews><sheetView' + (i ? '' : ' tabSelected="1"') + ' workbookViewId="0"/></sheetViews>' +
+        '<sheetFormatPr defaultRowHeight="15"/>' + (cols ? '<cols>' + cols + '</cols>' : '') + '<sheetData>' + rows + '</sheetData></worksheet>');
+    });
+    return zipWrite(files.map(function (f) { var u = enc.encode(f.text); return { name: f.name, method: 0, crc: crc32(u), csize: u.length, usize: u.length, raw: u }; }));
+  }
+  var NEWBOOK_STYLES = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="1"><numFmt numFmtId="164" formatCode="0.0"/></numFmts><fonts count="5"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="14"/><color rgb="FF253470"/><name val="Calibri"/></font><font><i/><sz val="10"/><color rgb="FF5F6780"/><name val="Calibri"/></font></fonts><fills count="4"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF253470"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFFFF2CC"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="8"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="9" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="0" fillId="3" borderId="0" xfId="0" applyNumberFormat="1" applyFill="1"/><xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>';
 
   // ---------- Small XML helpers ----------
   function escT(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -2724,7 +2867,7 @@ var X = (function () {
       r = a + 5 + 2 * k;
       setStr(m, 2, r, ''); clear(m, 12, r); clear(m, 13, r);
       var p = op.periodic[k];
-      if (p) { setStr(m, 2, r, p.name); setNum(m, 12, r, p.time); }
+      if (p) { setStr(m, 2, r, p.name); setNum(m, 12, r, p.time); if (p.freq) setNum(m, 13, r, p.freq); }
     }
     for (k = 0; k < 9; k++) setStr(m, 15, a + 4 + k, op.comments[k] || '');
     setLabelled(wb, m, 1, 5, d.meta.plant);
@@ -2885,7 +3028,7 @@ var X = (function () {
   }
 
   return {
-    crc32: crc32, zipRead: zipRead, zipWrite: zipWrite, open: open, sheets: sheets, inspect: inspect,
+    crc32: crc32, newBook: newBook, zipRead: zipRead, zipWrite: zipWrite, open: open, sheets: sheets, inspect: inspect,
     fillMct: fillMct, fillTct: fillTct, browserCodec: browserCodec,
     _: { mapRefs: mapRefs, shiftF: shiftF, moveF: moveF, renameF: renameF, colName: colName, colNum: colNum, parseSheet: parseSheet, serializeSheet: serializeSheet, numbered: numbered }
   };
@@ -3108,6 +3251,89 @@ var I18N = {
     've.what': 'Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.',
     'study.takt': 'Customer takt time (s)',
     'study.taktPh': 'e.g. 60',
+    'ly.spOdd': 'The study gives {v} m/s, which is not a walking speed: check the scale and the paths. 1 m/s used.',
+    'ly.btn': 'Layout',
+    'ly.title': 'Layout and walking paths',
+    'ly.back': '\u2190 Back to the time study',
+    'ly.add': '+ Station',
+    'ly.post': 'Station',
+    'ly.plan': 'Plan (picture)',
+    'ly.planChange': 'Change plan',
+    'ly.noPlan': 'Remove plan',
+    'ly.scale': 'Set the scale',
+    'ly.pathOf': 'Path of',
+    'ly.pathDraw': 'Draw the path',
+    'ly.pathStop': 'Stop drawing',
+    'ly.undoPt': 'Remove last point',
+    'ly.clearPath': 'Clear the path',
+    'ly.refSet': 'Freeze as current',
+    'ly.refAgain': 'Freeze again',
+    'ly.refDone': 'Current layout frozen: gains are now shown against it.',
+    'ly.hint': 'Drag a station to move it, its corner to resize it. Click it to rename it.',
+    'ly.pathHint': 'Click the stations in the order the operator goes to them during one cycle. The path closes by itself.',
+    'ly.calHint1': 'Scale: click one end of a known distance on the plan.',
+    'ly.calHint2': 'Now click the other end.',
+    'ly.scaleTitle': 'Scale of the plan',
+    'ly.scaleAsk': 'Real distance between the two points (m)',
+    'ly.ok': 'Apply',
+    'ly.cancel': 'Cancel',
+    'ly.planMissing': 'Plan not loaded: {name}. Load it again with Change plan.',
+    'ly.planBad': 'Choose a picture of the plan (PNG or JPG). Save PDF or CAD plans as a picture first.',
+    'ly.planDone': 'Plan loaded. Set the scale with a known distance.',
+    'ly.item': 'Station',
+    'ly.name': 'Name',
+    'ly.w': 'Width (m)',
+    'ly.h': 'Depth (m)',
+    'ly.del': 'Delete',
+    'ly.metrics': 'Walking per cycle',
+    'ly.settings': 'Settings',
+    'ly.step': 'Step length (m)',
+    'ly.speed': 'Walking speed (m/s)',
+    'ly.auto': 'auto',
+    'ly.speedHint': 'Leave the speed empty: once the current layout is frozen, it comes from the walks timed in the study. Otherwise 1 m/s.',
+    'ly.distV': '{d} m, {n} steps',
+    'ly.walkV': 'Walking time: {t} s',
+    'ly.vsRef': 'vs current: {d}, {n} steps, {t}',
+    'ly.cycleV': 'Cycle (a): {a} s, now about {b} s',
+    'ly.spAuto': 'Speed from the study: {v} m/s',
+    'ly.spSet': 'Speed: {v} m/s',
+    'ly.noPath': 'No path yet. Choose an operator, then Draw the path.',
+    'ly.refHint': 'Freeze the current layout, then move the stations to see the gains.',
+    'ly.helpTitle': 'Layout: help',
+    'ly.help1': 'Load a picture of the plan (save your PDF or CAD plan as a picture), then set the scale by clicking both ends of a known distance. Without a plan, the grid has one line per metre.',
+    'ly.help2': 'Add the stations, racks and machines, then draw the path of each operator: click the stations in the order of one cycle.',
+    'ly.help3': 'Freeze the current layout, then move the stations: distance, steps and walking time per cycle are compared with it. With walks timed in the study, the walking speed comes from your own video.',
+    'ly.help4': 'Export the layout as DXF to open it in your CAD software. The plan picture stays on your computer and is not saved in the study: load it again next time.',
+    'news.v3_6': 'Layout and walking paths: plan as a picture with its scale, stations to move, path of each operator, distance, steps and walking time per cycle, gain against the current layout, DXF export.',
+    'news.menu': 'What\u2019s new',
+    'news.title': 'What\u2019s new',
+    'news.version': 'Version {v}',
+    'news.first': 'First versions',
+    'news.v3_5': 'Excel workbook for any company (cycles, T1, summary, every balancing scenario). Parts per cycle for tools with several cavities. How often each periodic task comes back, written in the time sheet (T2 to T4). Machine idle time always on top of its column. This list of what is new.',
+    'news.v3_4': 'Contact and feedback: a mail ready to send for an opinion, an idea or a problem.',
+    'news.v3_3': 'Machines count for their active time only. The bottleneck includes machines. Line cycle drawn on the chart. Column heads always readable.',
+    'news.v3_2': 'New header (study name, \u2630 menu), takt calculation, spread of the cycles, kaizen action on each step, Export window. Then a sharper example video and a corrected line balance.',
+    'news.v3_1': 'Example ready to try, and a PDF report of the line balancing.',
+    'news.v3_0': 'Line balancing (Yamazumi): scenarios, drag and drop, line indicators.',
+    'news.v2_8': 'New PDF report and a Reference field.',
+    'news.v2_6': 'Customer takt time and operator load chart.',
+    'news.v2_2': 'Filled Excel sheets: time measurement sheet and standard work (TCT).',
+    'news.v1': 'Time study on video: one key per step, cycles, T1 and reference cycle.',
+    'steps.ppc': 'Parts per cycle',
+    'steps.ppcHint': 'For a tool with several cavities: the line balancing compares the time per part with the takt.',
+    'steps.perFreq': 'Periodic tasks: how often',
+    'steps.every': 'every',
+    'steps.parts': 'parts',
+    'steps.perFreqHint': 'Written in the time measurement sheet, which then works out the time per part (T2 to T4).',
+    'bal.ppcBadge': '{n} pcs',
+    'bal.ppcTip': '{n} parts per cycle: times shown per part',
+    'rep.ppcNote': 'Line indicators are worked out per part. {list}.',
+    'rep.ppcItem': '{name}: {n} parts per cycle',
+    'exp.xlsxTitle': 'Excel workbook',
+    'exp.xlsxBtn': 'Download (.xlsx)',
+    'exp.xlsxNote': 'Cycles, T1, summary and every balancing scenario, in a plain workbook for any company.',
+    'bal.xlsx': 'Excel',
+    'xl.fail': 'The Excel workbook could not be made.',
     'contact.menu': 'Contact and feedback',
     'contact.title': 'Contact and feedback',
     'contact.intro': 'A comment, an idea or a problem? Pick one: your mail app opens with a message ready to fill in.',
@@ -3314,7 +3540,7 @@ var I18N = {
     'legal.host': 'Host',
     'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Phone: +1 877 448 4820.',
     'legal.data': 'Personal data',
-    'legal.dataText': 'Visits are counted with GoatCounter: page viewed, referring site, browser, screen size and country. No cookies, and IP addresses are not stored. The video and your studies are never uploaded: they stay on your device. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service. If you write by email, your message and your address are only used to answer you and improve the tool. They are never passed on to anyone.',
+    'legal.dataText': 'Visits are counted with GoatCounter: page viewed, referring site, browser, screen size and country. No cookies, and IP addresses are not stored. The video and your studies are never uploaded: they stay on your device. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service. If you write by email, your message and your address are only used to answer you and improve the tool. They are never passed on to anyone. GoatCounter also counts which features are used (for example: example opened, report printed), never the content of your studies or videos.',
     'legal.ip': 'Intellectual property',
     'legal.ipText': '\u00a9 2026 Ilyas Baqloul. All rights reserved. The tool is free to use, including at work.',
     'load.title': 'Operator load',
@@ -3552,6 +3778,89 @@ var I18N = {
     've.what': 'Appuyez sur une touche au d\u00e9but de chaque \u00e9tape. Le site calcule les temps de cycle et T1, et remplit vos fiches standard. Gratuit.',
     'study.takt': 'Takt time client (s)',
     'study.taktPh': 'ex. 60',
+    'ly.spOdd': 'Le chrono donne {v} m/s, ce n\u2019est pas une vitesse de marche : v\u00e9rifiez l\u2019\u00e9chelle et les trajets. 1 m/s utilis\u00e9.',
+    'ly.btn': 'Layout',
+    'ly.title': 'Layout et trajets',
+    'ly.back': '\u2190 Retour au chrono',
+    'ly.add': '+ Poste',
+    'ly.post': 'Poste',
+    'ly.plan': 'Plan (image)',
+    'ly.planChange': 'Changer le plan',
+    'ly.noPlan': 'Retirer le plan',
+    'ly.scale': 'Mettre \u00e0 l\u2019\u00e9chelle',
+    'ly.pathOf': 'Trajet de',
+    'ly.pathDraw': 'Tracer le trajet',
+    'ly.pathStop': 'Arr\u00eater le trac\u00e9',
+    'ly.undoPt': 'Retirer le dernier point',
+    'ly.clearPath': 'Effacer le trajet',
+    'ly.refSet': 'Figer l\u2019actuel',
+    'ly.refAgain': 'Figer \u00e0 nouveau',
+    'ly.refDone': 'Layout actuel fig\u00e9 : les gains s\u2019affichent par rapport \u00e0 lui.',
+    'ly.hint': 'Glissez un poste pour le d\u00e9placer, son coin pour le redimensionner. Cliquez dessus pour le renommer.',
+    'ly.pathHint': 'Cliquez les postes dans l\u2019ordre o\u00f9 l\u2019op\u00e9rateur y passe pendant un cycle. Le trajet se referme tout seul.',
+    'ly.calHint1': '\u00c9chelle : cliquez un bout d\u2019une cote connue sur le plan.',
+    'ly.calHint2': 'Cliquez maintenant l\u2019autre bout.',
+    'ly.scaleTitle': '\u00c9chelle du plan',
+    'ly.scaleAsk': 'Distance r\u00e9elle entre les deux points (m)',
+    'ly.ok': 'Appliquer',
+    'ly.cancel': 'Annuler',
+    'ly.planMissing': 'Plan non charg\u00e9 : {name}. Rechargez-le avec Changer le plan.',
+    'ly.planBad': 'Choisissez une image du plan (PNG ou JPG). Enregistrez d\u2019abord les plans PDF ou CAO en image.',
+    'ly.planDone': 'Plan charg\u00e9. R\u00e9glez l\u2019\u00e9chelle avec une cote connue.',
+    'ly.item': 'Poste',
+    'ly.name': 'Nom',
+    'ly.w': 'Largeur (m)',
+    'ly.h': 'Profondeur (m)',
+    'ly.del': 'Supprimer',
+    'ly.metrics': 'Marche par cycle',
+    'ly.settings': 'R\u00e9glages',
+    'ly.step': 'Longueur d\u2019un pas (m)',
+    'ly.speed': 'Vitesse de marche (m/s)',
+    'ly.auto': 'auto',
+    'ly.speedHint': 'Laissez la vitesse vide : une fois l\u2019actuel fig\u00e9, elle vient des marches chronom\u00e9tr\u00e9es dans l\u2019\u00e9tude. Sinon 1 m/s.',
+    'ly.distV': '{d} m, {n} pas',
+    'ly.walkV': 'Temps de marche : {t} s',
+    'ly.vsRef': 'vs actuel : {d}, {n} pas, {t}',
+    'ly.cycleV': 'Cycle (a) : {a} s, maintenant environ {b} s',
+    'ly.spAuto': 'Vitesse tir\u00e9e du chrono : {v} m/s',
+    'ly.spSet': 'Vitesse : {v} m/s',
+    'ly.noPath': 'Pas encore de trajet. Choisissez un op\u00e9rateur, puis Tracer le trajet.',
+    'ly.refHint': 'Figez l\u2019actuel, puis d\u00e9placez les postes pour voir les gains.',
+    'ly.helpTitle': 'Layout : aide',
+    'ly.help1': 'Chargez une image du plan (enregistrez votre plan PDF ou CAO en image), puis r\u00e9glez l\u2019\u00e9chelle en cliquant les deux bouts d\u2019une cote connue. Sans plan, la grille fait une ligne par m\u00e8tre.',
+    'ly.help2': 'Ajoutez les postes, racks et machines, puis tracez le trajet de chaque op\u00e9rateur : cliquez les postes dans l\u2019ordre d\u2019un cycle.',
+    'ly.help3': 'Figez l\u2019actuel, puis d\u00e9placez les postes : distance, pas et temps de marche par cycle sont compar\u00e9s \u00e0 lui. Avec des marches chronom\u00e9tr\u00e9es dans l\u2019\u00e9tude, la vitesse vient de votre propre vid\u00e9o.',
+    'ly.help4': 'Exportez le layout en DXF pour l\u2019ouvrir dans votre logiciel de CAO. L\u2019image du plan reste sur votre ordinateur et n\u2019est pas enregistr\u00e9e dans l\u2019\u00e9tude : rechargez-la la fois suivante.',
+    'news.v3_6': 'Layout et trajets : plan en image avec son \u00e9chelle, postes \u00e0 d\u00e9placer, trajet de chaque op\u00e9rateur, distance, pas et temps de marche par cycle, gain par rapport \u00e0 l\u2019actuel, export DXF.',
+    'news.menu': 'Quoi de neuf',
+    'news.title': 'Quoi de neuf',
+    'news.version': 'Version {v}',
+    'news.first': 'Premi\u00e8res versions',
+    'news.v3_5': 'Classeur Excel pour toutes les entreprises (cycles, T1, synth\u00e8se, tous les sc\u00e9narios d\u2019\u00e9quilibrage). Pi\u00e8ces par cycle pour les outils \u00e0 plusieurs empreintes. Fr\u00e9quence des t\u00e2ches p\u00e9riodiques, report\u00e9e dans le relev\u00e9 (T2 \u00e0 T4). Attente \u00e0 vide des machines toujours en haut de leur colonne. Cette liste des nouveaut\u00e9s.',
+    'news.v3_4': 'Contact et avis : un mail pr\u00eat \u00e0 envoyer pour un avis, une id\u00e9e ou un probl\u00e8me.',
+    'news.v3_3': 'Les machines comptent pour leur temps actif seulement. Le goulot tient compte des machines. Ligne du cycle de la ligne sur le graphique. En-t\u00eates de colonnes toujours lisibles.',
+    'news.v3_2': 'Nouvel en-t\u00eate (nom de l\u2019\u00e9tude, menu \u2630), calcul du takt, dispersion des cycles, action kaizen par \u00e9tape, fen\u00eatre Exporter. Puis vid\u00e9o d\u2019exemple plus nette et taux d\u2019\u00e9quilibrage corrig\u00e9.',
+    'news.v3_1': 'Exemple pr\u00eat \u00e0 essayer, et rapport PDF de l\u2019\u00e9quilibrage.',
+    'news.v3_0': '\u00c9quilibrage de ligne (Yamazumi) : sc\u00e9narios, glisser-d\u00e9poser, indicateurs de ligne.',
+    'news.v2_8': 'Rapport PDF refait et champ R\u00e9f\u00e9rence.',
+    'news.v2_6': 'Takt time client et graphique de charge des op\u00e9rateurs.',
+    'news.v2_2': 'Fiches Excel remplies : relev\u00e9 de temps et TCT.',
+    'news.v1': 'Chronom\u00e9trage sur vid\u00e9o : une touche par \u00e9tape, cycles, T1 et cycle de r\u00e9f\u00e9rence.',
+    'steps.ppc': 'Pi\u00e8ces par cycle',
+    'steps.ppcHint': 'Pour un outil \u00e0 plusieurs empreintes : l\u2019\u00e9quilibrage compare le temps par pi\u00e8ce au takt.',
+    'steps.perFreq': 'T\u00e2ches p\u00e9riodiques : fr\u00e9quence',
+    'steps.every': 'toutes les',
+    'steps.parts': 'pi\u00e8ces',
+    'steps.perFreqHint': 'Report\u00e9e dans le relev\u00e9 de temps, qui calcule alors le temps par pi\u00e8ce (T2 \u00e0 T4).',
+    'bal.ppcBadge': '{n} pces',
+    'bal.ppcTip': '{n} pi\u00e8ces par cycle : temps affich\u00e9s par pi\u00e8ce',
+    'rep.ppcNote': 'Les indicateurs de ligne sont calcul\u00e9s par pi\u00e8ce. {list}.',
+    'rep.ppcItem': '{name} : {n} pi\u00e8ces par cycle',
+    'exp.xlsxTitle': 'Classeur Excel',
+    'exp.xlsxBtn': 'T\u00e9l\u00e9charger (.xlsx)',
+    'exp.xlsxNote': 'Cycles, T1, synth\u00e8se et tous les sc\u00e9narios d\u2019\u00e9quilibrage, dans un classeur simple pour toute entreprise.',
+    'bal.xlsx': 'Excel',
+    'xl.fail': 'Le classeur Excel n\u2019a pas pu \u00eatre cr\u00e9\u00e9.',
     'contact.menu': 'Contact et avis',
     'contact.title': 'Contact et avis',
     'contact.intro': 'Un avis, une id\u00e9e ou un probl\u00e8me ? Choisissez : votre messagerie s\u2019ouvre avec un message pr\u00eat \u00e0 compl\u00e9ter.',
@@ -3758,7 +4067,7 @@ var I18N = {
     'legal.host': 'H\u00e9bergeur',
     'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, \u00c9tats-Unis. T\u00e9l\u00e9phone : +1 877 448 4820.',
     'legal.data': 'Donn\u00e9es personnelles',
-    'legal.dataText': 'Les visites sont compt\u00e9es avec GoatCounter : page vue, site d\u2019origine, navigateur, taille d\u2019\u00e9cran et pays. Pas de cookie, et l\u2019adresse IP n\u2019est pas conserv\u00e9e. La vid\u00e9o et vos \u00e9tudes ne sont jamais envoy\u00e9es : elles restent sur votre appareil. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez ; vous pouvez les effacer dans les r\u00e9glages du navigateur. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service. Si vous \u00e9crivez par mail, votre message et votre adresse servent seulement \u00e0 vous r\u00e9pondre et \u00e0 am\u00e9liorer l\u2019outil. Ils ne sont jamais transmis \u00e0 personne.',
+    'legal.dataText': 'Les visites sont compt\u00e9es avec GoatCounter : page vue, site d\u2019origine, navigateur, taille d\u2019\u00e9cran et pays. Pas de cookie, et l\u2019adresse IP n\u2019est pas conserv\u00e9e. La vid\u00e9o et vos \u00e9tudes ne sont jamais envoy\u00e9es : elles restent sur votre appareil. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez ; vous pouvez les effacer dans les r\u00e9glages du navigateur. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service. Si vous \u00e9crivez par mail, votre message et votre adresse servent seulement \u00e0 vous r\u00e9pondre et \u00e0 am\u00e9liorer l\u2019outil. Ils ne sont jamais transmis \u00e0 personne. GoatCounter compte aussi les fonctions utilis\u00e9es (par exemple : exemple ouvert, rapport imprim\u00e9), jamais le contenu de vos \u00e9tudes ni de vos vid\u00e9os.',
     'legal.ip': 'Propri\u00e9t\u00e9 intellectuelle',
     'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Tous droits r\u00e9serv\u00e9s. L\u2019outil est gratuit, y compris au travail.',
     'load.title': 'Charge des op\u00e9rateurs',
@@ -4059,6 +4368,7 @@ var I18N_LOGIC = {
     lastHL = null; lastLogIdx = null;
     requestLive();
     if (balActive()) balRender();
+    if (lyActive()) lyRender();
     exBar();
   }
   function renderHeader() {
@@ -4140,7 +4450,7 @@ var I18N_LOGIC = {
     tl.events.forEach(function (e) { if (e.kind === 'step') used[e.stepId] = (used[e.stepId] || 0) + 1; });
     var sid = L.startStepId(tl);
     var html = '<div class="sec"><h2>' + esc(T('steps.timeline')) + '</h2><div class="form-grid">' +
-      '<div class="field"><label for="tlName">' + esc(T('steps.name')) + '</label><input type="text" id="tlName" value="' + esc(tl.name) + '"></div>' +
+      '<div class="field"><label for="tlName">' + esc(T('steps.name')) + '</label><input type="text" id="tlName" value="' + esc(tl.name) + '"></div>' + perFreqHtml(tl) +
       '<div class="field"><label for="tlKind">' + esc(T('steps.kind')) + '</label><select id="tlKind">' + opt('operator', tl.kind, T('kind.operator')) + opt('machine', tl.kind, T('kind.machine')) + '</select></div></div>' +
       '<div class="btn-row"><button type="button" class="btn" data-act="addOp">' + esc(T('tl.addOperator')) + '</button><button type="button" class="btn" data-act="addMach">' + esc(T('tl.addMachine')) + '</button>' +
       '<button type="button" class="btn danger" data-act="delTl">' + esc(T('tl.delete')) + '</button></div></div>';
@@ -5361,6 +5671,8 @@ var I18N_LOGIC = {
       if (kb.theo != null) rows.push([T('rep.theoOps'), f1(kb.theo) + ' \u2192 ' + kb.theoN]);
       if (kb.balance != null) rows.push([T('rep.balance'), kb.balance + ' %']);
       html += '<h2>' + esc(T('rep.line')) + '</h2>' + kv(rows);
+      var ppcs = study.timelines.filter(function (t) { return t.ppc > 1; });
+      if (ppcs.length) html += '<p class="rp-note">' + esc(T('rep.ppcNote', { list: ppcs.map(function (t) { return T('rep.ppcItem', { name: t.name, n: t.ppc }); }).join(', ') })) + '</p>';
       if (d.takt && kb.bott.v > d.takt + 1e-9) html += '<p class="rp-note rp-warn">' + esc(T('rep.overTakt', { name: bn })) + '</p>';
     }
     html += '<div class="rp-load"><h2>' + esc(T('load.title')) + '</h2><div class="rp-chart">' + loadSvg(d) + '</div>' + loadLegend(d) + '</div>';
@@ -5620,6 +5932,7 @@ var I18N_LOGIC = {
   function hideToast() { $('toast').hidden = true; }
 
   function openHelp() {
+    if (lyActive()) { lyHelp(); return; }
     if (balActive()) { balHelp(); return; }
     var keys = [
       [T('key.space'), 'help.k.space'], ['\u2190 \u2192', 'help.k.arrows'], [', .', 'help.k.frame'], ['[ ]', 'help.k.speed'],
@@ -5647,6 +5960,161 @@ var I18N_LOGIC = {
   }
 
   var LICENSE_URL = 'https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE';
+  // ---------- Anonymous usage counts (GoatCounter events, only where the counter is loaded: vts-tool.com) ----------
+  function track(name) {
+    try { var g = window.goatcounter; if (g && typeof g.count === 'function') g.count({ path: 'event/' + name, title: name, event: true }); } catch (e) { /* ignore */ }
+  }
+  function trackClicks(e) {
+    var t = e.target.closest ? e.target.closest('button, a') : null;
+    if (!t) return;
+    var id = t.id, at = function (n) { return t.getAttribute(n); }, ev = null;
+    if (id === 'btnExample') ev = 'example';
+    else if (id === 'btnBal') ev = 'balancing';
+    else if (id === 'btnLy') ev = 'layout';
+    else if (id === 'btnContact' || id === 'btnContactF') ev = 'contact';
+    else if (id === 'btnOffline') ev = 'offline-copy';
+    else if (id === 'btnNews' || id === 'btnNewsM') ev = 'whats-new';
+    else if (at('data-bal') === 'new') ev = 'scenario-new';
+    else if (at('data-bal') === 'pdf') ev = 'pdf-balancing';
+    else if (at('data-ra') === 'report') ev = 'pdf-report';
+    else if (at('data-ra') === 'dlApg') ev = 'excel-sheets';
+    else if (at('data-exp') && at('data-exp') !== 'xlsx') ev = 'export-' + at('data-exp');
+    else if (at('data-logexp')) ev = 'export-' + at('data-logexp');
+    else if (t.classList.contains('ct-choice')) ev = 'mail-' + at('data-ct');
+    if (ev) track(ev);
+  }
+
+  // ---------- Plain Excel workbook, for any company: summary, one sheet per operator, line balancing ----------
+  var XLW = {
+    en: { sum: 'Summary', title: 'Time study', ref: 'Reference', plant: 'Plant', line: 'Line', date: 'Date', takt: 'Takt time (s)', op: 'Operator', cycles: 'Cycles',
+      usable: 'Usable', refCycle: 'Reference cycle', load: '% of takt', lineInd: 'Line indicators', bott: 'Bottleneck (s)', output: 'Output (parts/h)', sumC: 'Sum of (c) (s)',
+      theo: 'Theoretical operators', balance: 'Line balance', made: 'Made with Video Time Study, vts-tool.com', study: 'Study ', unit: 'Times in seconds. * = cycle not used for T1.',
+      code: 'Code', step: 'Step', type: 'Type', refShort: 'Ref.', total: 'Total', aTxt: 'cycle without periodic tasks', bTxt: 'waits', cTxt: 'work (a) - (b)',
+      periodic: 'Periodic task', time: 'Time (s)', count: 'Seen', freq: 'Every (parts)', perPart: 'Per part (s)', bal: 'Line balancing', balTitle: 'Line balancing (Yamazumi)',
+      balUnit: 'Times in seconds, per part. The total of a machine includes its idle time; its active cycle is given below it.', actual: 'Current', note: 'Note',
+      column: 'Column', dur: 'Duration (s)', kaizen: 'Kaizen action', active: 'Active cycle (without idle time)', pool: 'Steps not assigned' },
+    fr: { sum: 'Synth\u00e8se', title: '\u00c9tude de temps', ref: 'R\u00e9f\u00e9rence', plant: 'Usine', line: 'Ligne', date: 'Date', takt: 'Takt time (s)', op: 'Op\u00e9rateur', cycles: 'Cycles',
+      usable: 'Utilisables', refCycle: 'Cycle de r\u00e9f\u00e9rence', load: '% du takt', lineInd: 'Indicateurs de la ligne', bott: 'Goulot (s)', output: 'Cadence (pi\u00e8ces/h)', sumC: 'Somme des (c) (s)',
+      theo: 'Effectif th\u00e9orique', balance: 'Taux d\u2019\u00e9quilibrage', made: 'R\u00e9alis\u00e9 avec Video Time Study, vts-tool.com', study: 'Relev\u00e9 ', unit: 'Temps en secondes. * = cycle non retenu pour le T1.',
+      code: 'Code', step: '\u00c9tape', type: 'Type', refShort: 'R\u00e9f.', total: 'Total', aTxt: 'cycle sans t\u00e2ches p\u00e9riodiques', bTxt: 'attentes', cTxt: 'travail (a) - (b)',
+      periodic: 'T\u00e2che p\u00e9riodique', time: 'Temps (s)', count: 'Vue', freq: 'Toutes les (pi\u00e8ces)', perPart: 'Par pi\u00e8ce (s)', bal: '\u00c9quilibrage', balTitle: '\u00c9quilibrage (Yamazumi)',
+      balUnit: 'Temps en secondes, par pi\u00e8ce. Le total d\u2019une machine compte son attente \u00e0 vide ; son cycle actif est donn\u00e9 dessous.', actual: 'Actuel', note: 'Note',
+      column: 'Colonne', dur: 'Dur\u00e9e (s)', kaizen: 'Action kaizen', active: 'Cycle actif (sans attente \u00e0 vide)', pool: '\u00c9tapes non affect\u00e9es' }
+  };
+  function xlCol(n) { var s = ''; while (n > 0) { var m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = (n - m - 1) / 26; } return s; }
+  function neutralSheets() {
+    var W = XLW[/^fr/i.test(document.documentElement.lang || '') ? 'fr' : 'en'];
+    var d = L.apgData(study, { dec: '.', nameFn: genName }), meta = d.meta, takt = meta.takt || null, ld = {};
+    L.loadData(study).ops.forEach(function (o) { ld[o.id] = o; });
+    var D = function (v) { return v == null || v === '' || isNaN(v) ? '' : { v: Math.round(+v * 100) / 100, s: 2 }; };
+    var Pc = function (v) { return v == null ? '' : { v: v / 100, s: 5 }; };
+    var H = function (t) { return { v: t, s: 1 }; }, Bo = function (t) { return { v: t, s: 3 }; }, Ti = function (t) { return { v: t, s: 4 }; }, No = function (t) { return { v: t, s: 7 }; };
+    var bn = function (k) { return k.bott.name + (k.bott.machine ? ' (' + T('bal.machine') + ')' : ''); };
+    var typed = function (id) {
+      var tl = study.timelines.filter(function (x) { return x.id === id; })[0], m = {};
+      if (tl) tl.steps.forEach(function (st) { if (st.code && !(st.code in m)) m[st.code] = st.name; });
+      return m;
+    };
+    var sheets = [];
+    var S = [[Ti(W.title + (meta.name ? ' : ' + meta.name : ''))], [], [Bo(W.ref), meta.ref || ''], [Bo(W.plant), meta.plant || ''], [Bo(W.line), meta.line || ''],
+      [Bo(W.date), meta.date || ''], [Bo(W.takt), takt ? D(takt) : ''], [],
+      [H(W.op), H(W.cycles), H(W.usable), H('(a)'), H('(b)'), H('(c)'), H('T1'), H(W.refCycle), H(W.load)]];
+    d.ops.forEach(function (op) { var o = ld[op.id] || {}; S.push([op.name, o.cycles != null ? o.cycles : '', o.usable != null ? o.usable : '', D(o.a), D(o.b), D(o.c), D(op.t1), op.refN ? 'C' + op.refN : '', Pc(o.sat)]); });
+    var kb = L.bal.kpis(L.bal.actual(study), takt);
+    if (kb.bott) {
+      S.push([], [Ti(W.lineInd)], [Bo(W.bott), D(kb.bott.v), bn(kb)], [Bo(W.output), D(kb.output)]);
+      if (kb.sumC != null) S.push([Bo(W.sumC), D(kb.sumC)]);
+      if (kb.theo != null) S.push([Bo(W.theo), D(kb.theo), kb.theoN]);
+      if (kb.balance != null) S.push([Bo(W.balance), Pc(kb.balance)]);
+    }
+    S.push([], [No(W.made)]);
+    sheets.push({ name: W.sum, rows: S, widths: [28, 12, 12, 10, 10, 10, 10, 16, 12] });
+    d.ops.forEach(function (op) {
+      var tn = typed(op.id), nc = op.cols.length, rc = op.refCol != null && op.refN ? op.refCol : -1;
+      var R = [[Ti(op.name)], [No(W.unit)], [H(W.code), H(W.step), H(W.type)].concat(op.cols.map(function (c) { return H('C' + c.n + (c.usable ? '' : ' *')); })).concat(rc >= 0 ? [H(W.refShort + ' C' + op.refN)] : [])];
+      var r0 = R.length + 1;
+      op.rows.forEach(function (row, i) {
+        R.push([row.code || '', row.code && tn[row.code] != null ? tn[row.code] : row.name, L.typeLabel(row.type)].concat(op.vals[i].map(D)).concat(rc >= 0 ? [{ v: op.vals[i][rc], s: 6 }] : []));
+      });
+      var r1 = R.length, tot = [Bo(W.total), '', ''];
+      for (var j = 0; j < nc + (rc >= 0 ? 1 : 0); j++) {
+        var sum = 0;
+        op.rows.forEach(function (row, i) { var v = j < nc ? op.vals[i][j] : op.vals[i][rc]; if (v != null && !isNaN(v)) sum += +v; });
+        tot.push({ f: 'SUM(' + xlCol(4 + j) + r0 + ':' + xlCol(4 + j) + r1 + ')', v: Math.round(sum * 100) / 100, s: 2 });
+      }
+      R.push(tot);
+      R.push(['(a)', W.aTxt, ''].concat(op.abc.map(function (x) { return D(x[0]); })), ['(b)', W.bTxt, ''].concat(op.abc.map(function (x) { return D(x[1]); })),
+        ['(c)', W.cTxt, ''].concat(op.abc.map(function (x) { return D(x[2]); })), [], [Bo('T1'), D(op.t1)], [Bo(W.refCycle), op.refN ? 'C' + op.refN : '\u2013']);
+      if ((op.periodic || []).length) {
+        R.push([], ['', H(W.periodic), H(W.time), H(W.count), H(W.freq), H(W.perPart)]);
+        op.periodic.forEach(function (p) {
+          var rr = R.length + 1;
+          R.push(['', p.name, D(p.time), p.count, p.freq || '', p.freq ? { f: 'C' + rr + '/E' + rr, v: Math.round(p.time / p.freq * 100) / 100, s: 2 } : '']);
+        });
+      }
+      sheets.push({ name: W.study + op.name, rows: R, widths: [10, 32, 12].concat(op.cols.map(function () { return 7; })).concat([10]) });
+    });
+    var states = [[W.actual, L.bal.actual(study), '']].concat(((study.balance && study.balance.scenarios) || []).map(function (sc) { return [sc.name, sc, sc.note || '']; }));
+    var B = [[Ti(W.balTitle)], [No(W.balUnit)]];
+    states.forEach(function (st) {
+      var k = L.bal.kpis(st[1], takt);
+      B.push([], [Ti(st[0])]);
+      if (st[2]) B.push([Bo(W.note), st[2]]);
+      if (k.bott) B.push([Bo(W.bott), D(k.bott.v), bn(k)], [Bo(W.output), D(k.output)]);
+      if (k.balance != null) B.push([Bo(W.balance), Pc(k.balance)]);
+      B.push([H(W.column), H(W.code), H(W.step), H(W.type), H(W.dur), H(W.kaizen)]);
+      (st[1].cols || []).forEach(function (c) {
+        if (!c.blocks.length) return;
+        var a0 = B.length + 1;
+        c.blocks.forEach(function (b, i) { B.push([i ? '' : c.name, b.code || '', b.name || '', L.typeLabel(b.type), D(b.dur), b.act || '']); });
+        var a1 = B.length, tt = L.bal.totals(c), cy = L.bal.cycle(c);
+        B.push([Bo(W.total + ' ' + c.name), '', '', '', { f: 'SUM(E' + a0 + ':E' + a1 + ')', v: tt.total, s: 2 }]);
+        if (c.kind === 'machine' && Math.abs(cy - tt.total) > 0.05) B.push([No(W.active), '', '', '', D(cy)]);
+      });
+      if ((st[1].pool || []).length) {
+        B.push([Bo(W.pool)]);
+        st[1].pool.forEach(function (b) { B.push(['', b.code || '', b.name || '', L.typeLabel(b.type), D(b.dur), b.act || '']); });
+      }
+    });
+    sheets.push({ name: W.bal, rows: B, widths: [24, 8, 34, 13, 12, 36] });
+    return sheets;
+  }
+  function downloadNeutral() {
+    try {
+      var u8 = X.newBook(neutralSheets()), url = URL.createObjectURL(new Blob([u8], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+      var a = document.createElement('a'); a.href = url; a.download = fileBase() + '.xlsx'; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      track('excel-workbook');
+    } catch (e) { toast(T('xl.fail')); }
+  }
+
+  // ---------- What's new ----------
+  var NEWS = ['3.6', '3.5', '3.4', '3.3', '3.2', '3.1', '3.0', '2.8', '2.6', '2.2', '1'];
+  function openNews() {
+    var body = '<div class="news">' + NEWS.map(function (v) {
+      return '<div class="news-item"><b>' + esc(v === '1' ? T('news.first') : T('news.version', { v: v })) + '</b><p>' + esc(T('news.v' + v.replace('.', '_'))) + '</p></div>';
+    }).join('') + '</div>';
+    openPanel({ title: T('news.title'), body: body, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
+  }
+
+  // ---------- Steps tab: parts per cycle, and how often each periodic task comes back ----------
+  function perFreqHtml(tl) {
+    var seen = {}, names = [];
+    (tl.events || []).forEach(function (e) {
+      if (e.kind !== 'periodic') return;
+      var n = String(e.label || T('kind.periodicDefault')).trim(), k = n.toLowerCase();
+      if (n && !seen[k]) { seen[k] = 1; names.push(n); }
+    });
+    var ppc = tl.ppc > 1 ? tl.ppc : 1;
+    var h = '<div class="field"><label for="tlPpc">' + esc(T('steps.ppc')) + '</label><input type="number" id="tlPpc" min="1" max="99" step="1" inputmode="numeric" value="' + ppc + '">' +
+      '<p class="hint">' + esc(T('steps.ppcHint')) + '</p></div>';
+    if (!names.length) return h;
+    return h + '<div class="field perfreq"><label>' + esc(T('steps.perFreq')) + '</label>' + names.map(function (n) {
+      var k = n.toLowerCase(), v = tl.perFreq && tl.perFreq[k] ? tl.perFreq[k] : '';
+      return '<div class="pf-row"><span class="pf-name">' + esc(n) + '</span><span>' + esc(T('steps.every')) + '</span><input type="number" min="1" step="1" inputmode="numeric" data-perfreq="' + esc(k) + '" value="' + v + '" aria-label="' + esc(n) + '"><span>' + esc(T('steps.parts')) + '</span></div>';
+    }).join('') + '<p class="hint">' + esc(T('steps.perFreqHint')) + '</p></div>';
+  }
+
   // ---------- Contact and feedback: the visitor's mail app opens with a message ready to fill in ----------
   var CONTACT = 'contact@vts-tool.com', LINKEDIN = 'https://www.linkedin.com/in/ilyas-baqloul-b7b425368/';
   function appVersion() { var f = document.querySelector('.footer'), m = /Version\s+([\d.]+)/.exec(f ? f.textContent : ''); return m ? m[1] : ''; }
@@ -5711,6 +6179,7 @@ var I18N_LOGIC = {
   // ---------- Keyboard ----------
   function onKey(e) {
     if (P.open) { panelKey(e); return; }
+    if (lyActive()) { lyKey(e); return; }
     if (balActive()) { balKey(e); return; }
     if (isTyping(e.target)) return;
     var k = e.key;
@@ -5759,6 +6228,11 @@ var I18N_LOGIC = {
     $('btnLegal').addEventListener('click', openLegal);
     $('btnContact').addEventListener('click', openContact);
     $('btnContactF').addEventListener('click', openContact);
+    $('btnNews').addEventListener('click', openNews);
+    $('btnNewsM').addEventListener('click', openNews);
+    document.addEventListener('click', trackClicks, true);
+    document.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('[data-bal="xlsx"]') : null; if (b) downloadNeutral(); });
+    $('fileVideo').addEventListener('change', function () { if (this.files && this.files.length) track('video'); });
     $('btnPickVideo').addEventListener('click', pickVideo);
     $('btnCloseVideo').addEventListener('click', closeVideo);
     $('fileVideo').addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) openVideo(f); });
@@ -5840,6 +6314,16 @@ var I18N_LOGIC = {
         if (!v) { el.value = activeTl().name; return; }
         mutate(function () { activeTl().name = v; }, { keepTab: true });
         var h2 = tabSteps.querySelectorAll('h2')[1]; if (h2) h2.textContent = T('steps.of', { name: v });
+        return;
+      }
+      if (el.id === 'tlPpc') {
+        var n = Math.round(+el.value); if (!(n >= 1)) n = 1; if (n > 99) n = 99; el.value = n;
+        mutate(function () { if (n > 1) activeTl().ppc = n; else delete activeTl().ppc; }, { keepTab: true });
+        return;
+      }
+      if (el.getAttribute && el.getAttribute('data-perfreq') != null) {
+        var pk = el.getAttribute('data-perfreq'), pf = Math.round(+el.value);
+        mutate(function () { var t = activeTl(); t.perFreq = t.perFreq || {}; if (pf >= 1) t.perFreq[pk] = pf; else delete t.perFreq[pk]; }, { keepTab: true });
         return;
       }
       if (el.id === 'tlKind') { mutate(function () { activeTl().kind = el.value === 'machine' ? 'machine' : 'operator'; }, { keepTab: true }); return; }
@@ -6066,6 +6550,7 @@ var I18N_LOGIC = {
     var s = BS();
     on = !!on;
     if (s.on === on && !fromHash) return;
+    if (on && lyActive()) lyOpen(false);
     s.on = on;
     $('vts-app').classList.toggle('bal-on', on);
     $('balView').hidden = !on;
@@ -6143,6 +6628,7 @@ var I18N_LOGIC = {
   function balColHtml(c, sc, takt, scale, H, step, maxV) {
     var t = L.bal.totals(c), cy = L.bal.cycle(c), has = c.blocks.length > 0, over = !!(takt && has && cy > takt + 1e-9);
     balS.totals[c.id] = cy; balS.kinds[c.id] = c.kind;
+    var tlx = c.src ? study.timelines.filter(function (x) { return x.id === c.src; })[0] : null, ppc = tlx && tlx.ppc > 1 ? tlx.ppc : 1;
     var gap = takt ? Math.round((cy - takt) * 10) / 10 : null;
     var was = sc && c.src && balS.actTotals[c.src] != null ? balS.actTotals[c.src] : null;
     var line = balS.cycleV, isBott = has && balS.cycleCol === c.id;
@@ -6151,7 +6637,7 @@ var I18N_LOGIC = {
     for (var v = step; v <= maxV + 1e-9; v += step) grid += '<i class="bal-grid" data-b="' + (v * scale).toFixed(1) + '"></i>';
     return '<div class="bal-col' + (over ? ' is-over' : '') + (c.kind === 'machine' ? ' is-mach' : '') + (isBott ? ' is-bott' : '') + '" data-col="' + esc(c.id) + '">' +
       '<div class="bal-col-h">' +
-      '<div class="bh-l bh-name"><span class="bal-col-name" title="' + esc(c.name) + '">' + esc(c.name) + '</span>' + (c.kind === 'machine' ? '<span class="bal-badge">' + esc(T('bal.machine')) + '</span>' : '') + '</div>' +
+      '<div class="bh-l bh-name"><span class="bal-col-name" title="' + esc(c.name) + '">' + esc(c.name) + '</span>' + (c.kind === 'machine' ? '<span class="bal-badge">' + esc(T('bal.machine')) + '</span>' : '') + (ppc > 1 ? '<span class="bal-badge ppc" title="' + esc(T('bal.ppcTip', { n: ppc })) + '">' + esc(T('bal.ppcBadge', { n: ppc })) + '</span>' : '') + '</div>' +
       '<div class="bh-l"><span class="bal-tot" data-col="' + esc(c.id) + '">' + esc(fmtS(cy, 1)) + ' s</span>' +
       (gap != null && has ? ' <span class="bal-gap' + (over ? ' over' : '') + '">' + esc(Math.abs(gap) < 0.05 ? '= takt' : balSign(gap, 1) + ' s') + '</span>' : '') + '</div>' +
       '<div class="bh-l bal-load">' + (takt && has ? esc(T('bal.load', { p: Math.round(t.work / takt * 100) })) : '') + '</div>' +
@@ -6187,7 +6673,7 @@ var I18N_LOGIC = {
       '<h2 id="balTitle" tabindex="-1">' + esc(T('bal.title')) + '</h2><div class="bal-top-act">' +
       '<button type="button" class="btn small" data-bal="undo"' + (s.undo.length ? '' : ' disabled') + '>' + esc(T('bal.undo')) + '</button>' +
       '<button type="button" class="btn small" data-bal="redo"' + (s.redo.length ? '' : ' disabled') + '>' + esc(T('bal.redo')) + '</button>' +
-      '<button type="button" class="btn small" data-bal="pdf">' + esc(T('bal.pdf')) + '</button></div></div>';
+      '<button type="button" class="btn small" data-bal="pdf">' + esc(T('bal.pdf')) + '</button><button type="button" class="btn small" data-bal="xlsx">' + esc(T('bal.xlsx')) + '</button></div></div>';
     html += '<div class="tl-tabs bal-tabs" role="group" aria-label="' + esc(T('bal.scenarios')) + '"><button type="button" class="tl-tab" data-bal="tab" data-sc="actual" aria-pressed="' + !sc + '">' + esc(T('bal.actual')) + '</button>' +
       b.scenarios.map(function (x) { return '<button type="button" class="tl-tab" data-bal="tab" data-sc="' + esc(x.id) + '" aria-pressed="' + (sc === x) + '">' + esc(x.name) + '</button>'; }).join('') +
       '<button type="button" class="tl-tab tl-add" data-bal="new">' + esc(T('bal.newScenario')) + '</button></div>';
@@ -6773,7 +7259,7 @@ var I18N_LOGIC = {
     st.example = true;
     st.video = { name: EX_DATA.video.name, size: blob.size, duration: src.video.duration, lastModified: EX_DATA.video.lastModified };
     exScenario(st);
-    if (balActive()) balOpen(false);
+    if (balActive()) balOpen(false); if (lyActive()) lyOpen(false);
     study = st; logSel = null; resetHistory(); anCache = {}; restored = true;
     saveLocalNow(); renderAll();
     openVideo(new File([blob], EX_DATA.video.name, { type: 'video/mp4', lastModified: EX_DATA.video.lastModified }));
@@ -6783,7 +7269,7 @@ var I18N_LOGIC = {
     var raw = null, back = null;
     try { raw = localStorage.getItem(exKey()); } catch (e) { /* ignore */ }
     if (raw) { try { back = L.sanitizeStudy(JSON.parse(raw)); } catch (e) { back = null; } }
-    if (balActive()) balOpen(false);
+    if (balActive()) balOpen(false); if (lyActive()) lyOpen(false);
     unloadVideo();
     study = back || L.newStudy(T('tl.operatorN', { n: 1 }));
     try { localStorage.removeItem(exKey()); } catch (e) { /* ignore */ }
@@ -6864,13 +7350,14 @@ var I18N_LOGIC = {
         '<button type="button" class="btn" data-exp="' + w + 'Copy">' + esc(T('exp.copy')) + '</button>' +
         (share ? '<button type="button" class="btn" data-exp="' + w + 'Share">' + esc(T('exp.share')) + '</button>' : '') + '</div></div>';
     };
-    openPanel({ title: T('exp.winTitle'), backdrop: true, body: grp('sum') + grp('log') + '<p class="note">' + esc(T('exp.winNote')) + '</p>',
+    openPanel({ title: T('exp.winTitle'), backdrop: true, body: grp('sum') + grp('log') + (CAN_DOWNLOAD ? '<div class="exp-grp"><h3>' + esc(T('exp.xlsxTitle')) + '</h3><p class="note">' + esc(T('exp.xlsxNote')) + '</p><div class="btn-row"><button type="button" class="btn" data-exp="xlsx">' + esc(T('exp.xlsxBtn')) + '</button></div></div>' : '') + '<p class="note">' + esc(T('exp.winNote')) + '</p>',
       buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
     var pnl = document.querySelector('.panel');
     if (pnl) pnl.addEventListener('click', function (e) {
       var b = e.target.closest ? e.target.closest('[data-exp]') : null;
       if (!b) return;
       var a = b.getAttribute('data-exp');
+      if (a === 'xlsx') { downloadNeutral(); return; }
       if (/Share$/.test(a)) shareCsv(a === 'logShare' ? 'log' : 'sum'); else handleExportAct(a);
     });
   }
@@ -6939,10 +7426,318 @@ var I18N_LOGIC = {
     if (location.hash === '#equilibrage') balOpen(true, true);
   }
   balWire();
+  lyWire();
   if (window.__VTS_TEST__ && window.__vts) {
     window.__vts.bal = { open: balOpen, state: function () { return BS(); }, scen: balScen, render: balRender, svg: balSvg, pdf: balReport, undo: balUndo, redo: balRedo, help: balHelp };
     window.__vts.ex = { open: exOpen, load: exLoad, quit: exQuit, bar: exBar, data: EX_DATA, key: exKey };
     window.__vts.exportWin = exportWin; window.__vts.taktPanel = taktPanel; window.__vts.cDisp = cDisp;
+  }
+
+  // ---------- Layout (spaghetti): plan picture, stations, operator paths, walking distance and time ----------
+  // Positions in metres in study.layout. The plan picture stays in memory only (never saved), like the video.
+  var LY = { on: false, sel: null, pathOp: null, pathMode: false, bgUrl: null, drag: null, cal: null, zoom: 40 };
+  var LY_COLORS = ['#0070C0', '#C00000', '#00B050', '#7030A0', '#ED7D31', '#B8860B'];
+  function lyActive() { return !!(LY && LY.on); }
+  function lyR(v) { return Math.round(v * 100) / 100; }
+  function lyData() {
+    if (!study.layout) study.layout = { items: [], paths: {}, bg: null, ref: null, step: 0.7, speed: null };
+    if (!study.layout.paths) study.layout.paths = {};
+    return study.layout;
+  }
+  function lyItem(id) { return lyData().items.filter(function (i) { return i.id === id; })[0] || null; }
+  function lyOps() { return study.timelines.filter(function (t) { return t.kind !== 'machine'; }); }
+  function lyCenter(it) { return { x: it.x + it.w / 2, y: it.y + it.h / 2 }; }
+  function lyPts(ids) { return (ids || []).map(function (id) { var it = lyItem(id); return it ? lyCenter(it) : null; }).filter(Boolean); }
+  // closed loop: one cycle comes back to where it started
+  function lyDist(ids) {
+    var p = lyPts(ids), d = 0;
+    if (p.length < 2) return 0;
+    for (var i = 0; i < p.length; i++) { var a = p[i], b = p[(i + 1) % p.length]; d += Math.hypot(b.x - a.x, b.y - a.y); }
+    return d;
+  }
+  function lyWalk() {
+    var w = {};
+    try {
+      L.loadData(study).ops.forEach(function (o) {
+        var s = 0; (o.steps || []).forEach(function (st) { if (st.type === 'Walk' && st.ref > 0) s += st.ref; });
+        w[o.id] = { walk: s, a: o.a };
+      });
+    } catch (e) { /* no study yet */ }
+    return w;
+  }
+  function lyMetrics(op, wk) {
+    var ly = lyData(), ids = ly.paths[op.id] || [];
+    if (ids.length < 2) return { now: null };
+    var now = lyDist(ids), ref = ly.ref && ly.ref.dist && ly.ref.dist[op.id] != null ? ly.ref.dist[op.id] : null, w = wk[op.id] || {};
+    var auto = !(ly.speed > 0) && ref > 0 && w.walk > 0, sp = ly.speed > 0 ? ly.speed : (auto ? ref / w.walk : 1), step = ly.step > 0 ? ly.step : 0.7, odd = null;
+    // a walking speed outside 0.4 to 2 m/s means the drawn paths do not match the video: 1 m/s is used instead
+    if (auto && (sp < 0.4 || sp > 2)) { odd = sp; sp = 1; auto = false; }
+    return { now: now, ref: ref, steps: now / step, stepsRef: ref != null ? ref / step : null, t: now / sp, tRef: ref != null ? ref / sp : null, sp: sp, auto: auto, odd: odd, a: w.a };
+  }
+  function lyOpen(on, fromHash) {
+    on = !!on;
+    if (LY.on === on && !fromHash) return;
+    if (on && balActive()) balOpen(false);
+    LY.on = on;
+    $('vts-app').classList.toggle('ly-on', on);
+    $('lyView').hidden = !on;
+    $('btnLy').setAttribute('aria-pressed', String(on));
+    if (!fromHash) {
+      try { history.replaceState(null, '', on ? '#layout' : location.pathname + location.search); } catch (e) { /* not allowed here */ }
+    }
+    if (on) {
+      try { if (!V.el.paused) V.el.pause(); } catch (e) { /* no video */ }
+      LY.sel = null; LY.cal = null; LY.pathMode = false;
+      lyRender(); window.scrollTo(0, 0);
+      try { $('lyTitle').focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+    }
+  }
+  function lyRender() {
+    if (!LY.on) return;
+    var ly = lyData(), ops = lyOps(), B = function (a, label, on) { return '<button type="button" class="btn small' + (on ? ' on' : '') + '" data-ly="' + a + '"' + (on != null ? ' aria-pressed="' + !!on + '"' : '') + '>' + esc(label) + '</button>'; };
+    if (!LY.pathOp || !ops.some(function (o) { return o.id === LY.pathOp; })) LY.pathOp = ops.length ? ops[0].id : null;
+    var hint = LY.cal ? (LY.cal.p1 ? 'ly.calHint2' : 'ly.calHint1') : (LY.pathMode ? 'ly.pathHint' : 'ly.hint');
+    $('lyView').innerHTML = '<div class="ly-top">' + B('back', T('ly.back')) + '<h2 id="lyTitle" tabindex="-1">' + esc(T('ly.title')) + '</h2></div>' +
+      '<div class="ly-bar">' + B('add', T('ly.add')) + B('plan', T(ly.bg ? 'ly.planChange' : 'ly.plan')) +
+      (ly.bg ? B('scale', T('ly.scale'), !!LY.cal) + B('noplan', T('ly.noPlan')) : '') + '<span class="ly-sep"></span>' +
+      (ops.length ? '<label class="ly-op">' + esc(T('ly.pathOf')) + ' <select data-ly="op">' + ops.map(function (o) {
+        return '<option value="' + esc(o.id) + '"' + (o.id === LY.pathOp ? ' selected' : '') + '>' + esc(o.name) + '</option>'; }).join('') + '</select></label>' +
+        B('path', T(LY.pathMode ? 'ly.pathStop' : 'ly.pathDraw'), LY.pathMode) + B('undoPt', T('ly.undoPt')) + B('clearPath', T('ly.clearPath')) : '') +
+      '<span class="ly-sep"></span>' + B('ref', T(ly.ref ? 'ly.refAgain' : 'ly.refSet')) + B('dxf', 'DXF') + B('zout', '\u2212') + B('zin', '+') + '</div>' +
+      '<p class="ly-hint">' + esc(T(hint)) + '</p>' +
+      '<div class="ly-main"><div class="ly-wrap"><svg id="lySvg" xmlns="http://www.w3.org/2000/svg"><g id="lyG"></g></svg></div><aside class="ly-side" id="lySide"></aside></div>';
+    lyDraw(); lySide();
+  }
+  function lyDraw() {
+    var ly = lyData(), svg = $('lySvg'), g = $('lyG');
+    if (!svg) return;
+    var W = 20, H = 12, o = [];
+    if (ly.bg) { W = Math.max(W, ly.bg.w); H = Math.max(H, ly.bg.h); }
+    ly.items.forEach(function (it) { W = Math.max(W, it.x + it.w + 2); H = Math.max(H, it.y + it.h + 2); });
+    W = Math.ceil(W); H = Math.ceil(H);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('width', W * LY.zoom); svg.setAttribute('height', H * LY.zoom);
+    if (ly.bg && LY.bgUrl) o.push('<image href="' + LY.bgUrl + '" x="0" y="0" width="' + ly.bg.w + '" height="' + ly.bg.h + '" preserveAspectRatio="none" opacity="0.85"/>');
+    else if (ly.bg) o.push('<rect x="0" y="0" width="' + ly.bg.w + '" height="' + ly.bg.h + '" class="ly-bgmiss"/><text x="0.5" y="1" class="ly-t ly-tl">' + esc(T('ly.planMissing', { name: ly.bg.name })) + '</text>');
+    for (var x = 1; x < W; x++) o.push('<line x1="' + x + '" x2="' + x + '" y1="0" y2="' + H + '" class="ly-grid' + (x % 5 ? '' : ' m5') + '"/>');
+    for (var y = 1; y < H; y++) o.push('<line y1="' + y + '" y2="' + y + '" x1="0" x2="' + W + '" class="ly-grid' + (y % 5 ? '' : ' m5') + '"/>');
+    var ops = lyOps();
+    ops.forEach(function (op, k) {
+      var p = lyPts(ly.paths[op.id]), col = LY_COLORS[k % LY_COLORS.length], off = (k - (ops.length - 1) / 2) * 0.14;
+      if (p.length < 2) return;
+      for (var i = 0; i < p.length; i++) {
+        var a = p[i], b = p[(i + 1) % p.length];
+        if (Math.hypot(b.x - a.x, b.y - a.y) < 0.01) continue;
+        o.push('<line x1="' + lyR(a.x + off) + '" y1="' + lyR(a.y + off) + '" x2="' + lyR(b.x + off) + '" y2="' + lyR(b.y + off) + '" stroke="' + col + '" class="ly-path"/>');
+        var ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+        o.push('<path class="ly-arrow" d="M-0.24 -0.17L0.24 0L-0.24 0.17z" fill="' + col + '" transform="translate(' + lyR((a.x + b.x) / 2 + off) + ' ' + lyR((a.y + b.y) / 2 + off) + ') rotate(' + lyR(ang) + ')"/>');
+      }
+    });
+    ly.items.forEach(function (it) {
+      var sel = it.id === LY.sel;
+      o.push('<g class="ly-it' + (sel ? ' sel' : '') + '" data-id="' + esc(it.id) + '"><rect class="ly-box" x="' + it.x + '" y="' + it.y + '" width="' + it.w + '" height="' + it.h + '" rx="0.08"/>' +
+        '<text x="' + lyR(it.x + it.w / 2) + '" y="' + lyR(it.y + it.h / 2) + '" class="ly-t" text-anchor="middle" dominant-baseline="middle">' + esc(it.name) + '</text>' +
+        (sel ? '<rect class="ly-h" data-h="' + esc(it.id) + '" x="' + lyR(it.x + it.w - 0.25) + '" y="' + lyR(it.y + it.h - 0.25) + '" width="0.5" height="0.5"/>' : '') + '</g>');
+    });
+    if (LY.cal && LY.cal.p1) o.push('<circle cx="' + lyR(LY.cal.p1.x) + '" cy="' + lyR(LY.cal.p1.y) + '" r="0.18" class="ly-cal"/>');
+    g.innerHTML = o.join('');
+  }
+  function lySide() {
+    var side = $('lySide');
+    if (!side) return;
+    var ly = lyData(), it = LY.sel ? lyItem(LY.sel) : null, h = '';
+    if (it) {
+      h += '<h3>' + esc(T('ly.item')) + '</h3><div class="field"><label for="lyName">' + esc(T('ly.name')) + '</label><input type="text" id="lyName" data-lyf="name" value="' + esc(it.name) + '"></div>' +
+        '<div class="ly-2"><div class="field"><label>' + esc(T('ly.w')) + '</label><input type="text" inputmode="decimal" data-lyf="w" value="' + fmtS(it.w, 1) + '"></div>' +
+        '<div class="field"><label>' + esc(T('ly.h')) + '</label><input type="text" inputmode="decimal" data-lyf="h" value="' + fmtS(it.h, 1) + '"></div></div>' +
+        '<p><button type="button" class="btn small danger" data-ly="del">' + esc(T('ly.del')) + '</button></p>';
+    }
+    h += '<h3>' + esc(T('ly.metrics')) + '</h3><div id="lyMetrics"></div>' +
+      '<h3>' + esc(T('ly.settings')) + '</h3><div class="ly-2"><div class="field"><label>' + esc(T('ly.step')) + '</label><input type="text" inputmode="decimal" data-lyf="step" value="' + fmtS(ly.step > 0 ? ly.step : 0.7, 2) + '"></div>' +
+      '<div class="field"><label>' + esc(T('ly.speed')) + '</label><input type="text" inputmode="decimal" data-lyf="speed" placeholder="' + esc(T('ly.auto')) + '" value="' + (ly.speed > 0 ? fmtS(ly.speed, 2) : '') + '"></div></div>' +
+      '<p class="hint">' + esc(T('ly.speedHint')) + '</p>';
+    side.innerHTML = h;
+    lySideMetrics();
+  }
+  function lySideMetrics() {
+    var box = $('lyMetrics');
+    if (!box) return;
+    var ly = lyData(), wk = lyWalk(), out = '', any = false;
+    lyOps().forEach(function (op, k) {
+      var m = lyMetrics(op, wk);
+      if (m.now == null) return;
+      any = true;
+      var s = '<div class="ly-m"><b><i class="ly-dot c' + (k % LY_COLORS.length) + '"></i>' + esc(op.name) + '</b>' +
+        '<span>' + esc(T('ly.distV', { d: fmtS(m.now, 1), n: Math.round(m.steps) })) + '</span><span>' + esc(T('ly.walkV', { t: fmtS(m.t, 1) })) + '</span>';
+      if (m.ref != null) {
+        var dd = Math.round((m.now - m.ref) * 10) / 10, dt = Math.round((m.t - m.tRef) * 10) / 10, dn = Math.round(m.steps) - Math.round(m.stepsRef);
+        s += '<span class="ly-d' + (dt < 0 ? ' good' : (dt > 0 ? ' bad' : '')) + '">' + esc(T('ly.vsRef', { d: balSign(dd, 1) + ' m', n: (dn > 0 ? '+' : '') + dn, t: balSign(dt, 1) + ' s' })) + '</span>';
+        if (m.a != null) s += '<span>' + esc(T('ly.cycleV', { a: fmtS(m.a, 1), b: fmtS(Math.max(0, m.a + dt), 1) })) + '</span>';
+      }
+      out += s + '<span class="hint">' + esc(m.odd != null ? T('ly.spOdd', { v: fmtS(m.odd, 2) }) : T(m.auto ? 'ly.spAuto' : 'ly.spSet', { v: fmtS(m.sp, 2) })) + '</span></div>';
+    });
+    box.innerHTML = any ? (ly.ref ? '' : '<p class="hint">' + esc(T('ly.refHint')) + '</p>') + out : '<p class="hint">' + esc(T('ly.noPath')) + '</p>';
+  }
+  function lyPt(e) {
+    var svg = $('lySvg'), p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    var q = p.matrixTransform(svg.getScreenCTM().inverse());
+    return { x: q.x, y: q.y };
+  }
+  function lyDown(e) {
+    if (e.button) return;
+    var svg = $('lySvg');
+    if (!svg || !svg.contains(e.target)) return;
+    var p = lyPt(e), hEl = e.target.closest('[data-h]'), gEl = e.target.closest('.ly-it'), it;
+    if (LY.cal) { lyCalClick(p); return; }
+    if (hEl && (it = lyItem(hEl.getAttribute('data-h')))) LY.drag = { mode: 'size', id: it.id, p0: p, w0: it.w, h0: it.h, moved: false };
+    else if (gEl && (it = lyItem(gEl.getAttribute('data-id')))) LY.drag = { mode: 'move', id: it.id, p0: p, x0: it.x, y0: it.y, moved: false };
+    else { if (LY.sel) { LY.sel = null; lyDraw(); lySide(); } return; }
+    try { svg.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+    e.preventDefault();
+  }
+  function lyMove(e) {
+    var d = LY.drag;
+    if (!d) return;
+    var p = lyPt(e), dx = p.x - d.p0.x, dy = p.y - d.p0.y, it = lyItem(d.id);
+    if (!it || (!d.moved && Math.hypot(dx, dy) * LY.zoom < 4)) return;
+    d.moved = true;
+    var sn = function (v) { return Math.round(v * 10) / 10; };
+    if (d.mode === 'move') { it.x = Math.max(0, sn(d.x0 + dx)); it.y = Math.max(0, sn(d.y0 + dy)); }
+    else { it.w = Math.max(0.2, sn(d.w0 + dx)); it.h = Math.max(0.2, sn(d.h0 + dy)); }
+    lyDraw(); lySideMetrics();
+  }
+  function lyUp() {
+    var d = LY.drag;
+    if (!d) return;
+    LY.drag = null;
+    if (d.moved) { scheduleSave(); lySide(); return; }
+    if (LY.pathMode && d.mode === 'move' && LY.pathOp) {
+      var ly = lyData(); (ly.paths[LY.pathOp] = ly.paths[LY.pathOp] || []).push(d.id);
+      scheduleSave(); lyDraw(); lySide(); return;
+    }
+    LY.sel = d.id; lyDraw(); lySide();
+  }
+  function lyCalClick(p) {
+    if (!LY.cal.p1) { LY.cal.p1 = p; lyRender(); return; }
+    var dm = Math.hypot(p.x - LY.cal.p1.x, p.y - LY.cal.p1.y);
+    LY.cal = null;
+    if (dm < 0.05) { lyRender(); return; }
+    openPanel({ title: T('ly.scaleTitle'), body: '<div class="field"><label for="lyReal">' + esc(T('ly.scaleAsk')) + '</label><input type="text" inputmode="decimal" id="lyReal"></div>', buttons: [
+      { label: T('ly.cancel'), onClick: function () { cancelPanel(); lyRender(); } },
+      { label: T('ly.ok'), kind: 'primary', onClick: function () {
+        var real = parseFloat(String($('lyReal').value).replace(',', '.'));
+        cancelPanel();
+        var ly = lyData();
+        if (real > 0 && ly.bg) { var k = real / dm; ly.bg.w = lyR(ly.bg.w * k); ly.bg.h = lyR(ly.bg.h * k); scheduleSave(); }
+        lyRender();
+      } }] });
+  }
+  function lyPlanFile(f) {
+    if (!f || !/^image\//.test(f.type)) { toast(T('ly.planBad')); return; }
+    var r = new FileReader();
+    r.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var ly = lyData();
+        if (!(ly.bg && ly.bg.name === f.name)) ly.bg = { name: f.name, w: 30, h: lyR(img.naturalHeight / img.naturalWidth * 30) };
+        LY.bgUrl = r.result; scheduleSave(); lyRender(); toast(T('ly.planDone'));
+      };
+      img.src = r.result;
+    };
+    r.readAsDataURL(f);
+  }
+  function lyDelete() {
+    var ly = lyData(), id = LY.sel;
+    if (!id) return;
+    ly.items = ly.items.filter(function (i) { return i.id !== id; });
+    Object.keys(ly.paths).forEach(function (k) { ly.paths[k] = ly.paths[k].filter(function (x) { return x !== id; }); });
+    LY.sel = null; scheduleSave(); lyDraw(); lySide();
+  }
+  function lyDxf() {
+    var ly = lyData(), H = 0, o = ['0', 'SECTION', '2', 'ENTITIES'];
+    ly.items.forEach(function (it) { H = Math.max(H, it.y + it.h); });
+    if (ly.bg) H = Math.max(H, ly.bg.h);
+    var asc = function (s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\x20-\x7E]/g, '?'); };
+    var n = function (v) { return String(Math.round(v * 1000) / 1000); };
+    var line = function (layer, x1, y1, x2, y2) { o.push('0', 'LINE', '8', layer, '10', n(x1), '20', n(H - y1), '30', '0', '11', n(x2), '21', n(H - y2), '31', '0'); };
+    ly.items.forEach(function (it) {
+      line('POSTES', it.x, it.y, it.x + it.w, it.y); line('POSTES', it.x + it.w, it.y, it.x + it.w, it.y + it.h);
+      line('POSTES', it.x + it.w, it.y + it.h, it.x, it.y + it.h); line('POSTES', it.x, it.y + it.h, it.x, it.y);
+      o.push('0', 'TEXT', '8', 'NOMS', '10', n(it.x + 0.1), '20', n(H - it.y - it.h / 2), '30', '0', '40', '0.25', '1', asc(it.name));
+    });
+    lyOps().forEach(function (t) {
+      var p = lyPts(ly.paths[t.id]);
+      if (p.length < 2) return;
+      var layer = 'TRAJET_' + asc(t.name).replace(/[^A-Za-z0-9]+/g, '_').toUpperCase();
+      for (var i = 0; i < p.length; i++) { var a = p[i], b = p[(i + 1) % p.length]; line(layer, a.x, a.y, b.x, b.y); }
+    });
+    o.push('0', 'ENDSEC', '0', 'EOF');
+    var url = URL.createObjectURL(new Blob([o.join('\r\n') + '\r\n'], { type: 'application/dxf' })), a = document.createElement('a');
+    a.href = url; a.download = fileBase() + '-layout.dxf'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    track('layout-dxf');
+  }
+  function lyClick(e) {
+    var b = e.target.closest ? e.target.closest('[data-ly]') : null;
+    if (!b || b.tagName === 'SELECT') return;
+    var a = b.getAttribute('data-ly'), ly = lyData();
+    if (a === 'back') lyOpen(false);
+    else if (a === 'add') {
+      var n = ly.items.length + 1, it = { id: 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name: T('ly.post') + ' ' + n, x: 1 + ((n - 1) % 5) * 3, y: 1 + Math.floor((n - 1) / 5) * 2.5, w: 1.6, h: 1 };
+      ly.items.push(it); LY.sel = it.id; scheduleSave(); lyDraw(); lySide();
+    }
+    else if (a === 'plan') { var f = $('filePlan'); f.value = ''; f.click(); }
+    else if (a === 'noplan') { ly.bg = null; LY.bgUrl = null; LY.cal = null; scheduleSave(); lyRender(); }
+    else if (a === 'scale') { LY.cal = LY.cal ? null : {}; LY.pathMode = false; lyRender(); }
+    else if (a === 'path') { LY.pathMode = !LY.pathMode; LY.cal = null; lyRender(); }
+    else if (a === 'undoPt') { var p = ly.paths[LY.pathOp]; if (p && p.length) { p.pop(); scheduleSave(); lyDraw(); lySide(); } }
+    else if (a === 'clearPath') { if (ly.paths[LY.pathOp]) { delete ly.paths[LY.pathOp]; scheduleSave(); lyDraw(); lySide(); } }
+    else if (a === 'ref') {
+      var dist = {};
+      lyOps().forEach(function (t) { var ids = ly.paths[t.id]; if (ids && ids.length > 1) dist[t.id] = lyR(lyDist(ids)); });
+      ly.ref = { dist: dist, date: Date.now() }; scheduleSave(); lyRender(); toast(T('ly.refDone'));
+    }
+    else if (a === 'dxf') lyDxf();
+    else if (a === 'zin' || a === 'zout') { LY.zoom = Math.max(10, Math.min(160, LY.zoom * (a === 'zin' ? 1.25 : 0.8))); lyDraw(); }
+    else if (a === 'del') lyDelete();
+  }
+  function lyChange(e) {
+    var el = e.target, ly = lyData();
+    if (el.getAttribute('data-ly') === 'op') { LY.pathOp = el.value; return; }
+    var f = el.getAttribute('data-lyf');
+    if (!f) return;
+    if (f === 'step' || f === 'speed') { var v = parseFloat(String(el.value).replace(',', '.')); ly[f] = v > 0 ? v : null; scheduleSave(); lySideMetrics(); return; }
+    var it = lyItem(LY.sel);
+    if (!it) return;
+    if (f === 'name') it.name = el.value.trim() || it.name;
+    else { var x = parseFloat(String(el.value).replace(',', '.')); if (x >= 0.2) it[f] = Math.round(x * 10) / 10; }
+    scheduleSave(); lyDraw(); lySideMetrics();
+  }
+  function lyKey(e) {
+    var tg = e.target, typing = tg && /^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName);
+    if (e.key === 'Escape') {
+      if (LY.cal || LY.pathMode) { LY.cal = null; LY.pathMode = false; lyRender(); }
+      else if (LY.sel) { LY.sel = null; lyDraw(); lySide(); }
+      e.preventDefault(); return;
+    }
+    if (!typing && (e.key === 'Delete' || e.key === 'Backspace') && LY.sel) { lyDelete(); e.preventDefault(); }
+  }
+  function lyHelp() {
+    openPanel({ title: T('ly.helpTitle'), backdrop: true, body: '<div class="help">' + [1, 2, 3, 4].map(function (i) { return '<p>' + esc(T('ly.help' + i)) + '</p>'; }).join('') + '</div>',
+      buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
+  }
+  function lyWire() {
+    $('btnLy').addEventListener('click', function () { lyOpen(!lyActive()); });
+    window.addEventListener('hashchange', function () { var want = location.hash === '#layout'; if (want !== lyActive()) lyOpen(want, true); });
+    var v = $('lyView');
+    v.addEventListener('click', lyClick);
+    v.addEventListener('change', lyChange);
+    v.addEventListener('pointerdown', lyDown);
+    v.addEventListener('pointermove', lyMove);
+    v.addEventListener('pointerup', lyUp);
+    v.addEventListener('pointercancel', function () { LY.drag = null; });
+    $('filePlan').addEventListener('change', function () { if (this.files && this.files[0]) lyPlanFile(this.files[0]); });
+    // after the whole script has run (LY is set at the end of it)
+    setTimeout(function () { if (location.hash === '#layout') lyOpen(true, true); }, 0);
   }
 })();
 /* APP-END */
