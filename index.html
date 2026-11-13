@@ -916,6 +916,71 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
 .ly-dot.c3 { background: #7030A0; }
 .ly-dot.c4 { background: #ED7D31; }
 .ly-dot.c5 { background: #B8860B; }
+
+/* ---------- 3.7: layout in 4 guided steps ---------- */
+.ly-steps { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 10px; }
+.ly-step { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }
+.ly-step b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--border); color: var(--text); font-size: 12px; }
+.ly-step.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); color: var(--accent); }
+.ly-step.on b { background: var(--accent); color: #fff; }
+.ly-main { display: flex; gap: 14px; align-items: stretch; }
+.ly-side { width: 300px; flex: none; font-size: 14px; }
+.ly-side p { margin: 0 0 10px; }
+.ly-side h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); }
+.ly-side h4 { margin: 12px 0 6px; font-size: 14px; }
+.ly-tip { font-size: 13px; color: var(--muted); }
+.ly-warn { font-size: 13px; color: var(--danger); }
+.ly-next { margin-top: 16px !important; }
+.ly-btns { display: flex; flex-wrap: wrap; gap: 6px; }
+.ly-f { margin: 0 0 8px; }
+.ly-f label { display: block; margin: 0 0 3px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.ly-f input { display: block; width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; }
+.ly-card { margin: 12px 0; padding: 10px; border: 1px solid var(--border); border-radius: 8px; }
+.ly-pal { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ly-tool { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; font-weight: 600; text-align: left; cursor: pointer; }
+.ly-tool.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+.ly-sw { display: inline-block; width: 18px; height: 13px; border-radius: 3px; flex: none; }
+.ly-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.ly-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; cursor: pointer; }
+.ly-chip.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; font-weight: 700; }
+.ly-order { margin: 0 0 8px; padding-left: 22px; }
+.ly-sum { font-weight: 600; }
+.ly-canvas { position: relative; flex: 1; min-width: 0; height: calc(100vh - 230px); min-height: 420px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); touch-action: none; }
+.ly-canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; cursor: grab; }
+.ly-banner { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); max-width: 90%; margin: 0; padding: 6px 14px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; text-align: center; pointer-events: none; }
+.ly-zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 4px; }
+.ly-box { stroke-width: 2px; vector-effect: non-scaling-stroke; cursor: move; }
+.ly-k-post { fill: #DCE6F7; stroke: #2F4FA0; }
+.ly-k-machine { fill: #D9D9D9; stroke: #595959; }
+.ly-k-rack { fill: #FFF0C2; stroke: #B8860B; }
+.ly-k-table { fill: #D6F0DC; stroke: #2E8B57; }
+.ly-sw.ly-k-post { background: #DCE6F7; border: 2px solid #2F4FA0; }
+.ly-sw.ly-k-machine { background: #D9D9D9; border: 2px solid #595959; }
+.ly-sw.ly-k-rack { background: #FFF0C2; border: 2px solid #B8860B; }
+.ly-sw.ly-k-table { background: #D6F0DC; border: 2px solid #2E8B57; }
+.ly-it.sel .ly-box { stroke: var(--danger); stroke-width: 3px; }
+.ly-tx { fill: #1C2333; font-weight: 600; pointer-events: none; }
+.ly-pa { fill: none; stroke-linecap: round; pointer-events: none; }
+.ly-pa.faded, .ly-arrow.faded { opacity: .3; }
+.ly-badge { fill: var(--accent); stroke: #fff; stroke-width: 2px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.ly-btx { fill: #fff; font-weight: 700; pointer-events: none; }
+.ly-calline { stroke: var(--danger); stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; pointer-events: none; }
+.ly-tab { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 13px; }
+.ly-tab th, .ly-tab td { padding: 4px 5px; border-bottom: 1px solid var(--border); text-align: right; }
+.ly-tab th:first-child, .ly-tab td:first-child { text-align: left; }
+.ly-tab .ly-oph td { padding-top: 10px; font-weight: 700; text-align: left; }
+.ly-tab .ly-spd td { font-size: 12px; color: var(--muted); text-align: left; }
+.ly-tab td.good { color: #12803C; font-weight: 700; }
+.ly-tab td.bad { color: var(--danger); font-weight: 700; }
+.ly-set summary { cursor: pointer; font-weight: 600; margin: 8px 0; }
+@media (max-width: 860px) { .ly-main { flex-direction: column; } .ly-side { width: 100%; } .ly-canvas { height: 65vh; } }
+
+/* ---------- 3.8: undo, waypoints, today's layout while comparing ---------- */
+.ly-zoom .btn[disabled] { opacity: .45; cursor: default; }
+.ly-wp { fill: #7030A0; stroke: #fff; stroke-width: 2px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.ly-wpi { color: var(--muted); font-style: italic; }
+.ly-ghost { fill: none; stroke: var(--muted); stroke-width: 2px; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; pointer-events: none; }
+.ly-oldpa { stroke: var(--muted); stroke-dasharray: 0.2 0.15; opacity: .55; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1042,7 +1107,7 @@ html.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-selec
   <a href="https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="ftr.terms">Terms of use</a>
   <button type="button" class="ftr-link" id="btnContactF" data-i18n="contact.menu">Contact and feedback</button>
   <button type="button" class="ftr-link" id="btnLegal" data-i18n="ftr.legal">Legal notice</button>
-  <button type="button" class="ftr-link" id="btnNews" data-i18n-title="news.title">Version 3.6</button>
+  <button type="button" class="ftr-link" id="btnNews" data-i18n-title="news.title">Version 3.8</button>
 </footer>
 
 <div class="overlay" id="overlay" hidden></div>
@@ -1959,12 +2024,13 @@ var L = (function () {
     (Array.isArray(o.items) ? o.items : []).forEach(function (it) {
       if (!it || typeof it !== 'object' || typeof it.id !== 'string' || !it.id || ids[it.id]) return;
       ids[it.id] = 1;
-      items.push({ id: it.id, name: String(it.name == null ? '' : it.name).slice(0, 80), x: Math.max(0, num(it.x, 0)), y: Math.max(0, num(it.y, 0)), w: Math.max(0.2, num(it.w, 1)), h: Math.max(0.2, num(it.h, 1)) });
+      items.push({ id: it.id, kind: ['post', 'machine', 'rack', 'table'].indexOf(it.kind) >= 0 ? it.kind : 'post', name: String(it.name == null ? '' : it.name).slice(0, 80), x: Math.max(0, num(it.x, 0)), y: Math.max(0, num(it.y, 0)), w: Math.max(0.2, num(it.w, 1)), h: Math.max(0.2, num(it.h, 1)) });
     });
     var paths = {};
     if (o.paths && typeof o.paths === 'object') Object.keys(o.paths).forEach(function (k) {
       if (!Array.isArray(o.paths[k])) return;
-      var p = o.paths[k].filter(function (x) { return typeof x === 'string' && ids[x]; });
+      var p = o.paths[k].filter(function (x) { return typeof x === 'string' ? !!ids[x] : !!(x && typeof x === 'object' && isFinite(+x.x) && isFinite(+x.y)); })
+        .map(function (x) { return typeof x === 'string' ? x : { x: Math.max(-1000, Math.min(10000, +x.x)), y: Math.max(-1000, Math.min(10000, +x.y)) }; });
       if (p.length) paths[k] = p;
     });
     var bg = o.bg && typeof o.bg === 'object' && o.bg.name ? { name: String(o.bg.name).slice(0, 200), w: Math.max(0.5, num(o.bg.w, 30)), h: Math.max(0.5, num(o.bg.h, 20)) } : null;
@@ -1972,6 +2038,7 @@ var L = (function () {
     if (o.ref && typeof o.ref === 'object' && o.ref.dist && typeof o.ref.dist === 'object') {
       ref = { dist: {}, date: num(o.ref.date, 0) };
       Object.keys(o.ref.dist).forEach(function (k) { var v = num(o.ref.dist[k], null); if (v != null && v >= 0) ref.dist[k] = v; });
+      if (o.ref.pos && typeof o.ref.pos === 'object') { ref.pos = {}; Object.keys(o.ref.pos).forEach(function (k) { var q = o.ref.pos[k]; if (ids[k] && q && typeof q === 'object') ref.pos[k] = { x: num(q.x, 0), y: num(q.y, 0), w: Math.max(0.2, num(q.w, 1)), h: Math.max(0.2, num(q.h, 1)) }; }); }
     }
     var step = num(o.step, 0.7), speed = num(o.speed, null);
     return { items: items, paths: paths, bg: bg, ref: ref, step: step > 0 ? step : 0.7, speed: speed > 0 ? speed : null };
@@ -3251,6 +3318,95 @@ var I18N = {
     've.what': 'Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.',
     'study.takt': 'Customer takt time (s)',
     'study.taktPh': 'e.g. 60',
+    'ly2.undo': 'Undo',
+    'ly2.redo': 'Redo',
+    'ly2.wp': 'Waypoint',
+    'ly2.wpTip': 'To go round a machine or follow an aisle, click an empty spot between two stations: it adds a waypoint.',
+    'ly2.total': 'Whole line',
+    'ly2.r.walkAll': 'Walking, all operators',
+    'ly2.r.per1000': 'Walking over 1,000 parts',
+    'ly2.exBtn': 'Load the example layout',
+    'ly2.exTip': 'Parts bin, press, clipping table and box, with the path of both operators, to try straight away.',
+    'ly2.exDone': 'Example layout loaded. Go to Compare, freeze it, then move the stations.',
+    'ly2.ex.bin': 'Parts bin',
+    'ly2.ex.press': 'Press',
+    'ly2.ex.table': 'Clipping table',
+    'ly2.ex.box': 'Box',
+    'ly2.help6': 'Ctrl+Z undoes, Ctrl+Y redoes, also with the buttons on the plan. The arrow keys move the selected station by 10 cm, 50 cm with Shift.',
+    'news.v3_8': 'Layout: undo and redo, waypoints to go round machines, today\u2019s layout shown dashed while comparing, whole-line total, ready-made example layout, arrow keys to move a station.',
+    'ly2.step.plan': 'Plan',
+    'ly2.step.posts': 'Stations',
+    'ly2.step.paths': 'Paths',
+    'ly2.step.compare': 'Compare',
+    'ly2.t.plan': '1. The plan (optional)',
+    'ly2.t.posts': '2. Place the stations',
+    'ly2.t.paths': '3. Draw the paths',
+    'ly2.t.compare': '4. Compare',
+    'ly2.next.posts': 'Next: the stations \u2192',
+    'ly2.next.paths': 'Next: the paths \u2192',
+    'ly2.next.compare': 'Next: compare \u2192',
+    'ly2.fit': 'Fit',
+    'ly2.planTxt': 'Load a picture of your plan (PNG or JPG). Without a plan, you draw on a grid where one square is one metre.',
+    'ly2.planLoad': 'Load a picture of the plan',
+    'ly2.scaleT': 'Scale',
+    'ly2.scaleTxt': 'The plan is now {w} m wide. To be exact, click both ends of a known distance on the plan, then type its length.',
+    'ly2.scaleGo': 'Set the scale',
+    'ly2.scaleStop': 'Stop',
+    'ly2.realLen': 'Real length (m)',
+    'ly2.realBad': 'Type the real length in metres, for example 5.',
+    'ly2.scaleDone': 'Scale set.',
+    'ly2.calStart': 'Scale: click one end of a known distance.',
+    'ly2.calEnd': 'Now click the other end.',
+    'ly2.calLen': 'Type the real length on the left.',
+    'ly2.postsTxt': 'Choose what to place, then click on the plan where it goes. Drag it to move it, drag its corner to resize it.',
+    'ly2.k.post': 'Work station',
+    'ly2.k.machine': 'Machine',
+    'ly2.k.rack': 'Rack or bin',
+    'ly2.k.table': 'Table',
+    'ly2.n.post': 'Station',
+    'ly2.n.machine': 'Machine',
+    'ly2.n.rack': 'Rack',
+    'ly2.n.table': 'Table',
+    'ly2.toolTip': 'Each click on the plan places one. Escape or Done to stop.',
+    'ly2.done': 'Done',
+    'ly2.selT': 'Selected',
+    'ly2.rotate': 'Turn',
+    'ly2.dup': 'Duplicate',
+    'ly2.selTip': 'Click a station to rename it, change its size or delete it.',
+    'ly2.noOps': 'The study has no operator yet.',
+    'ly2.whichOp': 'Whose path?',
+    'ly2.pathsNeed': 'Place the stations first (step 2).',
+    'ly2.pathsTxt': 'Click the stations in the order {op} goes to them during one cycle.',
+    'ly2.loop': 'Then back to {name}: the return is counted by itself.',
+    'ly2.restart': 'Start again',
+    'ly2.cmpNeed': 'Draw at least one path first (step 3).',
+    'ly2.cmpTxt1': 'First freeze the layout as it is today. Then move the stations to try a new one: the gains show up here.',
+    'ly2.freeze': 'Freeze today\u2019s layout',
+    'ly2.cmpTxt2': 'Move the stations on the plan: the new figures update as you go.',
+    'ly2.col.cur': 'Today',
+    'ly2.col.new': 'New',
+    'ly2.col.gap': 'Gap',
+    'ly2.r.dist': 'Distance per cycle',
+    'ly2.r.steps': 'Steps',
+    'ly2.r.walk': 'Walking time',
+    'ly2.r.cycle': 'Cycle (a)',
+    'ly2.restore': 'Back to today\u2019s layout',
+    'ly2.restored': 'Stations put back where they are today.',
+    'ly2.dxf': 'Export as DXF (CAD)',
+    'ly2.bPlan1': 'Optional: load a picture of the plan on the left, or go straight to step 2.',
+    'ly2.bPlan2': 'Drag to move around, wheel or + and \u2212 to zoom.',
+    'ly2.bPosts1': 'Choose a station type on the left, then click here to place it.',
+    'ly2.bPosts2': 'Drag a station to move it. Choose a type on the left to add more.',
+    'ly2.bTool': 'Click on the plan to place: {k}.',
+    'ly2.bPaths': 'Click the stations in the order of {op}\u2019s cycle.',
+    'ly2.bCmp1': 'Freeze today\u2019s layout on the left, then move the stations.',
+    'ly2.bCmp2': 'Move the stations to try a new layout.',
+    'ly2.help1': 'The layout works in 4 steps, shown at the top: plan, stations, paths, compare.',
+    'ly2.help2': '1. Plan (optional): load a picture of the plan, then set the scale by clicking both ends of a known distance. PDF or CAD plans must be saved as a picture first.',
+    'ly2.help3': '2. Stations: choose a type, click on the plan to place it, drag it to move it, drag its corner to resize it.',
+    'ly2.help4': '3. Paths: choose an operator, then click the stations in the order of one cycle. To go round a machine or follow an aisle, click an empty spot: it adds a waypoint. The return to the start is counted by itself.',
+    'ly2.help5': '4. Compare: freeze today\u2019s layout, then move the stations. Distance, steps, walking time and cycle are compared. Drag the empty plan to move around, use the wheel, two fingers or + and \u2212 to zoom. The plan picture is not saved: load it again next time.',
+    'news.v3_7': 'Layout redone in 4 guided steps: plan, stations, paths, compare. Station types to place with one click, plan to move around with the mouse or a finger, numbered paths, today / new / gap table, back to today\u2019s layout.',
     'ly.spOdd': 'The study gives {v} m/s, which is not a walking speed: check the scale and the paths. 1 m/s used.',
     'ly.btn': 'Layout',
     'ly.title': 'Layout and walking paths',
@@ -3778,6 +3934,95 @@ var I18N = {
     've.what': 'Appuyez sur une touche au d\u00e9but de chaque \u00e9tape. Le site calcule les temps de cycle et T1, et remplit vos fiches standard. Gratuit.',
     'study.takt': 'Takt time client (s)',
     'study.taktPh': 'ex. 60',
+    'ly2.undo': 'Annuler',
+    'ly2.redo': 'R\u00e9tablir',
+    'ly2.wp': 'Point de passage',
+    'ly2.wpTip': 'Pour contourner une machine ou suivre une all\u00e9e, cliquez un endroit vide entre deux postes : \u00e7a ajoute un point de passage.',
+    'ly2.total': 'Toute la ligne',
+    'ly2.r.walkAll': 'Marche, tous les op\u00e9rateurs',
+    'ly2.r.per1000': 'Marche sur 1 000 pi\u00e8ces',
+    'ly2.exBtn': 'Charger le layout de l\u2019exemple',
+    'ly2.exTip': 'Bac de pi\u00e8ces, presse, table d\u2019agrafage et carton, avec le trajet des deux op\u00e9rateurs, pour essayer tout de suite.',
+    'ly2.exDone': 'Layout de l\u2019exemple charg\u00e9. Allez dans Comparer, figez-le, puis d\u00e9placez les postes.',
+    'ly2.ex.bin': 'Bac de pi\u00e8ces',
+    'ly2.ex.press': 'Presse',
+    'ly2.ex.table': 'Table d\u2019agrafage',
+    'ly2.ex.box': 'Carton',
+    'ly2.help6': 'Ctrl+Z annule, Ctrl+Y r\u00e9tablit, aussi avec les boutons sur le plan. Les fl\u00e8ches du clavier d\u00e9placent le poste choisi de 10 cm, 50 cm avec Maj.',
+    'news.v3_8': 'Layout : annuler et r\u00e9tablir, points de passage pour contourner les machines, implantation actuelle en pointill\u00e9s pendant la comparaison, total de toute la ligne, layout d\u2019exemple pr\u00eat \u00e0 l\u2019emploi, fl\u00e8ches du clavier pour d\u00e9placer un poste.',
+    'ly2.step.plan': 'Plan',
+    'ly2.step.posts': 'Postes',
+    'ly2.step.paths': 'Trajets',
+    'ly2.step.compare': 'Comparer',
+    'ly2.t.plan': '1. Le plan (facultatif)',
+    'ly2.t.posts': '2. Poser les postes',
+    'ly2.t.paths': '3. Tracer les trajets',
+    'ly2.t.compare': '4. Comparer',
+    'ly2.next.posts': 'Suivant : les postes \u2192',
+    'ly2.next.paths': 'Suivant : les trajets \u2192',
+    'ly2.next.compare': 'Suivant : comparer \u2192',
+    'ly2.fit': 'Ajuster',
+    'ly2.planTxt': 'Chargez une image de votre plan (PNG ou JPG). Sans plan, vous dessinez sur une grille o\u00f9 un carreau fait un m\u00e8tre.',
+    'ly2.planLoad': 'Charger une image du plan',
+    'ly2.scaleT': '\u00c9chelle',
+    'ly2.scaleTxt': 'Le plan fait pour l\u2019instant {w} m de large. Pour \u00eatre juste, cliquez les deux bouts d\u2019une cote connue sur le plan, puis tapez sa longueur.',
+    'ly2.scaleGo': 'R\u00e9gler l\u2019\u00e9chelle',
+    'ly2.scaleStop': 'Arr\u00eater',
+    'ly2.realLen': 'Longueur r\u00e9elle (m)',
+    'ly2.realBad': 'Tapez la longueur r\u00e9elle en m\u00e8tres, par exemple 5.',
+    'ly2.scaleDone': '\u00c9chelle r\u00e9gl\u00e9e.',
+    'ly2.calStart': '\u00c9chelle : cliquez un bout d\u2019une cote connue.',
+    'ly2.calEnd': 'Cliquez maintenant l\u2019autre bout.',
+    'ly2.calLen': 'Tapez la longueur r\u00e9elle \u00e0 gauche.',
+    'ly2.postsTxt': 'Choisissez ce que vous posez, puis cliquez sur le plan \u00e0 l\u2019endroit voulu. Glissez-le pour le d\u00e9placer, glissez son coin pour le redimensionner.',
+    'ly2.k.post': 'Poste de travail',
+    'ly2.k.machine': 'Machine',
+    'ly2.k.rack': 'Rack ou bac',
+    'ly2.k.table': 'Table',
+    'ly2.n.post': 'Poste',
+    'ly2.n.machine': 'Machine',
+    'ly2.n.rack': 'Rack',
+    'ly2.n.table': 'Table',
+    'ly2.toolTip': 'Chaque clic sur le plan en pose un. \u00c9chap ou Termin\u00e9 pour arr\u00eater.',
+    'ly2.done': 'Termin\u00e9',
+    'ly2.selT': 'S\u00e9lection',
+    'ly2.rotate': 'Tourner',
+    'ly2.dup': 'Dupliquer',
+    'ly2.selTip': 'Cliquez un poste pour le renommer, changer sa taille ou le supprimer.',
+    'ly2.noOps': 'L\u2019\u00e9tude n\u2019a pas encore d\u2019op\u00e9rateur.',
+    'ly2.whichOp': 'Le trajet de qui ?',
+    'ly2.pathsNeed': 'Posez d\u2019abord les postes (\u00e9tape 2).',
+    'ly2.pathsTxt': 'Cliquez les postes dans l\u2019ordre o\u00f9 {op} y va pendant un cycle.',
+    'ly2.loop': 'Puis retour \u00e0 {name} : le retour est compt\u00e9 tout seul.',
+    'ly2.restart': 'Recommencer',
+    'ly2.cmpNeed': 'Tracez d\u2019abord au moins un trajet (\u00e9tape 3).',
+    'ly2.cmpTxt1': 'Figez d\u2019abord l\u2019implantation telle qu\u2019elle est aujourd\u2019hui. D\u00e9placez ensuite les postes pour en essayer une nouvelle : les gains s\u2019affichent ici.',
+    'ly2.freeze': 'Figer l\u2019implantation actuelle',
+    'ly2.cmpTxt2': 'D\u00e9placez les postes sur le plan : les nouveaux chiffres se mettent \u00e0 jour en direct.',
+    'ly2.col.cur': 'Actuel',
+    'ly2.col.new': 'Nouveau',
+    'ly2.col.gap': '\u00c9cart',
+    'ly2.r.dist': 'Distance par cycle',
+    'ly2.r.steps': 'Pas',
+    'ly2.r.walk': 'Temps de marche',
+    'ly2.r.cycle': 'Cycle (a)',
+    'ly2.restore': 'Revenir \u00e0 l\u2019actuel',
+    'ly2.restored': 'Postes remis \u00e0 leur place actuelle.',
+    'ly2.dxf': 'Exporter en DXF (CAO)',
+    'ly2.bPlan1': 'Facultatif : chargez une image du plan \u00e0 gauche, ou passez directement \u00e0 l\u2019\u00e9tape 2.',
+    'ly2.bPlan2': 'Glissez pour vous d\u00e9placer, molette ou + et \u2212 pour zoomer.',
+    'ly2.bPosts1': 'Choisissez un type de poste \u00e0 gauche, puis cliquez ici pour le poser.',
+    'ly2.bPosts2': 'Glissez un poste pour le d\u00e9placer. Choisissez un type \u00e0 gauche pour en ajouter.',
+    'ly2.bTool': 'Cliquez sur le plan pour poser : {k}.',
+    'ly2.bPaths': 'Cliquez les postes dans l\u2019ordre du cycle de {op}.',
+    'ly2.bCmp1': 'Figez l\u2019implantation actuelle \u00e0 gauche, puis d\u00e9placez les postes.',
+    'ly2.bCmp2': 'D\u00e9placez les postes pour essayer une nouvelle implantation.',
+    'ly2.help1': 'Le layout se fait en 4 \u00e9tapes, en haut : plan, postes, trajets, comparer.',
+    'ly2.help2': '1. Plan (facultatif) : chargez une image du plan, puis r\u00e9glez l\u2019\u00e9chelle en cliquant les deux bouts d\u2019une cote connue. Les plans PDF ou CAO doivent d\u2019abord \u00eatre enregistr\u00e9s en image.',
+    'ly2.help3': '2. Postes : choisissez un type, cliquez sur le plan pour le poser, glissez-le pour le d\u00e9placer, glissez son coin pour le redimensionner.',
+    'ly2.help4': '3. Trajets : choisissez un op\u00e9rateur, puis cliquez les postes dans l\u2019ordre d\u2019un cycle. Pour contourner une machine ou suivre une all\u00e9e, cliquez un endroit vide : \u00e7a ajoute un point de passage. Le retour au d\u00e9part est compt\u00e9 tout seul.',
+    'ly2.help5': '4. Comparer : figez l\u2019implantation actuelle, puis d\u00e9placez les postes. Distance, pas, temps de marche et cycle sont compar\u00e9s. Glissez le plan vide pour vous d\u00e9placer, molette, deux doigts ou + et \u2212 pour zoomer. L\u2019image du plan n\u2019est pas enregistr\u00e9e : rechargez-la la fois suivante.',
+    'news.v3_7': 'Layout refait en 4 \u00e9tapes guid\u00e9es : plan, postes, trajets, comparer. Types de postes \u00e0 poser d\u2019un clic, plan \u00e0 d\u00e9placer \u00e0 la souris ou au doigt, trajets num\u00e9rot\u00e9s, tableau actuel, nouveau et \u00e9cart, retour \u00e0 l\u2019actuel.',
     'ly.spOdd': 'Le chrono donne {v} m/s, ce n\u2019est pas une vitesse de marche : v\u00e9rifiez l\u2019\u00e9chelle et les trajets. 1 m/s utilis\u00e9.',
     'ly.btn': 'Layout',
     'ly.title': 'Layout et trajets',
@@ -6089,7 +6334,7 @@ var I18N_LOGIC = {
   }
 
   // ---------- What's new ----------
-  var NEWS = ['3.6', '3.5', '3.4', '3.3', '3.2', '3.1', '3.0', '2.8', '2.6', '2.2', '1'];
+  var NEWS = ['3.8', '3.7', '3.6', '3.5', '3.4', '3.3', '3.2', '3.1', '3.0', '2.8', '2.6', '2.2', '1'];
   function openNews() {
     var body = '<div class="news">' + NEWS.map(function (v) {
       return '<div class="news-item"><b>' + esc(v === '1' ? T('news.first') : T('news.version', { v: v })) + '</b><p>' + esc(T('news.v' + v.replace('.', '_'))) + '</p></div>';
@@ -7433,10 +7678,12 @@ var I18N_LOGIC = {
     window.__vts.exportWin = exportWin; window.__vts.taktPanel = taktPanel; window.__vts.cDisp = cDisp;
   }
 
-  // ---------- Layout (spaghetti): plan picture, stations, operator paths, walking distance and time ----------
-  // Positions in metres in study.layout. The plan picture stays in memory only (never saved), like the video.
-  var LY = { on: false, sel: null, pathOp: null, pathMode: false, bgUrl: null, drag: null, cal: null, zoom: 40 };
+  // ---------- Layout and walking paths, in 4 guided steps: plan, stations, paths, compare ----------
+  // Positions in metres (study.layout). The plan picture stays in memory only (never saved), like the video.
+  var LY = { on: false, step: null, tool: null, sel: null, op: null, zoom: 30, px: 20, py: 20, drag: null, cal: null, ptrs: {}, pinch: null, bgUrl: null, fitted: false, undo: [], redo: [] };
   var LY_COLORS = ['#0070C0', '#C00000', '#00B050', '#7030A0', '#ED7D31', '#B8860B'];
+  var LY_KINDS = { post: [1.6, 1], machine: [2.5, 2], rack: [1.2, 0.8], table: [1.4, 0.8] };
+  var LY_STEPS = ['plan', 'posts', 'paths', 'compare'];
   function lyActive() { return !!(LY && LY.on); }
   function lyR(v) { return Math.round(v * 100) / 100; }
   function lyData() {
@@ -7447,7 +7694,38 @@ var I18N_LOGIC = {
   function lyItem(id) { return lyData().items.filter(function (i) { return i.id === id; })[0] || null; }
   function lyOps() { return study.timelines.filter(function (t) { return t.kind !== 'machine'; }); }
   function lyCenter(it) { return { x: it.x + it.w / 2, y: it.y + it.h / 2 }; }
-  function lyPts(ids) { return (ids || []).map(function (id) { var it = lyItem(id); return it ? lyCenter(it) : null; }).filter(Boolean); }
+  // a path is a list of station ids and waypoints { x, y } (to go round a machine or follow an aisle); pos = frozen positions
+  function lyPts(ids, pos) {
+    return (ids || []).map(function (id) {
+      if (id && typeof id === 'object') return { x: id.x, y: id.y };
+      var q = (pos && pos[id]) || lyItem(id);
+      return q ? lyCenter(q) : null;
+    }).filter(Boolean);
+  }
+
+  // undo / redo of the layout only (snapshots of study.layout)
+  function lySnap() { LY.undo.push(JSON.stringify(lyData())); if (LY.undo.length > 80) LY.undo.shift(); LY.redo = []; }
+  function lyRestoreSnap(from, to) {
+    if (!from.length) return;
+    to.push(JSON.stringify(lyData()));
+    study.layout = JSON.parse(from.pop());
+    if (LY.sel && !lyItem(LY.sel)) LY.sel = null;
+    scheduleSave(); lyDraw(); lySide();
+  }
+  function lyUndo() { lyRestoreSnap(LY.undo, LY.redo); }
+  function lyRedo() { lyRestoreSnap(LY.redo, LY.undo); }
+  // ready-made layout for the built-in example: bin, press, clipping table, box, and both paths
+  function lyExample() {
+    var ly = lyData(), tl = lyOps();
+    lySnap();
+    var mk = function (id, kind, key, x, y, w, h) { return { id: id, kind: kind, name: T('ly2.ex.' + key), x: x, y: y, w: w, h: h }; };
+    ly.items = [mk('ex-bin', 'rack', 'bin', 2.2, 4.7, 0.6, 0.6), mk('ex-press', 'machine', 'press', 3, 4.3, 1.6, 1.4), mk('ex-table', 'table', 'table', 6, 4.6, 1.4, 0.8), mk('ex-box', 'rack', 'box', 7.6, 4.6, 0.6, 0.8)];
+    ly.paths = {};
+    if (tl[0]) ly.paths[tl[0].id] = ['ex-bin', 'ex-press'];
+    if (tl[1]) ly.paths[tl[1].id] = ['ex-table', 'ex-box'];
+    ly.ref = null; LY.sel = null; LY.fitted = false; LY.step = 'paths'; LY.op = tl[0] ? tl[0].id : null;
+    scheduleSave(); lyRender(); toast(T('ly2.exDone'));
+  }
   // closed loop: one cycle comes back to where it started
   function lyDist(ids) {
     var p = lyPts(ids), d = 0;
@@ -7487,149 +7765,300 @@ var I18N_LOGIC = {
     }
     if (on) {
       try { if (!V.el.paused) V.el.pause(); } catch (e) { /* no video */ }
-      LY.sel = null; LY.cal = null; LY.pathMode = false;
+      var ly = lyData();
+      if (!LY.step) LY.step = ly.items.length ? 'posts' : 'plan';
+      LY.sel = null; LY.cal = null; LY.tool = null; LY.fitted = false;
       lyRender(); window.scrollTo(0, 0);
       try { $('lyTitle').focus({ preventScroll: true }); } catch (e) { /* ignore */ }
     }
   }
+  function lyB(a, label, cls, extra) { return '<button type="button" class="btn' + (cls ? ' ' + cls : '') + '" data-ly="' + a + '"' + (extra || '') + '>' + esc(label) + '</button>'; }
   function lyRender() {
     if (!LY.on) return;
-    var ly = lyData(), ops = lyOps(), B = function (a, label, on) { return '<button type="button" class="btn small' + (on ? ' on' : '') + '" data-ly="' + a + '"' + (on != null ? ' aria-pressed="' + !!on + '"' : '') + '>' + esc(label) + '</button>'; };
-    if (!LY.pathOp || !ops.some(function (o) { return o.id === LY.pathOp; })) LY.pathOp = ops.length ? ops[0].id : null;
-    var hint = LY.cal ? (LY.cal.p1 ? 'ly.calHint2' : 'ly.calHint1') : (LY.pathMode ? 'ly.pathHint' : 'ly.hint');
-    $('lyView').innerHTML = '<div class="ly-top">' + B('back', T('ly.back')) + '<h2 id="lyTitle" tabindex="-1">' + esc(T('ly.title')) + '</h2></div>' +
-      '<div class="ly-bar">' + B('add', T('ly.add')) + B('plan', T(ly.bg ? 'ly.planChange' : 'ly.plan')) +
-      (ly.bg ? B('scale', T('ly.scale'), !!LY.cal) + B('noplan', T('ly.noPlan')) : '') + '<span class="ly-sep"></span>' +
-      (ops.length ? '<label class="ly-op">' + esc(T('ly.pathOf')) + ' <select data-ly="op">' + ops.map(function (o) {
-        return '<option value="' + esc(o.id) + '"' + (o.id === LY.pathOp ? ' selected' : '') + '>' + esc(o.name) + '</option>'; }).join('') + '</select></label>' +
-        B('path', T(LY.pathMode ? 'ly.pathStop' : 'ly.pathDraw'), LY.pathMode) + B('undoPt', T('ly.undoPt')) + B('clearPath', T('ly.clearPath')) : '') +
-      '<span class="ly-sep"></span>' + B('ref', T(ly.ref ? 'ly.refAgain' : 'ly.refSet')) + B('dxf', 'DXF') + B('zout', '\u2212') + B('zin', '+') + '</div>' +
-      '<p class="ly-hint">' + esc(T(hint)) + '</p>' +
-      '<div class="ly-main"><div class="ly-wrap"><svg id="lySvg" xmlns="http://www.w3.org/2000/svg"><g id="lyG"></g></svg></div><aside class="ly-side" id="lySide"></aside></div>';
-    lyDraw(); lySide();
+    var tabs = LY_STEPS.map(function (s, i) {
+      return '<button type="button" class="ly-step' + (LY.step === s ? ' on' : '') + '" data-ly="step" data-s="' + s + '" aria-pressed="' + (LY.step === s) + '"><b>' + (i + 1) + '</b><span>' + esc(T('ly2.step.' + s)) + '</span></button>';
+    }).join('');
+    $('lyView').innerHTML = '<div class="ly-top">' + lyB('back', T('ly.back'), 'small') + '<h2 id="lyTitle" tabindex="-1">' + esc(T('ly.title')) + '</h2></div>' +
+      '<div class="ly-steps">' + tabs + '</div>' +
+      '<div class="ly-main"><aside class="ly-side" id="lySide"></aside>' +
+      '<div class="ly-canvas" id="lyCanvas"><svg id="lySvg" xmlns="http://www.w3.org/2000/svg"><g id="lyG"></g></svg>' +
+      '<p class="ly-banner" id="lyBanner"></p>' +
+      '<div class="ly-zoom">' + lyB('undo', '\u21b6 ' + T('ly2.undo'), 'small') + lyB('redo', '\u21b7 ' + T('ly2.redo'), 'small') + lyB('zout', '\u2212', 'small') + lyB('zin', '+', 'small') + lyB('fit', T('ly2.fit'), 'small') + '</div></div></div>';
+    lySide();
+    if (!LY.fitted) { lyFit(); LY.fitted = true; }
+    lyDraw();
+  }
+  function lyBox() {
+    var ly = lyData(), x0 = 0, y0 = 0, x1 = 0, y1 = 0, any = false;
+    var add = function (a, b, c, d) { if (!any) { x0 = a; y0 = b; x1 = c; y1 = d; any = true; } else { x0 = Math.min(x0, a); y0 = Math.min(y0, b); x1 = Math.max(x1, c); y1 = Math.max(y1, d); } };
+    if (ly.bg) add(0, 0, ly.bg.w, ly.bg.h);
+    ly.items.forEach(function (it) { add(it.x, it.y, it.x + it.w, it.y + it.h); });
+    if (!any) add(0, 0, 20, 12);
+    return { x0: x0, y0: y0, x1: Math.max(x1, x0 + 4), y1: Math.max(y1, y0 + 3) };
+  }
+  function lyFit() {
+    var c = $('lyCanvas');
+    if (!c) return;
+    var r = c.getBoundingClientRect(), b = lyBox(), bw = b.x1 - b.x0, bh = b.y1 - b.y0;
+    var z = Math.max(3, Math.min(250, Math.min((r.width - 40) / bw, (r.height - 70) / bh)));
+    LY.zoom = z; LY.px = (r.width - bw * z) / 2 - b.x0 * z; LY.py = (r.height - bh * z) / 2 - b.y0 * z + 16;
+  }
+  function lyZoomAt(z, cx, cy) {
+    var svg = $('lySvg');
+    if (!svg) return;
+    var r = svg.getBoundingClientRect(), mx = cx - r.left, my = cy - r.top;
+    z = Math.max(3, Math.min(250, z));
+    var wx = (mx - LY.px) / LY.zoom, wy = (my - LY.py) / LY.zoom;
+    LY.zoom = z; LY.px = mx - wx * z; LY.py = my - wy * z;
+    lyDraw();
+  }
+  function lyBanner() {
+    var ly = lyData(), op = LY.op ? study.timelines.filter(function (t) { return t.id === LY.op; })[0] : null;
+    if (LY.cal) return T(LY.cal.p2 ? 'ly2.calLen' : (LY.cal.p1 ? 'ly2.calEnd' : 'ly2.calStart'));
+    if (LY.step === 'plan') return T(ly.bg ? 'ly2.bPlan2' : 'ly2.bPlan1');
+    if (LY.step === 'posts') return LY.tool ? T('ly2.bTool', { k: T('ly2.n.' + LY.tool) }) : T(ly.items.length ? 'ly2.bPosts2' : 'ly2.bPosts1');
+    if (LY.step === 'paths') return !ly.items.length ? T('ly2.pathsNeed') : (op ? T('ly2.bPaths', { op: op.name }) : '');
+    return T(ly.ref ? 'ly2.bCmp2' : 'ly2.bCmp1');
   }
   function lyDraw() {
-    var ly = lyData(), svg = $('lySvg'), g = $('lyG');
-    if (!svg) return;
-    var W = 20, H = 12, o = [];
-    if (ly.bg) { W = Math.max(W, ly.bg.w); H = Math.max(H, ly.bg.h); }
-    ly.items.forEach(function (it) { W = Math.max(W, it.x + it.w + 2); H = Math.max(H, it.y + it.h + 2); });
-    W = Math.ceil(W); H = Math.ceil(H);
-    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('width', W * LY.zoom); svg.setAttribute('height', H * LY.zoom);
+    var ly = lyData(), g = $('lyG');
+    if (!g) return;
+    var z = LY.zoom, px = function (n) { return lyR(n / z); };
+    g.setAttribute('transform', 'translate(' + lyR(LY.px) + ' ' + lyR(LY.py) + ') scale(' + lyR(z) + ')');
+    var b = lyBox(), o = [], gx0 = Math.floor(Math.min(0, b.x0)) - 10, gy0 = Math.floor(Math.min(0, b.y0)) - 10, gx1 = Math.ceil(b.x1) + 30, gy1 = Math.ceil(b.y1) + 30;
+    for (var x = gx0; x <= gx1; x++) o.push('<line class="ly-grid' + (x % 5 ? '' : ' m5') + '" x1="' + x + '" x2="' + x + '" y1="' + gy0 + '" y2="' + gy1 + '"/>');
+    for (var y = gy0; y <= gy1; y++) o.push('<line class="ly-grid' + (y % 5 ? '' : ' m5') + '" y1="' + y + '" y2="' + y + '" x1="' + gx0 + '" x2="' + gx1 + '"/>');
     if (ly.bg && LY.bgUrl) o.push('<image href="' + LY.bgUrl + '" x="0" y="0" width="' + ly.bg.w + '" height="' + ly.bg.h + '" preserveAspectRatio="none" opacity="0.85"/>');
-    else if (ly.bg) o.push('<rect x="0" y="0" width="' + ly.bg.w + '" height="' + ly.bg.h + '" class="ly-bgmiss"/><text x="0.5" y="1" class="ly-t ly-tl">' + esc(T('ly.planMissing', { name: ly.bg.name })) + '</text>');
-    for (var x = 1; x < W; x++) o.push('<line x1="' + x + '" x2="' + x + '" y1="0" y2="' + H + '" class="ly-grid' + (x % 5 ? '' : ' m5') + '"/>');
-    for (var y = 1; y < H; y++) o.push('<line y1="' + y + '" y2="' + y + '" x1="0" x2="' + W + '" class="ly-grid' + (y % 5 ? '' : ' m5') + '"/>');
+    else if (ly.bg) o.push('<rect class="ly-bgmiss" x="0" y="0" width="' + ly.bg.w + '" height="' + ly.bg.h + '"/>');
+    // compare: today's layout stays visible, dashed, under the new one
+    if (LY.step === 'compare' && ly.ref && ly.ref.pos) {
+      lyOps().forEach(function (op) {
+        var q = lyPts(ly.paths[op.id], ly.ref.pos);
+        if (q.length < 2) return;
+        for (var i = 0; i < q.length; i++) { var a = q[i], c = q[(i + 1) % q.length]; o.push('<line class="ly-oldpa" stroke-width="' + px(2) + '" x1="' + lyR(a.x) + '" y1="' + lyR(a.y) + '" x2="' + lyR(c.x) + '" y2="' + lyR(c.y) + '"/>'); }
+      });
+      ly.items.forEach(function (it) {
+        var q = ly.ref.pos[it.id];
+        if (q && (Math.abs(q.x - it.x) > 0.05 || Math.abs(q.y - it.y) > 0.05 || Math.abs(q.w - it.w) > 0.05 || Math.abs(q.h - it.h) > 0.05)) o.push('<rect class="ly-ghost" x="' + q.x + '" y="' + q.y + '" width="' + q.w + '" height="' + q.h + '" rx="' + px(4) + '"/>');
+      });
+    }
     var ops = lyOps();
     ops.forEach(function (op, k) {
-      var p = lyPts(ly.paths[op.id]), col = LY_COLORS[k % LY_COLORS.length], off = (k - (ops.length - 1) / 2) * 0.14;
+      var p = lyPts(ly.paths[op.id]), col = LY_COLORS[k % LY_COLORS.length], cur = LY.step === 'paths' && op.id === LY.op;
+      var faded = LY.step === 'paths' && !cur, off = (k - (ops.length - 1) / 2) * 5 / z;
       if (p.length < 2) return;
       for (var i = 0; i < p.length; i++) {
-        var a = p[i], b = p[(i + 1) % p.length];
-        if (Math.hypot(b.x - a.x, b.y - a.y) < 0.01) continue;
-        o.push('<line x1="' + lyR(a.x + off) + '" y1="' + lyR(a.y + off) + '" x2="' + lyR(b.x + off) + '" y2="' + lyR(b.y + off) + '" stroke="' + col + '" class="ly-path"/>');
-        var ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
-        o.push('<path class="ly-arrow" d="M-0.24 -0.17L0.24 0L-0.24 0.17z" fill="' + col + '" transform="translate(' + lyR((a.x + b.x) / 2 + off) + ' ' + lyR((a.y + b.y) / 2 + off) + ') rotate(' + lyR(ang) + ')"/>');
+        var a = p[i], c = p[(i + 1) % p.length];
+        if (Math.hypot(c.x - a.x, c.y - a.y) < 0.01) continue;
+        o.push('<line class="ly-pa' + (faded ? ' faded' : '') + '" stroke="' + col + '" stroke-width="' + px(cur ? 4 : 3) + '" x1="' + lyR(a.x + off) + '" y1="' + lyR(a.y + off) + '" x2="' + lyR(c.x + off) + '" y2="' + lyR(c.y + off) + '"/>');
+        var ang = Math.atan2(c.y - a.y, c.x - a.x) * 180 / Math.PI, s = 7 / z;
+        o.push('<path class="ly-arrow' + (faded ? ' faded' : '') + '" fill="' + col + '" d="M' + lyR(-s) + ' ' + lyR(-s * 0.7) + 'L' + lyR(s) + ' 0L' + lyR(-s) + ' ' + lyR(s * 0.7) + 'z" transform="translate(' + lyR((a.x + c.x) / 2 + off) + ' ' + lyR((a.y + c.y) / 2 + off) + ') rotate(' + lyR(ang) + ')"/>');
       }
     });
     ly.items.forEach(function (it) {
       var sel = it.id === LY.sel;
-      o.push('<g class="ly-it' + (sel ? ' sel' : '') + '" data-id="' + esc(it.id) + '"><rect class="ly-box" x="' + it.x + '" y="' + it.y + '" width="' + it.w + '" height="' + it.h + '" rx="0.08"/>' +
-        '<text x="' + lyR(it.x + it.w / 2) + '" y="' + lyR(it.y + it.h / 2) + '" class="ly-t" text-anchor="middle" dominant-baseline="middle">' + esc(it.name) + '</text>' +
-        (sel ? '<rect class="ly-h" data-h="' + esc(it.id) + '" x="' + lyR(it.x + it.w - 0.25) + '" y="' + lyR(it.y + it.h - 0.25) + '" width="0.5" height="0.5"/>' : '') + '</g>');
+      o.push('<g class="ly-it' + (sel ? ' sel' : '') + '" data-id="' + esc(it.id) + '"><rect class="ly-box ly-k-' + (it.kind || 'post') + '" x="' + it.x + '" y="' + it.y + '" width="' + it.w + '" height="' + it.h + '" rx="' + px(4) + '"/>' +
+        '<text class="ly-tx" font-size="' + px(12) + '" x="' + lyR(it.x + it.w / 2) + '" y="' + lyR(it.y + it.h / 2) + '" text-anchor="middle" dominant-baseline="middle">' + esc(it.name) + '</text>' +
+        (sel && LY.step !== 'paths' ? '<rect class="ly-h" data-h="' + esc(it.id) + '" x="' + lyR(it.x + it.w - 7 / z) + '" y="' + lyR(it.y + it.h - 7 / z) + '" width="' + px(14) + '" height="' + px(14) + '"/>' : '') + '</g>');
     });
-    if (LY.cal && LY.cal.p1) o.push('<circle cx="' + lyR(LY.cal.p1.x) + '" cy="' + lyR(LY.cal.p1.y) + '" r="0.18" class="ly-cal"/>');
+    if (LY.step === 'paths' && LY.op) {
+      var seen = {};
+      (ly.paths[LY.op] || []).forEach(function (id, i) {
+        if (id && typeof id === 'object') {
+          o.push('<circle class="ly-wp" cx="' + lyR(id.x) + '" cy="' + lyR(id.y) + '" r="' + px(8) + '"/><text class="ly-btx" font-size="' + px(10) + '" x="' + lyR(id.x) + '" y="' + lyR(id.y) + '" text-anchor="middle" dominant-baseline="central">' + (i + 1) + '</text>');
+          return;
+        }
+        var it = lyItem(id);
+        if (!it) return;
+        var n = seen[id] = (seen[id] || 0) + 1, cx = it.x + 10 / z + (n - 1) * 22 / z, cy = it.y + 10 / z;
+        o.push('<circle class="ly-badge" cx="' + lyR(cx) + '" cy="' + lyR(cy) + '" r="' + px(10) + '"/><text class="ly-btx" font-size="' + px(12) + '" x="' + lyR(cx) + '" y="' + lyR(cy) + '" text-anchor="middle" dominant-baseline="central">' + (i + 1) + '</text>');
+      });
+    }
+    if (LY.cal) {
+      if (LY.cal.p1) o.push('<circle class="ly-cal" cx="' + lyR(LY.cal.p1.x) + '" cy="' + lyR(LY.cal.p1.y) + '" r="' + px(6) + '"/>');
+      if (LY.cal.p2) o.push('<line class="ly-calline" stroke-width="' + px(3) + '" x1="' + lyR(LY.cal.p1.x) + '" y1="' + lyR(LY.cal.p1.y) + '" x2="' + lyR(LY.cal.p2.x) + '" y2="' + lyR(LY.cal.p2.y) + '"/><circle class="ly-cal" cx="' + lyR(LY.cal.p2.x) + '" cy="' + lyR(LY.cal.p2.y) + '" r="' + px(6) + '"/>');
+    }
     g.innerHTML = o.join('');
+    var ub = document.querySelector('[data-ly="undo"]'), rb = document.querySelector('[data-ly="redo"]');
+    if (ub) ub.disabled = !LY.undo.length;
+    if (rb) rb.disabled = !LY.redo.length;
+    var bn = $('lyBanner'), t = lyBanner();
+    if (bn) { bn.textContent = t; bn.hidden = !t; }
   }
   function lySide() {
     var side = $('lySide');
     if (!side) return;
-    var ly = lyData(), it = LY.sel ? lyItem(LY.sel) : null, h = '';
-    if (it) {
-      h += '<h3>' + esc(T('ly.item')) + '</h3><div class="field"><label for="lyName">' + esc(T('ly.name')) + '</label><input type="text" id="lyName" data-lyf="name" value="' + esc(it.name) + '"></div>' +
-        '<div class="ly-2"><div class="field"><label>' + esc(T('ly.w')) + '</label><input type="text" inputmode="decimal" data-lyf="w" value="' + fmtS(it.w, 1) + '"></div>' +
-        '<div class="field"><label>' + esc(T('ly.h')) + '</label><input type="text" inputmode="decimal" data-lyf="h" value="' + fmtS(it.h, 1) + '"></div></div>' +
-        '<p><button type="button" class="btn small danger" data-ly="del">' + esc(T('ly.del')) + '</button></p>';
-    }
-    h += '<h3>' + esc(T('ly.metrics')) + '</h3><div id="lyMetrics"></div>' +
-      '<h3>' + esc(T('ly.settings')) + '</h3><div class="ly-2"><div class="field"><label>' + esc(T('ly.step')) + '</label><input type="text" inputmode="decimal" data-lyf="step" value="' + fmtS(ly.step > 0 ? ly.step : 0.7, 2) + '"></div>' +
-      '<div class="field"><label>' + esc(T('ly.speed')) + '</label><input type="text" inputmode="decimal" data-lyf="speed" placeholder="' + esc(T('ly.auto')) + '" value="' + (ly.speed > 0 ? fmtS(ly.speed, 2) : '') + '"></div></div>' +
-      '<p class="hint">' + esc(T('ly.speedHint')) + '</p>';
-    side.innerHTML = h;
-    lySideMetrics();
-  }
-  function lySideMetrics() {
-    var box = $('lyMetrics');
-    if (!box) return;
-    var ly = lyData(), wk = lyWalk(), out = '', any = false;
-    lyOps().forEach(function (op, k) {
-      var m = lyMetrics(op, wk);
-      if (m.now == null) return;
-      any = true;
-      var s = '<div class="ly-m"><b><i class="ly-dot c' + (k % LY_COLORS.length) + '"></i>' + esc(op.name) + '</b>' +
-        '<span>' + esc(T('ly.distV', { d: fmtS(m.now, 1), n: Math.round(m.steps) })) + '</span><span>' + esc(T('ly.walkV', { t: fmtS(m.t, 1) })) + '</span>';
-      if (m.ref != null) {
-        var dd = Math.round((m.now - m.ref) * 10) / 10, dt = Math.round((m.t - m.tRef) * 10) / 10, dn = Math.round(m.steps) - Math.round(m.stepsRef);
-        s += '<span class="ly-d' + (dt < 0 ? ' good' : (dt > 0 ? ' bad' : '')) + '">' + esc(T('ly.vsRef', { d: balSign(dd, 1) + ' m', n: (dn > 0 ? '+' : '') + dn, t: balSign(dt, 1) + ' s' })) + '</span>';
-        if (m.a != null) s += '<span>' + esc(T('ly.cycleV', { a: fmtS(m.a, 1), b: fmtS(Math.max(0, m.a + dt), 1) })) + '</span>';
+    var ly = lyData(), h = '', ops = lyOps(), wk = lyWalk();
+    var next = function (s) { return '<p class="ly-next">' + lyB('step', T('ly2.next.' + s), 'primary', ' data-s="' + s + '"') + '</p>'; };
+    var field = function (f, label, val, mode, itId) { return '<div class="ly-f"><label>' + esc(label) + '</label><input type="text"' + (mode ? ' inputmode="' + mode + '"' : '') + ' data-lyf="' + f + '"' + (itId ? ' data-it="' + esc(itId) + '"' : '') + ' value="' + esc(val) + '"' + (f === 'real' ? ' id="lyReal"' : '') + '></div>'; };
+    if (LY.step === 'plan') {
+      h += '<h3>' + esc(T('ly2.t.plan')) + '</h3><p>' + esc(T('ly2.planTxt')) + '</p><p>' + lyB('plan', T(ly.bg ? 'ly.planChange' : 'ly2.planLoad'), ly.bg ? '' : 'primary') + '</p>';
+      if (study.example && !ly.items.length) h += '<div class="ly-card"><p>' + lyB('example', T('ly2.exBtn'), 'primary') + '</p><p class="ly-tip">' + esc(T('ly2.exTip')) + '</p></div>';
+      if (ly.bg) {
+        if (!LY.bgUrl) h += '<p class="ly-warn">' + esc(T('ly.planMissing', { name: ly.bg.name })) + '</p>';
+        h += '<h4>' + esc(T('ly2.scaleT')) + '</h4><p>' + esc(T('ly2.scaleTxt', { w: fmtS(ly.bg.w, 1) })) + '</p>';
+        if (LY.cal && LY.cal.p2) h += field('real', T('ly2.realLen'), '', 'decimal') + '<p>' + lyB('calOk', T('ly.ok'), 'primary') + ' ' + lyB('calNo', T('ly.cancel')) + '</p>';
+        else h += '<p>' + lyB('scale', T(LY.cal ? 'ly2.scaleStop' : 'ly2.scaleGo')) + '</p>';
+        h += '<p>' + lyB('noplan', T('ly.noPlan'), 'small') + '</p>';
       }
-      out += s + '<span class="hint">' + esc(m.odd != null ? T('ly.spOdd', { v: fmtS(m.odd, 2) }) : T(m.auto ? 'ly.spAuto' : 'ly.spSet', { v: fmtS(m.sp, 2) })) + '</span></div>';
-    });
-    box.innerHTML = any ? (ly.ref ? '' : '<p class="hint">' + esc(T('ly.refHint')) + '</p>') + out : '<p class="hint">' + esc(T('ly.noPath')) + '</p>';
+      h += next('posts');
+    } else if (LY.step === 'posts') {
+      h += '<h3>' + esc(T('ly2.t.posts')) + '</h3><p>' + esc(T('ly2.postsTxt')) + '</p><div class="ly-pal">' + ['post', 'machine', 'rack', 'table'].map(function (k) {
+        return '<button type="button" class="ly-tool' + (LY.tool === k ? ' on' : '') + '" data-ly="tool" data-k="' + k + '" aria-pressed="' + (LY.tool === k) + '"><i class="ly-sw ly-k-' + k + '"></i>' + esc(T('ly2.k.' + k)) + '</button>';
+      }).join('') + '</div>';
+      if (LY.tool) h += '<p class="ly-tip">' + esc(T('ly2.toolTip')) + '</p><p>' + lyB('toolOff', T('ly2.done')) + '</p>';
+      var it = LY.sel ? lyItem(LY.sel) : null;
+      if (it) {
+        h += '<div class="ly-card"><h4>' + esc(T('ly2.selT')) + '</h4>' + field('name', T('ly.name'), it.name, null, it.id) +
+          '<div class="ly-2">' + field('w', T('ly.w'), fmtS(it.w, 1), 'decimal', it.id) + field('h', T('ly.h'), fmtS(it.h, 1), 'decimal', it.id) + '</div>' +
+          '<p class="ly-btns">' + lyB('rot', T('ly2.rotate'), 'small') + lyB('dup', T('ly2.dup'), 'small') + lyB('del', T('ly.del'), 'small danger') + '</p></div>';
+      } else if (ly.items.length && !LY.tool) h += '<p class="ly-tip">' + esc(T('ly2.selTip')) + '</p>';
+      h += next('paths');
+    } else if (LY.step === 'paths') {
+      h += '<h3>' + esc(T('ly2.t.paths')) + '</h3>';
+      if (!ops.length) h += '<p>' + esc(T('ly2.noOps')) + '</p>';
+      else {
+        if (!LY.op || !ops.some(function (o) { return o.id === LY.op; })) LY.op = ops[0].id;
+        h += '<p>' + esc(T('ly2.whichOp')) + '</p><div class="ly-chips">' + ops.map(function (o, k) {
+          return '<button type="button" class="ly-chip' + (o.id === LY.op ? ' on' : '') + '" data-ly="op" data-op="' + esc(o.id) + '" aria-pressed="' + (o.id === LY.op) + '"><i class="ly-dot c' + (k % LY_COLORS.length) + '"></i>' + esc(o.name) + '</button>';
+        }).join('') + '</div>';
+        if (!ly.items.length) h += '<p class="ly-tip">' + esc(T('ly2.pathsNeed')) + '</p>';
+        else {
+          var ids = ly.paths[LY.op] || [], cur = ops.filter(function (o) { return o.id === LY.op; })[0];
+          h += '<p>' + esc(T('ly2.pathsTxt', { op: cur.name })) + '</p><p class="ly-tip">' + esc(T('ly2.wpTip')) + '</p>';
+          if (ids.length) {
+            h += '<ol class="ly-order">' + ids.map(function (id) { var x = typeof id === 'string' ? lyItem(id) : null; return '<li' + (x ? '' : ' class="ly-wpi"') + '>' + esc(typeof id === 'string' ? (x ? x.name : '?') : T('ly2.wp')) + '</li>'; }).join('') + '</ol>' +
+              (ids.length > 1 ? '<p class="ly-tip">' + esc(T('ly2.loop', { name: (typeof ids[0] === 'string' && lyItem(ids[0]) || {}).name || T('ly2.wp') })) + '</p>' : '') +
+              '<p class="ly-btns">' + lyB('undoPt', T('ly.undoPt'), 'small') + lyB('clearPath', T('ly2.restart'), 'small') + '</p>';
+            var m = lyMetrics(cur, wk);
+            if (m.now != null) h += '<p class="ly-sum">' + esc(T('ly.distV', { d: fmtS(m.now, 1), n: Math.round(m.steps) })) + '<br>' + esc(T('ly.walkV', { t: fmtS(m.t, 1) })) + '</p>';
+          }
+        }
+      }
+      h += next('compare');
+    } else {
+      h += '<h3>' + esc(T('ly2.t.compare')) + '</h3>';
+      var withPath = ops.filter(function (o) { return (ly.paths[o.id] || []).length > 1; });
+      if (!withPath.length) h += '<p class="ly-tip">' + esc(T('ly2.cmpNeed')) + '</p>';
+      else if (!ly.ref) h += '<p>' + esc(T('ly2.cmpTxt1')) + '</p><p>' + lyB('ref', T('ly2.freeze'), 'primary') + '</p>';
+      else {
+        h += '<p>' + esc(T('ly2.cmpTxt2')) + '</p><table class="ly-tab"><thead><tr><th></th><th>' + esc(T('ly2.col.cur')) + '</th><th>' + esc(T('ly2.col.new')) + '</th><th>' + esc(T('ly2.col.gap')) + '</th></tr></thead><tbody>';
+        withPath.forEach(function (op) {
+          var m = lyMetrics(op, wk), k = ops.indexOf(op);
+          var row = function (label, a, b, dec, unit) {
+            if (a == null || b == null) return '<tr><td>' + esc(label) + '</td><td></td><td>' + esc(fmtS(b, dec)) + '</td><td></td></tr>';
+            var d = Math.round((b - a) * Math.pow(10, dec)) / Math.pow(10, dec);
+            return '<tr><td>' + esc(label) + '</td><td>' + esc(fmtS(a, dec)) + '</td><td>' + esc(fmtS(b, dec)) + '</td><td class="' + (d < 0 ? 'good' : (d > 0 ? 'bad' : '')) + '">' + esc((d > 0 ? '+' : '') + fmtS(d, dec) + (unit || '')) + '</td></tr>';
+          };
+          h += '<tr class="ly-oph"><td colspan="4"><i class="ly-dot c' + (k % LY_COLORS.length) + '"></i>' + esc(op.name) + '</td></tr>' +
+            row(T('ly2.r.dist'), m.ref, m.now, 1, ' m') + row(T('ly2.r.steps'), m.stepsRef != null ? Math.round(m.stepsRef) : null, Math.round(m.steps), 0) +
+            row(T('ly2.r.walk'), m.tRef, m.t, 1, ' s') + (m.a != null && m.tRef != null ? row(T('ly2.r.cycle'), m.a, Math.max(0, m.a + m.t - m.tRef), 1, ' s') : '') +
+            '<tr class="ly-spd"><td colspan="4">' + esc(m.odd != null ? T('ly.spOdd', { v: fmtS(m.odd, 2) }) : T(m.auto ? 'ly.spAuto' : 'ly.spSet', { v: fmtS(m.sp, 2) })) + '</td></tr>';
+        });
+        var tA = 0, tB = 0, nOk = 0;
+        withPath.forEach(function (op) { var m = lyMetrics(op, wk); if (m.tRef != null) { tA += m.tRef; tB += m.t; nOk++; } });
+        if (nOk) {
+          var dT = Math.round((tB - tA) * 10) / 10, dK = Math.round((tB - tA) * 1000 / 60 * 10) / 10, cl = dT < 0 ? 'good' : (dT > 0 ? 'bad' : '');
+          h += '<tr class="ly-oph"><td colspan="4">' + esc(T('ly2.total')) + '</td></tr>' +
+            (nOk > 1 ? '<tr><td>' + esc(T('ly2.r.walkAll')) + '</td><td>' + esc(fmtS(tA, 1)) + '</td><td>' + esc(fmtS(tB, 1)) + '</td><td class="' + cl + '">' + esc((dT > 0 ? '+' : '') + fmtS(dT, 1)) + ' s</td></tr>' : '') +
+            '<tr><td>' + esc(T('ly2.r.per1000')) + '</td><td></td><td></td><td class="' + cl + '">' + esc((dK > 0 ? '+' : '') + fmtS(dK, 1)) + ' min</td></tr>';
+        }
+        h += '</tbody></table><p class="ly-btns">' + lyB('restore', T('ly2.restore'), 'small') + lyB('ref', T('ly.refAgain'), 'small') + '</p>';
+      }
+      h += '<p>' + lyB('dxf', T('ly2.dxf'), 'small') + '</p><details class="ly-set"><summary>' + esc(T('ly.settings')) + '</summary><div class="ly-2">' +
+        field('step', T('ly.step'), fmtS(ly.step > 0 ? ly.step : 0.7, 2), 'decimal') + field('speed', T('ly.speed'), ly.speed > 0 ? fmtS(ly.speed, 2) : '', 'decimal') +
+        '</div><p class="ly-tip">' + esc(T('ly.speedHint')) + '</p></details>';
+    }
+    side.innerHTML = h;
   }
-  function lyPt(e) {
-    var svg = $('lySvg'), p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
-    var q = p.matrixTransform(svg.getScreenCTM().inverse());
-    return { x: q.x, y: q.y };
-  }
+  function lyToM(e) { var r = $('lySvg').getBoundingClientRect(); return { x: (e.clientX - r.left - LY.px) / LY.zoom, y: (e.clientY - r.top - LY.py) / LY.zoom }; }
   function lyDown(e) {
-    if (e.button) return;
     var svg = $('lySvg');
-    if (!svg || !svg.contains(e.target)) return;
-    var p = lyPt(e), hEl = e.target.closest('[data-h]'), gEl = e.target.closest('.ly-it'), it;
-    if (LY.cal) { lyCalClick(p); return; }
-    if (hEl && (it = lyItem(hEl.getAttribute('data-h')))) LY.drag = { mode: 'size', id: it.id, p0: p, w0: it.w, h0: it.h, moved: false };
-    else if (gEl && (it = lyItem(gEl.getAttribute('data-id')))) LY.drag = { mode: 'move', id: it.id, p0: p, x0: it.x, y0: it.y, moved: false };
-    else { if (LY.sel) { LY.sel = null; lyDraw(); lySide(); } return; }
+    if (!svg || !svg.contains(e.target) || (e.button && e.button !== 0)) return;
+    LY.ptrs[e.pointerId] = { x: e.clientX, y: e.clientY };
     try { svg.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
     e.preventDefault();
+    var ids = Object.keys(LY.ptrs);
+    if (ids.length === 2) {
+      var a = LY.ptrs[ids[0]], b = LY.ptrs[ids[1]];
+      LY.pinch = { d: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)), z: LY.zoom, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2 }; LY.drag = null; return;
+    }
+    var p = lyToM(e), hEl = e.target.closest('[data-h]'), gEl = e.target.closest('.ly-it'), it, base = { p0: p, c0: { x: e.clientX, y: e.clientY }, px0: LY.px, py0: LY.py, moved: false };
+    if (LY.cal) base.mode = 'cal';
+    else if (hEl && (it = lyItem(hEl.getAttribute('data-h')))) { base.mode = 'size'; base.id = it.id; base.w0 = it.w; base.h0 = it.h; }
+    else if (gEl && (it = lyItem(gEl.getAttribute('data-id')))) { base.mode = LY.step === 'paths' ? 'pick' : 'move'; base.id = it.id; base.x0 = it.x; base.y0 = it.y; }
+    else base.mode = LY.tool && LY.step === 'posts' ? 'place' : 'pan';
+    LY.drag = base;
   }
   function lyMove(e) {
+    if (!LY.ptrs[e.pointerId]) return;
+    LY.ptrs[e.pointerId] = { x: e.clientX, y: e.clientY };
+    if (LY.pinch) {
+      var ids = Object.keys(LY.ptrs);
+      if (ids.length < 2) return;
+      var a = LY.ptrs[ids[0]], b = LY.ptrs[ids[1]];
+      lyZoomAt(LY.pinch.z * Math.hypot(a.x - b.x, a.y - b.y) / LY.pinch.d, LY.pinch.mx, LY.pinch.my); return;
+    }
     var d = LY.drag;
     if (!d) return;
-    var p = lyPt(e), dx = p.x - d.p0.x, dy = p.y - d.p0.y, it = lyItem(d.id);
-    if (!it || (!d.moved && Math.hypot(dx, dy) * LY.zoom < 4)) return;
+    var dx = e.clientX - d.c0.x, dy = e.clientY - d.c0.y;
+    if (!d.moved && Math.hypot(dx, dy) < 5) return;
+    if (!d.moved && (d.mode === 'move' || d.mode === 'size')) lySnap();
     d.moved = true;
-    var sn = function (v) { return Math.round(v * 10) / 10; };
-    if (d.mode === 'move') { it.x = Math.max(0, sn(d.x0 + dx)); it.y = Math.max(0, sn(d.y0 + dy)); }
-    else { it.w = Math.max(0.2, sn(d.w0 + dx)); it.h = Math.max(0.2, sn(d.h0 + dy)); }
-    lyDraw(); lySideMetrics();
+    if (d.mode === 'pan' || d.mode === 'place' || d.mode === 'cal' || d.mode === 'pick') { d.mode = 'pan'; LY.px = d.px0 + dx; LY.py = d.py0 + dy; lyDraw(); return; }
+    var it = lyItem(d.id), p = lyToM(e), sn = function (v) { return Math.round(v * 10) / 10; };
+    if (!it) return;
+    if (d.mode === 'move') { it.x = Math.max(0, sn(d.x0 + p.x - d.p0.x)); it.y = Math.max(0, sn(d.y0 + p.y - d.p0.y)); }
+    else { it.w = Math.max(0.2, sn(d.w0 + p.x - d.p0.x)); it.h = Math.max(0.2, sn(d.h0 + p.y - d.p0.y)); }
+    LY.sel = it.id; lyDraw();
+    if (LY.step === 'compare') lySide();
   }
-  function lyUp() {
-    var d = LY.drag;
-    if (!d) return;
+  function lyUp(e) {
+    delete LY.ptrs[e.pointerId];
+    if (LY.pinch) { if (Object.keys(LY.ptrs).length < 2) LY.pinch = null; LY.drag = null; return; }
+    var d = LY.drag, ly = lyData();
     LY.drag = null;
-    if (d.moved) { scheduleSave(); lySide(); return; }
-    if (LY.pathMode && d.mode === 'move' && LY.pathOp) {
-      var ly = lyData(); (ly.paths[LY.pathOp] = ly.paths[LY.pathOp] || []).push(d.id);
+    if (!d) return;
+    if (d.moved) { if (d.mode === 'move' || d.mode === 'size') { scheduleSave(); lySide(); } return; }
+    if (d.mode === 'cal') {
+      if (!LY.cal.p1) LY.cal.p1 = d.p0; else if (!LY.cal.p2) LY.cal.p2 = d.p0;
+      lyDraw(); lySide();
+      if (LY.cal.p2) { var f = $('lyReal'); if (f) f.focus(); }
+      return;
+    }
+    if (d.mode === 'place') {
+      lySnap();
+      var k = LY.tool, sz = LY_KINDS[k], n = ly.items.filter(function (i) { return i.kind === k; }).length + 1;
+      var it = { id: 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: k, name: T('ly2.n.' + k) + ' ' + n, x: lyR(Math.max(0, d.p0.x - sz[0] / 2)), y: lyR(Math.max(0, d.p0.y - sz[1] / 2)), w: sz[0], h: sz[1] };
+      ly.items.push(it); LY.sel = it.id; scheduleSave(); lyDraw(); lySide(); return;
+    }
+    if (d.mode === 'pick') {
+      if (LY.op) { lySnap(); (ly.paths[LY.op] = ly.paths[LY.op] || []).push(d.id); scheduleSave(); lyDraw(); lySide(); }
+      return;
+    }
+    if (d.mode === 'move' || d.mode === 'size') { LY.sel = d.id; lyDraw(); lySide(); return; }
+    if (LY.step === 'paths' && LY.op && ly.items.length) {
+      lySnap(); (ly.paths[LY.op] = ly.paths[LY.op] || []).push({ x: Math.round(d.p0.x * 10) / 10, y: Math.round(d.p0.y * 10) / 10 });
       scheduleSave(); lyDraw(); lySide(); return;
     }
-    LY.sel = d.id; lyDraw(); lySide();
+    if (LY.sel) { LY.sel = null; lyDraw(); lySide(); }
   }
-  function lyCalClick(p) {
-    if (!LY.cal.p1) { LY.cal.p1 = p; lyRender(); return; }
-    var dm = Math.hypot(p.x - LY.cal.p1.x, p.y - LY.cal.p1.y);
-    LY.cal = null;
-    if (dm < 0.05) { lyRender(); return; }
-    openPanel({ title: T('ly.scaleTitle'), body: '<div class="field"><label for="lyReal">' + esc(T('ly.scaleAsk')) + '</label><input type="text" inputmode="decimal" id="lyReal"></div>', buttons: [
-      { label: T('ly.cancel'), onClick: function () { cancelPanel(); lyRender(); } },
-      { label: T('ly.ok'), kind: 'primary', onClick: function () {
-        var real = parseFloat(String($('lyReal').value).replace(',', '.'));
-        cancelPanel();
-        var ly = lyData();
-        if (real > 0 && ly.bg) { var k = real / dm; ly.bg.w = lyR(ly.bg.w * k); ly.bg.h = lyR(ly.bg.h * k); scheduleSave(); }
-        lyRender();
-      } }] });
+  function lyCalOk() {
+    var ly = lyData(), c = LY.cal, f = $('lyReal'), real = f ? parseFloat(String(f.value).replace(',', '.')) : NaN;
+    if (!c || !c.p1 || !c.p2) return;
+    var dm = Math.hypot(c.p2.x - c.p1.x, c.p2.y - c.p1.y);
+    if (!(real > 0) || dm < 0.01) { toast(T('ly2.realBad')); return; }
+    var k = real / dm;
+    lySnap();
+    Object.keys(ly.paths).forEach(function (op) { ly.paths[op].forEach(function (q) { if (q && typeof q === 'object') { q.x = lyR(q.x * k); q.y = lyR(q.y * k); } }); });
+    if (ly.bg) { ly.bg.w = lyR(ly.bg.w * k); ly.bg.h = lyR(ly.bg.h * k); }
+    // stations drawn on the plan keep their place on it
+    ly.items.forEach(function (it) { it.x = lyR(it.x * k); it.y = lyR(it.y * k); it.w = lyR(it.w * k); it.h = lyR(it.h * k); });
+    if (ly.ref) {
+      Object.keys(ly.ref.dist || {}).forEach(function (id) { ly.ref.dist[id] = lyR(ly.ref.dist[id] * k); });
+      Object.keys(ly.ref.pos || {}).forEach(function (id) { var q = ly.ref.pos[id]; q.x = lyR(q.x * k); q.y = lyR(q.y * k); q.w = lyR(q.w * k); q.h = lyR(q.h * k); });
+    }
+    LY.cal = null; LY.fitted = false; scheduleSave(); lyRender(); toast(T('ly2.scaleDone'));
   }
   function lyPlanFile(f) {
     if (!f || !/^image\//.test(f.type)) { toast(T('ly.planBad')); return; }
@@ -7637,9 +8066,10 @@ var I18N_LOGIC = {
     r.onload = function () {
       var img = new Image();
       img.onload = function () {
+        lySnap();
         var ly = lyData();
         if (!(ly.bg && ly.bg.name === f.name)) ly.bg = { name: f.name, w: 30, h: lyR(img.naturalHeight / img.naturalWidth * 30) };
-        LY.bgUrl = r.result; scheduleSave(); lyRender(); toast(T('ly.planDone'));
+        LY.bgUrl = r.result; LY.fitted = false; scheduleSave(); lyRender(); toast(T('ly.planDone'));
       };
       img.src = r.result;
     };
@@ -7648,6 +8078,7 @@ var I18N_LOGIC = {
   function lyDelete() {
     var ly = lyData(), id = LY.sel;
     if (!id) return;
+    lySnap();
     ly.items = ly.items.filter(function (i) { return i.id !== id; });
     Object.keys(ly.paths).forEach(function (k) { ly.paths[k] = ly.paths[k].filter(function (x) { return x !== id; }); });
     LY.sel = null; scheduleSave(); lyDraw(); lySide();
@@ -7660,8 +8091,9 @@ var I18N_LOGIC = {
     var n = function (v) { return String(Math.round(v * 1000) / 1000); };
     var line = function (layer, x1, y1, x2, y2) { o.push('0', 'LINE', '8', layer, '10', n(x1), '20', n(H - y1), '30', '0', '11', n(x2), '21', n(H - y2), '31', '0'); };
     ly.items.forEach(function (it) {
-      line('POSTES', it.x, it.y, it.x + it.w, it.y); line('POSTES', it.x + it.w, it.y, it.x + it.w, it.y + it.h);
-      line('POSTES', it.x + it.w, it.y + it.h, it.x, it.y + it.h); line('POSTES', it.x, it.y + it.h, it.x, it.y);
+      var lay = { post: 'POSTES', machine: 'MACHINES', rack: 'RACKS', table: 'TABLES' }[it.kind] || 'POSTES';
+      line(lay, it.x, it.y, it.x + it.w, it.y); line(lay, it.x + it.w, it.y, it.x + it.w, it.y + it.h);
+      line(lay, it.x + it.w, it.y + it.h, it.x, it.y + it.h); line(lay, it.x, it.y + it.h, it.x, it.y);
       o.push('0', 'TEXT', '8', 'NOMS', '10', n(it.x + 0.1), '20', n(H - it.y - it.h / 2), '30', '0', '40', '0.25', '1', asc(it.name));
     });
     lyOps().forEach(function (t) {
@@ -7678,51 +8110,82 @@ var I18N_LOGIC = {
   }
   function lyClick(e) {
     var b = e.target.closest ? e.target.closest('[data-ly]') : null;
-    if (!b || b.tagName === 'SELECT') return;
-    var a = b.getAttribute('data-ly'), ly = lyData();
-    if (a === 'back') lyOpen(false);
-    else if (a === 'add') {
-      var n = ly.items.length + 1, it = { id: 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name: T('ly.post') + ' ' + n, x: 1 + ((n - 1) % 5) * 3, y: 1 + Math.floor((n - 1) / 5) * 2.5, w: 1.6, h: 1 };
-      ly.items.push(it); LY.sel = it.id; scheduleSave(); lyDraw(); lySide();
+    if (!b) return;
+    var a = b.getAttribute('data-ly'), ly = lyData(), it = LY.sel ? lyItem(LY.sel) : null, c;
+    if (a === 'back') { lyOpen(false); return; }
+    if (a === 'undo') { lyUndo(); return; }
+    if (a === 'redo') { lyRedo(); return; }
+    if (a === 'example') { lyExample(); return; }
+    if (a === 'step') { LY.step = b.getAttribute('data-s'); LY.tool = null; LY.cal = null; if (LY.step === 'paths') LY.sel = null; lyRender(); return; }
+    if (a === 'plan') { var f = $('filePlan'); f.value = ''; f.click(); return; }
+    if (a === 'noplan') { lySnap(); ly.bg = null; LY.bgUrl = null; LY.cal = null; LY.fitted = false; scheduleSave(); lyRender(); return; }
+    if (a === 'scale') { LY.cal = LY.cal ? null : {}; lySide(); lyDraw(); return; }
+    if (a === 'calOk') { lyCalOk(); return; }
+    if (a === 'calNo') { LY.cal = null; lySide(); lyDraw(); return; }
+    if (a === 'tool') { c = b.getAttribute('data-k'); LY.tool = LY.tool === c ? null : c; LY.sel = null; lySide(); lyDraw(); return; }
+    if (a === 'toolOff') { LY.tool = null; lySide(); lyDraw(); return; }
+    if (a === 'rot' && it) { lySnap(); c = it.w; it.w = it.h; it.h = c; scheduleSave(); lyDraw(); lySide(); return; }
+    if (a === 'dup' && it) {
+      lySnap(); c = { id: 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: it.kind, name: it.name + ' (2)', x: lyR(it.x + 0.5), y: lyR(it.y + 0.5), w: it.w, h: it.h };
+      ly.items.push(c); LY.sel = c.id; scheduleSave(); lyDraw(); lySide(); return;
     }
-    else if (a === 'plan') { var f = $('filePlan'); f.value = ''; f.click(); }
-    else if (a === 'noplan') { ly.bg = null; LY.bgUrl = null; LY.cal = null; scheduleSave(); lyRender(); }
-    else if (a === 'scale') { LY.cal = LY.cal ? null : {}; LY.pathMode = false; lyRender(); }
-    else if (a === 'path') { LY.pathMode = !LY.pathMode; LY.cal = null; lyRender(); }
-    else if (a === 'undoPt') { var p = ly.paths[LY.pathOp]; if (p && p.length) { p.pop(); scheduleSave(); lyDraw(); lySide(); } }
-    else if (a === 'clearPath') { if (ly.paths[LY.pathOp]) { delete ly.paths[LY.pathOp]; scheduleSave(); lyDraw(); lySide(); } }
-    else if (a === 'ref') {
-      var dist = {};
+    if (a === 'del') { lyDelete(); return; }
+    if (a === 'op') { LY.op = b.getAttribute('data-op'); lySide(); lyDraw(); return; }
+    if (a === 'undoPt') { c = ly.paths[LY.op]; if (c && c.length) { lySnap(); c.pop(); scheduleSave(); lyDraw(); lySide(); } return; }
+    if (a === 'clearPath') { if (ly.paths[LY.op]) { lySnap(); delete ly.paths[LY.op]; scheduleSave(); lyDraw(); lySide(); } return; }
+    if (a === 'ref') {
+      lySnap();
+      var dist = {}, pos = {};
       lyOps().forEach(function (t) { var ids = ly.paths[t.id]; if (ids && ids.length > 1) dist[t.id] = lyR(lyDist(ids)); });
-      ly.ref = { dist: dist, date: Date.now() }; scheduleSave(); lyRender(); toast(T('ly.refDone'));
+      ly.items.forEach(function (x) { pos[x.id] = { x: x.x, y: x.y, w: x.w, h: x.h }; });
+      ly.ref = { dist: dist, pos: pos, date: Date.now() }; scheduleSave(); lySide(); lyDraw(); toast(T('ly.refDone')); return;
     }
-    else if (a === 'dxf') lyDxf();
-    else if (a === 'zin' || a === 'zout') { LY.zoom = Math.max(10, Math.min(160, LY.zoom * (a === 'zin' ? 1.25 : 0.8))); lyDraw(); }
-    else if (a === 'del') lyDelete();
+    if (a === 'restore' && ly.ref && ly.ref.pos) {
+      lySnap();
+      ly.items.forEach(function (x) { var q = ly.ref.pos[x.id]; if (q) { x.x = q.x; x.y = q.y; x.w = q.w; x.h = q.h; } });
+      scheduleSave(); lyDraw(); lySide(); toast(T('ly2.restored')); return;
+    }
+    if (a === 'dxf') { lyDxf(); return; }
+    if (a === 'fit') { lyFit(); lyDraw(); return; }
+    if (a === 'zin' || a === 'zout') {
+      var r = $('lySvg').getBoundingClientRect();
+      lyZoomAt(LY.zoom * (a === 'zin' ? 1.25 : 0.8), r.left + r.width / 2, r.top + r.height / 2); return;
+    }
   }
   function lyChange(e) {
-    var el = e.target, ly = lyData();
-    if (el.getAttribute('data-ly') === 'op') { LY.pathOp = el.value; return; }
-    var f = el.getAttribute('data-lyf');
-    if (!f) return;
-    if (f === 'step' || f === 'speed') { var v = parseFloat(String(el.value).replace(',', '.')); ly[f] = v > 0 ? v : null; scheduleSave(); lySideMetrics(); return; }
-    var it = lyItem(LY.sel);
+    var el = e.target, ly = lyData(), f = el.getAttribute('data-lyf');
+    if (!f || f === 'real') return;
+    if (f === 'step' || f === 'speed') { lySnap(); var v = parseFloat(String(el.value).replace(',', '.')); ly[f] = v > 0 ? v : null; scheduleSave(); lySide(); return; }
+    var it = lyItem(el.getAttribute('data-it') || LY.sel);
     if (!it) return;
+    lySnap();
     if (f === 'name') it.name = el.value.trim() || it.name;
     else { var x = parseFloat(String(el.value).replace(',', '.')); if (x >= 0.2) it[f] = Math.round(x * 10) / 10; }
-    scheduleSave(); lyDraw(); lySideMetrics();
+    scheduleSave(); lyDraw();
   }
   function lyKey(e) {
-    var tg = e.target, typing = tg && /^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName);
-    if (e.key === 'Escape') {
-      if (LY.cal || LY.pathMode) { LY.cal = null; LY.pathMode = false; lyRender(); }
-      else if (LY.sel) { LY.sel = null; lyDraw(); lySide(); }
+    var tg = e.target, typing = tg && /^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName), mod = e.ctrlKey || e.metaKey;
+    if (!typing && mod && (e.key === 'z' || e.key === 'Z')) { if (e.shiftKey) lyRedo(); else lyUndo(); e.preventDefault(); return; }
+    if (!typing && mod && (e.key === 'y' || e.key === 'Y')) { lyRedo(); e.preventDefault(); return; }
+    if (!typing && LY.sel && LY.step !== 'paths' && /^Arrow/.test(e.key)) {
+      var mv = lyItem(LY.sel), st = e.shiftKey ? 0.5 : 0.1;
+      if (mv) {
+        lySnap();
+        if (e.key === 'ArrowLeft') mv.x = Math.max(0, lyR(mv.x - st)); else if (e.key === 'ArrowRight') mv.x = lyR(mv.x + st);
+        else if (e.key === 'ArrowUp') mv.y = Math.max(0, lyR(mv.y - st)); else mv.y = lyR(mv.y + st);
+        scheduleSave(); lyDraw(); if (LY.step === 'compare') lySide();
+      }
       e.preventDefault(); return;
     }
-    if (!typing && (e.key === 'Delete' || e.key === 'Backspace') && LY.sel) { lyDelete(); e.preventDefault(); }
+    if (e.key === 'Enter' && tg && tg.id === 'lyReal') { lyCalOk(); e.preventDefault(); return; }
+    if (e.key === 'Escape') {
+      if (LY.cal) LY.cal = null; else if (LY.tool) LY.tool = null; else LY.sel = null;
+      lySide(); lyDraw(); e.preventDefault(); return;
+    }
+    if (!typing && (e.key === 'Delete' || e.key === 'Backspace') && LY.sel && LY.step !== 'paths') { lyDelete(); e.preventDefault(); }
   }
   function lyHelp() {
-    openPanel({ title: T('ly.helpTitle'), backdrop: true, body: '<div class="help">' + [1, 2, 3, 4].map(function (i) { return '<p>' + esc(T('ly.help' + i)) + '</p>'; }).join('') + '</div>',
+    openPanel({ title: T('ly.helpTitle'), backdrop: true, body: '<div class="help">' + [1, 2, 3, 4, 5, 6].map(function (i) { return '<p>' + esc(T('ly2.help' + i)) + '</p>'; }).join('') + '</div>',
       buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
   }
   function lyWire() {
@@ -7734,7 +8197,13 @@ var I18N_LOGIC = {
     v.addEventListener('pointerdown', lyDown);
     v.addEventListener('pointermove', lyMove);
     v.addEventListener('pointerup', lyUp);
-    v.addEventListener('pointercancel', function () { LY.drag = null; });
+    v.addEventListener('pointercancel', function (e) { delete LY.ptrs[e.pointerId]; LY.drag = null; LY.pinch = null; });
+    v.addEventListener('wheel', function (e) {
+      var svg = $('lySvg');
+      if (!svg || !svg.contains(e.target)) return;
+      e.preventDefault(); lyZoomAt(LY.zoom * (e.deltaY < 0 ? 1.15 : 1 / 1.15), e.clientX, e.clientY);
+    }, { passive: false });
+    window.addEventListener('resize', function () { if (lyActive()) lyDraw(); });
     $('filePlan').addEventListener('change', function () { if (this.files && this.files[0]) lyPlanFile(this.files[0]); });
     // after the whole script has run (LY is set at the end of it)
     setTimeout(function () { if (location.hash === '#layout') lyOpen(true, true); }, 0);
