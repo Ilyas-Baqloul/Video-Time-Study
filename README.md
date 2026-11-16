@@ -5,32 +5,37 @@ Play the video and press one key each time a new step starts. The tool does the 
 
 It is made for methods, industrial and continuous improvement engineers who time operators from a video.
 
-**Open the tool: https://vts-tool.com**
+**Open the tool: https://vts-tool.com** (in French: https://vts-tool.com/fr/)
 
 ![Video Time Study: results of a study and load of two operators](screenshot.png)
 
 ## What you get
 
 - Cycle times for every cycle: (a) cycle time, (b) waiting time, (c) work content
-- T1 and the reference cycle, with the usable cycles counted for you (10 are needed)
-- Statistics for each step
-- The load of each operator against the takt time
-- A printed report (save it as PDF)
-- Your Excel standard sheets filled in: Time Measurement Sheet and TCT (Standardized Work), one sheet per operator, formulas and macros kept. It works with the template layouts it was built for.
+- T1 and the reference cycle: lowest repeatable time by default (standardized work), or the median or the mean; to the tenth of a second for short cycles; the first 20 usable cycles are used everywhere (10 are needed)
+- The precision of the study (95 %) and the number of cycles to reach ± 5 %
+- Periodic tasks (a box to change, a bin to empty) with how often they come back, also the ones the video does not show: they count in the cycle, the load, the balancing and the sheets
+- Parts per cycle and output (parts per hour)
+- Statistics for each step, and the load of each operator (time per part) against the takt time
+- A PDF report with the verdict, the method, the load chart and the cycles of each operator
+- A full Excel workbook for any company: summary, times of each operator, standardized work combination table, line balancing, layout and how the figures are worked out
+- Your own standard sheets filled in, if you use these templates: Time Measurement Sheet, TCT (Standardized Work) with the layout sheets, and Work Cell Balancing, one sheet per operator, formulas and macros kept
 - CSV exports, a copy for Excel, and a study file you can save and open again
 - Line balancing (Yamazumi): the steps of each operator stacked against the takt, scenarios where you move steps from one operator to another, with the gains shown, kaizen actions and a PDF report
+- Layout and walking paths: a picture of your plan or your AutoCAD drawing (DXF) at scale, machines cut out of it or taken from its blocks, turned to any angle, each step placed where the operator stands, then scenarios compared with today's layout (distance, steps, walking time), with the operators shown walking; PNG photo, PDF report and DXF for AutoCAD
+- Layout linked to the balancing: a layout scenario takes the split of a balancing scenario, and the walks of that scenario take the times of the plan
 
-You can follow several operators and machines on the same video. The tool is in English and French and works on a computer or a phone.
+You can follow several operators and machines on the same video. The tool is in English and French and works on a computer or a phone. On a phone, you can film the workstation straight from the site.
 
-Not sure where to start? Press **Try an example**: a fictional line with two operators and a press, already timed.
+Not sure where to start? Press **Try an example**: a fictional line with two operators and a press, already timed, with a balancing scenario and its layout.
 
 ## How it works
 
-1. Choose the video. It stays on your computer.
+1. Choose the video, or film it with the phone. It stays on your device.
 2. In Steps, list the steps of the cycle in order, with their type: Operation, Inspection, Walk or Wait.
 3. Play the video. When a step starts, press its key, or Enter for the next step of the list.
-4. Mark the problems: F for an issue, I for an interruption, P for a periodic task. Those cycles are left out of the results.
-5. Read the results, print the report or download the filled sheets.
+4. Mark what is not normal work: F for an issue and I for an interruption (those cycles are left out of T1), P for a periodic task (its time is shared out over the parts with its frequency).
+5. Read the results, download the PDF report and the Excel workbook, try a balancing scenario and its layout.
 
 ## Keys
 
