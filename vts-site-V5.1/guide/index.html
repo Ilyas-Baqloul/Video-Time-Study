@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Video Time Study user guide: time study from a video, line balancing and layout | vts-tool.com</title>
+<meta name="description" content="How to use Video Time Study (VTS, vts-tool.com), the free browser tool for time studies from a video: film the workstation, list the steps, record them with one key, read T1 and the reference cycle, balance the line (Yamazumi), draw the layout with the walking paths, compare scenarios and export PDF reports, an Excel workbook and your standard sheets.">
+<meta name="author" content="Ilyas Baqloul">
+<link rel="canonical" href="https://vts-tool.com/guide/">
+<link rel="alternate" hreflang="en" href="https://vts-tool.com/guide/">
+<link rel="alternate" hreflang="x-default" href="https://vts-tool.com/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to use Video Time Study">
+<meta property="og:description" content="How to use Video Time Study (VTS, vts-tool.com), the free browser tool for time studies from a video: film the workstation, list the steps, record them with one key, read T1 and the reference cycle, balance the line (Yamazumi), draw the layout with the walking paths, compare scenarios and export PDF reports, an Excel workbook and your standard sheets.">
+<meta property="og:url" content="https://vts-tool.com/guide/">
+<meta property="og:image" content="https://vts-tool.com/preview.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1410 1410%22%3E%3Crect width=%221410%22 height=%221410%22 rx=%22282%22 fill=%22%23FFFFFF%22/%3E%3Cg transform=%22translate%28120 318%29%22%3E%3Cpath d=%22M42 0H143L700 362Q734 387 700 412L140 774H42Q0 774 0 732V42Q0 0 42 0Z%22 fill=%22%23253470%22/%3E%3Crect x=%2253%22 y=%22-14%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22140%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22281%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22422%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22563%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Crect x=%2253%22 y=%22705%22 width=%2274%22 height=%2269%22 rx=%2210%22 fill=%22%23FFFFFF%22/%3E%3Cpath d=%22M267 280L430 390L267 498Z%22 fill=%22%23FFFFFF%22 stroke=%22%23FFFFFF%22 stroke-width=%2222%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M223 0H705Q727 0 727 22V94Q727 116 705 116H397Z%22 fill=%22%23253470%22/%3E%3Cpath d=%22M468 160H929Q951 160 951 182V252Q951 274 929 274H641Z%22 fill=%22%23FFB700%22/%3E%3Cpath d=%22M729 334H1147Q1169 334 1169 356V424Q1169 446 1147 446H726Q752 390 729 334Z%22 fill=%22%23FFB700%22/%3E%3Cpath d=%22M654 490H929Q951 490 951 512V578Q951 600 929 600H486Z%22 fill=%22%23253470%22/%3E%3Cpath d=%22M388 664H772Q794 664 794 686V752Q794 774 772 774H221Z%22 fill=%22%2314214E%22/%3E%3C/g%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "How to use Video Time Study", "description": "How to use Video Time Study (VTS, vts-tool.com), the free browser tool for time studies from a video: film the workstation, list the steps, record them with one key, read T1 and the reference cycle, balance the line (Yamazumi), draw the layout with the walking paths, compare scenarios and export PDF reports, an Excel workbook and your standard sheets.", "inLanguage": "en", "url": "https://vts-tool.com/guide/", "datePublished": "2026-11-19", "dateModified": "2026-11-20", "author": {"@type": "Person", "name": "Ilyas Baqloul"}, "about": {"@type": "SoftwareApplication", "name": "Video Time Study", "alternateName": ["VTS", "VTS Tool", "vts-tool.com"], "url": "https://vts-tool.com/", "applicationCategory": "BusinessApplication", "operatingSystem": "Web browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}}</script>
+<style>*{box-sizing:border-box}html{scroll-padding-top:16px}
+body{margin:0;font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:#1C2333;background:#F4F6FB}
+a{color:#253470}header{background:#FFFFFF;border-bottom:1px solid #D5DAE5}
+.bar{max-width:900px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{width:44px;height:auto}.ink{fill:#253470}.acc{fill:#FFB700}.dark{fill:#121A33}.hole{fill:#FFFFFF}
+.brand{font-weight:800;font-size:19px;color:#253470;text-decoration:none}.open{margin-left:auto;font-size:15px;font-weight:600}
+main{max-width:900px;margin:0 auto;padding:24px 16px 40px}
+h1{font-size:32px;line-height:1.2;color:#253470;margin:6px 0 12px}h2{font-size:23px;line-height:1.25;color:#253470;margin:0 0 10px}
+h3{font-size:18px;color:#253470;margin:20px 0 6px}.lead{font-size:18px;margin:0 0 6px}
+.cta{display:inline-block;margin:12px 10px 0 0;padding:11px 20px;border-radius:10px;background:#FFB700;color:#121A33;font-weight:800;text-decoration:none}
+.cta.alt{background:#FFFFFF;border:1px solid #253470;color:#253470}
+.toc{background:#FFFFFF;border:1px solid #D5DAE5;border-radius:12px;padding:14px 20px;margin:26px 0 8px}
+.toc h2{font-size:18px;margin:0 0 6px}.toc ol{margin:0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:3px 0;break-inside:avoid}
+.sec{background:#FFFFFF;border:1px solid #D5DAE5;border-radius:12px;padding:20px 22px 12px;margin:16px 0}
+ul,ol{padding-left:22px}li{margin:4px 0}p{margin:8px 0}
+.tip{background:#EEF2FB;border-radius:10px;padding:10px 14px;margin:12px 0}
+table{border-collapse:collapse;width:100%;margin:8px 0 12px;font-size:15px}th,td{border:1px solid #D5DAE5;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#EEF2FB;color:#253470}td:first-child{white-space:nowrap}
+kbd{display:inline-block;min-width:1.6em;padding:0 6px;border:1px solid #B9C1D3;border-bottom-width:2px;border-radius:5px;background:#FFFFFF;font:600 14px/1.5 "Segoe UI",system-ui,sans-serif;text-align:center}
+.ui{font-weight:600}.note{color:#5F6780;font-size:14px}.top{font-size:14px}
+footer{max-width:900px;margin:0 auto;padding:10px 16px 30px;color:#5F6780;font-size:13px}
+@media (max-width:640px){h1{font-size:27px}.toc ol{columns:1}.sec{padding:16px 14px 8px;overflow-x:auto}table{font-size:14px}th,td{padding:6px 6px}td:first-child{white-space:normal}}
+@media (prefers-color-scheme:dark){body{background:#0F1424;color:#E6E9F2}header{background:#151B2E;border-color:#2A3350}
+.sec,.toc{background:#151B2E;border-color:#2A3350}.tip,th{background:#1C2440}th,td{border-color:#2A3350}
+h1,h2,h3,.brand,a,th{color:#C9D6FF}.ink{fill:#C9D6FF}.hole{fill:#151B2E}.cta.alt{background:transparent;border-color:#8FA3D9;color:#C9D6FF}
+kbd{background:#1C2440;border-color:#4A5578;color:#E6E9F2}.note,footer{color:#A3ADC7}}</style>
+</head>
+<body>
+<header><div class="bar"><a href="https://vts-tool.com/" aria-label="Video Time Study"><svg class="logo" viewBox="-8 -8 1186 790" aria-hidden="true"><path d="M42 0H143L700 362Q734 387 700 412L140 774H42Q0 774 0 732V42Q0 0 42 0Z" class="ink"/><rect x="53" y="-14" width="74" height="69" rx="10" class="hole"/><rect x="53" y="140" width="74" height="69" rx="10" class="hole"/><rect x="53" y="281" width="74" height="69" rx="10" class="hole"/><rect x="53" y="422" width="74" height="69" rx="10" class="hole"/><rect x="53" y="563" width="74" height="69" rx="10" class="hole"/><rect x="53" y="705" width="74" height="69" rx="10" class="hole"/><path d="M267 280L430 390L267 498Z" class="hole" stroke="#FFFFFF" stroke-width="22" stroke-linejoin="round"/><path d="M223 0H705Q727 0 727 22V94Q727 116 705 116H397Z" class="ink"/><path d="M468 160H929Q951 160 951 182V252Q951 274 929 274H641Z" class="acc"/><path d="M729 334H1147Q1169 334 1169 356V424Q1169 446 1147 446H726Q752 390 729 334Z" class="acc"/><path d="M654 490H929Q951 490 951 512V578Q951 600 929 600H486Z" class="ink"/><path d="M388 664H772Q794 664 794 686V752Q794 774 772 774H221Z" class="dark"/></svg></a><a class="brand" href="https://vts-tool.com/">Video Time Study</a><a class="open" href="https://vts-tool.com/">Open the tool</a></div></header>
+<main>
+<h1>How to use Video Time Study</h1>
+<p class="lead">Video Time Study (VTS, vts-tool.com) is a free tool that runs in your browser. You film a workstation, press one key each time a step starts, and the site gives you the cycle times, T1, the line balancing (Yamazumi) and the layout with the walking paths, then PDF reports, an Excel workbook and, if you use them, your own standard sheets. Nothing to install, no account: the video stays on your computer or your phone.</p>
+<p><a class="cta" href="https://vts-tool.com/">Open Video Time Study</a><a class="cta alt" href="https://vts-tool.com/#example">Try the example (fictional data)</a></p>
+<nav class="toc" id="contents" aria-label="Contents"><h2>Contents</h2><ol><li><a href="#workflow">The workflow at a glance</a></li><li><a href="#start">Before you start</a></li><li><a href="#film">Film the workstation</a></li><li><a href="#study">Start a study</a></li><li><a href="#steps">List the steps</a></li><li><a href="#record">Record the video</a></li><li><a href="#results">Read the results</a></li><li><a href="#balance">Balance the line (Yamazumi)</a></li><li><a href="#layout">Draw the layout and the walking paths</a></li><li><a href="#reports">Compare scenarios and make reports</a></li><li><a href="#sheets">Fill your own standard sheets (optional)</a></li><li><a href="#save">Save, reopen and share</a></li><li><a href="#keys">Keyboard shortcuts</a></li><li><a href="#trouble">Troubleshooting</a></li><li><a href="#words">Words used in the tool</a></li></ol></nav>
+<section class="sec" id="workflow"><h2>1. The workflow at a glance</h2><ol>
+<li><b>Film</b> the workstation: a phone held still, at least 10 full cycles.</li>
+<li><b>Choose the video</b>: it opens in your browser and is never uploaded.</li>
+<li><b>List the steps</b> of each operator and each machine, with their type.</li>
+<li><b>Record</b>: play the video and press a key when each step starts.</li>
+<li><b>Read the results</b>: cycle times, T1, the reference cycle and the output.</li>
+<li><b>Improve</b> in scenarios: balance the line and move the stations on the layout, next to the current state.</li>
+<li><b>Share</b>: PDF reports, an A3 presentation of the layout, an Excel workbook and your filled standard sheets.</li>
+</ol>
+<p class="tip">New to the tool? Open the example first (see below): everything is already filled in, so you can see each screen before you film.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="start"><h2>2. Before you start</h2><h3>What you need</h3>
+<p>A video of the workstation (a phone is enough) and a recent browser: Chrome, Edge, Firefox or Safari. Nothing to install, no account, no advertising. The tool is free, including at work.</p>
+<h3>Your data stays with you</h3>
+<p>The video is read by your browser and never leaves your computer or phone. The study is saved automatically in this browser. To keep it, move it to another computer or send it to a colleague, use <span class="ui">Save study file</span> in the <span class="ui">Study</span> tab (see <a href="#save">Save, reopen and share</a>).</p>
+<h3>Try the example</h3>
+<p>On the start screen, click <span class="ui">Try an example</span>, then <span class="ui">Load the example</span>. It opens <i>Line A: 2 operators and a press</i>, a fictional video with its study ready: the steps listed, a dozen timed cycles, a periodic task, a takt time, a balancing scenario and its layout. You can change everything. Your own study is put aside and comes back when you click <span class="ui">Leave the example</span>. Look at <span class="ui">Results</span> first, then <span class="ui">Line balancing</span> and <span class="ui">Layout</span>.</p>
+<h3>Without internet</h3>
+<p>Once the page is open, the tool works without internet. <span class="ui">Menu</span>, <span class="ui">Offline copy</span> downloads the whole tool as one HTML file that you can open on any computer. Only two things need the internet, the first time: reading a PDF plan and converting an iPhone video (a small reader or converter is downloaded, your files are not sent).</p>
+<h3>The top of the page</h3>
+<ul>
+<li>The study name, which you can type straight in the bar.</li>
+<li><span class="ui">Line balancing</span> and <span class="ui">Layout</span> open the two other views; <span class="ui">← Time study</span> or <span class="ui">← Back to the time study</span> brings you back.</li>
+<li><span class="ui">Help</span> gives the keys and the words of the results. <kbd>?</kbd> opens it too.</li>
+<li><span class="ui">Menu</span>: the languages (English, French, German, Spanish, Czech, Italian, Polish, Portuguese), the theme (auto, light or dark), <span class="ui">New study</span>, <span class="ui">Offline copy</span>, <span class="ui">Contact and feedback</span> and <span class="ui">What’s new</span>.</li>
+</ul><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="film"><h2>3. Film the workstation</h2><ul>
+<li>Hold the phone still: on a tripod or set down, in landscape, without zooming.</li>
+<li>Frame the hands and the whole workstation, with the parts and the places the operator walks to.</li>
+<li>Film at least 10 full cycles, ideally a few more: the site only keeps the usable ones (see <a href="#results">Read the results</a>).</li>
+<li>720p at 30 frames per second is enough: lighter files, the same precision.</li>
+<li>Tell the operators first: you film the workstation to make the work easier, not to judge people.</li>
+<li>On a phone, <span class="ui">Film with the camera</span> records the video straight into the site. That video is kept in this browser only: use <span class="ui">Save the video</span> to keep it on the phone.</li>
+</ul>
+<p class="tip">iPhone: Settings, Camera, Formats, <b>Most Compatible</b>, and Record Video, <b>HDR Video</b> off. The video then opens everywhere. Otherwise the site converts it for you (see <a href="#trouble">Troubleshooting</a>).</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="study"><h2>4. Start a study</h2><ol>
+<li>Click <span class="ui">Choose video file</span> in the middle of the video area, or drop the file there. Browsers read MP4 (H.264), WebM and most MOV files.</li>
+<li>Open the <span class="ui">Study</span> tab and fill in what you know:
+<ul>
+<li><span class="ui">Study name</span>: it names your files (for example: Line 4, current state).</li>
+<li><span class="ui">Reference</span>: the part or the product. It goes into the standard sheets.</li>
+<li><span class="ui">Plant</span>, <span class="ui">Line or machine</span>, <span class="ui">Observer</span>, <span class="ui">Date</span>.</li>
+<li><span class="ui">Customer takt time (s)</span>: needed for the takt line, the load of each operator and the line balancing. <span class="ui">Calculate</span> works it out from the <span class="ui">Available time (min)</span> and the <span class="ui">Customer demand (parts)</span> over the same period (one shift, one day…): the available time divided by the demand. Available time is the opening time minus the breaks.</li>
+<li><span class="ui">Frame step</span>: automatic (the frame rate of the video is detected) or a fixed value.</li>
+<li><span class="ui">How T1 is taken</span>: the method and the rounding (see <a href="#results">Read the results</a>).</li>
+</ul></li>
+</ol>
+<p><span class="ui">New study</span>, in the menu, clears the current study from this browser. You can keep the same video or take another one, and keep the operators and the steps (the times are cleared). Save a study file first if you want to keep the current one.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="steps"><h2>5. List the steps</h2><p>Everything is in the <span class="ui">Steps</span> tab. Do it before you record: the keys come from this list.</p>
+<h3>Timelines: one per operator and per machine</h3>
+<p>Each operator and each machine has its own timeline on the same video, with its own list of steps. <span class="ui">Add</span>, next to <span class="ui">Timeline</span>, gives <span class="ui">Add operator</span> and <span class="ui">Add machine</span>. <span class="ui">Delete this timeline</span> removes it with its steps and its times.</p>
+<h3>Quick start</h3>
+<p><span class="ui">Quick start</span> gets everything ready in one go: give the number of <span class="ui">Operators</span>, <span class="ui">Machines</span> and <span class="ui">Steps per timeline</span>, tick <span class="ui">Number the steps 10, 20, 30</span> (A10, B10… with several timelines), then <span class="ui">Get ready</span>. The steps are named Step 1, Step 2…: give them their real names before you record.</p>
+<h3>Each step</h3>
+<table>
+<tr><th>Column</th><th>What it is</th></tr>
+<tr><td><span class="ui">Key</span></td><td>The key that records it: 1 to 9, 0, then letters. It is shown on each step.</td></tr>
+<tr><td><span class="ui">Code</span></td><td>10, 20, 30… <span class="ui">Codes 10, 20, 30</span> numbers the whole list.</td></tr>
+<tr><td><span class="ui">Name</span></td><td>What the operator does, in a few words.</td></tr>
+<tr><td><span class="ui">Type</span></td><td><span class="ui">Operation</span>, <span class="ui">Inspection</span>, <span class="ui">Walk</span>, <span class="ui">Wait</span> or <span class="ui">Machine</span>, the types of standardized work. The colours of the whole tool follow them.</td></tr>
+<tr><td><span class="ui">Dist. (m)</span></td><td>For a walk: its distance in metres, if you know it. The layout measures the walks too.</td></tr>
+</table>
+<ul>
+<li>Write the steps <b>in the order of the cycle</b>.</li>
+<li>Put <b>every walk and every wait</b> in the list, where it happens in the cycle: the line balancing, the layout and the standard sheets need them.</li>
+<li><span class="ui">Cycle starts with</span>: the step that opens a new cycle (by default, the first one).</li>
+<li>Renaming, retyping or reordering a step (<span class="ui">Move up</span>, <span class="ui">Move down</span>) keeps its recorded times.</li>
+</ul>
+<h3>Paste a list from Excel</h3>
+<p><span class="ui">Paste list</span>: one step per line, <b>Code; Name; Type</b>, and <b>; Distance</b> in metres for a walk. Columns copied from Excel work too. The type is optional; French words work too. For example:</p>
+<table>
+<tr><th>Code</th><th>Name</th><th>Type</th><th>Distance</th></tr>
+<tr><td>M10</td><td>Load part in thermoformer</td><td>Operation</td><td></td></tr>
+<tr><td>M20</td><td>Walk to waterjet</td><td>Walk</td><td>4</td></tr>
+<tr><td>Q30</td><td>Check trim edges</td><td>Inspection</td><td></td></tr>
+<tr><td>M40</td><td>Wait for waterjet</td><td>Wait</td><td></td></tr>
+</table>
+<p><span class="ui">Replace list</span> keeps the recording of the steps whose code stays the same; <span class="ui">Add to list</span> adds the new steps at the end. <span class="ui">Copy list</span> copies yours, to paste it in Excel or in another study.</p>
+<h3>Parts per cycle</h3>
+<p>For a tool with several cavities, set <span class="ui">Parts per cycle</span>: the output and the line balancing then use the time per part.</p>
+<h3>Periodic tasks</h3>
+<p>Some tasks do not come back every cycle: a stillage change, the waste bin, a material replenishment. During the recording, <kbd>P</kbd> notes the ones you see. Under the list, <span class="ui">Periodic tasks</span> shows them and <span class="ui">+ Periodic task not filmed</span> adds the others with their time. For each one, set <span class="ui">How often</span>: every how many parts it comes back. Its time is then spread over those parts in the cycle, the line balancing and the sheets. A task without a frequency does not count yet.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="record"><h2>6. Record the video</h2><p>Open the <span class="ui">Record</span> tab.</p>
+<ol>
+<li>Play the video with <kbd>Space</kbd>. Record at speed 1 or slower: at speed 2, your reaction time counts double.</li>
+<li>When a step starts, press <b>its key</b>, or <kbd>Enter</kbd> for the next step of the list. A step ends when the next one starts.</li>
+<li>On a touch screen, tap <span class="ui">Record next step</span> or the button of the step.</li>
+<li>Go on cycle after cycle. At the very end, press <kbd>X</kbd>: <span class="ui">End of study</span> ends the last step.</li>
+</ol>
+<ul>
+<li>Under the video, the <b>band</b> shows the recorded steps in their colours. Click it to go to that time, drag it to move along the video, and zoom on 20 s, 1 min, 2 min or 5 min. The bar below it shows the whole video.</li>
+<li><span class="ui">Cycle</span>, <span class="ui">Current step</span> and <span class="ui">Next planned</span> tell you where you are.</li>
+<li>To move in the video: <kbd>←</kbd> <kbd>→</kbd> 1 s back or forward (<kbd>Shift</kbd> for 5 s), <kbd>,</kbd> <kbd>.</kbd> one frame, <kbd>[</kbd> <kbd>]</kbd> slower or faster.</li>
+<li>The keys work when the page has the focus. If <span class="ui">Keys off: click on the page</span> shows, click on the page. They are off while you type in a field.</li>
+<li>If you record earlier in the video, where steps are already recorded after that time, the site asks before replacing them.</li>
+</ul>
+<h3 id="events">Mark what goes wrong</h3>
+<p>Use these keys, or <span class="ui">More events (issue, interruption, periodic task…)</span> under the video. A cycle with an issue, an interruption or something out of view stays visible but is not used for T1.</p>
+<table>
+<tr><th>Key</th><th>Event</th><th>When and what it does</th></tr>
+<tr><td><kbd>F</kbd></td><td><span class="ui">Issue</span></td><td>The current step takes longer because of a problem (defect, breakdown, missing material…). The time stays in the step; the cycle is not used for T1 and the reference cycle.</td></tr>
+<tr><td><kbd>I</kbd></td><td><span class="ui">Interruption</span></td><td>The operator stops working. Choose the cause; when the work starts again, press the key of the step.</td></tr>
+<tr><td><kbd>P</kbd></td><td><span class="ui">Periodic task</span></td><td>Stillage change, waste bin, replenishment. Its time stays out of (a) and the cycle stays usable; with its frequency, it is spread over the parts.</td></tr>
+<tr><td><kbd>V</kbd></td><td><span class="ui">Out of view</span></td><td>The operator is hidden or the video is cut.</td></tr>
+<tr><td><kbd>W</kbd></td><td><span class="ui">Walk</span></td><td>A walk that is not in the list.</td></tr>
+<tr><td><kbd>A</kbd></td><td><span class="ui">Wait</span></td><td>A wait that is not in the list.</td></tr>
+<tr><td><kbd>X</kbd></td><td><span class="ui">End of study</span></td><td>Ends the last step.</td></tr>
+</table>
+<p>Walks and waits noted with <kbd>W</kbd> or <kbd>A</kbd> can become real steps: <span class="ui">Put them in the list</span>, in the <span class="ui">Steps</span> tab, places each one right after the step it follows (for example: Walk after 011). The times do not change. Rename them and add the distances.</p>
+<h3 id="fix">Fix a mistake</h3>
+<ul>
+<li>Wrong key: <kbd>Ctrl</kbd>+<kbd>Z</kbd> right away (<kbd>Ctrl</kbd>+<kbd>Y</kbd> redoes).</li>
+<li>Later: <span class="ui">Fix a step</span>, in the <span class="ui">Record</span> tab, lists the step in progress and the 4 before it, with <span class="ui">Change</span> and <span class="ui">Delete</span>.</li>
+<li>Click the current step under the video, or press and hold a step on the band (right-click on a computer): change the step, move its start by 0.1 s, start it at the video position, or delete it.</li>
+<li><kbd>Delete</kbd> deletes the step in progress (press it twice).</li>
+<li>In the <span class="ui">Log</span> tab, every event can be moved, changed or noted (see below).</li>
+</ul><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="results"><h2>7. Read the results</h2><p>Open the <span class="ui">Results</span> tab. Each timeline has its own results.</p>
+<h3>The cycles</h3>
+<p>Each cycle shows its start, its cycle time <b>(a)</b> without the periodic tasks, its wait <b>(b)</b> and its work content <b>(c) = (a) − (b)</b>, and whether it is used. A cycle is <b>usable</b> when it is complete, with no issue, no interruption and nothing out of view. 10 usable cycles are needed, and at most the first 20 are used, as on a time measurement sheet.</p>
+<h3>T1 and the reference cycle</h3>
+<ul>
+<li><b>T1</b>, by default, is the lowest repeatable time of standardized work: the smallest work content (c) is left out (it may be a mistake), then T1 is the smallest time that comes back at least twice. It is the time a trained operator holds at a normal pace.</li>
+<li>You can take the <b>median</b> or the <b>mean</b> of the cycles instead: <span class="ui">Change the method</span>, or <span class="ui">How T1 is taken</span> in the <span class="ui">Study</span> tab. The rounding is to the tenth of a second, to the second, or automatic (the tenth under 20 s). These are observed times: no pace rating and no allowances are added.</li>
+<li>The <b>reference cycle</b> is the real usable cycle closest to T1. Its step times go to the line balancing, the layout and the sheets.</li>
+</ul>
+<h3>The other figures</h3>
+<ul>
+<li><span class="ui">Precision (95 %)</span>: how precise T1 is with the cycles you have, and how many cycles you need for ± 5 %. The spread and the standard deviation of (c) show how steady the work is.</li>
+<li><span class="ui">Output</span>: parts per hour of the reference cycle with the periodic tasks (per part when there are several parts per cycle).</li>
+<li><span class="ui">Steps</span>: the time of each step over the cycles used, and in the reference cycle.</li>
+<li><span class="ui">Periodic tasks</span>: their time, how often they come back, and their share per part.</li>
+<li><span class="ui">Operator load</span>: the time per part of each operator, by step type, against the takt line (enter the takt time in the <span class="ui">Study</span> tab).</li>
+</ul>
+<h3>Your results</h3>
+<p><span class="ui">PDF report</span> gives the time study report, <span class="ui">Excel workbook</span> the whole study in one workbook, and <span class="ui">Other exports…</span> the summary and the log as CSV files or ready to paste in Excel. The separators are set in the <span class="ui">Study</span> tab: comma and point for Excel in English, semicolon and comma for Excel in French.</p>
+<h3>The log</h3>
+<p>The <span class="ui">Log</span> tab lists every event in order, cycle by cycle, with the reason when a cycle is not used. For each event: <span class="ui">Go to this time</span>, <span class="ui">Change step</span>, <span class="ui">Note</span>, the cause of an interruption or the issue, <span class="ui">0.1 s earlier</span> or <span class="ui">0.1 s later</span>, and <span class="ui">Set to video time</span>. <span class="ui">Show current event</span> finds the event at the position of the video.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="balance"><h2>8. Balance the line (Yamazumi)</h2><p>Click <span class="ui">Line balancing</span> at the top of the page.</p>
+<h3>Reading the chart</h3>
+<ul>
+<li>One column per operator, plus the machines. Each block is a step, as high as its time in the reference cycle, in the colour of its type. Hover a block, or tap it, to read it in full.</li>
+<li>The <b>red dashed line</b> is the customer takt time. The <b>solid blue line</b> is the line cycle, set by the bottleneck. The part of a column above the takt is marked in red.</li>
+<li>Above each column: its cycle and its gap to the takt, its load (the work without the waits, in % of the takt), and how long it waits for the bottleneck at each cycle.</li>
+<li>A machine counts for its active time only: its idle time, greyed, does not count. Time the loading and the unloading as machine steps, because the machine is busy then. Machines never count as operators.</li>
+</ul>
+<h3>The figures</h3>
+<table>
+<tr><th>Figure</th><th>How it is worked out</th></tr>
+<tr><td><span class="ui">Bottleneck</span></td><td>The longest cycle, operators and machines together.</td></tr>
+<tr><td><span class="ui">Output at the bottleneck</span></td><td>3600 / bottleneck, in parts per hour.</td></tr>
+<tr><td><span class="ui">Theoretical operators</span></td><td>Total work content Σ(c) / takt, rounded up.</td></tr>
+<tr><td><span class="ui">Line balance</span></td><td>Σ(c) / (number of operators × bottleneck). 100 % means everyone works for the whole bottleneck cycle, with no waiting.</td></tr>
+</table>
+<p>In a scenario, each figure shows its gap to <span class="ui">Current</span>, in green when it is better.</p>
+<h3>Current and scenarios</h3>
+<ul>
+<li><span class="ui">Current</span> is what you timed. It follows the time study and cannot be changed here.</li>
+<li><span class="ui">+ New scenario</span> creates a scenario. <span class="ui">Start from</span>: <span class="ui">Current (as measured)</span> or another scenario. A scenario holds both a line balancing and a layout, with its own plan. You can make up to 30.</li>
+<li>When you create a scenario, the site asks what to do with the measured waits: keep them, to review (they are hatched), or put them aside. They often come from the imbalance itself and change once steps move.</li>
+<li><span class="ui">Edit scenario</span> renames, copies or deletes it, and keeps a note: what this scenario changes, why, what to check. The note shows in both views and in the reports.</li>
+</ul>
+<h3>Changing a scenario</h3>
+<ul>
+<li>Drag a block to another column, or higher or lower in the same one, with the mouse or a finger. A step given to another operator shows the ⇄ mark.</li>
+<li>Click a block to change its time, name, type or column, split it in 2, delete it, or write the kaizen action behind the change (for example: box moved closer).</li>
+<li><span class="ui">+ Operator</span> adds a column, <span class="ui">+ Step</span> adds a step by hand, and the ⋯ button of a column renames or deletes it. <span class="ui">Unassigned steps</span> keeps what you take out of the columns.</li>
+<li>A dotted line shows the total of the same column in <span class="ui">Current</span>. The line <span class="ui">In this scenario:</span> sums up the changes, the new line cycle and the output.</li>
+<li><kbd>Esc</kbd> cancels a move in progress; <span class="ui">Undo</span> and <span class="ui">Redo</span> work as everywhere.</li>
+<li><span class="ui">Layout of this scenario →</span> opens the same scenario on the plan.</li>
+</ul><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="layout"><h2>9. Draw the layout and the walking paths</h2><p>Click <span class="ui">Layout</span> at the top of the page. The bar of the scenarios is the same as in the line balancing: <span class="ui">Current</span>, your scenarios, <span class="ui">+ New scenario</span>, <span class="ui">Compare / Reports</span>, and the lock of the reference.</p>
+<h3>1. The plan (optional)</h3>
+<ul>
+<li><span class="ui">Import a plan (picture, PDF or DXF)</span>. For a picture (PNG, JPG) or a PDF, set the scale: click both ends of a known distance on the plan, then type its real length in metres. For a PDF, choose the page; it stays sharp when you zoom in.</li>
+<li>For an AutoCAD drawing (DXF, saved as ASCII): choose the units, the layers to show, and the blocks that are machines or stations. Each block becomes a station with its real outline, at scale. DWG files cannot be read: save the drawing as DXF.</li>
+<li>Without a plan, one grid square is one metre.</li>
+<li><span class="ui">Plan opacity</span> fades the plan; <span class="ui">Hide the plan</span> takes it away for a moment.</li>
+<li>The plan stays on your computer, in this browser, never in the study file. On another computer, load the same file again: the stations stay where they are.</li>
+</ul>
+<h3>2. The stations</h3>
+<ul>
+<li>Choose a type (<span class="ui">Work station</span>, <span class="ui">Machine</span>, <span class="ui">Rack or bin</span>, <span class="ui">Table</span>) and click on the plan to place it.</li>
+<li><span class="ui">Cut out of the plan</span>: click the corners round a machine of the plan, or drag a rectangle. The part cut out becomes a station you can move, with its real look. <span class="ui">Draw an outline</span> gives a station that exact outline.</li>
+<li>Drag a station to move it, its corner to resize it, its round handle to turn it (15° steps, free with <kbd>Shift</kbd>). Click it to rename it, resize it, turn it, duplicate it or delete it.</li>
+<li>Keys: the arrows move the selected station by 10 cm (50 cm with <kbd>Shift</kbd>), <kbd>R</kbd> turns it by 15° (<kbd>Shift</kbd>+<kbd>R</kbd> the other way), <kbd>Delete</kbd> removes it.</li>
+</ul>
+<h3>3. Where each step is done</h3>
+<ul>
+<li>Choose an operator and answer the questions, step by step: <i>Where does the cycle start?</i>, <i>Where is this step done?</i>, <i>Where does this walk lead?</i></li>
+<li>To answer, click one of the round spots around a station: that is where the operator stands (front, back, left or right of it).</li>
+<li>The steps between two walks are done at the same place. To place one elsewhere, click it in the round.</li>
+<li>To go round a machine or follow an aisle, click an empty spot of the plan: the walk passes there.</li>
+<li>On the plan, the arrows show the way walked, a dashed leg is walked without a part, and the numbers are the steps of the list.</li>
+</ul>
+<h3>Lock the reference</h3>
+<p>When the current layout is drawn, <span class="ui">Validate the current layout →</span> (or <span class="ui">Lock the reference</span> in the bar) makes it the reference: it is locked and every scenario starts from a copy of it. <span class="ui">Unlock the reference</span> lets you change it again; the scenarios keep their own plan.</p>
+<h3>The figures</h3>
+<ul>
+<li>For each operator: <span class="ui">Distance per cycle</span>, <span class="ui">Footsteps per cycle</span> and <span class="ui">Walking per cycle</span>; for the whole line, the walking over 1,000 parts.</li>
+<li>Distances are straight lines between the places where the operator stands (0.40 m from the edge of a station), through the waypoints. One footstep is 0.70 m by default (<span class="ui">Settings</span>).</li>
+<li>Walking time = distance / walking speed. The speed comes from the walks timed in the study, otherwise 1 m/s.</li>
+</ul>
+<h3>Improve it in a scenario</h3>
+<ul>
+<li>Open or create a scenario at the top, then <span class="ui">Move the stations</span>: drag and turn them, and the figures before → after follow every move.</li>
+<li><span class="ui">What changes</span> lists the stations and the steps that change; <span class="ui">Detail by operator</span> gives the distance, the footsteps, the walking time and the cycle.</li>
+<li><span class="ui">Before</span> / <span class="ui">After</span> shows the current layout in place of the scenario.</li>
+<li><span class="ui">Play</span> shows each operator walking their path at their speed and staying at each place for the time of their steps; when you compare, today’s path is walked too, in grey.</li>
+<li><span class="ui">Start again from the current plan</span> puts every station back.</li>
+</ul>
+<p class="tip">Line balancing and layout are linked: a scenario is both, who does which step and where the stations stand. Move a step to another operator in the line balancing and their path changes on the plan. Move a station on the plan and the walks of the line balancing take the new times. The line cycle and the line balance show both changes.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="reports"><h2>10. Compare scenarios and make reports</h2><h3>Compare / Reports</h3>
+<p><span class="ui">Compare / Reports</span> is in the bar of the scenarios, in both views.</p>
+<ol>
+<li><b>The states compared</b>: tick the states to show, and choose what they are <span class="ui">Compared with</span>: the current state, as measured, or a scenario. Each figure shows its gap to the reference; the best figure of each line is in green.</li>
+<li><b>The PDF report</b>: <span class="ui">Line balancing only</span> (Yamazumi compared, bottleneck, output, load of each operator, kaizen actions), <span class="ui">Layout only</span> (plans compared, gains in distance, footsteps and walking time for each operator) or <span class="ui">Full: line balancing and layout</span>. Click <span class="ui">Make the report (PDF)</span>, then choose <b>Save as PDF</b> in the print window.</li>
+</ol>
+<h3>The other files</h3>
+<table>
+<tr><th>File</th><th>Where</th><th>What is in it</th></tr>
+<tr><td>Time study report (PDF)</td><td><span class="ui">Results</span>, <span class="ui">PDF report</span></td><td>The summary, the cycles, T1 and the reference cycle, the steps and the method.</td></tr>
+<tr><td>Presentation (PDF, A3 landscape)</td><td><span class="ui">Layout</span>, <span class="ui">PDF presentation (A3 landscape)</span></td><td>A large page to project or print for a meeting on the shop floor: the plan with the paths and the step codes, and the figures. One scenario alone, or side by side with the current layout.</td></tr>
+<tr><td>Excel workbook (.xlsx)</td><td><span class="ui">Results</span> or <span class="ui">Line balancing</span></td><td>The summary, the times of each operator, the combination table, the line balancing, the layout with the plans and the method, for any company. For a scenario, a Simulation sheet adds its combination table, step by step against the takt time; the other sheets stay the study as measured.</td></tr>
+<tr><td>CSV files</td><td><span class="ui">Results</span>, <span class="ui">Other exports…</span></td><td>The summary and the log, as files or copied for Excel.</td></tr>
+</table><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="sheets"><h2>11. Fill your own standard sheets (optional)</h2><p>If your company uses the matching templates (a time measurement sheet, a standardized work file with a combination table, a work cell balancing), the site can fill them for you, one sheet per operator, keeping the formulas and the macros.</p>
+<ol>
+<li>In the <span class="ui">Results</span> tab, under <span class="ui">Standardized work sheets (if you use these templates)</span>, choose each template once. They stay on this computer and are never uploaded.</li>
+<li><span class="ui">Fill for</span>: the current state, as measured, or a scenario (a simulation: the times of the scenario, the distances and the plans of its layout; the measure sheet is only filled for the current state).</li>
+<li><span class="ui">Download the filled sheets</span>. The walking distances and the plans come from the layout.</li>
+</ol>
+<p class="note">A file with macros downloaded from the internet may be blocked by Windows: the site tells you how to unblock it before you open it.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="save"><h2>12. Save, reopen and share</h2><ul>
+<li>The study is <b>saved automatically in this browser</b>. A private window or a full storage cannot keep it: the site warns you, then save a file.</li>
+<li><span class="ui">Save study file</span>, in the <span class="ui">Study</span> tab, writes a small .json file: the steps, the times, the scenarios and the layout. It does not hold the video or the plan. The site reminds you after 50 new steps.</li>
+<li><span class="ui">Open study file</span> opens it again, here or on another computer. Then choose the same video: the site checks that it is the video of the study.</li>
+<li>A video filmed or converted in the site is kept in this browser only: <span class="ui">Save the video</span> keeps it on your device.</li>
+<li>If the tool is open in two tabs and the study changes in both, the site asks which version to keep.</li>
+<li>To share with someone who does not use the tool, send the PDF reports or the Excel workbook.</li>
+<li><span class="ui">Contact and feedback</span>, in the menu, opens your mail app with a message ready: only what you write is sent, nothing from your study or your video.</li>
+</ul><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="keys"><h2>13. Keyboard shortcuts</h2><h3>Recording</h3>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td><kbd>Space</kbd></td><td>Play or pause</td></tr>
+<tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Back or forward 1 s (with <kbd>Shift</kbd>: 5 s)</td></tr>
+<tr><td><kbd>,</kbd> <kbd>.</kbd></td><td>Previous or next frame</td></tr>
+<tr><td><kbd>[</kbd> <kbd>]</kbd></td><td>Slower or faster (numeric keypad: − and +)</td></tr>
+<tr><td><kbd>Enter</kbd></td><td>Record the next step of the list</td></tr>
+<tr><td><kbd>1</kbd> … <kbd>9</kbd>, <kbd>0</kbd>, then letters</td><td>Record that step (the key is shown on each step)</td></tr>
+<tr><td><kbd>F</kbd></td><td>Issue on the current step</td></tr>
+<tr><td><kbd>I</kbd></td><td>Interruption</td></tr>
+<tr><td><kbd>P</kbd></td><td>Periodic task</td></tr>
+<tr><td><kbd>V</kbd></td><td>Out of view</td></tr>
+<tr><td><kbd>W</kbd> / <kbd>A</kbd></td><td>Walk / wait not in the list</td></tr>
+<tr><td><kbd>X</kbd></td><td>End of study</td></tr>
+<tr><td><kbd>Delete</kbd></td><td>Delete the step in progress (press twice)</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Undo / redo</td></tr>
+<tr><td><kbd>?</kbd></td><td>Help</td></tr>
+</table>
+<h3>Line balancing and layout</h3>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Undo / redo</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Cancel a move in progress, stop placing stations</td></tr>
+<tr><td>Arrows</td><td>Move the selected station by 10 cm (50 cm with <kbd>Shift</kbd>)</td></tr>
+<tr><td><kbd>R</kbd> / <kbd>Shift</kbd>+<kbd>R</kbd></td><td>Turn the selected station by 15°, one way or the other</td></tr>
+<tr><td><kbd>Delete</kbd></td><td>Remove the selected station</td></tr>
+</table>
+<p class="note">French keyboard: the number keys work without <kbd>Shift</kbd>. For <kbd>[</kbd> and <kbd>]</kbd>, use <kbd>AltGr</kbd> or the numeric keypad − and +.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="trouble"><h2>14. Troubleshooting</h2><h3>The video does not play</h3>
+<p>Browsers read MP4 (H.264), WebM and most MOV files. Try Chrome or Edge on a recent computer, or Safari on a Mac. Or convert the video to MP4 with VLC (free): Media, Convert / Save, Add the video, Convert / Save, profile Video - H.264 + MP3 (MP4), choose the file name, Start.</p>
+<h3>An iPhone video (HEVC)</h3>
+<p>The site offers to convert it, on your device: the video is not sent anywhere. It takes about as long as the video, more for a long or 4K one, and the page must stay open. The converted video is 720p at 30 frames per second, without the sound. The first time, the converter (about 1 MB) is downloaded. An HDR video may look duller once converted; the times do not change. Next time, film in Most Compatible (see <a href="#film">Film the workstation</a>).</p>
+<h3>The keys do nothing</h3>
+<p>Click on the page (<span class="ui">Keys off: click on the page</span>), or leave the field you are typing in.</p>
+<h3>Too few usable cycles</h3>
+<p>Film more cycles, and check the <span class="ui">Log</span> tab: cycles with an issue, an interruption or something out of view are not used. Only the first 20 usable cycles count.</p>
+<h3>No takt line, empty line balancing</h3>
+<p>Enter the customer takt time in the <span class="ui">Study</span> tab. The line balancing needs at least one complete cycle recorded, or a scenario where you add the steps by hand.</p>
+<h3>A plan does not open</h3>
+<p>Reading a PDF needs the internet the first time; otherwise save the page as a picture (PNG or JPG). A DWG drawing must be saved as DXF in AutoCAD (Save As, DXF); a binary DXF must be saved again as ASCII DXF.</p>
+<h3>The study has gone</h3>
+<p>A study lives in one browser. Save a study file regularly and open it with <span class="ui">Open study file</span>.</p><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<section class="sec" id="words"><h2>15. Words used in the tool</h2><table>
+<tr><th>Word</th><th>Meaning</th></tr>
+<tr><td>(a)</td><td>Cycle time without the periodic tasks.</td></tr>
+<tr><td>(b)</td><td>Waiting time inside the cycle.</td></tr>
+<tr><td>(c)</td><td>(a) minus (b): the real work content.</td></tr>
+<tr><td>Usable cycle</td><td>A complete cycle with no issue, no interruption and nothing out of view.</td></tr>
+<tr><td>T1</td><td>The time kept for the work content of the cycle: by default the lowest repeatable time, otherwise the median or the mean.</td></tr>
+<tr><td>Reference cycle</td><td>The real usable cycle closest to T1. Its step times feed the line balancing and the sheets.</td></tr>
+<tr><td>Takt time</td><td>The available time divided by the customer demand: the pace the customer asks for.</td></tr>
+<tr><td>Bottleneck</td><td>The longest cycle on the line. It sets the line cycle and the output.</td></tr>
+<tr><td>Load</td><td>The work of an operator, without the waits, in % of the takt time.</td></tr>
+<tr><td>Line balance</td><td>How evenly the work is shared: Σ(c) / (number of operators × bottleneck).</td></tr>
+<tr><td>Periodic task</td><td>A task that comes back every so many parts, spread over them.</td></tr>
+<tr><td>Yamazumi</td><td>The stacked chart of the line balancing: one column per operator or machine, one block per step.</td></tr>
+<tr><td>Spaghetti diagram</td><td>The walking paths of the operators drawn on the plan.</td></tr>
+<tr><td>Scenario</td><td>A version of the line to try: who does which step and where the stations stand, compared with the current state.</td></tr>
+</table><p class="top"><a href="#contents">Back to the contents</a></p></section>
+<p><a class="cta" href="https://vts-tool.com/">Open Video Time Study</a></p>
+</main>
+<footer>© 2026 Ilyas Baqloul. Free to use, including at work. <a href="https://vts-tool.com/">vts-tool.com</a></footer>
+</body>
+</html>
