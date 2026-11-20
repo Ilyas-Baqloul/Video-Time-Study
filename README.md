@@ -9,7 +9,7 @@ It is made for methods, industrial and continuous improvement engineers who time
 
 In other languages: [Français](https://vts-tool.com/fr/), [Deutsch](https://vts-tool.com/de/), [Español](https://vts-tool.com/es/), [Čeština](https://vts-tool.com/cs/), [Italiano](https://vts-tool.com/it/), [Polski](https://vts-tool.com/pl/), [Português](https://vts-tool.com/pt/)
 
-Step-by-step guide: https://vts-tool.com/guide/ (in French: https://vts-tool.com/fr/guide/)
+User guide (English, section by section): https://vts-tool.com/guide/
 
 ![Video Time Study: results of a study and load of two operators](screenshot.png)
 
