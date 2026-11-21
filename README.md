@@ -29,6 +29,7 @@ User guide (English, section by section): https://vts-tool.com/guide/
 - Layout and walking paths: a picture of your plan, a PDF or your AutoCAD drawing (DXF) at scale, faded as much as you like, machines cut out of it or taken from its blocks, turned to any angle, each step placed where the operator stands, then scenarios compared with today's layout (distance, steps, walking time), with the operators shown walking; an A3 PDF presentation to show on the shop floor
 - Layout linked to the balancing: a layout scenario takes the split of a balancing scenario, and the walks of that scenario take the times of the plan
 - Plans as a picture, a PDF (kept sharp when you zoom in) or an AutoCAD drawing (DXF), through one button; each step placed by clicking the spot where the operator stands
+- The station of each step, typed in Steps or pasted from Excel: the layout places the stations by name and each question goes straight to the station of its step; you still click where exactly the operator arrives and the way they walk there
 - A new scenario starts from the current state or from any scenario, with its balancing and its layout
 - Compare / Reports: the scenarios side by side against the current state or another scenario, then one PDF report on the layout, the line balancing or both
 - Excel for a scenario (simulation): a Simulation sheet in the workbook, the TCT and Work Cell Balancing filled for that scenario
@@ -41,7 +42,7 @@ Not sure where to start? Press **Try an example**: a fictional line with two ope
 ## How it works
 
 1. Choose the video, or film it with the phone. It stays on your device; a video filmed or converted on the site is kept in your browser until you save it.
-2. In Steps, list the steps of the cycle in order, with their type: Operation, Inspection, Walk or Wait.
+2. In Steps, list the steps of the cycle in order, with their type: Operation, Inspection, Walk or Wait, and if you like the station where each one is done.
 3. Play the video. When a step starts, press its key, or Enter for the next step of the list.
 4. Mark what is not normal work: F for an issue and I for an interruption (those cycles are left out of T1), P for a periodic task (its time is shared out over the parts with its frequency).
 5. Read the results, download the PDF report and the Excel workbook, try a balancing scenario and its layout.
