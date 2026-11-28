@@ -70,9 +70,9 @@ Not sure where to start? Press **Try an example**: a fictional line with two ope
 
 ## Privacy
 
-No account and nothing to install. The video and your data never leave your computer: everything runs in the browser. Your study is kept in this browser; save a study file to keep it or send it. Visits to the site are counted with GoatCounter, without cookies and without keeping IP addresses.
+No account and nothing to install. The video and your data never leave your computer: everything runs in the browser. Your study is kept in this browser; save a study file to keep it or send it. Menu, Erase everything removes from this browser all that the tool keeps there (study, settings, converted video, plans, Excel templates). Visits to the site are counted with GoatCounter (a fixed version checked by its integrity hash), without cookies and without keeping IP addresses.
 
-You can also download an offline copy of the tool (one HTML file) that works without internet.
+The tool calls no other server: the PDF reader and the iPhone video converter it loads when needed (pdf.js, mp4box.js, hevc.js, with their licences in vendor/LICENSES.txt) are files of this site. You can also download an offline copy of the tool (one HTML file, with these libraries inside) that works without internet.
 
 ## License
 

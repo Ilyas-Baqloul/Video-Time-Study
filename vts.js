@@ -4,7 +4,7 @@ window.VTS_ICON = "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg
   // V5.3: the pages of the site hold their texts (search engines, first display), this file holds the tool. A page made
   // with an older version gets the style and the markup of this one; the tool then writes the texts in the language of
   // the page. VTS_BASE: the folder of this file, where vts-example.js (the video of the example) is too.
-  var d = document, cs = d.currentScript, CSS = ":root {\n  --navy: #132034;\n  --navy-deep: #0B1526;\n  --steel: #132034;\n  --steel-line: #132034;\n  --c-op: #00B050; --c-insp: #0070C0; --c-walk: #FFC000; --c-wait: #C00000; --c-mach: #7F7F7F;\n  --c-per: #7030A0; --c-int: #404040; --c-oov: #A6A6A6; --c-issue: #FF6600;\n  --bg: #F1F5FB;\n  --surface: #FFFFFF;\n  --surface-2: #F6F7FC;\n  --tint: #E9EEF6;\n  --text: #1C2333;\n  --muted: #5F6780;\n  --border: #E0E4EE;\n  --border-strong: #C3C9D8;\n  --input-bg: #FFFFFF;\n  --btn-bg: #FFFFFF;\n  --btn-hover: #EDF1F8;\n  --focus: #132034;\n  --accent: #132034;\n  --row-alt: #FAFBFD;\n  --row-now: #E3EAF5;\n  --ref-bg: #FFF5D1;\n  --warn-bg: #FFF7DE;\n  --warn-line: #E2B437;\n  --danger: #B42318;\n  --band-bg: #FFFFFF;\n  --band-grid: #DCE1EC;\n  --band-out: #F1F3F8;\n  --band-text: #3D4558;\n  --cursor: #132034;\n  --cycle-line: #132034;\n  --ref-col: #EEF2F8;\n  --title: #132034;\n  --on-navy: #FFFFFF;\n  --logo-ink: #132034;\n  --logo-dark: #14214E;\n  --shadow: 0 1px 2px rgba(28, 35, 51, .06);\n  color-scheme: light;\n  box-sizing: border-box;\n  padding-top: env(safe-area-inset-top, 0px);\n  padding-bottom: env(safe-area-inset-bottom, 0px);\n}\n@media (prefers-color-scheme: dark) {\n  :root:not([data-theme=\"light\"]) {\n    --bg: #0D1222; --surface: #141A2E; --surface-2: #19203A; --tint: #1F2850; --text: #E5E8F2; --muted: #98A1BC;\n    --border: #252E4D; --border-strong: #38446B; --input-bg: #10162A; --btn-bg: #18203A; --btn-hover: #222C50;\n    --navy: #3A4FC4; --navy-deep: #4B60D6; --steel: #3A4FC4; --steel-line: #3A4FC4;\n    --focus: #9CACFF; --accent: #9CACFF; --row-alt: #121830; --row-now: #24306A; --ref-bg: #3A3217; --warn-bg: #2E2914;\n    --warn-line: #C9A02C; --danger: #FF8A80; --band-bg: #0F1529; --band-grid: #2A3354; --band-out: #161D35;\n    --band-text: #C3C9DB; --cursor: #FFFFFF; --cycle-line: #9CACFF; --ref-col: #1B2445; --title: #C3CDFF; --logo-ink: #E6E9F5; --logo-dark: #A9B5E8;\n    --shadow: 0 1px 2px rgba(0, 0, 0, .3);\n    color-scheme: dark;\n  }\n}\n:root[data-theme=\"dark\"] {\n  --bg: #0D1222; --surface: #141A2E; --surface-2: #19203A; --tint: #1F2850; --text: #E5E8F2; --muted: #98A1BC;\n  --border: #252E4D; --border-strong: #38446B; --input-bg: #10162A; --btn-bg: #18203A; --btn-hover: #222C50;\n  --navy: #3A4FC4; --navy-deep: #4B60D6; --steel: #3A4FC4; --steel-line: #3A4FC4;\n  --focus: #9CACFF; --accent: #9CACFF; --row-alt: #121830; --row-now: #24306A; --ref-bg: #3A3217; --warn-bg: #2E2914;\n  --warn-line: #C9A02C; --danger: #FF8A80; --band-bg: #0F1529; --band-grid: #2A3354; --band-out: #161D35;\n  --band-text: #C3C9DB; --cursor: #FFFFFF; --cycle-line: #9CACFF; --ref-col: #1B2445; --title: #C3CDFF; --logo-ink: #E6E9F5; --logo-dark: #A9B5E8;\n  --shadow: 0 1px 2px rgba(0, 0, 0, .3);\n  color-scheme: dark;\n}\n*, *::before, *::after { box-sizing: border-box; }\nhtml { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }\nbody {\n  margin: 0; background: var(--bg); color: var(--text);\n  font: 14px/1.45 \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", Arial, sans-serif;\n}\nbody::before { content: \"\"; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }\n[hidden] { display: none !important; }\nbutton, input, select, textarea { font: inherit; color: inherit; }\nh2 { font-size: 16px; margin: 0 0 8px; font-weight: bold; color: var(--title); }\nh3 { font-size: 14px; margin: 14px 0 6px; font-weight: bold; }\np { margin: 0 0 8px; }\n.small, .note { font-size: 12px; color: var(--muted); }\n\n/* Header bar */\n.topbar {\n  background: var(--navy); color: #fff;\n  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; padding: 8px 16px;\n}\n.tb-title { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }\n.tb-logo { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; flex: none; }\n.tb-credit { margin-left: 4px; }\n.tb-title h1 { font-size: 19px; margin: 0; font-weight: bold; letter-spacing: 0; }\n.tb-credit { font-size: 12px; color: #D6DCF2; }\n.tb-study { font-size: 13px; color: #fff; padding-left: 14px; border-left: 1px solid rgba(255, 255, 255, .35); min-height: 18px; }\n.tb-study:empty { display: none; }\n.tb-actions { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }\n.tb-btn {\n  background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .6);\n  min-height: 32px; padding: 4px 10px; font-size: 13px; cursor: pointer; border-radius: 2px;\n}\n.tb-btn:hover { background: rgba(255, 255, 255, .14); }\n.tb-btn:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }\n.tb-lang { display: inline-flex; }\n.tb-lang .tb-btn { border-radius: 0; min-width: 38px; }\n.tb-lang .tb-btn + .tb-btn { margin-left: -1px; }\n.tb-lang .tb-btn[aria-pressed=\"true\"] { background: #fff; color: var(--navy); font-weight: bold; }\n.alert-bar { background: #FFF2CC; color: #3A2E00; border-bottom: 1px solid #BF9000; padding: 8px 16px; font-weight: bold; }\n.alert-bar p { margin: 0; max-width: 1800px; }\n\n/* Layout */\n.layout {\n  display: grid; grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);\n  gap: 12px; padding: 12px; max-width: 1800px; margin: 0 auto; align-items: start;\n}\n.col-video { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); min-width: 0; }\n.col-work { min-width: 0; }\n@media (min-width: 900px) and (max-height: 640px) { .col-video { position: static; } }\n@media (max-width: 899px) {\n  .layout { grid-template-columns: minmax(0, 1fr); padding: 8px; gap: 8px; }\n  .col-video { position: static; }\n  .layout.pin .col-video { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-bottom: 6px; border-bottom: 1px solid var(--border); }\n}\n@media (max-width: 899px) and (max-height: 560px) { .layout.pin .col-video { position: static; border-bottom: 0; } }\n\n/* Buttons and inputs */\n.btn {\n  min-height: 36px; padding: 6px 12px; border: 1px solid var(--border-strong); background: var(--btn-bg);\n  color: var(--text); border-radius: 2px; cursor: pointer; touch-action: manipulation; line-height: 1.2;\n}\n.btn:hover { background: var(--btn-hover); }\n.btn:disabled { opacity: .45; cursor: default; }\n.btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }\n.btn.primary:hover { background: #1E2E75; }\n.btn.danger { color: var(--danger); border-color: var(--danger); background: var(--surface); }\n.btn.small { min-height: 30px; padding: 3px 8px; font-size: 13px; }\n.btn[aria-pressed=\"true\"] { background: var(--steel); border-color: var(--steel); color: #fff; }\nbutton:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, canvas:focus-visible, .panel:focus-visible {\n  outline: 2px solid var(--focus); outline-offset: 1px;\n}\ninput[type=\"text\"], input[type=\"number\"], input[type=\"date\"], select, textarea {\n  background: var(--input-bg); border: 1px solid var(--border-strong); border-radius: 0; padding: 5px 7px; min-height: 34px; width: 100%;\n}\ntextarea { resize: vertical; line-height: 1.4; }\n.seg { display: inline-flex; flex-wrap: wrap; }\n.seg .btn { border-radius: 0; margin-left: -1px; padding: 6px 9px; }\n.seg .btn:first-child { margin-left: 0; }\n.btn-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }\n@media (pointer: coarse) {\n  .btn { min-height: 44px; }\n  .btn.small { min-height: 40px; }\n  input[type=\"text\"], input[type=\"number\"], input[type=\"date\"], select, textarea { font-size: 16px; min-height: 42px; }\n}\n\n/* Video */\n.video-box {\n  position: relative; background: #000; border: 1px solid var(--border); aspect-ratio: 16 / 9; max-height: 52vh; width: 100%;\n  display: flex; align-items: center; justify-content: center; overflow: hidden;\n}\n.video-box video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }\n.video-box.drag { outline: 3px dashed var(--c-walk); outline-offset: -6px; }\n.video-empty {\n  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;\n  text-align: center; color: #fff; padding: 16px; background: #1B1F27;\n}\n.video-empty .ve-title { font-size: 19px; font-weight: bold; margin-bottom: 12px; }\n.ve-icon { width: 54px; height: 54px; fill: none; stroke: #8FA3D9; stroke-width: 2; stroke-linejoin: round; margin-bottom: 10px; }\n.ve-icon path:last-child { fill: #8FA3D9; stroke: none; }\n.video-empty .ve-text { color: #C9CED6; margin-bottom: 10px; }\n.video-empty .ve-expected { color: #FFE08A; margin-bottom: 10px; max-width: 520px; }\n.video-empty .btn { margin-bottom: 10px; min-height: 42px; padding: 8px 20px; font-size: 15px; }\n.video-msg {\n  border: 1px solid var(--warn-line); background: var(--warn-bg); padding: 10px 12px; margin-top: 8px;\n}\n.video-msg p { margin-bottom: 6px; }\n.video-msg ol { margin: 0 0 8px; padding-left: 20px; }\n.video-msg li { margin-bottom: 4px; }\n.video-msg .btn-row { margin-top: 4px; }\n\n/* Transport */\n.transport { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }\n.t-play { min-width: 84px; font-weight: bold; }\n.t-play svg { width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; fill: currentColor; }\n.time-display { margin-left: auto; font-size: 20px; font-weight: bold; white-space: nowrap; font-variant-numeric: tabular-nums; }\n.time-display .time-total { font-size: 13px; font-weight: normal; color: var(--muted); }\n.transport2 { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-top: 6px; }\n.ctl { display: flex; align-items: center; gap: 6px; }\n.ctl-label { font-size: 12px; color: var(--muted); }\n.transport2 .seg .btn { min-height: 30px; padding: 3px 8px; font-size: 13px; }\n.t2-right { margin-left: auto; display: flex; gap: 6px; }\n.transport2 .t2-right .btn { min-height: 30px; padding: 3px 8px; font-size: 13px; }\n@media (pointer: coarse) { .transport2 .seg .btn, .transport2 .t2-right .btn { min-height: 38px; } }\n\n/* Band */\n.band-wrap { margin-top: 8px; border: 1px solid var(--border); background: var(--band-bg); }\n#band { display: block; width: 100%; height: 66px; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }\n#band:active { cursor: grabbing; }\n#overview { display: block; width: 100%; height: 14px; border-top: 1px solid var(--border); touch-action: none; cursor: pointer; }\n.legend { display: flex; flex-wrap: wrap; gap: 3px 12px; font-size: 12px; color: var(--muted); margin-top: 5px; }\n.legend span { white-space: nowrap; }\n/* Type colours, as in the TCT legend */\n.ty-op { --type: #00B050; } .ty-insp { --type: #0070C0; } .ty-walk { --type: #FFC000; } .ty-wait { --type: #C00000; }\n.ty-mach { --type: #7F7F7F; } .ty-per { --type: #7030A0; } .ty-int { --type: #404040; } .ty-oov { --type: #A6A6A6; }\n.ty-end { --type: #00897B; } .ty-issue { --type: #FF6600; }\n.sw { display: inline-block; width: 10px; height: 10px; margin-right: 4px; vertical-align: -1px; border: 1px solid rgba(0, 0, 0, .25); background: var(--type, #999999); flex: none; }\n.sw.ty-int, .ty-int .sw { background: repeating-linear-gradient(135deg, #404040 0 3px, #8C8C8C 3px 5px); }\n.sw.ty-oov, .ty-oov .sw { background: repeating-linear-gradient(135deg, #A6A6A6 0 3px, #E2E2E2 3px 5px); }\n.note.mt { margin-top: 8px; }\nh3.first { margin-top: 0; }\n\n/* Status */\n.status {\n  display: grid; grid-template-columns: minmax(84px, auto) minmax(0, 1.3fr) minmax(0, 1fr);\n  border: 1px solid var(--border); background: var(--surface); margin-top: 8px;\n}\n.st-head { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--steel); color: #fff; padding: 4px 10px; font-size: 13px; }\n.st-tl { font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.st-keys { font-size: 12px; white-space: nowrap; padding: 1px 6px; }\n.st-keys.k-on { color: #D7F5E1; }\n.st-keys.k-off, .st-keys.k-typing { background: #FFC000; color: #000; font-weight: bold; }\n@media (pointer: coarse) { .st-keys { display: none; } }\n.st { padding: 6px 10px; border-left: 1px solid var(--border); min-width: 0; }\n.st-head + .st { border-left: 0; }\n.st-label { font-size: 12px; color: var(--muted); }\n.st-value { font-weight: bold; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.st-value .sw { width: 11px; height: 11px; }\n.st-sub { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }\n.st-sub.flag { color: var(--danger); }\n@media (max-width: 520px) {\n  .status { grid-template-columns: 64px minmax(0, 1.2fr) minmax(0, 1fr); }\n  .st { padding: 4px 7px; }\n  .st-value { font-size: 13px; }\n}\n\n/* Timeline selector and tabs */\n.tl-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }\n.tl-label { font-size: 12px; color: var(--muted); }\n.tl-tabs { display: flex; flex-wrap: wrap; gap: 4px; }\n.tl-tab { min-height: 32px; padding: 4px 10px; border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; border-radius: 2px; }\n.tl-tab .tl-kind { color: var(--muted); font-size: 12px; margin-left: 6px; }\n.tl-tab[aria-pressed=\"true\"] { background: var(--steel); border-color: var(--steel); color: #fff; }\n.tl-tab[aria-pressed=\"true\"] .tl-kind { color: #DCE7F2; }\n@media (pointer: coarse) { .tl-tab { min-height: 40px; } }\n.tabs { display: flex; overflow-x: auto; }\n.tab {\n  border: 1px solid var(--border-strong); border-bottom: 0; margin-right: -1px; background: var(--surface-2); padding: 8px 16px; cursor: pointer;\n  white-space: nowrap; color: var(--text); min-height: 40px;\n}\n.tab:hover { background: var(--btn-hover); }\n.tab[aria-selected=\"true\"] { background: var(--navy); border-color: var(--navy); color: #fff; font-weight: bold; }\n.tab-panel { background: var(--surface); border: 1px solid var(--border-strong); padding: 12px; container-type: inline-size; }\n/* room kept before the script fills the page, so that nothing jumps when it starts */\n.st-head { min-height: 30px; }\n.tl-bar { min-height: 32px; }\n.tab-panel:empty { min-height: 420px; }\n@media (max-width: 520px) { .tab { padding: 8px 10px; flex: 1 0 auto; } .tab-panel { padding: 10px 8px; } }\n.sec + .sec { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }\n\n/* Record panel */\n.rec-next {\n  width: 100%; min-height: 62px; background: var(--navy); color: #fff; border: 1px solid var(--navy); cursor: pointer;\n  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 12px; padding: 8px 14px; text-align: left;\n  touch-action: manipulation; border-radius: 2px;\n}\n.rec-next:hover { background: #1E2E75; }\n.rec-next:disabled { opacity: .5; cursor: default; }\n.rn-main { font-size: 17px; font-weight: bold; }\n.rn-step { display: block; font-size: 13px; color: #D6DCF2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.rn-key { font-size: 12px; color: #C9D1F0; }\n.step-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin-top: 10px; }\n.step-btn {\n  display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: stretch; min-height: 54px; padding: 0; text-align: left;\n  border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; touch-action: manipulation; border-radius: 2px;\n}\n.step-btn:hover { background: var(--btn-hover); }\n.step-btn .sb-key { display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--muted); background: var(--surface-2); border-right: 1px solid var(--border); }\n.step-btn .sb-lbl { padding: 6px 8px; min-width: 0; display: flex; flex-direction: column; justify-content: center; }\n.step-btn .sb-code { font-weight: bold; display: flex; align-items: center; }\n.step-btn .sb-code .sw { margin-right: 6px; }\n.step-btn .sb-name { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.step-btn.is-current { background: var(--row-now); }\n.step-btn.is-next { outline: 2px solid var(--accent); outline-offset: -2px; }\n.step-btn.flash, .ev-btn.flash, .rec-next.flash { background: var(--c-walk); color: #000; }\n.step-btn.flash .sb-name, .step-btn.flash .sb-key { color: #000; background: transparent; }\n.ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(146px, 1fr)); gap: 6px; }\n.ev-btn {\n  display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 44px; padding: 6px 10px; text-align: left;\n  border: 1px solid var(--border-strong); background: var(--btn-bg); cursor: pointer; touch-action: manipulation; border-radius: 2px;\n}\n.ev-btn:hover { background: var(--btn-hover); }\n.ev-l { display: flex; align-items: center; }\n.ev-l .sw { margin-right: 7px; }\n.ev-k { color: var(--muted); font-weight: bold; font-size: 12px; }\n.kbd { font-weight: bold; color: var(--muted); }\n.rec-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 12px; }\n.rec-tools .note { margin: 0 0 0 4px; }\n.empty-hint { border: 1px dashed var(--border-strong); padding: 12px; margin-top: 10px; color: var(--muted); }\n\n/* Start guide */\n.guide { border: 1px solid var(--border-strong); background: var(--surface-2); padding: 12px 14px; margin-top: 10px; }\n.guide-title { font-weight: bold; color: var(--title); margin-bottom: 8px; }\n.guide ol, .guide-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }\n.guide li, .guide-list li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; }\n.gn { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: var(--navy); color: #fff; font-weight: bold; font-size: 13px; }\n.guide li.done .gn { background: var(--c-op); }\n.guide li.done .gt { color: var(--muted); }\n.gt { display: flex; flex-direction: column; min-width: 0; }\n.gt span { font-size: 13px; color: var(--muted); }\n/* Result tiles */\n.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }\n.tile { border: 1px solid var(--border-strong); background: var(--surface); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px; border-top: 3px solid var(--navy); }\n.tile-l { font-size: 12px; color: var(--muted); }\n.tile-v { font-size: 26px; font-weight: bold; color: var(--title); font-variant-numeric: tabular-nums; line-height: 1.15; }\n.tile-v small { font-size: 15px; color: var(--muted); font-weight: normal; }\n.tile.tile-warn { border-top-color: #BF9000; }\n.tile.tile-warn .tile-v { color: #B45F06; }\n@media (max-width: 420px) { .tile-v { font-size: 21px; } .tile { padding: 6px 8px; } }\n/* Choices in dialogs */\n.choice { border: 1px solid var(--border); margin: 10px 0; padding: 6px 10px 8px; }\n.choice legend { font-weight: bold; padding: 0 4px; }\nlabel.check { display: flex; align-items: flex-start; gap: 8px; margin: 6px 0; cursor: pointer; }\nlabel.check input { margin-top: 3px; width: auto; min-height: 0; }\n/* Help */\n.help h3 { color: var(--title); }\n.keys { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 4px 16px; }\n.krow { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; align-items: center; font-size: 13px; padding: 3px 0; border-bottom: 1px solid var(--border); }\n.kcap { font-weight: bold; text-align: center; border: 1px solid var(--border-strong); border-bottom-width: 2px; background: var(--surface-2); padding: 2px 4px; font-size: 12px; white-space: nowrap; }\n.help-list { margin: 0; padding-left: 20px; }\n.help-list li { margin-bottom: 5px; }\n\n/* Form grid, like the standard sheets */\n.form-grid { border-top: 1px solid var(--border); border-left: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }\n.form-grid.fg-one { grid-template-columns: 1fr; }\n.field { display: grid; grid-template-columns: 118px minmax(0, 1fr); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }\n.field > label, .field > .flabel { background: var(--surface-2); padding: 7px 8px; font-weight: bold; font-size: 13px; border-right: 1px solid var(--border); display: flex; align-items: center; }\n.field > input, .field > select { border: 0; min-height: 36px; }\n.field > .fval { padding: 7px 8px; display: flex; align-items: center; min-width: 0; overflow-wrap: anywhere; }\n.inline-field { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }\n.inline-field select { width: auto; min-width: 200px; }\n\n/* Steps editor */\n.steps-head, .srow {\n  display: grid; grid-template-columns: 46px 72px minmax(110px, 1fr) 108px minmax(84px, .55fr) 52px auto; gap: 4px; align-items: center;\n}\n.steps-head { background: var(--steel); color: #fff; font-weight: bold; font-size: 13px; padding: 6px 4px; }\n.srow { padding: 4px; border-bottom: 1px solid var(--border); }\n.srow:nth-child(even) { background: var(--row-alt); }\n.s-key { display: flex; align-items: center; justify-content: center; gap: 5px; font-weight: bold; color: var(--muted); }\n.s-key .sw { margin: 0; }\n.s-used { text-align: right; color: var(--muted); font-size: 13px; padding-right: 4px; }\n.s-act { display: flex; gap: 3px; justify-content: flex-end; }\n.s-act .btn { min-height: 32px; padding: 2px 8px; }\n.srow input:disabled { opacity: .35; }\n/* V5.3: one column for the station of a step, or the distance of a walk (the other field is hidden) */\n.srow .s-sta, .srow .s-dist { grid-column: 5; grid-row: 1; }\n.srow .s-sta:disabled, .srow .s-dist:disabled { display: none; }\n.srow.is-start .s-key::after { content: \"\"; }\n.start-tag { display: inline-block; font-size: 11px; color: var(--muted); margin-left: 6px; }\n.s-used-lbl { display: none; }\n@container (max-width: 640px) {\n  .steps-head { display: none; }\n  .s-used-lbl { display: inline; }\n  .srow {\n    grid-template-columns: 40px 112px minmax(0, 1fr);\n    grid-template-areas: \"key code name\" \". type place\" \". used act\";\n  }\n  .s-key { grid-area: key; } .s-code { grid-area: code; } .s-name { grid-area: name; } .s-type { grid-area: type; }\n  .srow .s-dist, .srow .s-sta { grid-area: place; } .s-used { grid-area: used; text-align: left; } .s-act { grid-area: act; }\n}\n\n/* Tables */\n.tbl-wrap { overflow-x: auto; max-width: 100%; border: 1px solid var(--border); }\n.tbl { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }\n.tbl th { background: var(--steel); color: #fff; font-weight: bold; text-align: left; padding: 5px 6px; border: 1px solid var(--steel-line); vertical-align: bottom; line-height: 1.2; min-width: 42px; }\n.tbl td { padding: 4px 6px; border: 1px solid var(--border); white-space: nowrap; background: var(--surface); }\n.tbl td.wrap { white-space: normal; min-width: 110px; }\n.tbl th:first-child, .tbl td:first-child { position: sticky; left: 0; z-index: 1; }\n.tbl .col-ref { font-weight: bold; }\n.tbl tbody tr td.col-ref { background: var(--ref-col); }\n.tbl tbody tr.is-ref td { background: var(--ref-bg); font-weight: bold; }\n.tbl tbody tr:nth-child(even) td { background: var(--row-alt); }\n.tbl .num { text-align: right; }\n.tbl tr.is-off td { color: var(--muted); }\n.tbl tr.total td { font-weight: bold; border-top: 2px solid var(--border-strong); }\n.tbl .why { white-space: normal; min-width: 120px; }\n.tbl .linkbtn { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: bold; }\n.warn { border: 1px solid var(--warn-line); background: var(--warn-bg); padding: 8px 10px; margin: 10px 0; }\n.warn-act { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }\n.kv { margin-bottom: 10px; }\n\n/* Log */\n.log-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }\n.log-tools .note { margin: 0 0 0 auto; }\n.log { border-top: 1px solid var(--border); }\n.lcyc { background: var(--surface-2); border-bottom: 1px solid var(--border); padding: 5px 8px; font-size: 13px; display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; }\n.lcyc b { font-size: 14px; }\n.lcyc .off { color: var(--danger); }\n.lrow { border-bottom: 1px solid var(--border); padding: 3px 8px; cursor: pointer; }\n.lrow:hover { background: var(--row-alt); }\n.lrow.is-now { background: var(--row-now); }\n.lrow.is-sel { background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--border-strong); cursor: default; padding-bottom: 8px; }\n.lrow.is-sel.is-now { background: var(--row-now); }\n.l1 { display: flex; align-items: center; gap: 8px; min-width: 0; }\n.l2 { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; }\n.l-time { background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: bold; font-variant-numeric: tabular-nums; min-width: 66px; text-align: left; flex: none; }\n.l-dur { color: var(--muted); font-size: 13px; min-width: 58px; font-variant-numeric: tabular-nums; flex: none; }\n.l-ev { display: flex; align-items: center; min-width: 0; flex: 0 1 auto; }\n.l-ev .sw { flex: none; }\n.l-ev-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.l-issue { font-size: 12px; color: var(--danger); font-weight: bold; flex: none; }\n.l-note-txt { flex: 1 1 auto; min-width: 0; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.l-edit { flex: none; margin-left: auto; min-height: 28px !important; padding: 2px 9px; background: transparent; border-color: var(--border); color: var(--muted); }\n.l-edit:hover, .lrow.is-sel .l-edit { color: var(--text); border-color: var(--border-strong); }\n.l-note { flex: 1 1 160px; width: auto; min-height: 32px; }\n.l2 .btn { min-height: 32px; padding: 2px 8px; font-size: 13px; }\n@container (max-width: 460px) { .l-issue { display: none; } .l-dur { min-width: 50px; font-size: 12px; } }\n@media (pointer: coarse) { .l2 .btn { min-height: 40px; } .l-note { min-height: 40px; } .l-edit { min-height: 36px !important; } .rec-tools .note { display: none; } }\n\n/* Panels (dialogs) */\n.overlay {\n  position: fixed; inset: 0; background: rgba(10, 14, 22, .55); z-index: 50; overflow: auto;\n  display: flex; align-items: flex-start; justify-content: center;\n  padding: calc(env(safe-area-inset-top, 0px) + 28px) 12px calc(env(safe-area-inset-bottom, 0px) + 28px);\n}\n.panel { background: var(--surface); color: var(--text); border: 1px solid var(--navy); width: min(560px, 100%); }\n.panel.wide { width: min(760px, 100%); }\n.panel-head { padding: 10px 14px; background: var(--navy); color: #fff; font-weight: bold; font-size: 16px; }\n.panel-body { padding: 12px 14px; }\n.panel-foot { padding: 10px 14px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }\n.cat-list { display: grid; grid-template-columns: 1fr; gap: 5px; margin: 8px 0 12px; }\n.cat-btn { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; align-items: center; text-align: left; min-height: 44px; padding: 6px 10px; border: 1px solid var(--border-strong); background: var(--btn-bg); cursor: pointer; border-radius: 2px; }\n.cat-btn small { display: block; color: var(--muted); font-size: 12px; }\n.cat-btn[aria-pressed=\"true\"] { background: var(--steel); border-color: var(--steel); color: #fff; }\n.cat-btn[aria-pressed=\"true\"] small { color: #DCE7F2; }\n.cat-btn[aria-pressed=\"true\"] .kbd { color: #DCE7F2; }\n.cat-btn .kbd { text-align: center; }\n.pick-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }\n.opt-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 5px; max-height: 55vh; overflow: auto; }\n.opt-list .btn { text-align: left; display: flex; align-items: center; gap: 6px; }\n.opt-list .btn[aria-pressed=\"true\"] .sw { border-color: #fff; }\n.help-tbl td { white-space: normal; }\n.help-tbl td:first-child { white-space: nowrap; }\n.diff td, .diff th { padding: 4px 8px; }\nlabel.check { display: inline-flex; align-items: center; gap: 6px; }\n\n/* Toast */\n.toast {\n  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 60;\n  background: #2B2F36; color: #fff; padding: 10px 14px; display: flex; gap: 14px; align-items: center;\n  max-width: calc(100% - 24px); font-size: 14px;\n}\n.toast button { background: transparent; color: #fff; border: 1px solid #fff; min-height: 32px; padding: 3px 12px; cursor: pointer; border-radius: 2px; font-weight: bold; }\n\n/* Footer */\n.footer { padding: 10px 16px 22px; color: var(--muted); font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 18px; max-width: 1800px; margin: 0 auto; }\n/* links of the footer big enough for a finger */\n@media (max-width: 700px), (pointer: coarse) { .footer a, .footer .ftr-link { display: inline-flex; align-items: center; min-height: 32px; } }\n.footer b { color: var(--text); }\n.footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }\n.footer a:hover { color: var(--text); }\n.footer .ftr-link { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }\n.footer .ftr-link:hover { color: var(--text); }\n.help.legal p { margin: 0 0 4px; }\n.help.legal a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }\n/* Phone layout */\n.sm, .narrow-only { display: none; }\n@media (max-width: 599px) {\n  .lg, .wide-only { display: none !important; }\n  .sm { display: inline; }\n  .narrow-only { display: inline-block; }\n  .video-box { max-height: 30vh; }\n  /* no video yet: the welcome screen sets the height, nothing is cut on a phone */\n  #vts-app.no-video .video-box { aspect-ratio: auto; max-height: none; }\n  #vts-app.no-video .video-box video { display: none; }\n  #vts-app.no-video .video-empty { position: static; }\n  .transport { gap: 4px; }\n  .transport .seg .btn { min-width: 40px; padding: 6px 7px; }\n  .t-play { min-width: 72px; }\n  .transport2 { gap: 6px; margin-top: 4px; }\n  .ctl-label { display: none; }\n  .ctl-sel { width: auto; min-height: 38px; padding: 4px 6px; }\n  .time-mini { font-size: 17px; font-weight: bold; font-variant-numeric: tabular-nums; min-width: 80px; }\n  .layout.pin .legend { display: none; }\n  #btnChangeVideo { display: none; }\n  .topbar { padding: 8px 10px; }\n  .tb-title h1 { font-size: 17px; }\n  /* the study name often goes under the title here: no separator line left alone at the edge */\n  .tb-study { border-left: 0; padding-left: 0; }\n}\n@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }\n\n/* Quick fix of recorded steps (Record tab, event menu) */\n.st-click { cursor: pointer; }\n.st-click:hover .st-value, .st-click:focus-visible .st-value { text-decoration: underline; }\n.fix-list { display: grid; gap: 4px; margin-bottom: 10px; }\n.fix-list .note { margin: 0; }\n.fix-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 6px; align-items: center; }\n.fix-go { display: flex; align-items: center; gap: 7px; min-width: 0; min-height: 30px; padding: 3px 8px; text-align: left; font: inherit; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }\n.fix-go:hover { background: var(--btn-hover); }\n.fix-row.is-cur .fix-go { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); font-weight: bold; }\n.fx-t { flex: none; color: var(--muted); font-variant-numeric: tabular-nums; font-weight: normal; }\n.fx-n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.em-what { margin: 0 0 12px; }\n.em-what .muted { color: var(--muted); }\n.em-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }\n.em-grid .btn.primary, .em-grid .btn.danger { grid-column: 1 / -1; }\n@media (pointer: coarse) { .fix-go { min-height: 40px; } }\n\n/* Templates for the filled sheets */\n.tpl-list { display: grid; gap: 6px; margin: 8px 0 12px; }\n.tpl-row { display: grid; grid-template-columns: minmax(10em, auto) minmax(0, 1fr) auto; align-items: center; gap: 6px 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }\n.tpl-l { font-weight: bold; }\n.tpl-f { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.tpl-f.muted { color: var(--muted); }\n@media (max-width: 560px) {\n  .tpl-row { grid-template-columns: minmax(0, 1fr) auto; }\n  .tpl-f { grid-column: 1 / -1; grid-row: 2; }\n}\n\n/* ---------- 2.4: lighter look, logo navy ----------\n   One strong element (the \"Next step\" button in navy), everything else on white with hairlines.\n   Table headers keep the navy of the standard sheets, as a thin rule rather than a solid band. */\nh2 { font-size: 16px; font-weight: 600; letter-spacing: -.005em; }\nh3 { font-size: 13px; font-weight: 600; color: var(--text); }\n.sec + .sec { margin-top: 22px; padding-top: 18px; }\n\n/* Header: white bar, navy name */\n.topbar { background: var(--surface); color: var(--text); border-bottom: 1px solid var(--border); padding: 10px 18px; }\n.tb-logo { width: auto; height: 30px; stroke: none; }\n.tb-logo .lg-ink { fill: var(--logo-ink); }\n.tb-logo .lg-dark { fill: var(--logo-dark); }\n.tb-logo .lg-hole { fill: var(--surface); }\n.tb-logo .lg-holes { stroke: var(--surface); stroke-width: 22; stroke-linejoin: round; }\n.tb-logo .lg-acc { fill: #FFB700; }\n.tb-title h1 { color: var(--title); font-weight: 650; font-size: 19px; letter-spacing: -.01em; }\n.tb-credit { color: var(--muted); }\n.tb-study { color: var(--text); border-left-color: var(--border-strong); }\n.tb-btn { color: var(--text); background: transparent; border: 1px solid var(--border); border-radius: 6px; }\n.tb-btn:hover { background: var(--btn-hover); }\n.tb-btn:focus-visible { outline: 2px solid var(--focus); }\n.tb-lang .tb-btn { border-radius: 0; }\n.tb-lang .tb-btn:first-child { border-radius: 6px 0 0 6px; }\n.tb-lang .tb-btn:last-child { border-radius: 0 6px 6px 0; }\n.tb-lang .tb-btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n\n/* Buttons and inputs */\n.btn { border-radius: 6px; border-color: var(--border-strong); background: var(--btn-bg); }\n.btn.primary { background: var(--navy); border-color: var(--navy); color: var(--on-navy); font-weight: 600; }\n.btn.primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); }\n.btn.danger { background: transparent; border-color: transparent; color: var(--danger); }\n.btn.danger:hover { background: color-mix(in srgb, var(--danger) 9%, transparent); border-color: color-mix(in srgb, var(--danger) 35%, transparent); }\n.btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.seg .btn { border-radius: 0; }\n.seg .btn:first-child { border-radius: 6px 0 0 6px; }\n.seg .btn:last-child { border-radius: 0 6px 6px 0; }\ninput[type=\"text\"], input[type=\"number\"], input[type=\"date\"], select, textarea { border-radius: 6px; border-color: var(--border-strong); }\n.field > input, .field > select { border-radius: 0; }\n\n/* Video column */\n.video-box { border: 0; border-radius: 10px; }\n.video-empty { background: #121A33; }\n.band-wrap { border-color: var(--border); border-radius: 8px; overflow: hidden; }\n.legend { gap: 3px 14px; }\n\n/* Status under the video */\n.status { border-color: var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }\n.st-head { background: var(--surface-2); color: var(--title); border-bottom: 1px solid var(--border); padding: 5px 12px; }\n.st-keys.k-on { color: #1E7A46; }\n.st { border-left-color: var(--border); padding: 7px 12px; }\n\n/* Timeline selector and tabs: underline tabs, one card */\n.tl-tab { border-color: var(--border-strong); border-radius: 6px; }\n.tl-tab[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); }\n.tabs { background: var(--surface); border: 1px solid var(--border); border-bottom: 0; border-radius: 10px 10px 0 0; padding: 0 6px; gap: 2px; }\n.tab { background: transparent; border: 0; border-bottom: 2px solid transparent; margin: 0; color: var(--muted); padding: 11px 12px 9px; font-weight: 500; }\n.tab:hover { background: transparent; color: var(--text); }\n.tab[aria-selected=\"true\"] { background: transparent; color: var(--title); border-bottom-color: var(--navy); font-weight: 600; }\n.tab-panel { border-color: var(--border); border-radius: 0 0 10px 10px; padding: 16px; box-shadow: var(--shadow); }\n@media (max-width: 520px) { .tab { padding: 10px 9px 8px; } .tab-panel { padding: 12px 10px; } }\n\n/* Record panel */\n.rec-next { border-radius: 10px; min-height: 64px; padding: 10px 16px; background: var(--navy); border-color: var(--navy); }\n.rec-next:hover { background: var(--navy-deep); border-color: var(--navy-deep); }\n.rn-step, .rn-key { color: rgba(255, 255, 255, .78); }\n.step-grid { gap: 8px; margin-top: 12px; }\n.step-btn { border-color: var(--border); border-radius: 8px; overflow: hidden; }\n.step-btn .sb-key { background: var(--surface-2); border-right-color: var(--border); }\n.step-btn:hover { background: var(--btn-hover); }\n.step-btn.is-current { background: var(--row-now); border-color: color-mix(in srgb, var(--navy) 30%, var(--border)); }\n.step-btn.is-next { outline: 2px solid var(--accent); outline-offset: -2px; }\n.ev-grid { gap: 8px; }\n.ev-btn { border-color: var(--border); border-radius: 8px; background: var(--surface); }\n.ev-btn:hover { background: var(--btn-hover); }\n.fix-go { border-color: var(--border); border-radius: 8px; }\n.fix-row .btn.small { min-height: 30px; }\n.fix-row .btn:not(.danger) { border-color: var(--border); }\n\n/* Start guide */\n.guide { border-color: var(--border); border-radius: 10px; background: var(--surface-2); }\n.gn { border-radius: 50%; }\n\n/* Results */\n.tile { border: 1px solid var(--border); border-top: 3px solid var(--navy); border-radius: 8px; padding: 10px 14px; }\n.tile.tile-warn { border-top-color: var(--warn-line); }\n.tile-v { font-weight: 650; letter-spacing: -.01em; }\n.tbl-wrap { border-color: var(--border); border-radius: 8px; }\n.tbl th { background: var(--surface-2); color: var(--title); border: 0; border-bottom: 2px solid var(--navy); font-weight: 600; padding: 7px 8px; }\n.tbl td { border: 0; border-bottom: 1px solid var(--border); padding: 6px 8px; }\n.tbl tbody tr:last-child td { border-bottom: 0; }\n.tbl tr.total td { border-top: 2px solid var(--border-strong); }\n.steps-head { background: var(--surface-2); color: var(--title); border-bottom: 2px solid var(--navy); border-radius: 8px 8px 0 0; }\n.warn { border-color: var(--warn-line); border-radius: 8px; }\n.tpl-row { border-color: var(--border); border-radius: 8px; }\n\n/* Study form */\n.form-grid { border-color: var(--border); border-radius: 8px; overflow: hidden; }\n.field, .field > label, .field > .flabel { border-color: var(--border); }\n\n/* Journal */\n.lcyc { background: var(--surface-2); }\n\n/* Dialogs */\n.overlay { background: rgba(13, 18, 34, .45); }\n.panel { border: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px rgba(13, 18, 34, .28); }\n.panel-head { background: var(--surface); color: var(--title); border-bottom: 1px solid var(--border); padding: 14px 16px 12px; }\n.panel-body { padding: 14px 16px; }\n.panel-foot { padding: 12px 16px; background: var(--surface-2); }\n.cat-btn { border-radius: 8px; }\n.cat-btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); }\n.kcap { border-radius: 4px; }\n\n/* Toast */\n.toast { background: #1C2333; border-radius: 8px; box-shadow: 0 8px 24px rgba(13, 18, 34, .25); }\n.toast button { border-radius: 6px; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .toast { background: #2A3354; } :root:not([data-theme=\"light\"]) .st-keys.k-on { color: #7FD6A4; } }\n:root[data-theme=\"dark\"] .toast { background: #2A3354; }\n:root[data-theme=\"dark\"] .st-keys.k-on { color: #7FD6A4; }\n\n@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }\n\n.video-empty .ve-what { max-width: 460px; color: #E3E7F3; margin: -4px 0 14px; line-height: 1.45; }\n\n/* Operator load chart */\n.sec-head { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; margin-bottom: 4px; }\n.sec-head h2 { margin: 0; }\n.load-wrap { margin: 8px 0 6px; padding: 8px 6px 2px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }\n.load-svg { display: block; width: 100%; height: auto; }\n.load-svg text { font-family: inherit; }\n.ld-grid { stroke: var(--border); stroke-width: 1; }\n.ld-ax { fill: var(--muted); font-size: 11px; }\n.ld-tot { fill: var(--text); font-size: 12px; font-weight: 600; }\n.ld-name { fill: var(--text); font-size: 12px; }\n.ld-sat { fill: var(--muted); font-size: 11px; }\n.ld-over { fill: var(--danger); }\n.ld-takt { stroke: var(--danger); stroke-width: 2; stroke-dasharray: 6 4; }\n.ld-takt-l { fill: var(--danger); font-size: 11px; font-weight: 600; }\n\n/* Printed report: hidden on screen, alone on the page when printing */\n#printReport { display: none; }\n@media print {\n  @page { size: A4 landscape; margin: 12mm; }\n  :root, :root[data-theme=\"dark\"], :root:not([data-theme=\"light\"]) {\n    --text: #1C2333 !important; --muted: #5F6780 !important; --border: #D5DAE5 !important; --surface: #FFFFFF !important;\n    --title: #132034 !important; --logo-ink: #132034 !important; --logo-dark: #14214E !important; --danger: #B42318 !important;\n  }\n  body.printing { background: #FFFFFF !important; color: #1C2333; }\n  body.printing > *:not(#printReport) { display: none !important; }\n  body.printing #printReport { display: block; font-size: 11px; }\n  #printReport * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }\n  .rp-head { display: flex; align-items: center; gap: 14px; padding-bottom: 8px; margin-bottom: 4px; border-bottom: 2px solid #132034; }\n  .rp-head .tb-logo { height: 34px; }\n  .rp-head h1 { margin: 0; font-size: 18px; color: #132034; }\n  .rp-head p { margin: 2px 0 0; color: #5F6780; }\n  #printReport h2 { margin: 12px 0 6px; font-size: 13px; color: #132034; }\n  .rp-tbl { width: 100%; border-collapse: collapse; }\n  .rp-tbl th { padding: 3px 6px; text-align: left; color: #132034; border-bottom: 1.5px solid #132034; }\n  .rp-tbl td { padding: 3px 6px; border-bottom: 1px solid #E0E4EE; }\n  .rp-tbl .num { text-align: right; font-variant-numeric: tabular-nums; }\n  .rp-tbl tr { break-inside: avoid; }\n  .rp-chart .load-svg { max-height: 72mm; }\n  .rp-load { break-inside: avoid; }\n  .rp-op { break-before: page; }\n  .rp-foot { margin-top: 10px; font-size: 9px; color: #5F6780; }\n  .rp-info { width: 100%; border-collapse: collapse; margin: 6px 0 2px; }\n  .rp-info th { text-align: left; font-weight: 600; color: #5F6780; padding: 2px 10px 2px 0; width: 18%; vertical-align: top; }\n  .rp-info td { padding: 2px 18px 2px 0; width: 32%; color: #1C2333; }\n  #printReport h3 { margin: 10px 0 4px; font-size: 12px; color: #132034; }\n  .rp-note { margin: 4px 0; color: #5F6780; }\n  .rp-warn { color: #B42318; font-weight: 600; }\n  .rp-tbl tr.is-ref td { background: #FFF5D1; font-weight: 600; }\n  .rp-tbl tr.is-off td { color: #8A90A2; }\n  .rp-split, .rp-per { width: auto; min-width: 45%; }\n}\n\n/* ---------- Line balancing (Yamazumi) ---------- */\n#vts-app.bal-on #layout { display: none; }\n.bal-view { padding: 14px 16px 18px; min-width: 0; }\n.bal-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }\n.bal-top h2 { margin: 0; font-size: 18px; color: var(--accent); }\n.bal-top-act { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }\n.bal-tabs { margin-bottom: 6px; }\n.bal-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0 10px; }\n.bal-bar .note { margin: 0 6px 0 0; }\n.bal-sep { width: 1px; align-self: stretch; background: var(--border); margin: 0 4px; }\n.bal-kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-bottom: 8px; }\n.bal-kpi { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--navy); border-radius: 6px; padding: 7px 10px; min-width: 0; }\n.bal-kpi .k-l { font-size: 12px; color: var(--muted); }\n.bal-kpi .k-v { font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.25; overflow-wrap: anywhere; }\n.bal-kpi .k-s { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.bal-kpi .k-d { font-size: 12px; font-weight: 700; }\n.k-d.good { color: var(--c-op); } .k-d.bad { color: var(--danger); } .k-d.same { color: var(--muted); }\n.bal-kpi-split { grid-column: span 2; }\n.bal-split { display: flex; height: 10px; border-radius: 3px; overflow: hidden; margin: 6px 0 4px; background: var(--band-out); }\n.bal-split i { display: block; height: 100%; background: var(--type); }\n.bal-split-l { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 10px; }\n.bal-warn { margin: 0 0 8px; padding: 7px 10px; border-radius: 6px; background: var(--warn-bg); border: 1px solid var(--warn-line); font-size: 13px; }\n.bal-warn .btn { margin-left: 6px; }\n.bal-wrap { overflow-x: auto; overflow-y: hidden; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); padding: 10px 12px 8px; }\n.bal-board { display: flex; align-items: flex-end; gap: 14px; min-width: min-content; }\n.bal-axis { flex: 0 0 46px; width: 46px; }\n.bal-ax { position: relative; }\n.bal-ax span { position: absolute; right: 4px; transform: translateY(50%); font-size: 11px; color: var(--muted); }\n.bal-ax .bal-takt-l { position: absolute; right: 4px; text-align: right; font-size: 11px; line-height: 1.15; color: var(--danger); white-space: nowrap; }\n.bal-col { flex: 0 0 132px; width: 132px; display: flex; flex-direction: column; }\n.bal-col-h { position: relative; height: 54px; padding: 2px 24px 4px 2px; font-size: 13px; line-height: 1.35; }\n.bal-col-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.bal-badge { font-size: 10px; font-weight: 700; color: var(--muted); border: 1px solid var(--border-strong); border-radius: 3px; padding: 0 3px; }\n.bal-tot { font-weight: 600; }\n.bal-tot.preview { color: var(--accent); }\n.bal-gap { font-size: 12px; color: var(--muted); }\n.bal-gap.over { color: var(--danger); font-weight: 700; }\n.bal-col-menu { position: absolute; top: 0; right: 0; width: 22px; height: 22px; padding: 0; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 4px; cursor: pointer; line-height: 1; }\n.bal-stack { position: relative; display: flex; flex-direction: column-reverse; border-bottom: 2px solid var(--border-strong); background: var(--band-bg); }\n.bal-col.is-over .bal-stack { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--danger) 55%, transparent); }\n.bal-col.is-mach .bal-stack { background-image: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in srgb, var(--c-mach) 16%, transparent) 6px 8px); }\n.bal-grid { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid var(--band-grid); pointer-events: none; }\n.bal-takt { position: absolute; left: -8px; right: -8px; height: 0; margin-bottom: -1px; border-top: 2px dashed var(--danger); z-index: 2; pointer-events: none; }\n.bal-top h2:focus { outline: none; }\n.bal-b { position: relative; display: flex; flex-direction: column; justify-content: center; width: 100%; flex: 0 0 auto; min-height: 3px; padding: 0 6px; margin: 0; border: 0; border-top: 1px solid rgba(255, 255, 255, .8); border-radius: 0; background: var(--type); color: #fff; font: inherit; font-size: 11px; line-height: 1.2; text-align: left; overflow: hidden; cursor: pointer; }\n.bal-b.ty-walk { color: #1C2333; }\n.bal-b:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; z-index: 3; }\n.bal-scen .bal-b { touch-action: none; cursor: grab; }\n.bal-bl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }\n.bal-bd { white-space: nowrap; opacity: .92; }\n.bal-b.is-dragging { display: none; }\n.bal-ph { flex: 0 0 auto; border: 2px dashed var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); box-sizing: border-box; }\n.bal-ph.in-pool { width: 96px; height: 30px !important; border-radius: 4px; }\n.bal-ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; opacity: .92; box-shadow: 0 8px 22px rgba(0, 0, 0, .28); }\nhtml.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }\n.bal-empty { position: absolute; left: 6px; right: 6px; bottom: 10px; margin: 0; font-size: 12px; color: var(--muted); text-align: center; }\n.bal-add-col { flex: 0 0 auto; align-self: center; }\n.bal-pool { margin-top: 10px; border: 1px dashed var(--border-strong); border-radius: 6px; padding: 8px 10px; background: var(--surface-2); }\n.bal-pool.is-target { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface-2)); }\n.bal-pool-h { font-weight: 700; font-size: 13px; margin-bottom: 6px; }\n.bal-pool-list { display: flex; flex-wrap: wrap; gap: 6px; min-height: 34px; align-items: center; }\n.bal-pool-list .note { margin: 0; }\n.bal-chip { width: auto; max-width: 280px; min-height: 30px; flex-direction: row; align-items: center; gap: 8px; padding: 4px 10px; border-top: 0; border-radius: 4px; font-size: 12px; }\n.bal-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; font-size: 12px; color: var(--muted); }\n.bal-tip { position: fixed; z-index: 60; max-width: 300px; padding: 7px 9px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: 6px; box-shadow: 0 6px 18px rgba(0, 0, 0, .18); font-size: 12px; line-height: 1.4; pointer-events: none; }\n.bal-tip b { display: block; font-size: 13px; margin-bottom: 2px; }\n.bal-detail { margin: 0 0 10px; }\n@media (max-width: 640px) {\n  .bal-view { padding: 10px 8px 14px; }\n  .bal-col { flex-basis: 112px; width: 112px; }\n  .bal-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n  .bal-top-act { margin-left: 0; }\n}\n\n/* ---------- 3.1: example, balancing improvements, balancing report ---------- */\n.ve-ex { margin-top: 8px; }\n.ve-link { background: none; border: 0; padding: 6px 4px; min-height: 32px; color: #C9D6FF; font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }\n.ve-link:hover { color: #FFFFFF; }\n.film-tips { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.45; }\n.ex-bar .btn.primary { margin-left: auto; }\n.ex-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 7px 16px; background: var(--tint); border-bottom: 1px solid var(--border); font-size: 13px; }\n.ex-bar p { margin: 0 6px 0 0; font-weight: 600; }\n.help-ex { margin: 0 0 12px; }\n.bal-help { margin: 4px 0 10px; padding-left: 18px; }\n.bal-help li { margin: 3px 0; }\n.bal-col-h { height: 64px; }\n.bal-was-l { font-size: 11px; color: var(--muted); }\n.bal-was { position: absolute; left: -6px; right: -6px; height: 0; margin-bottom: -1px; border-top: 2px dotted var(--text); opacity: .5; z-index: 2; pointer-events: none; }\n.bal-b.is-review { background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .38) 0 4px, transparent 4px 9px); }\n.bal-note { margin: -4px 0 10px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }\n.bal-note-in { width: 100%; box-sizing: border-box; font: inherit; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--input-bg); color: var(--text); resize: vertical; }\n@media print {\n  .rp-yama svg { display: block; width: 100%; height: auto; }\n  .rp-det tr.rp-grp td { background: #EDF0FA; font-weight: 600; }\n  .rp-cmp tr.is-shown td { font-weight: 700; }\n}\n\n/* ---------- 3.2: header, menu, locked tabs, events, export window ---------- */\n.tb-study { flex: 1 1 220px; min-width: 120px; max-width: 420px; }\n.tb-name { width: 100%; box-sizing: border-box; font: inherit; font-size: 14px; padding: 5px 9px; border: 1px solid var(--border); border-radius: 6px; background: var(--input-bg); color: var(--text); }\n.tb-name:hover { border-color: var(--border-strong); }\n.tb-name:focus { outline: 2px solid var(--focus); outline-offset: 0; }\n/* Line balancing and Layout open a view: white like the other buttons, coloured only while the view is open */\n.tb-btn.tb-view { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 10px; background: var(--surface); border-color: var(--border-strong); color: var(--text); font-weight: 600; }\n.tb-btn.tb-view:hover { background: var(--btn-hover); }\n.tb-btn.tb-view[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.tb-btn.tb-view[aria-pressed=\"true\"]:hover { filter: brightness(1.12); }\n.tb-ico { width: 15px; height: 15px; fill: currentColor; flex: none; }\n.tb-menu { position: relative; }\n.tb-menu-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; }\n.tb-drop { position: absolute; right: 0; top: calc(100% + 6px); z-index: 45; min-width: 220px; padding: 8px; display: flex; flex-direction: column; gap: 2px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; box-shadow: 0 10px 28px rgba(0, 0, 0, .18); }\n.tb-drop[hidden] { display: none; }\n.tb-drop .tb-lang { margin: 0 0 6px; }\n.tb-item { text-align: left; font: inherit; font-size: 14px; padding: 7px 10px; border: 0; border-radius: 6px; background: none; color: var(--text); cursor: pointer; }\n.tb-item:hover, .tb-item:focus-visible { background: var(--btn-hover); }\n.tab:disabled { opacity: .42; cursor: not-allowed; }\n#vts-app.no-video .transport, #vts-app.no-video .transport2 { display: none; }\n.rec-keys { margin: 10px 0 6px; font-size: 12px; color: var(--muted); }\n.ev-more { margin: 6px 0 4px; }\n.ev-more > summary { cursor: pointer; font-weight: 700; font-size: 13px; color: var(--accent); padding: 4px 0; }\n.ev-more[open] > summary { margin-bottom: 6px; }\n.tile-s { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); font-weight: 400; }\n.takt-calc { margin-top: 6px; }\n.exp-grp { margin: 0 0 12px; }\n.exp-grp h3 { margin: 0 0 6px; font-size: 14px; }\n.bal-b.has-act::after { content: ''; position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .4); }\n\n/* ---------- 3.3: protected column heads, line cycle, overflow above the takt, machine idle time ---------- */\n.bal-col { flex: 0 0 146px; width: 146px; }\n.bal-col-h { height: 90px; padding: 2px 2px 0 2px; overflow: hidden; position: relative; z-index: 3; background: var(--surface); font-size: 12px; line-height: 16px; }\n.bal-axis .bal-col-h { padding: 0; }\n.bh-l { height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }\n.bh-name { height: 20px; display: flex; align-items: center; gap: 5px; color: var(--text); padding-right: 24px; }\n.bh-name .bal-col-name { min-width: 0; font-size: 13px; }\n.bh-name .bal-badge { flex: none; line-height: 14px; }\n.bal-col-h .bal-tot { font-size: 13px; color: var(--text); }\n.bal-col-h .bal-gap { font-size: 12px; }\n.bal-col-h .bal-was-l { font-size: 12px; }\n.bal-bott { color: var(--accent); font-weight: 700; }\n.bal-col.is-over .bal-stack { box-shadow: none; }\n.bal-col.is-mach .bal-stack { background-image: none; }\n.bal-over { position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none; box-sizing: border-box; border: 2px solid var(--danger); border-bottom: 0; background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--danger) 26%, transparent) 0 5px, color-mix(in srgb, var(--danger) 8%, transparent) 5px 10px); }\n.bal-cycle { position: absolute; left: -8px; right: -8px; height: 0; margin-bottom: -1.5px; border-top: 3px solid var(--accent); z-index: 2; pointer-events: none; }\n.bal-was { z-index: 2; }\n.bal-lines { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin: 0 0 8px 48px; font-size: 12px; color: var(--muted); }\n.bal-lines span { display: inline-flex; align-items: center; gap: 6px; }\n.bal-lines .ln { display: inline-block; width: 26px; height: 0; }\n.ln-takt { border-top: 2px dashed var(--danger); }\n.ln-cycle { border-top: 3px solid var(--accent); }\n.ln-was { border-top: 2px dotted var(--text); opacity: .55; }\n.bal-b.is-idle { background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c-mach) 24%, transparent) 0 4px, transparent 4px 9px), var(--band-bg); color: var(--muted); border: 1px dashed var(--border-strong); border-bottom: 0; }\n\n/* ---------- 3.4: contact and feedback ---------- */\n.contact .ct-intro { margin: 0 0 12px; }\n.ct-choices { display: grid; gap: 8px; }\n.ct-choice { display: block; padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); text-decoration: none; background: var(--surface); }\n.ct-choice:hover, .ct-choice:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }\n.ct-choice b { display: block; color: var(--accent); }\n.ct-choice span { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }\n.ct-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }\n.contact h3 { margin: 16px 0 6px; font-size: 14px; }\n.ct-direct { margin: 0; line-height: 2.1; }\n.ct-copy { margin-left: 10px; padding: 2px 10px; font-size: 12px; }\n\n/* ---------- 3.5: what's new, parts per cycle, periodic tasks ---------- */\n/* V5.3: What's new by version, the five versions as rings (the identity), each opening on its own versions */\n.news { display: flex; flex-direction: column; gap: 8px; }\n.nw { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }\n.nw[open] { border-color: var(--border-strong); background: color-mix(in srgb, var(--tint) 45%, var(--surface)); }\n.nw > summary { display: flex; align-items: center; gap: 12px; padding: 10px 12px; cursor: pointer; list-style: none; border-radius: 12px; }\n.nw > summary::-webkit-details-marker { display: none; }\n.nw > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }\n.nw > summary::after { content: \"\"; flex: 0 0 auto; margin: 0 4px 0 auto; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-2px) rotate(45deg); transition: transform .15s; }\n.nw[open] > summary::after { transform: translateY(2px) rotate(-135deg); }\n.nw-big { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; box-sizing: border-box; border-radius: 50%; border: 4px solid var(--logo-ink); color: var(--logo-ink); font: 800 16px/1 \"VTS Brand\", system-ui, sans-serif; letter-spacing: .01em; }\n.nw[data-v=\"5\"] .nw-big { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px #FFB904; }\n.nw-head { display: flex; flex-direction: column; gap: 2px; min-width: 0; }\n.nw-head b { font-size: 15px; color: var(--text); }\n.nw-head span { font-size: 13px; color: var(--muted); line-height: 1.35; }\n.nw-subs { list-style: none; margin: 0; padding: 0 14px 10px 70px; }\n.nw-subs li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }\n.nw-subs li > div { min-width: 0; }\n.nw-subs b { font-size: 13.5px; }\n.nw-v { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 22px; padding: 0 7px; box-sizing: border-box; border-radius: 11px; background: var(--logo-ink); color: var(--surface); font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; }\n.nw-subs p, .nw-one { margin: 2px 0 0; font-size: 13.5px; line-height: 1.45; }\n.nw-one { padding: 0 14px 12px 70px; }\n@media (max-width: 560px) {\n  .nw-subs, .nw-one { padding-left: 14px; }\n}\n.field .hint { grid-column: 1 / -1; margin: 0; padding: 2px 8px 7px; font-size: 12px; color: var(--muted); }\n#tlPpc { width: 90px; }\n.pf-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 4px 0; }\n.pf-row .pf-name { min-width: 150px; font-weight: 600; }\n.pf-row input { width: 80px; }\n.perfreq { margin: 14px 0 4px; }\n.perfreq h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; }\n.pf-row .pf-t { color: var(--muted); font-size: 13px; }\n.pf-row .pf-in { width: 230px; max-width: 100%; }\n.pf-inline { display: flex; align-items: center; gap: 8px; margin: 4px 0; }\n.pf-inline input { width: 90px; }\n/* 4.2: dark labels where white text is too pale (green operations, grey machines) */\n.bal-b.ty-op { color: #0F2417; }\n.bal-b.ty-mach { color: #000000; }\n.res-out .btn-row { margin-top: 4px; }\n.bal-badge.ppc { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }\n.exp-grp .note { margin: 0 0 6px; }\n\n/* ---------- Layout and walking paths (4.0 to 4.2) ---------- */\n#vts-app.ly-on #layout { display: none; }\n@media (max-width: 560px) { #btnLy span { display: none; } }\n.ly-view { --ly-good: #12803C; padding: 12px 16px 24px; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .ly-view { --ly-good: #5BD38A; } }\n:root[data-theme=\"dark\"] .ly-view { --ly-good: #5BD38A; }\n.ly-top { display: flex; align-items: center; gap: 12px; }\n.ly-top h2 { margin: 0; font-size: 20px; color: var(--accent); }\n.ly-scbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 10px 0 4px; }\n.ly-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; }\n.ly-state { font-size: 13px; color: var(--muted); margin-right: 2px; }\n.ly-lk { width: 12px; height: 12px; margin: 0 5px -1px 0; fill: currentColor; }\n.ly-note { margin: 2px 0 4px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }\n.ly-row2 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 8px 0 10px; }\n.ly-steps { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }\n.ly-step { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }\n.ly-step b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--border); color: var(--text); font-size: 12px; }\n.ly-step.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); color: var(--accent); }\n.ly-step.on b { background: var(--accent); color: var(--surface); }\n#lyKpis { margin-left: auto; }\n.ly-kpis { display: flex; flex-wrap: wrap; gap: 8px; }\n.ly-kpi { display: grid; grid-template-columns: auto auto; column-gap: 8px; align-items: baseline; padding: 4px 10px 5px; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 6px; }\n.ly-kpi .k-l { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }\n.ly-kpi .k-v { font-size: 16px; font-weight: 700; color: var(--text); }\n.ly-kpi .k-d { font-size: 12px; font-weight: 700; }\n.ly-kpi .k-d.good, .ly-tab td.good { color: var(--ly-good); }\n.ly-kpi .k-d.bad, .ly-tab td.bad { color: var(--danger); }\n.ly-kpi .k-d.same { color: var(--muted); }\n\n/* panel on the left */\n.ly-main { display: flex; gap: 14px; align-items: stretch; }\n.ly-side { width: 310px; flex: none; font-size: 14px; }\n.ly-side p { margin: 0 0 10px; }\n.ly-side h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); }\n.ly-side h4 { margin: 12px 0 6px; font-size: 14px; }\n.ly-tip { font-size: 13px; color: var(--muted); }\n.ly-warn { font-size: 13px; color: var(--danger); }\n.ly-next { margin-top: 16px !important; }\n.ly-btns { display: flex; flex-wrap: wrap; gap: 6px; }\n.ly-2 { display: flex; gap: 8px; }\n.ly-2 > * { flex: 1; min-width: 0; }\n.ly-f { margin: 0 0 8px; }\n.ly-f label { display: block; margin: 0 0 3px; font-size: 12px; font-weight: 600; color: var(--muted); }\n.ly-f input, .ly-f select { display: block; width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; }\n.ly-card { margin: 12px 0; padding: 10px; border: 1px solid var(--border); border-radius: 8px; }\n.ly-card h4 { margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }\n.ly-lockcard { border-left: 3px solid var(--warn-line); background: var(--warn-bg); }\n.ly-lockcard p { margin: 0 0 8px; }\n.ly-lockcard .ly-btns { margin: 0; }\n.ly-selcard { border-left: 3px solid #B42318; }\n.ly-rotf { align-items: flex-end; }\n.ly-rotf .ly-f { flex: none; width: 5.5em; }\n.ly-rotf .ly-btns { margin: 0 0 8px !important; }\n.ly-pal { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }\n.ly-tool { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; font-weight: 600; text-align: left; cursor: pointer; }\n.ly-tool.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }\n.ly-cuttool { grid-column: 1 / -1; }\n.ly-sw { display: inline-block; width: 18px; height: 13px; border-radius: 3px; flex: none; }\n.ly-sw.ly-k-post { background: #DCE6F7; border: 2px solid #2F4FA0; }\n.ly-sw.ly-k-machine { background: #D9D9D9; border: 2px solid #595959; }\n.ly-sw.ly-k-rack { background: #FFF0C2; border: 2px solid #B8860B; }\n.ly-sw.ly-k-table { background: #D6F0DC; border: 2px solid #2E8B57; }\n.ly-sw.ly-sw-cut { background: transparent; border: 2px dashed var(--accent); }\n.ly-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }\n.ly-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; cursor: pointer; }\n.ly-chip.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; font-weight: 700; }\n.ly-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }\n.ly-dot.c0 { background: #0070C0; }\n.ly-dot.c1 { background: #C00000; }\n.ly-dot.c2 { background: #00B050; }\n.ly-dot.c3 { background: #7030A0; }\n.ly-dot.c4 { background: #ED7D31; }\n.ly-dot.c5 { background: #B8860B; }\n.ly-dot.c6 { background: #00A3A3; }\n.ly-dot.c7 { background: #D6007A; }\n.ly-dot.c8 { background: #1F3B73; }\n.ly-dot.c9 { background: #6B8E23; }\n.ly-order { margin: 0 0 8px; padding-left: 22px; }\n.ly-wpi { color: var(--muted); font-style: italic; }\n.ly-sum { font-weight: 600; }\n.ly-set summary { cursor: pointer; font-weight: 600; margin: 8px 0; }\n.ly-tab { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 13px; }\n.ly-tab th, .ly-tab td { padding: 4px 5px; border-bottom: 1px solid var(--border); text-align: right; }\n.ly-tab th:first-child, .ly-tab td:first-child { text-align: left; }\n.ly-tab .ly-oph td { padding-top: 10px; font-weight: 700; text-align: left; }\n.ly-tab .ly-oph .ly-dot { margin-right: 6px; }\n.ly-tab .ly-spd td { font-size: 12px; color: var(--muted); text-align: left; }\n.ly-tab td.good, .ly-tab td.bad { font-weight: 700; }\n.ly-tab td:not(:first-child) { white-space: nowrap; }\n.ly-tab td small { display: block; font-size: 11px; font-weight: 600; }\n\n/* steps of the cycle, placed on the stations */\n.ly-slist { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 4px; max-height: 340px; overflow: auto; }\n.ly-srow { width: 100%; box-sizing: border-box; display: grid; grid-template-columns: 1.9em 3em minmax(0, 1fr); column-gap: 6px; align-items: center; padding: 5px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }\n.ly-srow:hover { border-color: var(--accent); }\n.ly-srow.on { border-color: #FFB700; box-shadow: 0 0 0 2px #FFB700 inset; background: color-mix(in srgb, #FFB700 9%, var(--surface)); }\n.ly-srow.walk { border-style: dashed; }\n.ly-sn { display: inline-grid; place-items: center; min-width: 1.6em; height: 1.6em; padding: 0 3px; box-sizing: border-box; border-radius: 999px; background: var(--navy); color: var(--on-navy); font-size: 11px; font-weight: 700; }\n.ly-srow.walk .ly-sn { background: var(--surface); color: var(--text); border: 1.5px dashed var(--border-strong); }\n.ly-scode { font-weight: 700; color: var(--muted); }\n.ly-sname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ly-swhere, .ly-sbare { grid-column: 2 / -1; font-size: 12px; color: var(--muted); }\n.ly-srow.set .ly-swhere { color: var(--text); }\n.ly-swhere i { font-style: normal; color: var(--muted); }\n.ly-sbare { font-style: italic; }\n.ly-stepcard { border-left: 3px solid #FFB700; }\n.ly-way { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px !important; }\n.ly-wfrom, .ly-wto { padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #FFFFFF; }\n.ly-wfrom { background: #E8890C; }\n.ly-wto { background: #12803C; }\n.ly-wto.ask { background: transparent; color: var(--text); border: 1.5px dashed #12803C; }\n.ly-donecard { border-left: 3px solid var(--ly-good); }\n.ly-lab { margin: 8px 0 4px !important; font-size: 12px; font-weight: 600; color: var(--muted); }\n.ly-seg { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 6px; }\n.ly-sdb { padding: 5px 9px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 12px; cursor: pointer; }\n.ly-sdb.on { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.ly-exp .ly-btns, .ly-sheets p { margin-bottom: 6px; }\n\n/* the plan */\n.ly-canvas { position: relative; flex: 1; min-width: 0; height: calc(100vh - 320px); min-height: 440px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); touch-action: none; }\n.ly-bgc { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }\n.ly-canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; cursor: grab; }\n.ly-banner { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); max-width: calc(100% - 24px); box-sizing: border-box; margin: 0; padding: 6px 14px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 600; text-align: center; pointer-events: none; box-shadow: 0 4px 14px rgba(20, 33, 78, .25); }\n.ly-banner[hidden] { display: none; }\n.ly-banner.track { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 8px 18px 9px; border-radius: 12px; font-size: 14px; }\n.ly-bn-step { font-size: 15px; font-weight: 700; }\n.ly-bn-way { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 8px; }\n.ly-bn-from, .ly-bn-to { padding: 2px 10px; border-radius: 999px; font-weight: 700; color: #FFFFFF; }\n.ly-bn-from { background: #E8890C; }\n.ly-bn-to { background: #12803C; }\n.ly-bn-to.ask { background: #FFB700; color: #1C2333; }\n.ly-bn-arr { font-size: 17px; line-height: 1; }\n.ly-bn-tail { display: inline-flex; align-items: center; gap: 8px; }\n.ly-bn-done { font-weight: 600; }\n.ly-zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 4px; }\n.ly-zoom .btn[disabled] { opacity: .45; cursor: default; }\n.ly-box, .ly-hit, .ly-shp { cursor: move; }\n.ly-shl, .ly-tx, .ly-pa, .ly-pahalo, .ly-arrow, .ly-ghost, .ly-oldpa, .ly-front, .ly-rl, .ly-hl, .ly-badge, .ly-wnum, .ly-tag, .ly-blead, .ly-bdot, .ly-wp, .ly-act, .ly-cal, .ly-calline, .ly-cutl, .ly-cutp, .ly-dot { pointer-events: none; }\n.ly-m-paths .ly-box, .ly-m-paths .ly-hit, .ly-m-paths .ly-shp { cursor: pointer; }\n.ly-rh { cursor: grab; }\n.ly-h { cursor: nwse-resize; }\n.ly-dot { stroke: #fff; }\n.ly-dot.old { fill: #8C93A8; fill-opacity: .85; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .ly-front { stroke: #E6E9F5; } }\n:root[data-theme=\"dark\"] .ly-front { stroke: #E6E9F5; }\n\n/* DXF import window */\n.ly-unit { max-width: 260px; }\n.ly-ph { margin: 14px 0 6px; font-size: 14px; }\n.ly-chks { display: grid; gap: 2px; max-height: 210px; overflow: auto; padding: 6px; border: 1px solid var(--border); border-radius: 8px; }\n.ly-chk { display: flex; align-items: center; gap: 8px; padding: 3px 4px; font-size: 13px; cursor: pointer; }\n.ly-chk span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ly-chk span i { color: var(--muted); }\n.ly-chk small { color: var(--muted); }\n.ly-blk { display: flex; align-items: center; gap: 8px; }\n.ly-blk .ly-chk { flex: 1; min-width: 0; }\n.ly-blk select { flex: none; width: 9.5em; padding: 3px 6px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 12px; }\n\n@media (max-width: 860px) {\n  .ly-main { flex-direction: column; }\n  .ly-canvas.ly-m-compare, .ly-canvas.ly-m-ref { order: -1; }\n  .ly-side { width: 100%; }\n  .ly-canvas { height: 65vh; }\n  #lyKpis, .ly-acts { margin-left: 0; }\n}\n@media (max-width: 640px) {\n  .ly-zoom { left: 8px; right: 8px; flex-wrap: wrap; justify-content: flex-end; }\n  .ly-banner { left: 8px; right: 8px; top: 8px; transform: none; max-width: none; font-size: 12px; }\n  .ly-banner.track { gap: 3px; padding: 6px 10px; font-size: 12px; }\n  .ly-bn-step { font-size: 13px; }\n  .ly-bn-from, .ly-bn-to { padding: 1px 7px; }\n}\n\n/* printed layout report */\n@media print {\n  #printReport.lr h2 { margin: 10px 0 4px; }\n  .lr-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0 6px; }\n  .lr-k { display: grid; padding: 6px 10px; border: 1px solid #D5DAE5; border-left: 4px solid #12803C; border-radius: 6px; }\n  .lr-kl { font-size: 10px; color: #5F6780; }\n  .lr-kv { font-size: 20px; font-weight: 700; color: #12803C; }\n  .lr-kd { font-size: 10px; color: #5F6780; }\n  .lr-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0 2px; }\n  .lr-plans.one { grid-template-columns: 1fr; }\n  .lr-plans figure { margin: 0; border: 1px solid #D5DAE5; border-radius: 6px; overflow: hidden; break-inside: avoid; }\n  .lr-plans figcaption { padding: 4px 8px; font-weight: 700; color: #132034; background: #EDF0FA; }\n  .lr-plans img { display: block; width: 100%; height: auto; max-height: 112mm; object-fit: contain; }\n  .lr-steps { padding: 3px 8px 5px; border-top: 1px solid #E3E7F0; }\n  .lr-steps p { margin: 2px 0; font-size: 7.5pt; line-height: 1.35; color: #1C2333; }\n  .lr-steps .ly-dot { margin-right: 4px; vertical-align: -1px; }\n  .lr-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin: 4px 0; color: #5F6780; }\n  .lr-leg span { display: inline-flex; align-items: center; gap: 5px; }\n  .lr-legt { margin-left: auto; }\n  .lr-tbl { font-size: 10px; }\n  .lr-tbl .ly-dot { margin-right: 5px; }\n  .lr-tbl td.good { color: #12803C; font-weight: 700; }\n  .lr-tbl td.bad { color: #B42318; font-weight: 700; }\n  .lr-tbl tr.lr-tot td { font-weight: 700; border-top: 1.5px solid #132034; }\n}\n\n/* ---------- 4.2: one list of scenarios for the balancing and the layout ---------- */\n/* a walk timed by the plan of the scenario: its own colour, a navy edge, measured time -> new time written on it */\n.bal-b.is-plan { box-shadow: inset 4px 0 0 #132034; }\n.sw.sw-plan { background: linear-gradient(90deg, #132034 0 4px, #FFC000 4px); }\n.sw.sw-moved { width: auto; height: auto; padding: 0 3px; background: transparent; border: 1px dashed currentColor; font-style: normal; font-size: 10px; line-height: 12px; vertical-align: 0; }\n.scn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 10px 0 4px; }\n.scn-lab { font-size: 13px; font-weight: 700; color: var(--muted); }\n.scn-tabs { flex: 0 1 auto; }\n.scn-switch { margin-left: auto; font-weight: 700; color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--border-strong)); }\n.scn-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 6px 0 2px; padding: 8px 12px; border: 1px solid var(--border); border-left: 4px solid var(--navy); border-radius: 8px; background: color-mix(in srgb, var(--navy) 5%, var(--surface)); }\n.scn-what { flex: 1 1 420px; margin: 0; font-size: 14px; line-height: 1.45; }\n.scn-what i { color: var(--muted); }\n.scn-res { display: inline-block; margin-left: 6px; padding: 1px 9px; border-radius: 999px; background: var(--navy); color: var(--on-navy); font-size: 13px; font-weight: 700; white-space: nowrap; }\n.scn-acts { display: flex; flex-wrap: wrap; gap: 6px; }\n.scn-note { margin: 4px 0 6px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }\n@media (max-width: 640px) { .scn-lab { display: none; } .scn-switch { margin-left: 0; } .scn-what { flex-basis: 100%; } }\n/* layout: modes of a scenario, figures before -> after, before / after on the plan */\n.ly-modes .ly-step { padding: 7px 14px; }\n.ly-kpi .k-v .k-a { color: var(--muted); font-weight: 600; }\n.ly-ba { display: inline-flex; margin-right: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(20, 33, 78, .18); }\n.ly-ba .btn { border-radius: 0; }\n.ly-ba .btn:first-child { border-radius: 8px 0 0 8px; }\n.ly-ba .btn:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }\n.ly-ba .btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.ly-canvas.ly-before { box-shadow: inset 0 0 0 3px #8C93A8; }\n.ly-ops { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }\n.ly-ops li { display: grid; grid-template-columns: 14px 1fr; column-gap: 6px; align-items: baseline; font-size: 13px; }\n.ly-ops li span { grid-column: 2; color: var(--muted); }\n.ly-chg { border-left: 3px solid var(--navy); }\n.ly-chgl { margin: 0 0 6px; padding-left: 18px; font-size: 13px; }\n.ly-chgl li { margin: 2px 0; }\n.ly-chgb { padding: 0; border: 0; background: none; color: var(--accent); font: inherit; text-align: left; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }\n.ly-side details.ly-card > summary { cursor: pointer; font-weight: 700; }\n.ly-side details.ly-card[open] > summary { margin-bottom: 8px; }\n.ly-valcard { border-left: 3px solid var(--ly-good); }\n.ly-impcard { border-left: 3px solid var(--navy); }\n.ly-reset { margin-top: 4px !important; }\n\n/* ---------- 4.2: printed reports, fuller ---------- */\n@media print {\n  @page {\n    @bottom-left { content: \"Video Time Study \u00b7 vts-tool.com\"; font: 8pt \"Segoe UI\", Arial, sans-serif; color: #8A90A2; }\n    @bottom-right { content: counter(page) \" / \" counter(pages); font: 8pt \"Segoe UI\", Arial, sans-serif; color: #8A90A2; }\n  }\n  .rp-verdict { margin: 8px 0 6px; padding: 7px 12px; border-left: 4px solid #132034; background: #EDF0FA; font-size: 13px; font-weight: 600; color: #1C2333; border-radius: 0 6px 6px 0; }\n  .rp-page { break-before: page; }\n  .rp-list { margin: 4px 0 6px; padding-left: 18px; color: #3A4256; }\n  .rp-list li { margin: 2px 0; }\n  .lr-kpis { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }\n  .lr-k.bad { border-left-color: #B42318; }\n  .lr-k.bad .lr-kv { color: #B42318; }\n  .lr-k:not(.good):not(.bad) { border-left-color: #8A90A2; }\n  .lr-k:not(.good):not(.bad) .lr-kv { color: #1C2333; }\n  .lr-plans img { max-height: 104mm; }\n  .rp-sec { break-inside: avoid; }\n  #printReport h2 { break-after: avoid; }\n  .lr-plans figcaption small { font-weight: 400; color: #5F6780; }\n  .rp-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }\n  .rp-box { border: 1px solid #D5DAE5; border-radius: 6px; padding: 6px 10px; break-inside: avoid; }\n  .rp-box h3 { margin-top: 2px !important; }\n  .rp-cycc svg { display: block; width: 100%; height: auto; max-height: 56mm; }\n  .rp-method { margin: 6px 0; padding: 5px 10px; border: 1px solid #D5DAE5; border-radius: 6px; color: #3A4256; font-size: 10px; }\n  .rp-info.rp-col th { width: 48%; }\n  .rp-info.rp-col td { width: 52%; }\n  .rp-two .rp-info th { width: 22%; }\n  .rp-two .rp-info td { width: 28%; }\n  .rp-two .rp-chart .load-svg { max-height: 64mm; }\n}\n\n\n/* ---------- 4.2: start screen (the example first on a first visit, filming from a phone), the way through the example ---------- */\n.video-empty .btn.primary { background: #FFB700; border-color: #FFB700; color: #121A33; font-weight: 700; }\n.video-empty .btn.primary:hover { background: #FFC633; border-color: #FFC633; }\n.video-empty .btn:not(.primary) { background: transparent; border-color: #8FA3D9; color: #FFFFFF; }\n.video-empty .btn:not(.primary):hover { background: rgba(255, 255, 255, .08); }\n.ve-film { display: none; }\n@media (pointer: coarse) { .video-empty .ve-film { display: inline-flex; align-items: center; justify-content: center; } }\n.ve-first #btnPickVideo, .ve-first #btnPickVideo ~ * { order: 1; }\n.ve-first #btnExample { order: 0; margin-top: 0; background: #FFB700; border-color: #FFB700; color: #121A33; font-weight: 700; }\n.ve-first #btnExample:hover { background: #FFC633; border-color: #FFC633; }\n.ve-first #btnPickVideo { background: transparent; border-color: #8FA3D9; color: #FFFFFF; font-weight: 400; }\n.ve-first #btnPickVideo:hover { background: rgba(255, 255, 255, .08); }\n.ex-go { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; }\n.ex-go > span { color: var(--muted); }\n.ex-go .linkbtn { background: none; border: 0; padding: 4px 0; min-height: 28px; color: var(--accent); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }\n/* no video yet, on a computer too: the welcome screen sets the height of the box, nothing is squeezed on a laptop */\n@media (min-width: 600px) {\n  #vts-app.no-video .video-box { aspect-ratio: auto; max-height: none; min-height: 300px; }\n  #vts-app.no-video .video-box video { display: none; }\n  #vts-app.no-video .video-empty { position: static; width: 100%; align-self: stretch; padding: 26px 16px; }\n}\n\n/* ---------- 4.2: improvement report, what changes, cycles side by side ---------- */\n@media print {\n  #printReport h3 { break-after: avoid; }\n  .rp-cycw.side { break-inside: avoid; }\n  .rp-cycs.k2, .rp-cycs.k3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-items: start; }\n  .rp-cycs.k2 { grid-template-columns: repeat(2, 1fr); }\n  .rp-cycs .rp-cyc { font-size: 9px; }\n  /* one operator on one page: tighter rows and headings in the sections of each operator */\n  #printReport .rp-op h3 { margin: 6px 0 3px; }\n  .rp-op { font-size: 10px; }\n  .rp-op .rp-two .rp-info th { width: 1%; white-space: nowrap; }\n  .rp-op .rp-two .rp-info td { width: auto; vertical-align: top; }\n  .rp-op .rp-tbl td, .rp-op .rp-tbl th { padding-top: 2px; padding-bottom: 2px; }\n  .rp-op .rp-cycc svg { max-height: 48mm; }\n  .rp-cycs .rp-cyc td, .rp-cycs .rp-cyc th { padding-top: 2px; padding-bottom: 2px; }\n  .rp-chgs { columns: 2; column-gap: 18px; }\n  .rp-chg { break-inside: avoid; }\n  .rp-chg h3 { margin: 4px 0 2px !important; font-size: 11px; color: #132034; }\n  .rp-chg .rp-list { margin: 0 0 4px; }\n  .br .lr-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }\n  .br .lr-plans img { display: block; width: 100%; max-height: 92mm; object-fit: contain; }\n  .br .rp-flow { break-before: page; }\n  #printReport.im h1 { font-size: 18px; }\n  .im .rp-verdict { margin: 4px 0; font-size: 12px; }\n  .im-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; margin: 4px 0; }\n  .im-kpis .lr-k { padding: 4px 8px; }\n  .im-kpis .lr-kv { font-size: 15px; }\n  .im-kpis .lr-kv .im-a { color: #8A90A2; font-weight: 600; }\n  .im-yama svg { display: block; width: 100%; height: auto; max-height: 44mm; }\n  .im-yama.tall svg { max-height: 92mm; }\n  .im-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px; }\n  .im-plans figure { margin: 0; border: 1px solid #D5DAE5; border-radius: 6px; overflow: hidden; break-inside: avoid; }\n  .im-plans figcaption { padding: 3px 8px; font-weight: 700; font-size: 10px; color: #132034; background: #EDF0FA; }\n  .im-plans img { display: block; width: 100%; max-height: 52mm; object-fit: contain; }\n  .im .lr-leg { margin: 2px 0; font-size: 9px; }\n  .im-chg { break-inside: avoid; }\n  .im-chg h2 { margin: 4px 0 2px !important; font-size: 13px; }\n  .im .rp-chgs { font-size: 10px; columns: 3; }\n  .im .rp-chg .rp-list li { margin: 1px 0; }\n  .im .rp-foot { margin-top: 4px; }\n}\n\n/* ---------- 4.3: placing the steps, one question at a time, round spots on the stations ---------- */\n.ly-step.ok b { background: #1F8A4C; color: #FFFFFF; }\n.ly-qcard { margin: 10px 0 14px; padding: 12px 12px 10px; border: 2px solid #FFB700; border-radius: 10px; background: color-mix(in srgb, #FFB700 9%, var(--surface)); }\n.ly-qcard.ans { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }\n.ly-qcard.done { border-color: #1F8A4C; background: color-mix(in srgb, #1F8A4C 8%, var(--surface)); }\n.ly-qcard h4 { margin: 2px 0 4px; font-size: 16px; color: var(--text); }\n.ly-qcard p { margin: 4px 0; }\n.ly-qn { font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); }\n.ly-qcard.done .ly-qn { color: #1F8A4C; font-size: 14px; text-transform: none; }\n.ly-qask { font-weight: 700; color: var(--accent); }\n.ly-qhow { font-size: 13px; }\n.ly-qans { font-weight: 700; }\n.ly-qtop { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }\n.ly-qtop .btn.link { font-size: 12.5px; white-space: nowrap; }\n.ly-qtop .btn.link:disabled { visibility: hidden; }\n.ly-qnav { display: flex; gap: 6px; margin-top: 10px !important; }\n.ly-qnav .btn { flex: 1 1 0; justify-content: center; }\n.ly-seg4 { flex-wrap: wrap; }\n.btn.link { border: 0; background: none; padding: 0 2px; min-height: 0; color: var(--accent); text-decoration: underline; }\n.ly-ith { margin: 12px 0 6px; font-size: 14px; }\n.ly-itin { list-style: none; margin: 0; padding: 0 0 0 4px; --opc: var(--accent); }\n.ly-itin.c0 { --opc: #0070C0; } .ly-itin.c1 { --opc: #C00000; } .ly-itin.c2 { --opc: #00B050; } .ly-itin.c3 { --opc: #7030A0; } .ly-itin.c4 { --opc: #ED7D31; } .ly-itin.c5 { --opc: #B8860B; } .ly-itin.c6 { --opc: #00A3A3; } .ly-itin.c7 { --opc: #D6007A; } .ly-itin.c8 { --opc: #1F3B73; } .ly-itin.c9 { --opc: #6B8E23; }\n.ly-itin li { position: relative; margin: 0; padding: 0 0 0 18px; }\n.ly-itin li::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; border-left: 2px solid var(--border-strong); }\n.ly-itin li:first-child::before { top: 14px; }\n.ly-itin li:last-child::before { bottom: calc(100% - 14px); }\n.ly-itin button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; }\n.ly-ig { padding-top: 4px !important; padding-bottom: 4px !important; }\n.ly-igh { display: flex; align-items: center; gap: 6px; width: 100%; padding: 5px 6px; border-radius: 7px; font-weight: 700 !important; }\n.ly-ipin { position: absolute; left: 0; top: 10px; width: 12px; height: 12px; border-radius: 50%; background: var(--opc); box-shadow: 0 0 0 3px var(--surface); }\n.ly-ig.todo .ly-ipin { background: var(--surface); border: 2px dashed #B8860B; width: 8px; height: 8px; }\n.ly-ig.todo .ly-iname, .ly-iw.todo .ly-idist { color: #8A6100; font-style: italic; }\n.ly-isteps { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 0 6px 2px; }\n.ly-istep { display: flex; gap: 6px; font-size: 12.5px !important; color: var(--muted) !important; padding: 2px 0 !important; border-bottom: 1px dotted transparent !important; }\n.ly-istep:hover, .ly-istep.cur { color: var(--accent) !important; border-bottom-color: var(--accent) !important; }\n.ly-in { flex: none; min-width: 14px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }\n.ly-iw button { display: flex; align-items: center; gap: 6px; width: 100%; padding: 4px 6px; border-radius: 7px; font-size: 13px; color: var(--muted); }\n.ly-iarr { position: absolute; left: -1px; width: 16px; height: 16px; border: 1.5px solid var(--opc); border-radius: 50%; background: var(--surface); color: var(--opc); font-size: 9.5px; font-weight: 800; line-height: 13px; text-align: center; font-variant-numeric: tabular-nums; }\n.ly-iw.todo .ly-iarr { border-style: dashed; border-color: #B8860B; color: #8A6100; }\n.ly-iname { flex: 1; min-width: 0; }\n.ly-idist { flex: none; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); }\n.ly-igh:hover, .ly-iw button:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }\n.ly-ig.cur .ly-igh, .ly-iw.cur button { background: color-mix(in srgb, #FFB700 22%, var(--surface)); box-shadow: inset 3px 0 0 #FFB700; color: var(--text); }\n.ly-spot { cursor: pointer; transform-box: fill-box; transform-origin: center; transition: transform .12s ease; }\n.ly-spot:hover { transform: scale(1.35); }\n.ly-spot.ask { animation: lySpot 1.6s ease-in-out infinite; }\n@keyframes lySpot { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: .45; } }\n@media (prefers-reduced-motion: reduce) { .ly-spot.ask { animation: none; } }\n\n/* ---------- 4.3: scenarios side by side, reference of the improvement report ---------- */\n.tl-cmp { font-weight: 700; }\n.panel.wide:has(.cmp) { width: min(1100px, 100%); }\n.cmp-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin-bottom: 10px; }\n.cmp-reflab { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; white-space: nowrap; }\n.cmp-reflab select { min-width: 200px; }\n.cmp-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }\n.cmp-pick > span { color: var(--muted); font-weight: 600; }\n.cmp-pick label { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; cursor: pointer; }\n.cmp-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }\n.cmp-tab { width: 100%; border-collapse: collapse; font-size: 13px; }\n.cmp-tab th, .cmp-tab td { padding: 7px 12px; border-bottom: 1px solid var(--border); text-align: right; vertical-align: top; white-space: nowrap; }\n.cmp-tab thead th { color: var(--accent); font-size: 14px; vertical-align: bottom; }\n.cmp-tab thead th small { display: block; font-size: 11px; font-weight: 700; color: #8A6100; text-transform: uppercase; letter-spacing: .03em; }\n.cmp-tab tbody th { text-align: left; font-weight: 600; color: var(--muted); }\n.cmp-tab .is-ref { background: color-mix(in srgb, #FFB700 10%, var(--surface)); }\n.cmp-tab td b { display: block; font-size: 15px; color: var(--text); font-variant-numeric: tabular-nums; }\n.cmp-tab td small { display: block; font-weight: 700; font-variant-numeric: tabular-nums; }\n.cmp { --cmp-good: #12803C; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .cmp { --cmp-good: #5BD38A; } }\n:root[data-theme=\"dark\"] .cmp { --cmp-good: #5BD38A; }\n.cmp-tab .good, .cmp-tab td b.good { color: var(--cmp-good); } .cmp-tab .bad, .cmp-tab td b.bad { color: var(--danger); } .cmp-tab .same { color: var(--muted); }\n.cmp-tab td.best { background: color-mix(in srgb, #1F8A4C 13%, var(--surface)); }\n.cmp-tab td.cmp-txt { white-space: normal; text-align: left; font-size: 12px; color: var(--muted); min-width: 170px; max-width: 260px; }\n.cmp-tab td.cmp-txt span { display: block; margin: 1px 0; }\n.cmp-tab tr.cmp-act td { border-bottom: 0; white-space: normal; }\n.cmp-tab tr.cmp-act .btn { margin: 2px 0 2px 4px; }\n.cmp-leg { margin: 8px 0 0; }\n.imp-refs { display: flex; flex-direction: column; gap: 4px; margin: 8px 0 4px; }\n.imp-ref { display: flex; align-items: center; gap: 8px; min-height: 34px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }\n.imp-ref:has(input:checked) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); font-weight: 700; }\n@media print {\n  .cmpr .cmp-tab { font-size: 11px; }\n  .cmpr .cmp-tab th, .cmpr .cmp-tab td { padding: 4px 8px; border-bottom: 1px solid #E0E4EE; }\n  .cmpr .cmp-tab thead th { color: #132034; border-bottom: 1.5px solid #132034; }\n  .cmpr .cmp-tab .is-ref { background: #FFF5D1; }\n  .cmpr .cmp-tab td.best { background: #E3F4E9; }\n  .cmpr .cmp-tab td b { font-size: 12px; color: #1C2333; }\n  .cmpr .cmp-tab .good, .cmpr .cmp-tab td b.good { color: #12803C; }\n  .cmpr .cmp-tab .bad, .cmpr .cmp-tab td b.bad { color: #B42318; }\n  .cmpr .cmp-tab td.cmp-txt { font-size: 9.5px; color: #3A4256; }\n}\n.std-for { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 10px 0 4px; }\n.std-for label { font-weight: 700; }\n.std-for select { min-width: 240px; max-width: 100%; }\n.std-sim { border-left: 3px solid var(--navy); padding-left: 8px; }\n/* 4.3: quick start, automatic codes */\n.qs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0; }\n.qs-f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }\n.qs-f label { font-weight: 700; }\n.qs-n { display: flex; align-items: center; gap: 4px; }\n.qs-n input { width: 58px; min-width: 0; text-align: center; padding-left: 4px; padding-right: 4px; }\n.qs-n .btn { min-width: 36px; justify-content: center; font-weight: 700; }\n@media (max-width: 520px) { .qs-grid { grid-template-columns: 1fr; } }\n.steps-auto { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }\n.empty-hint .linkbtn { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }\n.qs-n input::-webkit-outer-spin-button, .qs-n input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }\n.qs-n input[type=\"number\"] { -moz-appearance: textfield; appearance: textfield; }\n/* 4.3: iPhone videos converted, video filmed or converted kept in this browser */\n.ve-iphone { max-width: 34em; opacity: .9; }\n.made-last { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; margin: 8px 0 0; padding: 8px 12px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 10px; font-size: 13px; }\n.made-last b { color: #FFB700; }\n.made-last .made-acts { display: inline-flex; gap: 6px; flex-wrap: wrap; }\n.video-empty .made-last .btn { background: transparent; border-color: #8FA3D9; color: #FFFFFF; min-height: 32px; padding: 4px 12px; font-size: 13px; width: auto; margin: 0; }\n.made-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 8px 0 0; padding: 8px 12px; border: 1px solid #E8890C; border-left-width: 4px; border-radius: 8px; background: color-mix(in srgb, #FFB700 12%, var(--surface)); }\n.made-bar p { margin: 0; flex: 1 1 260px; font-size: 14px; font-weight: 600; }\n.made-bar .btn-row { margin: 0; }\n.video-msg progress { display: block; width: 100%; height: 12px; margin: 8px 0 4px; accent-color: #FFB700; }\n.video-msg .cv-err { color: #FFB4B4; font-weight: 600; }\n/* 4.3: a few lines on the tool at the bottom of the page (also read by search engines), under the time study only */\n.about { max-width: 1800px; margin: 8px auto 0; padding: 12px 16px 4px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }\n.about h2 { margin: 0 0 4px; font-size: 14px; color: var(--text); }\n.about p { margin: 2px 0; max-width: 72em; }\n.about-links { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 6px !important; }\n.about a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }\n#vts-app.bal-on .about, #vts-app.ly-on .about { display: none; }\n\n/* V5: languages (menu, footer, line toward the page of the language of the browser) */\na.tb-btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }\n.tb-drop .tb-lang { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 0 0 6px; }\n.tb-drop .tb-lang .tb-btn, .tb-drop .tb-lang .tb-btn:first-child, .tb-drop .tb-lang .tb-btn:last-child { border-radius: 6px; margin: 0; min-width: 0; padding: 4px 0; }\n.tb-lang .tb-btn[aria-current=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); font-weight: bold; }\n.lang-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 7px 16px; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 14px; }\n.lang-bar a { font-weight: 600; color: var(--accent); }\n.lang-bar .lang-x { margin-left: auto; font: inherit; font-size: 20px; line-height: 1; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 0 4px; }\n.lang-bar[hidden] { display: none; }\n.ftr-langs { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 14px; }\n.ftr-langs a[aria-current=\"true\"] { font-weight: bold; text-decoration: none; color: var(--text); }\n\n/* V5: presentation below the tool (example in figures, comparison, uses, questions) */\n.about { color: var(--text); font-size: 14px; padding: 18px 16px 10px; }\n.about h2 { font-size: 19px; margin: 0 0 8px; line-height: 1.3; }\n.about h3 { font-size: 16px; margin: 22px 0 8px; }\n.about h4 { font-size: 14px; margin: 0 0 4px; }\n.about p { max-width: 62em; margin: 4px 0; }\n.about-lead { font-size: 15px; }\n.about-faq { max-width: 62em; }\n.about-q { border-bottom: 1px solid var(--border); padding: 7px 0; }\n.about-q summary { cursor: pointer; font-weight: 600; }\n.about .about-q p { margin: 6px 0 4px; color: var(--muted); }\n\n/* V5: a step done by another operator than the one it was measured on */\n.bal-b.is-moved { outline: 2px dashed rgba(28, 35, 51, .85); outline-offset: -3px; }\n.bal-b.is-moved.ty-walk, .bal-b.is-moved.ty-wait { outline-color: rgba(28, 35, 51, .7); }\n.ly-mv { display: inline-block; margin-right: 4px; padding: 0 4px; border-radius: 4px; background: #132034; color: #fff; font-size: 11px; font-weight: 700; line-height: 16px; }\n.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }\n/* V5: opacity of the plan, in the bar over the plan */\n.ly-zoom { flex-wrap: wrap; justify-content: flex-end; max-width: calc(100% - 20px); }\n.ly-opg { display: inline-flex; align-items: center; gap: 6px; margin-right: 6px; padding: 2px 8px 2px 2px; border-radius: 8px; background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(20, 33, 78, .18); font-size: 12px; }\n.ly-opg input[type=\"range\"] { width: 92px; margin: 0; accent-color: var(--navy); }\n.ly-opg output { min-width: 34px; text-align: right; font-variant-numeric: tabular-nums; }\n.ly-opl { color: var(--muted); white-space: nowrap; }\n.ly-eye[aria-pressed=\"true\"] { background: var(--navy); color: #fff; }\n@media (max-width: 860px) { .ly-opl { display: none; } .ly-opg input[type=\"range\"] { width: 70px; } }\n/* V5: lock of the reference in the bar of the scenarios */\n.scn-lock { display: inline-flex; align-items: center; gap: 5px; }\n.scn-lock .ly-lk { width: 13px; height: 13px; fill: currentColor; }\n.scn-lock.on, .scn-lock.on:hover { background: var(--tint); border-color: var(--border-strong); color: var(--text); }\n.ly-befcard { border-color: var(--navy); }\n.scn-waits { margin: 10px 0 0; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; }\n.scn-waits legend { padding: 0 4px; font-weight: 600; }\n.scn-waits[hidden] { display: none; }\n/* V5: Compare / Reports */\n.cmp-h { margin: 6px 0 8px; font-size: 15px; color: var(--navy); }\n:root[data-theme=\"dark\"] .cmp-h { color: var(--text); }\n.cmp-h + .note { margin-top: 0; }\n.cmp-scope { display: grid; gap: 6px; }\n.cmp-sc span { display: flex; flex-direction: column; gap: 2px; }\n.cmp-sc small { color: var(--muted); font-size: 12px; }\n.cmp-sc.off { opacity: .55; }\n@media print {\n  #printReport.cr h1 { font-size: 18px; }\n  .cr .cr-h { margin: 0 0 4px; font-size: 15px; color: #132034; }\n  .cr .rp-verdict { margin: 4px 0; font-size: 12px; }\n  .cr-yama svg { display: block; width: 100%; height: auto; max-height: 62mm; }\n  .cr-yama.tall svg { max-height: 120mm; }\n  .cr .cr-plans img { max-height: 92mm; }\n  .cr .cr-plans.one img { max-height: 120mm; }\n  .cr-blk { break-inside: avoid; }\n  .cr-blk h2 { margin: 8px 0 4px !important; font-size: 12px; }\n  .cr .rp-chgs { font-size: 10px; }\n  /* A3 landscape presentation of the layout */\n  #printReport.lp { page: vtsA3; }\n  .lp .lp-kpis { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }\n  .lp .lp-kpis .lr-kv { font-size: 26px; }\n  .lp .lp-plans img { max-height: 205mm; }\n  .lp .lp-plans.one img { max-height: 225mm; }\n  .lp .lr-steps p { font-size: 9pt; }\n}\n@page vtsA3 { size: 420mm 297mm; margin: 10mm; }\n\n/* V5.2: the ring identity (brand/anneau.py). Header: ring, Vts-Tool.com and Video Time Study; big logo at the bottom of the page */\n.tb-logo { width: 34px; height: 34px; flex: none; stroke: none; }\n.tb-logo .lg-ring, .ftr-logo .lg-ring { stroke: var(--logo-ink); }\n.tb-logo .lg-ring-f, .ftr-logo .lg-ring-f, .ftr-logo .lg-ink { fill: var(--logo-ink); }\n.ftr-logo .lg-sub { fill: var(--muted); }\n.tb-title h1.tb-brand { display: flex; flex-direction: column; gap: 3px; margin: 0; }\n.tb-wm { font: 800 19.5px/1 \"VTS Brand\", \"Segoe UI\", system-ui, -apple-system, Arial, sans-serif; letter-spacing: -.01em; color: var(--title); white-space: nowrap; }\n.tb-hy { color: #FFB904; }\n.tb-sub { font: 700 11.5px/1 \"VTS Brand\", \"Segoe UI\", system-ui, -apple-system, Arial, sans-serif; color: var(--muted); white-space: nowrap; }\n.tb-credit { border-left: 1px solid var(--border-strong); padding-left: 10px; margin-left: 2px; line-height: 1.3; }\n.ftr-brand { flex: 1 0 100%; display: flex; justify-content: center; padding: 30px 0 18px; }\n.ftr-logo { width: 230px; max-width: 70%; height: auto; }\n.rp-head .tb-logo { width: 34px; height: 34px; }\n@media (max-width: 640px) { .tb-wm { font-size: 18px; } .tb-sub { font-size: 11.5px; } .tb-logo { width: 32px; height: 32px; } .ftr-logo { width: 190px; } }\n\n/* ---------- V5.3: the station of each step (Steps tab), used by the layout ---------- */\n.ly-qsta { display: flex; align-items: center; gap: 7px; font-weight: 700; color: var(--ly-good, #12803C); }\n.ly-qsta::before { content: \"\"; flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; border: 3px solid currentColor; box-sizing: border-box; }\n.ly-qsta.miss { color: var(--text); font-weight: 600; }\n.ly-qsta.miss::before { border-color: #E8890C; border-style: dashed; }\n.ly-stacard .ly-chips { margin: 6px 0 8px; }\n.ly-stacard .ly-chip { font-size: 12.5px; padding: 5px 10px; }\n.s-sta::placeholder { color: var(--muted); opacity: .7; }\n@font-face { font-family: \"VTS Brand\"; font-weight: 800; font-style: normal; font-display: swap; src: url(data:font/woff;base64,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) format(\"woff\"); }\n@font-face { font-family: \"VTS Brand\"; font-weight: 700; font-style: normal; font-display: swap; src: url(data:font/woff;base64,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) format(\"woff\"); }\n", CSS_H = '190d224585', APP = "<div id=\"vts-app\" data-h=\"b3f72be612\" class=\"no-video\">\n<header class=\"topbar\">\n  <div class=\"tb-title\">\n    <svg class=\"tb-logo\" viewBox=\"0 0 100 100\" aria-hidden=\"true\"><circle cx=\"50.00\" cy=\"50.00\" r=\"45.50\" class=\"lg-ring\" fill=\"none\" stroke=\"#132034\" stroke-width=\"9.00\"/><rect x=\"26.27\" y=\"21.80\" width=\"8.04\" height=\"54.80\" rx=\"4.02\" fill=\"#01A25E\"/><rect x=\"39.42\" y=\"46.00\" width=\"8.04\" height=\"30.60\" rx=\"4.02\" fill=\"#FFB904\"/><rect x=\"52.54\" y=\"26.00\" width=\"8.04\" height=\"50.60\" rx=\"4.02\" fill=\"#046AB3\"/><rect x=\"65.69\" y=\"42.60\" width=\"8.04\" height=\"34.00\" rx=\"4.02\" fill=\"#AF0002\"/><rect x=\"20.45\" y=\"36.30\" width=\"59.10\" height=\"3.20\" rx=\"1.60\" class=\"lg-ring-f\" fill=\"#132034\"/></svg>\n    <h1 class=\"tb-brand\"><span class=\"tb-wm\">Vts<span class=\"tb-hy\">-</span>Tool.com</span> <span class=\"tb-sub\">Video Time Study</span></h1>\n    <span class=\"tb-credit\" data-i18n=\"hdr.credit\">Created by Ilyas Baqloul</span>\n  </div>\n  <div class=\"tb-study\"><input type=\"text\" id=\"hdrName\" class=\"tb-name\" maxlength=\"120\" autocomplete=\"off\" spellcheck=\"false\" aria-label=\"Study name\"></div>\n  <div class=\"tb-actions\">\n    <button type=\"button\" class=\"tb-btn tb-view tb-bal\" id=\"btnBal\" aria-pressed=\"false\" aria-label=\"Line balancing\" data-i18n-aria=\"hdr.balance\"><svg class=\"tb-ico\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1 15V9h3.5v6zM6.25 15V2h3.5v13zM11.5 15V6H15v9z\"/></svg><span data-i18n=\"hdr.balance\">Line balancing</span></button>\n    <button type=\"button\" class=\"tb-btn tb-view tb-ly\" id=\"btnLy\" aria-pressed=\"false\" aria-label=\"Layout\" data-i18n-aria=\"ly.btn\"><svg class=\"tb-ico\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1 1h6v5H1zM9 1h6v8H9zM1 8h6v7H1zM9 11h6v4H9z\"/></svg><span data-i18n=\"ly.btn\">Layout</span></button>\n    <button type=\"button\" class=\"tb-btn\" id=\"btnHelp\" data-i18n=\"hdr.help\">Help</button>\n    <div class=\"tb-menu\">\n      <button type=\"button\" class=\"tb-btn tb-menu-btn\" id=\"btnMenu\" aria-haspopup=\"true\" aria-expanded=\"false\" data-i18n-aria=\"hdr.menu\" data-i18n-title=\"hdr.menu\"><svg class=\"tb-ico\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1 3h14v2H1zM1 7h14v2H1zM1 11h14v2H1z\"/></svg></button>\n      <div class=\"tb-drop\" id=\"tbDrop\" hidden>\n        <div class=\"tb-lang\" role=\"group\" data-i18n-aria=\"hdr.lang\">\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"en\" hreflang=\"en\" lang=\"en\" href=\"https://vts-tool.com/\" title=\"English\">EN</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"fr\" hreflang=\"fr\" lang=\"fr\" href=\"https://vts-tool.com/fr/\" title=\"Fran\u00e7ais\">FR</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"de\" hreflang=\"de\" lang=\"de\" href=\"https://vts-tool.com/de/\" title=\"Deutsch\">DE</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"es\" hreflang=\"es\" lang=\"es\" href=\"https://vts-tool.com/es/\" title=\"Espa\u00f1ol\">ES</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"cs\" hreflang=\"cs\" lang=\"cs\" href=\"https://vts-tool.com/cs/\" title=\"\u010ce\u0161tina\">CS</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"it\" hreflang=\"it\" lang=\"it\" href=\"https://vts-tool.com/it/\" title=\"Italiano\">IT</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"pl\" hreflang=\"pl\" lang=\"pl\" href=\"https://vts-tool.com/pl/\" title=\"Polski\">PL</a>\n          <a class=\"tb-btn tb-lang-btn\" data-lang=\"pt\" hreflang=\"pt\" lang=\"pt\" href=\"https://vts-tool.com/pt/\" title=\"Portugu\u00eas\">PT</a>\n        </div>\n        <button type=\"button\" class=\"tb-item\" id=\"btnTheme\">Theme: auto</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnNewStudy\" data-i18n=\"new.title\">New study</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnOffline\" data-i18n=\"hdr.offline\" data-i18n-title=\"hdr.offline.title\">Offline copy</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnContact\" data-i18n=\"contact.menu\">Contact and feedback</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnNewsM\" data-i18n=\"news.menu\">What\u2019s new</button>\n      </div>\n    </div>\n  </div>\n</header>\n<div class=\"alert-bar\" id=\"alertBar\" role=\"alert\" hidden></div>\n<div class=\"lang-bar\" id=\"langBar\" role=\"status\" hidden></div>\n<div class=\"ex-bar\" id=\"exBar\" hidden></div>\n\n<main class=\"layout pin\" id=\"layout\">\n  <section class=\"col-video\" id=\"colVideo\">\n    <div class=\"video-box\" id=\"videoBox\">\n      <video id=\"video\" playsinline preload=\"auto\" tabindex=\"-1\"></video>\n      <div class=\"video-empty\" id=\"videoEmpty\">\n        <svg class=\"ve-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><rect x=\"4\" y=\"12\" width=\"30\" height=\"24\" rx=\"2\"/><path d=\"M34 21l10-6v18l-10-6z\"/><path d=\"M15 20v8l7-4z\"/></svg>\n        <p class=\"ve-title\" data-i18n=\"ve.title\">Choose the video to study</p>\n        <p class=\"ve-text ve-what\" data-i18n=\"ve.what\">Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.</p>\n        <p class=\"ve-expected\" id=\"veExpected\" hidden></p>\n        <button type=\"button\" class=\"btn primary\" id=\"btnPickVideo\" data-i18n=\"ve.choose\">Choose video file</button>\n        <button type=\"button\" class=\"btn ve-film\" id=\"btnFilm\" data-i18n=\"ve.film\">Film with this phone</button>\n        <button type=\"button\" class=\"btn ve-ex\" id=\"btnExample\" data-i18n=\"ex.try\">Try an example</button>\n        <p class=\"ve-text ve-drop\" data-i18n=\"ve.drop\">Or drop the file here.</p>\n        <p class=\"ve-text small\" data-i18n=\"ve.local\">The video stays on this device. Nothing is uploaded.</p>\n        <p class=\"ve-text small ve-iphone\" data-i18n=\"ve.iphone\">iPhone: in Settings, Camera, choose Formats \u201cMost Compatible\u201d and turn off \u201cHDR Video\u201d. Otherwise the site converts the video.</p>\n        <p class=\"made-last\" id=\"madeLast\" hidden></p>\n        <button type=\"button\" class=\"ve-link\" id=\"btnFilmTips\" data-i18n=\"film.btn\">How to film a workstation</button>\n      </div>\n      <script>try { if (!localStorage.getItem('vts-study-v1') && !localStorage.getItem('vts-visited')) document.getElementById('videoEmpty').className += ' ve-first'; } catch (e) { /* storage blocked */ }</script>\n    </div>\n    <div class=\"video-msg\" id=\"videoMsg\" role=\"alert\" hidden></div>\n    <div class=\"made-bar\" id=\"madeBar\" role=\"status\" hidden></div>\n\n    <div class=\"transport\">\n      <button type=\"button\" class=\"btn t-play\" id=\"btnPlay\" data-i18n-title=\"tr.play.title\"><svg viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M2 1l9 5-9 5z\"/></svg><span>Play</span></button>\n      <div class=\"seg\" role=\"group\">\n        <button type=\"button\" class=\"btn\" data-skip=\"-5\" data-i18n-title=\"tr.back5\" data-i18n-aria=\"tr.back5\"><span class=\"lg\">&minus;5 s</span><span class=\"sm\">&minus;5</span></button>\n        <button type=\"button\" class=\"btn\" data-skip=\"-1\" data-i18n-title=\"tr.back1\" data-i18n-aria=\"tr.back1\"><span class=\"lg\">&minus;1 s</span><span class=\"sm\">&minus;1</span></button>\n        <button type=\"button\" class=\"btn\" data-frame=\"-1\" data-i18n-title=\"tr.prevFrame\" data-i18n-aria=\"tr.prevFrame\"><span class=\"lg\" data-i18n=\"tr.frameBack\">&lsaquo; Frame</span><span class=\"sm\">&lsaquo;</span></button>\n        <button type=\"button\" class=\"btn\" data-frame=\"1\" data-i18n-title=\"tr.nextFrame\" data-i18n-aria=\"tr.nextFrame\"><span class=\"lg\" data-i18n=\"tr.frameFwd\">Frame &rsaquo;</span><span class=\"sm\">&rsaquo;</span></button>\n        <button type=\"button\" class=\"btn\" data-skip=\"1\" data-i18n-title=\"tr.fwd1\" data-i18n-aria=\"tr.fwd1\"><span class=\"lg\">+1 s</span><span class=\"sm\">+1</span></button>\n        <button type=\"button\" class=\"btn\" data-skip=\"5\" data-i18n-title=\"tr.fwd5\" data-i18n-aria=\"tr.fwd5\"><span class=\"lg\">+5 s</span><span class=\"sm\">+5</span></button>\n      </div>\n      <div class=\"time-display wide-only\"><span id=\"timeNow\">00:00.00</span><span class=\"time-total\"> / <span id=\"timeTotal\">00:00.00</span></span></div>\n    </div>\n    <div class=\"transport2\">\n      <span class=\"time-mini narrow-only\" id=\"timeNow2\">00:00.00</span>\n      <div class=\"ctl\"><span class=\"ctl-label\" data-i18n=\"tr.speed\">Speed</span><div class=\"seg wide-only\" id=\"speedSeg\" role=\"group\" data-i18n-aria=\"tr.speed\"></div><select class=\"narrow-only ctl-sel\" id=\"speedSel\" data-i18n-aria=\"tr.speed\"></select></div>\n      <div class=\"ctl\"><span class=\"ctl-label\" data-i18n=\"tr.zoom\">Zoom</span><div class=\"seg wide-only\" id=\"zoomSeg\" role=\"group\" data-i18n-aria=\"tr.zoom\"></div><select class=\"narrow-only ctl-sel\" id=\"zoomSel\" data-i18n-aria=\"tr.zoom\"></select></div>\n      <span class=\"t2-right\">\n        <button type=\"button\" class=\"btn\" id=\"btnSaveVideo\" data-i18n=\"made.save\" hidden>Save the video</button>\n        <button type=\"button\" class=\"btn\" id=\"btnCloseVideo\" data-i18n=\"tr.closeVideo\">Close video</button>\n        <button type=\"button\" class=\"btn\" id=\"btnMute\">Sound on</button>\n      </span>\n    </div>\n\n    <div class=\"band-wrap\" id=\"bandWrap\">\n      <canvas id=\"band\" tabindex=\"-1\" data-i18n-aria=\"band.aria\"></canvas>\n      <canvas id=\"overview\" tabindex=\"-1\" data-i18n-aria=\"overview.aria\"></canvas>\n    </div>\n    <div class=\"legend\" id=\"legend\">\n      <span><i class=\"sw ty-op\"></i><span data-i18n=\"lg.op\">Operation</span></span>\n      <span><i class=\"sw ty-insp\"></i><span data-i18n=\"lg.insp\">Inspection</span></span>\n      <span><i class=\"sw ty-walk\"></i><span data-i18n=\"lg.walk\">Walk</span></span>\n      <span><i class=\"sw ty-wait\"></i><span data-i18n=\"lg.wait\">Wait</span></span>\n      <span><i class=\"sw ty-mach\"></i><span data-i18n=\"lg.mach\">Machine</span></span>\n      <span><i class=\"sw ty-per\"></i><span data-i18n=\"lg.per\">Periodic task</span></span>\n      <span><i class=\"sw ty-int\"></i><span data-i18n=\"lg.int\">Interruption</span></span>\n      <span><i class=\"sw ty-oov\"></i><span data-i18n=\"lg.oov\">Out of view</span></span>\n      <span><i class=\"sw ty-issue\"></i><span data-i18n=\"lg.issue\">Issue</span></span>\n    </div>\n\n    <div class=\"status\" id=\"status\">\n      <div class=\"st-head\"><span class=\"st-tl\" id=\"stTl\"></span><span class=\"st-keys\" id=\"stKeys\"></span></div>\n      <div class=\"st\"><div class=\"st-label\" data-i18n=\"st.cycle\">Cycle</div><div class=\"st-value\" id=\"stCycle\">&ndash;</div><div class=\"st-sub\" id=\"stCycleT\">&nbsp;</div></div>\n      <div class=\"st st-click\" id=\"stCurBox\" role=\"button\" data-i18n-title=\"st.fix\"><div class=\"st-label\" data-i18n=\"st.current\">Current step</div><div class=\"st-value\" id=\"stCur\">&ndash;</div><div class=\"st-sub\" id=\"stCurT\">&nbsp;</div></div>\n      <div class=\"st\"><div class=\"st-label\" data-i18n=\"st.next\">Next planned</div><div class=\"st-value\" id=\"stNext\">&ndash;</div><div class=\"st-sub\" id=\"stNextK\">&nbsp;</div></div>\n    </div>\n  </section>\n\n  <section class=\"col-work\">\n    <div class=\"tl-bar\">\n      <span class=\"tl-label\" data-i18n=\"tl.label\">Timeline</span>\n      <div class=\"tl-tabs\" id=\"tlTabs\"></div>\n    </div>\n    <div class=\"tabs\" id=\"tabs\" role=\"tablist\">\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"record\" id=\"tabbtn-record\" data-i18n=\"tab.record\">Record</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"steps\" id=\"tabbtn-steps\" data-i18n=\"tab.steps\">Steps</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"results\" id=\"tabbtn-results\" data-i18n=\"tab.results\">Results</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"log\" id=\"tabbtn-log\" data-i18n=\"tab.log\">Log</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"study\" id=\"tabbtn-study\" data-i18n=\"tab.study\">Study</button>\n    </div>\n    <div class=\"tab-panel\" id=\"tab-record\" role=\"tabpanel\" aria-labelledby=\"tabbtn-record\"></div>\n    <div class=\"tab-panel\" id=\"tab-steps\" role=\"tabpanel\" aria-labelledby=\"tabbtn-steps\" hidden></div>\n    <div class=\"tab-panel\" id=\"tab-results\" role=\"tabpanel\" aria-labelledby=\"tabbtn-results\" hidden></div>\n    <div class=\"tab-panel\" id=\"tab-log\" role=\"tabpanel\" aria-labelledby=\"tabbtn-log\" hidden></div>\n    <div class=\"tab-panel\" id=\"tab-study\" role=\"tabpanel\" aria-labelledby=\"tabbtn-study\" hidden></div>\n  </section>\n</main>\n<section class=\"bal-view\" id=\"balView\" aria-labelledby=\"balTitle\" hidden></section>\n<section class=\"ly-view\" id=\"lyView\" aria-labelledby=\"lyTitle\" hidden></section>\n<div class=\"bal-tip\" id=\"balTip\" role=\"tooltip\" hidden></div>\n\n<section class=\"about\" id=\"about\" aria-labelledby=\"aboutTitle\">\n  <h2 id=\"aboutTitle\" data-i18n=\"about.t\">.</h2>\n  <p class=\"about-lead\" data-i18n=\"about.p1\">.</p>\n  <h3 data-i18n=\"about.faqT\">.</h3>\n  <div class=\"about-faq\">\n    <details class=\"about-q\"><summary data-i18n=\"about.q1\">.</summary><p data-i18n=\"about.a1\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q2\">.</summary><p data-i18n=\"about.a2\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q3\">.</summary><p data-i18n=\"about.a3\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q4\">.</summary><p data-i18n=\"about.a4\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q5\">.</summary><p data-i18n=\"about.a5\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q6\">.</summary><p data-i18n=\"about.a6\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q7\">.</summary><p data-i18n=\"about.a7\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q8\">.</summary><p data-i18n=\"about.a8\">.</p></details>\n  </div>\n  <p data-i18n=\"about.p3\">.</p>\n  <p class=\"about-links\"><a href=\"https://vts-tool.com/guide/\" hreflang=\"en\" data-i18n=\"about.guide\">User guide: how to use Video Time Study, step by step</a></p>\n</section>\n\n<footer class=\"footer\">\n  <div class=\"ftr-brand\"><svg class=\"ftr-logo\" viewBox=\"0 0 600 301\" role=\"img\" aria-label=\"Vts-Tool.com, Video Time Study\"><g transform=\"translate(215.00 0)\"><circle cx=\"85.00\" cy=\"85.00\" r=\"77.35\" class=\"lg-ring\" fill=\"none\" stroke=\"#132034\" stroke-width=\"15.30\"/><rect x=\"44.66\" y=\"37.06\" width=\"13.67\" height=\"93.16\" rx=\"6.83\" fill=\"#01A25E\"/><rect x=\"67.01\" y=\"78.20\" width=\"13.67\" height=\"52.02\" rx=\"6.83\" fill=\"#FFB904\"/><rect x=\"89.32\" y=\"44.20\" width=\"13.67\" height=\"86.02\" rx=\"6.83\" fill=\"#046AB3\"/><rect x=\"111.67\" y=\"72.42\" width=\"13.67\" height=\"57.80\" rx=\"6.83\" fill=\"#AF0002\"/><rect x=\"34.77\" y=\"61.71\" width=\"100.47\" height=\"5.44\" rx=\"2.72\" class=\"lg-ring-f\" fill=\"#132034\"/></g><path transform=\"translate(47.10 254.40) scale(0.0720 -0.0720)\" d=\"M285.37860394537176 0 -14.034901365705615 700H199.62367223065252L452.10546282245826 94.10470409711684H325.9309559939302L584.1714719271623 700H779.5538694992413L480.4506828528073 0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(102.25 254.40) scale(0.0720 -0.0720)\" d=\"M302.8285280728376 -8.758725341426404Q198.8277693474962 -8.758725341426404 141.10318664643398 42.48292867981791Q83.37860394537178 93.72458270106222 83.37860394537178 198.03566009104702V663.4833080424886H273.3816388467375V200.34597875569045Q273.3816388467375 170.69119878603948 289.0538694992413 154.20864946889228Q304.7261001517451 137.72610015174507 330.3118361153263 137.72610015174507Q363.65629742033383 137.72610015174507 387.8285280728376 155.20864946889225L435.3118361153263 22.41350531107739Q410.55311077389985 6.482549317147193 375.60470409711684 -1.1380880121396055Q340.65629742033383 -8.758725341426404 302.8285280728376 -8.758725341426404ZM4.034142640364188 400.61911987860395V542.345220030349H396.55311077389985V400.61911987860395Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(134.44 254.40) scale(0.0720 -0.0720)\" d=\"M258.1039453717754 -8.758725341426404Q189.03490136570562 -8.758725341426404 123.36229135053111 7.017071320182095Q57.6896813353566 22.792867981790593 17.861911987860395 47.10318664643399L74.89681335356602 176.86342943854325Q112.65553869499242 153.86342943854325 163.6900606980273 140.24279210925644Q214.72458270106222 126.62215477996965 264.0349013657056 126.62215477996965Q311.551593323217 126.62215477996965 330.2408952959029 136.72534142640365Q348.93019726858876 146.82852807283763 348.93019726858876 164.4142640364188Q348.93019726858876 179.8277693474962 331.6198786039454 187.5Q314.30955993930195 195.1722306525038 285.84408194233686 199.2583459787557Q257.37860394537176 203.3444613050076 223.25796661608496 207.9996206373293Q189.13732928679818 212.65477996965097 154.67185128983309 221.4996206373293Q120.20637329286798 230.3444613050076 91.74089529590287 247.7238239757208Q63.27541729893778 265.103186646434 45.965098634294385 294.82738998482546Q28.65477996965099 324.551593323217 28.65477996965099 371.2412746585736Q28.65477996965099 422.6206373292868 59.22382397572079 463.0690440060698Q89.7928679817906 503.5174506828528 148.7242033383915 527.3106980273142Q207.6555386949924 551.1039453717755 292.51820940819425 551.1039453717755Q350.34597875569045 551.1039453717755 408.63922610015175 539.6384673748103Q466.93247344461304 528.1729893778452 507.44992412746586 505.4833080424886L450.41502276176027 375.72306525037936Q409.96661608497726 398.72306525037936 370.08725341426407 407.22306525037936Q330.2078907435508 415.72306525037936 294.27693474962064 415.72306525037936Q246.31183611532626 415.72306525037936 226.4673748103187 404.6198786039454Q206.6229135053111 393.5166919575114 206.6229135053111 377.6206373292868Q206.6229135053111 361.5864946889226 223.9332321699545 353.4142640364188Q241.2435508345979 345.24203338391504 269.709028831563 340.8455993930197Q298.1745068285281 336.44916540212444 332.2951441578149 331.7940060698027Q366.41578148710164 327.138846737481 400.53641881638845 317.94916540212444Q434.65705614567526 308.7594840667678 463.12253414264035 291.5352807283763Q491.58801213960544 274.3110773899848 508.89833080424887 244.74203338391501Q526.2086494688923 215.17298937784523 526.2086494688923 168.79362670713203Q526.2086494688923 119.48330804248862 495.82928679817906 79.00037936267071Q465.44992412746586 38.51745068285281 405.70827010622156 14.879362670713203Q345.96661608497726 -8.758725341426404 258.1039453717754 -8.758725341426404Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(173.82 254.40) scale(0.0720 -0.0720)\" d=\"M48.41350531107739 211.75796661608499V358.48406676783003H339.7245827010622V211.75796661608499Z\" fill=\"#FFB904\"/><path transform=\"translate(201.76 254.40) scale(0.0720 -0.0720)\" d=\"M218.61987860394538 0V543.0667678300456H4V700H631.3808801213961V543.0667678300456H416.76100151745067V0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(247.48 254.40) scale(0.0720 -0.0720)\" d=\"M333.1039453717754 -8.758725341426404Q243.9636386006644 -8.758725341426404 175.0334126235492 27.275796661608496Q106.10318664643398 63.3103186646434 66.49962063732929 126.59270675265554Q26.896054628224583 189.87509484066769 26.896054628224583 271.5699310452557Q26.896054628224583 353.5864946889226 66.55769703546088 416.6690308108465Q106.21933944269716 479.75156693277034 175.02355439509668 515.4277561522729Q243.8277693474962 551.1039453717755 333.1039453717754 551.1039453717755Q422.3801213960546 551.1039453717755 491.7016725867024 515.4478742181977Q561.0232237773502 479.79180306462 600.1675299463382 416.7443984906544Q639.3118361153263 353.6969939166888 639.3118361153263 271.56625450844956Q639.3118361153263 189.7587253414264 600.2082701062216 126.53452200303491Q561.1047040971168 63.3103186646434 491.667335650301 27.275796661608496Q422.2299672034852 -8.758725341426404 333.1039453717754 -8.758725341426404ZM333.1039453717754 142.41578148710167Q365.551593323217 142.41578148710167 391.13732928679815 157.36380880121396Q416.72306525037936 172.31183611532623 431.82625189681335 201.62177541729892Q446.92943854324733 230.9317147192716 446.92943854324733 271.5565117735072Q446.92943854324733 313.103186646434 431.82625189681335 341.5682852807284Q416.72306525037936 370.0333839150228 391.13732928679815 384.98141122913506Q365.551593323217 399.92943854324733 333.2591047040971 399.92943854324733Q300.96661608497726 399.92943854324733 275.3808801213961 384.98141122913506Q249.7951441578149 370.0333839150228 234.5367981790592 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5565117735072Q219.2784522003035 230.9317147192716 234.5367981790592 201.62177541729892Q249.7951441578149 172.31183611532623 275.35897527448003 157.36380880121396Q300.92280639114523 142.41578148710167 333.1039453717754 142.41578148710167Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(295.43 254.40) scale(0.0720 -0.0720)\" d=\"M333.1039453717754 -8.758725341426404Q243.9636386006644 -8.758725341426404 175.0334126235492 27.275796661608496Q106.10318664643398 63.3103186646434 66.49962063732929 126.59270675265554Q26.896054628224583 189.87509484066769 26.896054628224583 271.5699310452557Q26.896054628224583 353.5864946889226 66.55769703546088 416.6690308108465Q106.21933944269716 479.75156693277034 175.02355439509668 515.4277561522729Q243.8277693474962 551.1039453717755 333.1039453717754 551.1039453717755Q422.3801213960546 551.1039453717755 491.7016725867024 515.4478742181977Q561.0232237773502 479.79180306462 600.1675299463382 416.7443984906544Q639.3118361153263 353.6969939166888 639.3118361153263 271.56625450844956Q639.3118361153263 189.7587253414264 600.2082701062216 126.53452200303491Q561.1047040971168 63.3103186646434 491.667335650301 27.275796661608496Q422.2299672034852 -8.758725341426404 333.1039453717754 -8.758725341426404ZM333.1039453717754 142.41578148710167Q365.551593323217 142.41578148710167 391.13732928679815 157.36380880121396Q416.72306525037936 172.31183611532623 431.82625189681335 201.62177541729892Q446.92943854324733 230.9317147192716 446.92943854324733 271.5565117735072Q446.92943854324733 313.103186646434 431.82625189681335 341.5682852807284Q416.72306525037936 370.0333839150228 391.13732928679815 384.98141122913506Q365.551593323217 399.92943854324733 333.2591047040971 399.92943854324733Q300.96661608497726 399.92943854324733 275.3808801213961 384.98141122913506Q249.7951441578149 370.0333839150228 234.5367981790592 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5565117735072Q219.2784522003035 230.9317147192716 234.5367981790592 201.62177541729892Q249.7951441578149 172.31183611532623 275.35897527448003 157.36380880121396Q300.92280639114523 142.41578148710167 333.1039453717754 142.41578148710167Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(343.38 254.40) scale(0.0720 -0.0720)\" d=\"M61.48179059180576 0V742H251.48482549317146V0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(365.92 254.40) scale(0.0720 -0.0720)\" d=\"M141.44916540212444 -8.758725341426404Q93.2071320182094 -8.758725341426404 60.17223065250379 23.08649468892261Q27.137329286798177 54.931714719271625 27.137329286798177 104.48406676783004Q27.137329286798177 155.03641881638848 60.17223065250379 185.69195751138088Q93.2071320182094 216.34749620637328 141.44916540212444 216.34749620637328Q189.38088012139605 216.34749620637328 222.41578148710167 185.69195751138088Q255.4506828528073 155.03641881638848 255.4506828528073 104.48406676783004Q255.4506828528073 54.931714719271625 222.41578148710167 23.08649468892261Q189.38088012139605 -8.758725341426404 141.44916540212444 -8.758725341426404Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(386.29 254.40) scale(0.0720 -0.0720)\" d=\"M337.79362670713203 -8.758725341426404Q247.5174506828528 -8.758725341426404 177.1551593323217 26.930955993930198Q106.7928679817906 62.6206373292868 66.84446130500758 126.18968133535661Q26.896054628224583 189.7587253414264 26.896054628224583 271.5174506828528Q26.896054628224583 353.5864946889226 66.84446130500758 416.6555386949924Q106.7928679817906 479.7245827010622 177.1551593323217 515.4142640364189Q247.5174506828528 551.1039453717755 337.79362670713203 551.1039453717755Q430.035660091047 551.1039453717755 497.00151745068285 512.1380880121396Q563.9673748103187 473.1722306525038 592.2086494688923 402.4476479514416L445.4476479514416 326.99848254931715Q425.9650986342944 364.99848254931715 397.8964339908953 382.46396054628224Q369.8277693474962 399.92943854324733 336.79362670713203 399.92943854324733Q304.34597875569045 399.92943854324733 277.41540212443095 384.98141122913506Q250.48482549317146 370.0333839150228 234.88163884673747 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5174506828528Q219.2784522003035 229.9317147192716 234.88163884673747 201.12177541729892Q250.48482549317146 172.31183611532623 277.41540212443095 157.36380880121396Q304.34597875569045 142.41578148710167 336.79362670713203 142.41578148710167Q369.8277693474962 142.41578148710167 397.8964339908953 159.72610015174507Q425.9650986342944 177.03641881638848 445.4476479514416 215.34673748103188L592.2086494688923 139.89757207890744Q563.9673748103187 69.48330804248862 497.00151745068285 30.362291350531105Q430.035660091047 -8.758725341426404 337.79362670713203 -8.758725341426404Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(429.71 254.40) scale(0.0720 -0.0720)\" d=\"M333.1039453717754 -8.758725341426404Q243.9636386006644 -8.758725341426404 175.0334126235492 27.275796661608496Q106.10318664643398 63.3103186646434 66.49962063732929 126.59270675265554Q26.896054628224583 189.87509484066769 26.896054628224583 271.5699310452557Q26.896054628224583 353.5864946889226 66.55769703546088 416.6690308108465Q106.21933944269716 479.75156693277034 175.02355439509668 515.4277561522729Q243.8277693474962 551.1039453717755 333.1039453717754 551.1039453717755Q422.3801213960546 551.1039453717755 491.7016725867024 515.4478742181977Q561.0232237773502 479.79180306462 600.1675299463382 416.7443984906544Q639.3118361153263 353.6969939166888 639.3118361153263 271.56625450844956Q639.3118361153263 189.7587253414264 600.2082701062216 126.53452200303491Q561.1047040971168 63.3103186646434 491.667335650301 27.275796661608496Q422.2299672034852 -8.758725341426404 333.1039453717754 -8.758725341426404ZM333.1039453717754 142.41578148710167Q365.551593323217 142.41578148710167 391.13732928679815 157.36380880121396Q416.72306525037936 172.31183611532623 431.82625189681335 201.62177541729892Q446.92943854324733 230.9317147192716 446.92943854324733 271.5565117735072Q446.92943854324733 313.103186646434 431.82625189681335 341.5682852807284Q416.72306525037936 370.0333839150228 391.13732928679815 384.98141122913506Q365.551593323217 399.92943854324733 333.2591047040971 399.92943854324733Q300.96661608497726 399.92943854324733 275.3808801213961 384.98141122913506Q249.7951441578149 370.0333839150228 234.5367981790592 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5565117735072Q219.2784522003035 230.9317147192716 234.5367981790592 201.62177541729892Q249.7951441578149 172.31183611532623 275.35897527448003 157.36380880121396Q300.92280639114523 142.41578148710167 333.1039453717754 142.41578148710167Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(477.66 254.40) scale(0.0720 -0.0720)\" d=\"M61.48179059180576 0V542.345220030349H242.34673748103188V390.6206373292868L206.41502276176024 434Q235.86342943854325 492.2761760242792 287.70827010622156 521.6900606980273Q339.55311077389985 551.1039453717755 404.48406676783003 551.1039453717755Q477.41502276176027 551.1039453717755 532.9150227617603 513.7591047040971Q588.4150227617603 476.4142640364188 607.1047040971168 397.2761760242792L545.242033383915 410.448406676783Q573.690440060698 475.6555386949924 632.1213960546282 513.379742033384Q690.5523520485584 551.1039453717755 767.4833080424886 551.1039453717755Q830.4142640364188 551.1039453717755 879.9142640364188 525.7591047040971Q929.4142640364188 500.4142640364188 957.7591047040971 447.1900606980273Q986.1039453717755 393.96585735963583 986.1039453717755 309.8277693474962V0H796.1009104704096V278.8960546282246Q796.1009104704096 337.03338391502274 773.9806525037936 363.34332321699543Q751.8603945371775 389.6532625189681 713.9992412746585 389.6532625189681Q686.551593323217 389.6532625189681 664.9658573596358 376.8603945371775Q643.3801213960546 364.06752655538696 631.0872534142641 337.7575872534143Q618.7943854324734 311.4476479514416 618.7943854324734 268.551593323217V0H428.79135053110775V278.8960546282246Q428.79135053110775 337.03338391502274 407.36077389984825 363.34332321699543Q385.93019726858876 389.6532625189681 346.6896813353566 389.6532625189681Q319.24203338391504 389.6532625189681 297.6562974203339 376.8603945371775Q276.07056145675267 364.06752655538696 263.77769347496206 337.7575872534143Q251.48482549317146 311.4476479514416 251.48482549317146 268.551593323217V0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(140.41 295.10) scale(0.0210 -0.0210)\" d=\"M293.2918924777802 0 -9.345545198352482 700H166.21200953826144L429.53793626707136 80.03663559505745H326.8102102753089L594.7225233037069 700H755.5209191415565L453.48688489052677 0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(163.22 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H245.3311294168654V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(177.24 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H400.79319314979404Q515.3795794493822 700 602.2676674615218 656.5948948623455Q689.1557554736614 613.1897897246911 737.9489486234554 534.8880880121396Q786.7421417732495 456.5863862995881 786.7421417732495 350Q786.7421417732495 243.81021027530892 737.9489486234554 165.31021027530892Q689.1557554736614 86.8102102753089 602.2676674615218 43.40510513765445Q515.3795794493822 0 400.79319314979404 0ZM245.3311294168654 132.71070886624756H393.20680685020596Q463.11911987860395 132.71070886624756 514.4973986559722 159.25325168003468Q565.8756774333406 185.7957944938218 594.4182202471277 234.76045957077824Q622.9607630609148 283.7251246477347 622.9607630609148 350Q622.9607630609148 417.2748753522653 594.4182202471277 465.73954042922173Q565.8756774333406 514.2042055061781 514.4973986559722 540.7467483199653Q463.11911987860395 567.2892911337524 393.20680685020596 567.2892911337524H245.3311294168654Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(201.73 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H611.5183177975288V569.6688705831347H243.74474311727727V130.3311294168654H625.1217212226317V0ZM231.96856709299806 292.32592672880986V418.2774766962931H569.3115109473227V292.32592672880986Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(222.96 295.10) scale(0.0210 -0.0210)\" d=\"M422.519354722162 -11.776176024279211Q339.86593684514776 -11.776176024279211 269.64828383553726 15.22382397572079Q199.43063082592673 42.22382397572079 147.93913938868417 91.12042055061782Q96.44764795144158 140.01701712551485 67.85275308909604 205.95268766080028Q39.257858226750486 271.88835819608573 39.257858226750486 350.1869669567372Q39.257858226750486 428.4855757173886 67.85406632278774 494.14929431560176Q96.450274418825 559.813012913815 148.01720130363896 608.8816627485082Q199.58412818845292 657.9503125832016 269.5651650922421 684.8632443037404Q339.5462019960313 711.7761760242793 422.1897897246911 711.7761760242793Q505.17277259917626 711.7761760242793 574.8107657706482 684.9705610202856Q644.4487589421201 658.1649460162919 695.8873302737871 609.2906811776049Q747.3259016054542 560.416416338918 775.9221097014915 494.54446440184574Q804.5183177975288 428.6725124647735 804.5183177975288 350.1266266142269Q804.5183177975288 271.5807407636803 775.9234229351832 205.49717723204608Q747.3285280728377 139.41361370041187 695.888643507479 90.62433384206Q644.4487589421201 41.835053983708136 574.8107657706482 15.029438979714463Q505.17277259917626 -11.776176024279211 422.519354722162 -11.776176024279211ZM422.17203166909866 125.52091914155648Q469.0680685020594 125.52091914155648 508.77572841647196 141.83461171250536Q548.4833883308845 158.14830428345425 578.084638019767 188.10097850201328Q607.6858877086495 218.0536527205723 624.2114133969218 259.18346019657326Q640.7369390851941 300.3132676725742 640.7369390851941 350.1821595245594Q640.7369390851941 400.05105137654454 624.2792115345737 440.9468803315555Q607.8214839839535 481.8427092865665 578.1913573105155 511.828826970907Q548.5612306370776 541.8149446552475 508.83240762516095 558.1470127568455Q469.1035846132442 574.4790808584435 422.2075477802835 574.4790808584435Q375.3115109473228 574.4790808584435 335.4248137286662 558.1274423641048Q295.53811651000956 541.7758038697662 265.80403269217186 511.7540680706378Q236.06994887433413 481.7323322715094 219.55459290670967 440.78914296606615Q203.03923693908519 399.84595366062285 203.03923693908519 350.19915285459064Q203.03923693908519 300.5523520485584 219.5267861880153 259.42254457255746Q236.01433543694546 218.2927370965565 265.6982581151777 188.13065209477728Q295.38218079340993 157.96856709299806 335.32908781477397 141.74474311727727Q375.27599483613795 125.52091914155648 422.17203166909866 125.52091914155648Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(260.91 295.10) scale(0.0210 -0.0210)\" d=\"M227.70550617819208 0V567.6858877086495H4V700H613.7957944938219V567.6858877086495H390.0902883156298V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(281.03 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H245.3311294168654V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(295.05 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H216.60600476913072L514.7081075222198 205.58898764361587H444.08508562757424L736.6008020810752 700H870.2604595707783L871.6570561456753 0H720.0144157814871L718.6178192065901 466.51051376544547H747.1871883806633L512.9149143724258 74.46466507695644H440.2918924777802L201.03663559505745 466.51051376544547H234.58898764361587V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(322.25 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H611.5183177975288V569.6688705831347H243.74474311727727V130.3311294168654H625.1217212226317V0ZM231.96856709299806 292.32592672880986V418.2774766962931H569.3115109473227V292.32592672880986Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(356.56 295.10) scale(0.0210 -0.0210)\" d=\"M313.17277259917626 -11.776176024279211Q229.39659657489702 -11.776176024279211 152.2238239757208 10.63743767613267Q75.05105137654455 33.05105137654455 28.085085627574244 68.67147192716237L82.9659657489703 191.19239106871885Q127.53533492304356 159.175373943204 189.33703663559504 138.65835681768914Q251.13873834814655 118.14133969217428 313.9659657489703 118.14133969217428Q362.4476479514416 118.14133969217428 391.9038044656406 127.77026880554953Q421.35996097983957 137.39919791892478 435.1871883806633 154.34684587036634Q449.0144157814871 171.29449382180792 449.0144157814871 192.94894862345546Q449.0144157814871 221 426.80760893128115 237.7323325384782Q404.60080208107524 254.46466507695644 368.5922935183178 264.9816822024713Q332.58378495556036 275.4986993279861 289.1701712551485 284.9038044656406Q245.75655755473662 294.30890960329504 202.14464556687622 308.00720789074353Q158.53273357901583 321.7055061781921 122.5242250162584 343.8004010405376Q86.51571645350097 365.89529590288316 64.30890960329504 402.18848905267726Q42.1021027530891 438.4816822024713 42.1021027530891 494.4816822024713Q42.1021027530891 554.0510513765446 74.37827877736831 603.3272274008239Q106.65445480164752 652.603403425103 172.21531541296338 682.1897897246911Q237.7761760242792 711.7761760242793 337.3285280728376 711.7761760242793Q402.89789724691093 711.7761760242793 467.0706698460872 696.1727725991763Q531.2434424452634 680.5693691740732 580.2094081942337 650.1727725991763L529.7251246477347 527.4450466074138Q481.3455451983525 555.2552568827227 431.94044006069805 568.5569585952742Q382.5353349230436 581.8586603078257 335.9319314979406 581.8586603078257Q288.65705614567526 581.8586603078257 259.00260134402777 571.031432907002Q229.34814654238022 560.2042055061781 216.02091914155648 542.3599609798396Q202.6936917407327 524.515716453501 202.6936917407327 502.2578582267505Q202.6936917407327 474.60340342510295 224.90049859093864 458.06936917407324Q247.1073054411446 441.5353349230436 283.115814003902 431.51831779752877Q319.12432256665943 421.5013006720139 362.7362345545198 411.99279210925647Q406.3481465423802 402.484283546499 449.7617602427921 389.087686971602Q493.175373943204 375.69109039670496 529.1838825059615 353.89789724691093Q565.1923910687188 332.10470409711684 587.3991979189248 296.0098092347713Q609.6060047691308 259.91491437242576 609.6060047691308 204.91491437242576Q609.6060047691308 146.34554519835248 577.0281270323001 97.06936917407327Q544.4502492954693 47.793193149794064 478.7859852590505 18.008508562757427Q413.12172122263166 -11.776176024279211 313.17277259917626 -11.776176024279211Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(377.10 295.10) scale(0.0210 -0.0210)\" d=\"M227.70550617819208 0V567.6858877086495H4V700H613.7957944938219V567.6858877086495H390.0902883156298V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(397.22 295.10) scale(0.0210 -0.0210)\" d=\"M393.8102102753089 -11.776176024279211Q244.8782787773683 -11.776176024279211 160.912313028398 71.0Q76.9463472794277 153.7761760242792 76.9463472794277 308.36256232386734V700H239.3311294168654V313.5523520485584Q239.3311294168654 214.24344244526338 280.39919791892476 169.88218079340993Q321.4672664209842 125.52091914155648 395.20680685020596 125.52091914155648Q469.34294385432474 125.52091914155648 510.2127140689356 169.88218079340993Q551.0824842835465 214.24344244526338 551.0824842835465 313.5523520485584V700H710.6740732711901V308.36256232386734Q710.6740732711901 153.7761760242792 626.7081075222197 71.0Q542.7421417732495 -11.776176024279211 393.8102102753089 -11.776176024279211Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(420.91 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H400.79319314979404Q515.3795794493822 700 602.2676674615218 656.5948948623455Q689.1557554736614 613.1897897246911 737.9489486234554 534.8880880121396Q786.7421417732495 456.5863862995881 786.7421417732495 350Q786.7421417732495 243.81021027530892 737.9489486234554 165.31021027530892Q689.1557554736614 86.8102102753089 602.2676674615218 43.40510513765445Q515.3795794493822 0 400.79319314979404 0ZM245.3311294168654 132.71070886624756H393.20680685020596Q463.11911987860395 132.71070886624756 514.4973986559722 159.25325168003468Q565.8756774333406 185.7957944938218 594.4182202471277 234.76045957077824Q622.9607630609148 283.7251246477347 622.9607630609148 350Q622.9607630609148 417.2748753522653 594.4182202471277 465.73954042922173Q565.8756774333406 514.2042055061781 514.4973986559722 540.7467483199653Q463.11911987860395 567.2892911337524 393.20680685020596 567.2892911337524H245.3311294168654Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(445.39 295.10) scale(0.0210 -0.0210)\" d=\"M256.912313028398 0V285.88088012139605L294.0170171255148 187.7225233037069L-14.328528072837635 700H158.03923693908519L393.5549533925862 307.2434424452634H295.0170171255148L531.9293301539128 700H690.5379362670714L382.9855842185129 187.7225233037069L419.2970951658357 285.88088012139605V0Z\" class=\"lg-sub\" fill=\"#56617A\"/></svg></div>\n  <span data-i18n=\"ftr.rights\">\u00a9 2026 Ilyas Baqloul. All rights reserved. Free to use.</span>\n  <a href=\"https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE\" target=\"_blank\" rel=\"noopener\" data-i18n=\"ftr.terms\">Terms of use</a>\n  <button type=\"button\" class=\"ftr-link\" id=\"btnContactF\" data-i18n=\"contact.menu\">Contact and feedback</button>\n  <button type=\"button\" class=\"ftr-link\" id=\"btnLegal\" data-i18n=\"ftr.legal\">Legal notice</button>\n  <button type=\"button\" class=\"ftr-link\" id=\"btnNews\" data-i18n-title=\"news.title\">V5.3</button>\n  <nav class=\"ftr-langs\" data-i18n-aria=\"hdr.lang\">\n    <a data-lang=\"en\" hreflang=\"en\" lang=\"en\" href=\"https://vts-tool.com/\">English</a>\n    <a data-lang=\"fr\" hreflang=\"fr\" lang=\"fr\" href=\"https://vts-tool.com/fr/\">Fran\u00e7ais</a>\n    <a data-lang=\"de\" hreflang=\"de\" lang=\"de\" href=\"https://vts-tool.com/de/\">Deutsch</a>\n    <a data-lang=\"es\" hreflang=\"es\" lang=\"es\" href=\"https://vts-tool.com/es/\">Espa\u00f1ol</a>\n    <a data-lang=\"cs\" hreflang=\"cs\" lang=\"cs\" href=\"https://vts-tool.com/cs/\">\u010ce\u0161tina</a>\n    <a data-lang=\"it\" hreflang=\"it\" lang=\"it\" href=\"https://vts-tool.com/it/\">Italiano</a>\n    <a data-lang=\"pl\" hreflang=\"pl\" lang=\"pl\" href=\"https://vts-tool.com/pl/\">Polski</a>\n    <a data-lang=\"pt\" hreflang=\"pt\" lang=\"pt\" href=\"https://vts-tool.com/pt/\">Portugu\u00eas</a>\n  </nav>\n</footer>\n\n<div class=\"overlay\" id=\"overlay\" hidden></div>\n<div class=\"toast\" id=\"toast\" role=\"status\" aria-live=\"polite\" hidden></div>\n<input type=\"file\" id=\"fileVideo\" accept=\"video/*,.mp4,.m4v,.mov,.webm,.mkv,.avi,.wmv,.mts,.m2ts,.3gp,.mpg,.mpeg,.flv,.ogv\" hidden>\n<input type=\"file\" id=\"fileCam\" accept=\"video/*\" capture=\"environment\" hidden>\n<input type=\"file\" id=\"fileStudy\" accept=\".json,application/json\" hidden>\n<input type=\"file\" id=\"fileMct\" accept=\".xlsx,.xlsm\" hidden>\n<input type=\"file\" id=\"fileTct\" accept=\".xlsm,.xlsx\" hidden>\n<input type=\"file\" id=\"fileWcb\" accept=\".xlsx,.xlsm\" hidden>\n<input type=\"file\" id=\"filePlan\" accept=\"image/*,.pdf,.PDF,application/pdf,.dxf,.DXF\" hidden>\n</div>\n", APP_H = 'b3f72be612';
+  var d = document, cs = d.currentScript, CSS = ":root {\n  --navy: #132034;\n  --navy-deep: #0B1526;\n  --steel: #132034;\n  --steel-line: #132034;\n  --c-op: #00B050; --c-insp: #0070C0; --c-walk: #FFC000; --c-wait: #C00000; --c-mach: #7F7F7F;\n  --c-per: #7030A0; --c-int: #404040; --c-oov: #A6A6A6; --c-issue: #FF6600;\n  --bg: #F1F5FB;\n  --surface: #FFFFFF;\n  --surface-2: #F6F7FC;\n  --tint: #E9EEF6;\n  --text: #1C2333;\n  --muted: #5F6780;\n  --border: #E0E4EE;\n  --border-strong: #C3C9D8;\n  --input-bg: #FFFFFF;\n  --btn-bg: #FFFFFF;\n  --btn-hover: #EDF1F8;\n  --focus: #132034;\n  --accent: #132034;\n  --row-alt: #FAFBFD;\n  --row-now: #E3EAF5;\n  --ref-bg: #FFF5D1;\n  --warn-bg: #FFF7DE;\n  --warn-line: #E2B437;\n  --danger: #B42318;\n  --band-bg: #FFFFFF;\n  --band-grid: #DCE1EC;\n  --band-out: #F1F3F8;\n  --band-text: #3D4558;\n  --cursor: #132034;\n  --cycle-line: #132034;\n  --ref-col: #EEF2F8;\n  --title: #132034;\n  --on-navy: #FFFFFF;\n  --logo-ink: #132034;\n  --logo-dark: #14214E;\n  --shadow: 0 1px 2px rgba(28, 35, 51, .06);\n  color-scheme: light;\n  box-sizing: border-box;\n  padding-top: env(safe-area-inset-top, 0px);\n  padding-bottom: env(safe-area-inset-bottom, 0px);\n}\n@media (prefers-color-scheme: dark) {\n  :root:not([data-theme=\"light\"]) {\n    --bg: #0D1222; --surface: #141A2E; --surface-2: #19203A; --tint: #1F2850; --text: #E5E8F2; --muted: #98A1BC;\n    --border: #252E4D; --border-strong: #38446B; --input-bg: #10162A; --btn-bg: #18203A; --btn-hover: #222C50;\n    --navy: #3A4FC4; --navy-deep: #4B60D6; --steel: #3A4FC4; --steel-line: #3A4FC4;\n    --focus: #9CACFF; --accent: #9CACFF; --row-alt: #121830; --row-now: #24306A; --ref-bg: #3A3217; --warn-bg: #2E2914;\n    --warn-line: #C9A02C; --danger: #FF8A80; --band-bg: #0F1529; --band-grid: #2A3354; --band-out: #161D35;\n    --band-text: #C3C9DB; --cursor: #FFFFFF; --cycle-line: #9CACFF; --ref-col: #1B2445; --title: #C3CDFF; --logo-ink: #E6E9F5; --logo-dark: #A9B5E8;\n    --shadow: 0 1px 2px rgba(0, 0, 0, .3);\n    color-scheme: dark;\n  }\n}\n:root[data-theme=\"dark\"] {\n  --bg: #0D1222; --surface: #141A2E; --surface-2: #19203A; --tint: #1F2850; --text: #E5E8F2; --muted: #98A1BC;\n  --border: #252E4D; --border-strong: #38446B; --input-bg: #10162A; --btn-bg: #18203A; --btn-hover: #222C50;\n  --navy: #3A4FC4; --navy-deep: #4B60D6; --steel: #3A4FC4; --steel-line: #3A4FC4;\n  --focus: #9CACFF; --accent: #9CACFF; --row-alt: #121830; --row-now: #24306A; --ref-bg: #3A3217; --warn-bg: #2E2914;\n  --warn-line: #C9A02C; --danger: #FF8A80; --band-bg: #0F1529; --band-grid: #2A3354; --band-out: #161D35;\n  --band-text: #C3C9DB; --cursor: #FFFFFF; --cycle-line: #9CACFF; --ref-col: #1B2445; --title: #C3CDFF; --logo-ink: #E6E9F5; --logo-dark: #A9B5E8;\n  --shadow: 0 1px 2px rgba(0, 0, 0, .3);\n  color-scheme: dark;\n}\n*, *::before, *::after { box-sizing: border-box; }\nhtml { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }\nbody {\n  margin: 0; background: var(--bg); color: var(--text);\n  font: 14px/1.45 \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", Arial, sans-serif;\n}\nbody::before { content: \"\"; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }\n[hidden] { display: none !important; }\nbutton, input, select, textarea { font: inherit; color: inherit; }\nh2 { font-size: 16px; margin: 0 0 8px; font-weight: bold; color: var(--title); }\nh3 { font-size: 14px; margin: 14px 0 6px; font-weight: bold; }\np { margin: 0 0 8px; }\n.small, .note { font-size: 12px; color: var(--muted); }\n\n/* Header bar */\n.topbar {\n  background: var(--navy); color: #fff;\n  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; padding: 8px 16px;\n}\n.tb-title { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }\n.tb-logo { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; flex: none; }\n.tb-credit { margin-left: 4px; }\n.tb-title h1 { font-size: 19px; margin: 0; font-weight: bold; letter-spacing: 0; }\n.tb-credit { font-size: 12px; color: #D6DCF2; }\n.tb-study { font-size: 13px; color: #fff; padding-left: 14px; border-left: 1px solid rgba(255, 255, 255, .35); min-height: 18px; }\n.tb-study:empty { display: none; }\n.tb-actions { margin-left: auto; display: flex; gap: 6px; flex-wrap: nowrap; align-items: center; }\n.tb-actions > * { flex: none; }\n.tb-actions .tb-btn { white-space: nowrap; }\n.tb-btn {\n  background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .6);\n  min-height: 32px; padding: 4px 10px; font-size: 13px; cursor: pointer; border-radius: 2px;\n}\n.tb-btn:hover { background: rgba(255, 255, 255, .14); }\n.tb-btn:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }\n.tb-lang { display: inline-flex; }\n.tb-lang .tb-btn { border-radius: 0; min-width: 38px; }\n.tb-lang .tb-btn + .tb-btn { margin-left: -1px; }\n.tb-lang .tb-btn[aria-pressed=\"true\"] { background: #fff; color: var(--navy); font-weight: bold; }\n.alert-bar { background: #FFF2CC; color: #3A2E00; border-bottom: 1px solid #BF9000; padding: 8px 16px; font-weight: bold; }\n.alert-bar p { margin: 0; max-width: 1800px; }\n\n/* Layout */\n.layout {\n  display: grid; grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);\n  gap: 12px; padding: 12px; max-width: 1800px; margin: 0 auto; align-items: start;\n}\n.col-video { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); min-width: 0; }\n.col-work { min-width: 0; }\n@media (min-width: 900px) and (max-height: 640px) { .col-video { position: static; } }\n@media (max-width: 899px) {\n  .layout { grid-template-columns: minmax(0, 1fr); padding: 8px; gap: 8px; }\n  .col-video { position: static; }\n  .layout.pin .col-video { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-bottom: 6px; border-bottom: 1px solid var(--border); }\n}\n@media (max-width: 899px) and (max-height: 560px) { .layout.pin .col-video { position: static; border-bottom: 0; } }\n\n/* Buttons and inputs */\n.btn {\n  min-height: 36px; padding: 6px 12px; border: 1px solid var(--border-strong); background: var(--btn-bg);\n  color: var(--text); border-radius: 2px; cursor: pointer; touch-action: manipulation; line-height: 1.2;\n}\n.btn:hover { background: var(--btn-hover); }\n.btn:disabled { opacity: .45; cursor: default; }\n.btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }\n.btn.primary:hover { background: #1E2E75; }\n.btn.danger { color: var(--danger); border-color: var(--danger); background: var(--surface); }\n.btn.small { min-height: 30px; padding: 3px 8px; font-size: 13px; }\n.btn[aria-pressed=\"true\"] { background: var(--steel); border-color: var(--steel); color: #fff; }\nbutton:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, canvas:focus-visible, .panel:focus-visible {\n  outline: 2px solid var(--focus); outline-offset: 1px;\n}\ninput[type=\"text\"], input[type=\"number\"], input[type=\"date\"], select, textarea {\n  background: var(--input-bg); border: 1px solid var(--border-strong); border-radius: 0; padding: 5px 7px; min-height: 34px; width: 100%;\n}\ntextarea { resize: vertical; line-height: 1.4; }\n.seg { display: inline-flex; flex-wrap: wrap; }\n.seg .btn { border-radius: 0; margin-left: -1px; padding: 6px 9px; }\n.seg .btn:first-child { margin-left: 0; }\n.btn-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }\n@media (pointer: coarse) {\n  .btn { min-height: 44px; }\n  .btn.small { min-height: 40px; }\n  input[type=\"text\"], input[type=\"number\"], input[type=\"date\"], select, textarea { font-size: 16px; min-height: 42px; }\n}\n\n/* Video */\n.video-box {\n  position: relative; background: #000; border: 1px solid var(--border); aspect-ratio: 16 / 9; max-height: 52vh; width: 100%;\n  display: flex; align-items: center; justify-content: center; overflow: hidden;\n}\n.video-box video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }\n.video-box.drag { outline: 3px dashed var(--c-walk); outline-offset: -6px; }\n.video-empty {\n  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;\n  text-align: center; color: #fff; padding: 16px; background: #1B1F27;\n}\n.video-empty .ve-title { font-size: 19px; font-weight: bold; margin-bottom: 12px; }\n.ve-icon { width: 54px; height: 54px; fill: none; stroke: #8FA3D9; stroke-width: 2; stroke-linejoin: round; margin-bottom: 10px; }\n.ve-icon path:last-child { fill: #8FA3D9; stroke: none; }\n.video-empty .ve-text { color: #C9CED6; margin-bottom: 10px; }\n.video-empty .ve-expected { color: #FFE08A; margin-bottom: 10px; max-width: 520px; }\n.video-empty .btn { margin-bottom: 10px; min-height: 42px; padding: 8px 20px; font-size: 15px; }\n.video-msg {\n  border: 1px solid var(--warn-line); background: var(--warn-bg); padding: 10px 12px; margin-top: 8px;\n}\n.video-msg p { margin-bottom: 6px; }\n.video-msg ol { margin: 0 0 8px; padding-left: 20px; }\n.video-msg li { margin-bottom: 4px; }\n.video-msg .btn-row { margin-top: 4px; }\n\n/* Transport */\n.transport { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }\n.t-play { min-width: 84px; font-weight: bold; }\n.t-play svg { width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; fill: currentColor; }\n.time-display { margin-left: auto; font-size: 20px; font-weight: bold; white-space: nowrap; font-variant-numeric: tabular-nums; }\n.time-display .time-total { font-size: 13px; font-weight: normal; color: var(--muted); }\n.transport2 { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-top: 6px; }\n.ctl { display: flex; align-items: center; gap: 6px; }\n.ctl-label { font-size: 12px; color: var(--muted); }\n.transport2 .seg .btn { min-height: 30px; padding: 3px 8px; font-size: 13px; }\n.t2-right { margin-left: auto; display: flex; gap: 6px; }\n.transport2 .t2-right .btn { min-height: 30px; padding: 3px 8px; font-size: 13px; }\n@media (pointer: coarse) { .transport2 .seg .btn, .transport2 .t2-right .btn { min-height: 38px; } }\n\n/* Band */\n.band-wrap { margin-top: 8px; border: 1px solid var(--border); background: var(--band-bg); }\n#band { display: block; width: 100%; height: 66px; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }\n#band:active { cursor: grabbing; }\n#overview { display: block; width: 100%; height: 14px; border-top: 1px solid var(--border); touch-action: none; cursor: pointer; }\n.legend { display: flex; flex-wrap: wrap; gap: 3px 12px; font-size: 12px; color: var(--muted); margin-top: 5px; }\n.legend span { white-space: nowrap; }\n/* Type colours, as in the TCT legend */\n.ty-op { --type: #00B050; } .ty-insp { --type: #0070C0; } .ty-walk { --type: #FFC000; } .ty-wait { --type: #C00000; }\n.ty-mach { --type: #7F7F7F; } .ty-per { --type: #7030A0; } .ty-int { --type: #404040; } .ty-oov { --type: #A6A6A6; }\n.ty-end { --type: #00897B; } .ty-issue { --type: #FF6600; }\n.sw { display: inline-block; width: 10px; height: 10px; margin-right: 4px; vertical-align: -1px; border: 1px solid rgba(0, 0, 0, .25); background: var(--type, #999999); flex: none; }\n.sw.ty-int, .ty-int .sw { background: repeating-linear-gradient(135deg, #404040 0 3px, #8C8C8C 3px 5px); }\n.sw.ty-oov, .ty-oov .sw { background: repeating-linear-gradient(135deg, #A6A6A6 0 3px, #E2E2E2 3px 5px); }\n.note.mt { margin-top: 8px; }\nh3.first { margin-top: 0; }\n\n/* Status */\n.status {\n  display: grid; grid-template-columns: minmax(84px, auto) minmax(0, 1.3fr) minmax(0, 1fr);\n  border: 1px solid var(--border); background: var(--surface); margin-top: 8px;\n}\n.st-head { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--steel); color: #fff; padding: 4px 10px; font-size: 13px; }\n.st-tl { font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.st-keys { font-size: 12px; white-space: nowrap; padding: 1px 6px; }\n.st-keys.k-on { color: #D7F5E1; }\n.st-keys.k-off, .st-keys.k-typing { background: #FFC000; color: #000; font-weight: bold; }\n@media (pointer: coarse) { .st-keys { display: none; } }\n.st { padding: 6px 10px; border-left: 1px solid var(--border); min-width: 0; }\n.st-head + .st { border-left: 0; }\n.st-label { font-size: 12px; color: var(--muted); }\n.st-value { font-weight: bold; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.st-value .sw { width: 11px; height: 11px; }\n.st-sub { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }\n.st-sub.flag { color: var(--danger); }\n@media (max-width: 520px) {\n  .status { grid-template-columns: 64px minmax(0, 1.2fr) minmax(0, 1fr); }\n  .st { padding: 4px 7px; }\n  .st-value { font-size: 13px; }\n}\n\n/* Timeline selector and tabs */\n.tl-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }\n.tl-label { font-size: 12px; color: var(--muted); }\n.tl-tabs { display: flex; flex-wrap: wrap; gap: 4px; }\n.tl-tab { min-height: 32px; padding: 4px 10px; border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; border-radius: 2px; }\n.tl-tab .tl-kind { color: var(--muted); font-size: 12px; margin-left: 6px; }\n.tl-tab[aria-pressed=\"true\"] { background: var(--steel); border-color: var(--steel); color: #fff; }\n.tl-tab[aria-pressed=\"true\"] .tl-kind { color: #DCE7F2; }\n@media (pointer: coarse) { .tl-tab { min-height: 40px; } }\n.tabs { display: flex; overflow-x: auto; }\n.tab {\n  border: 1px solid var(--border-strong); border-bottom: 0; margin-right: -1px; background: var(--surface-2); padding: 8px 16px; cursor: pointer;\n  white-space: nowrap; color: var(--text); min-height: 40px;\n}\n.tab:hover { background: var(--btn-hover); }\n.tab[aria-selected=\"true\"] { background: var(--navy); border-color: var(--navy); color: #fff; font-weight: bold; }\n.tab-panel { background: var(--surface); border: 1px solid var(--border-strong); padding: 12px; container-type: inline-size; }\n/* room kept before the script fills the page, so that nothing jumps when it starts */\n.st-head { min-height: 30px; }\n.tl-bar { min-height: 32px; }\n.tab-panel:empty { min-height: 420px; }\n@media (max-width: 520px) { .tab { padding: 8px 10px; flex: 1 0 auto; } .tab-panel { padding: 10px 8px; } }\n.sec + .sec { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }\n\n/* Record panel */\n.rec-next {\n  width: 100%; min-height: 62px; background: var(--navy); color: #fff; border: 1px solid var(--navy); cursor: pointer;\n  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 12px; padding: 8px 14px; text-align: left;\n  touch-action: manipulation; border-radius: 2px;\n}\n.rec-next:hover { background: #1E2E75; }\n.rec-next:disabled { opacity: .5; cursor: default; }\n.rn-main { font-size: 17px; font-weight: bold; }\n.rn-step { display: block; font-size: 13px; color: #D6DCF2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.rn-key { font-size: 12px; color: #C9D1F0; }\n.step-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin-top: 10px; }\n.step-btn {\n  display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: stretch; min-height: 54px; padding: 0; text-align: left;\n  border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; touch-action: manipulation; border-radius: 2px;\n}\n.step-btn:hover { background: var(--btn-hover); }\n.step-btn .sb-key { display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--muted); background: var(--surface-2); border-right: 1px solid var(--border); }\n.step-btn .sb-lbl { padding: 6px 8px; min-width: 0; display: flex; flex-direction: column; justify-content: center; }\n.step-btn .sb-code { font-weight: bold; display: flex; align-items: center; }\n.step-btn .sb-code .sw { margin-right: 6px; }\n.step-btn .sb-name { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.step-btn.is-current { background: var(--row-now); }\n.step-btn.is-next { outline: 2px solid var(--accent); outline-offset: -2px; }\n.step-btn.flash, .ev-btn.flash, .rec-next.flash { background: var(--c-walk); color: #000; }\n.step-btn.flash .sb-name, .step-btn.flash .sb-key { color: #000; background: transparent; }\n.ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(146px, 1fr)); gap: 6px; }\n.ev-btn {\n  display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 44px; padding: 6px 10px; text-align: left;\n  border: 1px solid var(--border-strong); background: var(--btn-bg); cursor: pointer; touch-action: manipulation; border-radius: 2px;\n}\n.ev-btn:hover { background: var(--btn-hover); }\n.ev-l { display: flex; align-items: center; }\n.ev-l .sw { margin-right: 7px; }\n.ev-k { color: var(--muted); font-weight: bold; font-size: 12px; }\n.kbd { font-weight: bold; color: var(--muted); }\n.rec-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 12px; }\n.rec-tools .note { margin: 0 0 0 4px; }\n.empty-hint { border: 1px dashed var(--border-strong); padding: 12px; margin-top: 10px; color: var(--muted); }\n\n/* Start guide */\n.guide { border: 1px solid var(--border-strong); background: var(--surface-2); padding: 12px 14px; margin-top: 10px; }\n.guide-title { font-weight: bold; color: var(--title); margin-bottom: 8px; }\n.guide ol, .guide-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }\n.guide li, .guide-list li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; }\n.gn { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: var(--navy); color: #fff; font-weight: bold; font-size: 13px; }\n.guide li.done .gn { background: var(--c-op); }\n.guide li.done .gt { color: var(--muted); }\n.gt { display: flex; flex-direction: column; min-width: 0; }\n.gt span { font-size: 13px; color: var(--muted); }\n/* Result tiles */\n.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }\n.tile { border: 1px solid var(--border-strong); background: var(--surface); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px; border-top: 3px solid var(--navy); }\n.tile-l { font-size: 12px; color: var(--muted); }\n.tile-v { font-size: 26px; font-weight: bold; color: var(--title); font-variant-numeric: tabular-nums; line-height: 1.15; }\n.tile-v small { font-size: 15px; color: var(--muted); font-weight: normal; }\n.tile.tile-warn { border-top-color: #BF9000; }\n.tile.tile-warn .tile-v { color: #B45F06; }\n@media (max-width: 420px) { .tile-v { font-size: 21px; } .tile { padding: 6px 8px; } }\n/* Choices in dialogs */\n.choice { border: 1px solid var(--border); margin: 10px 0; padding: 6px 10px 8px; }\n.choice legend { font-weight: bold; padding: 0 4px; }\nlabel.check { display: flex; align-items: flex-start; gap: 8px; margin: 6px 0; cursor: pointer; }\nlabel.check input { margin-top: 3px; width: auto; min-height: 0; }\n/* Help */\n.help h3 { color: var(--title); }\n.keys { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 4px 16px; }\n.krow { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; align-items: center; font-size: 13px; padding: 3px 0; border-bottom: 1px solid var(--border); }\n.kcap { font-weight: bold; text-align: center; border: 1px solid var(--border-strong); border-bottom-width: 2px; background: var(--surface-2); padding: 2px 4px; font-size: 12px; white-space: nowrap; }\n.help-list { margin: 0; padding-left: 20px; }\n.help-list li { margin-bottom: 5px; }\n\n/* Form grid, like the standard sheets */\n.form-grid { border-top: 1px solid var(--border); border-left: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }\n.form-grid.fg-one { grid-template-columns: 1fr; }\n.field { display: grid; grid-template-columns: 118px minmax(0, 1fr); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }\n.field > label, .field > .flabel { background: var(--surface-2); padding: 7px 8px; font-weight: bold; font-size: 13px; border-right: 1px solid var(--border); display: flex; align-items: center; }\n.field > input, .field > select { border: 0; min-height: 36px; }\n.field > .fval { padding: 7px 8px; display: flex; align-items: center; min-width: 0; overflow-wrap: anywhere; }\n.inline-field { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }\n.inline-field select { width: auto; min-width: 200px; }\n\n/* Steps editor */\n.steps-head, .srow {\n  display: grid; grid-template-columns: 46px 72px minmax(110px, 1fr) 108px minmax(84px, .55fr) 52px auto; gap: 4px; align-items: center;\n}\n.steps-head { background: var(--steel); color: #fff; font-weight: bold; font-size: 13px; padding: 6px 4px; }\n.srow { padding: 4px; border-bottom: 1px solid var(--border); }\n.srow:nth-child(even) { background: var(--row-alt); }\n.s-key { display: flex; align-items: center; justify-content: center; gap: 5px; font-weight: bold; color: var(--muted); }\n.s-key .sw { margin: 0; }\n.s-used { text-align: right; color: var(--muted); font-size: 13px; padding-right: 4px; }\n.s-act { display: flex; gap: 3px; justify-content: flex-end; }\n.s-act .btn { min-height: 32px; padding: 2px 8px; }\n.srow input:disabled { opacity: .35; }\n/* 3.9: the starting point of a step (SP: of the sheets), on its own line under the step when shown */\n.srow .s-sp { grid-column: 2 / -1; grid-row: 2; }\n/* V5.3: one column for the station of a step, or the distance of a walk (the other field is hidden) */\n.srow .s-sta, .srow .s-dist { grid-column: 5; grid-row: 1; }\n.srow .s-sta:disabled, .srow .s-dist:disabled { display: none; }\n.srow.is-start .s-key::after { content: \"\"; }\n.start-tag { display: inline-block; font-size: 11px; color: var(--muted); margin-left: 6px; }\n.s-used-lbl { display: none; }\n@container (max-width: 640px) {\n  .steps-head { display: none; }\n  .s-used-lbl { display: inline; }\n  .srow {\n    grid-template-columns: 40px 112px minmax(0, 1fr);\n    grid-template-areas: \"key code name\" \". type place\" \". used act\";\n  }\n  .s-key { grid-area: key; } .s-code { grid-area: code; } .s-name { grid-area: name; } .s-type { grid-area: type; }\n  .srow .s-dist, .srow .s-sta { grid-area: place; } .s-used { grid-area: used; text-align: left; } .s-act { grid-area: act; }\n  .srow.has-sp { grid-template-areas: \"key code name\" \". type place\" \". sp sp\" \". used act\"; }\n  .srow .s-sp { grid-area: sp; }\n}\n\n/* Tables */\n.tbl-wrap { overflow-x: auto; max-width: 100%; border: 1px solid var(--border); }\n.tbl { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }\n.tbl th { background: var(--steel); color: #fff; font-weight: bold; text-align: left; padding: 5px 6px; border: 1px solid var(--steel-line); vertical-align: bottom; line-height: 1.2; min-width: 42px; }\n.tbl td { padding: 4px 6px; border: 1px solid var(--border); white-space: nowrap; background: var(--surface); }\n.tbl td.wrap { white-space: normal; min-width: 110px; }\n.tbl th:first-child, .tbl td:first-child { position: sticky; left: 0; z-index: 1; }\n.tbl .col-ref { font-weight: bold; }\n.tbl tbody tr td.col-ref { background: var(--ref-col); }\n.tbl tbody tr.is-ref td { background: var(--ref-bg); font-weight: bold; }\n.tbl tbody tr:nth-child(even) td { background: var(--row-alt); }\n.tbl .num { text-align: right; }\n.tbl tr.is-off td { color: var(--muted); }\n.tbl tr.total td { font-weight: bold; border-top: 2px solid var(--border-strong); }\n.tbl .why { white-space: normal; min-width: 120px; }\n.tbl .linkbtn { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: bold; }\n.warn { border: 1px solid var(--warn-line); background: var(--warn-bg); padding: 8px 10px; margin: 10px 0; }\n.warn-act { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }\n.kv { margin-bottom: 10px; }\n\n/* Log */\n.log-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }\n.log-tools .note { margin: 0 0 0 auto; }\n.log { border-top: 1px solid var(--border); }\n.lcyc { background: var(--surface-2); border-bottom: 1px solid var(--border); padding: 5px 8px; font-size: 13px; display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; }\n.lcyc b { font-size: 14px; }\n.lcyc .off { color: var(--danger); }\n.lrow { border-bottom: 1px solid var(--border); padding: 3px 8px; cursor: pointer; }\n.lrow:hover { background: var(--row-alt); }\n.lrow.is-now { background: var(--row-now); }\n.lrow.is-sel { background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--border-strong); cursor: default; padding-bottom: 8px; }\n.lrow.is-sel.is-now { background: var(--row-now); }\n.l1 { display: flex; align-items: center; gap: 8px; min-width: 0; }\n.l2 { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; }\n.l-time { background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: bold; font-variant-numeric: tabular-nums; min-width: 66px; text-align: left; flex: none; }\n.l-dur { color: var(--muted); font-size: 13px; min-width: 58px; font-variant-numeric: tabular-nums; flex: none; }\n.l-ev { display: flex; align-items: center; min-width: 0; flex: 0 1 auto; }\n.l-ev .sw { flex: none; }\n.l-ev-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.l-issue { font-size: 12px; color: var(--danger); font-weight: bold; flex: none; }\n.l-note-txt { flex: 1 1 auto; min-width: 0; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.l-edit { flex: none; margin-left: auto; min-height: 28px !important; padding: 2px 9px; background: transparent; border-color: var(--border); color: var(--muted); }\n.l-edit:hover, .lrow.is-sel .l-edit { color: var(--text); border-color: var(--border-strong); }\n.l-note { flex: 1 1 160px; width: auto; min-height: 32px; }\n.l2 .btn { min-height: 32px; padding: 2px 8px; font-size: 13px; }\n@container (max-width: 460px) { .l-issue { display: none; } .l-dur { min-width: 50px; font-size: 12px; } }\n@media (pointer: coarse) { .l2 .btn { min-height: 40px; } .l-note { min-height: 40px; } .l-edit { min-height: 36px !important; } .rec-tools .note { display: none; } }\n\n/* Panels (dialogs) */\n.overlay {\n  position: fixed; inset: 0; background: rgba(10, 14, 22, .55); z-index: 50; overflow: auto;\n  display: flex; align-items: flex-start; justify-content: center;\n  padding: calc(env(safe-area-inset-top, 0px) + 28px) 12px calc(env(safe-area-inset-bottom, 0px) + 28px);\n}\n.panel { background: var(--surface); color: var(--text); border: 1px solid var(--navy); width: min(560px, 100%); }\n.panel.wide { width: min(760px, 100%); }\n.panel-head { padding: 10px 14px; background: var(--navy); color: #fff; font-weight: bold; font-size: 16px; }\n.panel-body { padding: 12px 14px; }\n.panel-foot { padding: 10px 14px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }\n.cat-list { display: grid; grid-template-columns: 1fr; gap: 5px; margin: 8px 0 12px; }\n.cat-btn { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; align-items: center; text-align: left; min-height: 44px; padding: 6px 10px; border: 1px solid var(--border-strong); background: var(--btn-bg); cursor: pointer; border-radius: 2px; }\n.cat-btn small { display: block; color: var(--muted); font-size: 12px; }\n.cat-btn[aria-pressed=\"true\"] { background: var(--steel); border-color: var(--steel); color: #fff; }\n.cat-btn[aria-pressed=\"true\"] small { color: #DCE7F2; }\n.cat-btn[aria-pressed=\"true\"] .kbd { color: #DCE7F2; }\n.cat-btn .kbd { text-align: center; }\n.pick-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }\n.opt-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 5px; max-height: 55vh; overflow: auto; }\n.opt-list .btn { text-align: left; display: flex; align-items: center; gap: 6px; }\n.opt-list .btn[aria-pressed=\"true\"] .sw { border-color: #fff; }\n.help-tbl td { white-space: normal; }\n.help-tbl td:first-child { white-space: nowrap; }\n.diff td, .diff th { padding: 4px 8px; }\nlabel.check { display: inline-flex; align-items: center; gap: 6px; }\n\n/* Toast */\n.toast {\n  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 60;\n  background: #2B2F36; color: #fff; padding: 10px 14px; display: flex; gap: 14px; align-items: center;\n  max-width: calc(100% - 24px); font-size: 14px;\n}\n.toast button { background: transparent; color: #fff; border: 1px solid #fff; min-height: 32px; padding: 3px 12px; cursor: pointer; border-radius: 2px; font-weight: bold; }\n\n/* Footer */\n.footer { padding: 10px 16px 22px; color: var(--muted); font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 18px; max-width: 1800px; margin: 0 auto; }\n/* links of the footer big enough for a finger */\n@media (max-width: 700px), (pointer: coarse) { .footer a, .footer .ftr-link { display: inline-flex; align-items: center; min-height: 32px; } }\n.footer b { color: var(--text); }\n.footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }\n.footer a:hover { color: var(--text); }\n.footer .ftr-link { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }\n.footer .ftr-link:hover { color: var(--text); }\n.help.legal p { margin: 0 0 4px; }\n.help.legal a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }\n/* Phone layout */\n.sm, .narrow-only { display: none; }\n@media (max-width: 599px) {\n  .lg, .wide-only { display: none !important; }\n  .sm { display: inline; }\n  .narrow-only { display: inline-block; }\n  .video-box { max-height: 30vh; }\n  /* no video yet: the welcome screen sets the height, nothing is cut on a phone */\n  #vts-app.no-video .video-box { aspect-ratio: auto; max-height: none; }\n  #vts-app.no-video .video-box video { display: none; }\n  #vts-app.no-video .video-empty { position: static; }\n  .transport { gap: 4px; }\n  .transport .seg .btn { min-width: 40px; padding: 6px 7px; }\n  .t-play { min-width: 72px; }\n  .transport2 { gap: 6px; margin-top: 4px; }\n  .ctl-label { display: none; }\n  .ctl-sel { width: auto; min-height: 38px; padding: 4px 6px; }\n  .time-mini { font-size: 17px; font-weight: bold; font-variant-numeric: tabular-nums; min-width: 80px; }\n  .layout.pin .legend { display: none; }\n  #btnChangeVideo { display: none; }\n  .topbar { padding: 8px 10px; }\n  .tb-title h1 { font-size: 17px; }\n  /* the study name often goes under the title here: no separator line left alone at the edge */\n  .tb-study { border-left: 0; padding-left: 0; }\n}\n@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }\n\n/* Quick fix of recorded steps (Record tab, event menu) */\n.st-click { cursor: pointer; }\n.st-click:hover .st-value, .st-click:focus-visible .st-value { text-decoration: underline; }\n.fix-list { display: grid; gap: 4px; margin-bottom: 10px; }\n.fix-list .note { margin: 0; }\n.fix-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 6px; align-items: center; }\n.fix-go { display: flex; align-items: center; gap: 7px; min-width: 0; min-height: 30px; padding: 3px 8px; text-align: left; font: inherit; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }\n.fix-go:hover { background: var(--btn-hover); }\n.fix-row.is-cur .fix-go { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); font-weight: bold; }\n.fx-t { flex: none; color: var(--muted); font-variant-numeric: tabular-nums; font-weight: normal; }\n.fx-n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.em-what { margin: 0 0 12px; }\n.em-what .muted { color: var(--muted); }\n.em-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }\n.em-grid .btn.primary, .em-grid .btn.danger { grid-column: 1 / -1; }\n@media (pointer: coarse) { .fix-go { min-height: 40px; } }\n\n/* Templates for the filled sheets */\n.tpl-list { display: grid; gap: 6px; margin: 8px 0 12px; }\n.tpl-row { display: grid; grid-template-columns: minmax(10em, auto) minmax(0, 1fr) auto; align-items: center; gap: 6px 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }\n.tpl-l { font-weight: bold; }\n.tpl-f { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.tpl-f.muted { color: var(--muted); }\n@media (max-width: 560px) {\n  .tpl-row { grid-template-columns: minmax(0, 1fr) auto; }\n  .tpl-f { grid-column: 1 / -1; grid-row: 2; }\n}\n\n/* ---------- 2.4: lighter look, logo navy ----------\n   One strong element (the \"Next step\" button in navy), everything else on white with hairlines.\n   Table headers keep the navy of the standard sheets, as a thin rule rather than a solid band. */\nh2 { font-size: 16px; font-weight: 600; letter-spacing: -.005em; }\nh3 { font-size: 13px; font-weight: 600; color: var(--text); }\n.sec + .sec { margin-top: 22px; padding-top: 18px; }\n\n/* Header: white bar, navy name */\n.topbar { background: var(--surface); color: var(--text); border-bottom: 1px solid var(--border); padding: 10px 18px; }\n.tb-logo { width: auto; height: 30px; stroke: none; }\n.tb-logo .lg-ink { fill: var(--logo-ink); }\n.tb-logo .lg-dark { fill: var(--logo-dark); }\n.tb-logo .lg-hole { fill: var(--surface); }\n.tb-logo .lg-holes { stroke: var(--surface); stroke-width: 22; stroke-linejoin: round; }\n.tb-logo .lg-acc { fill: #FFB700; }\n.tb-title h1 { color: var(--title); font-weight: 650; font-size: 19px; letter-spacing: -.01em; }\n.tb-credit { color: var(--muted); }\n.tb-study { color: var(--text); border-left-color: var(--border-strong); }\n.tb-btn { color: var(--text); background: transparent; border: 1px solid var(--border); border-radius: 6px; }\n.tb-btn:hover { background: var(--btn-hover); }\n.tb-btn:focus-visible { outline: 2px solid var(--focus); }\n.tb-lang .tb-btn { border-radius: 0; }\n.tb-lang .tb-btn:first-child { border-radius: 6px 0 0 6px; }\n.tb-lang .tb-btn:last-child { border-radius: 0 6px 6px 0; }\n.tb-lang .tb-btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n\n/* Buttons and inputs */\n.btn { border-radius: 6px; border-color: var(--border-strong); background: var(--btn-bg); }\n.btn.primary { background: var(--navy); border-color: var(--navy); color: var(--on-navy); font-weight: 600; }\n.btn.primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); }\n.btn.danger { background: transparent; border-color: transparent; color: var(--danger); }\n.btn.danger:hover { background: color-mix(in srgb, var(--danger) 9%, transparent); border-color: color-mix(in srgb, var(--danger) 35%, transparent); }\n.btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.seg .btn { border-radius: 0; }\n.seg .btn:first-child { border-radius: 6px 0 0 6px; }\n.seg .btn:last-child { border-radius: 0 6px 6px 0; }\ninput[type=\"text\"], input[type=\"number\"], input[type=\"date\"], select, textarea { border-radius: 6px; border-color: var(--border-strong); }\n.field > input, .field > select { border-radius: 0; }\n\n/* Video column */\n.video-box { border: 0; border-radius: 10px; }\n.video-empty { background: #121A33; }\n.band-wrap { border-color: var(--border); border-radius: 8px; overflow: hidden; }\n.legend { gap: 3px 14px; }\n\n/* Status under the video */\n.status { border-color: var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }\n.st-head { background: var(--surface-2); color: var(--title); border-bottom: 1px solid var(--border); padding: 5px 12px; }\n.st-keys.k-on { color: #1E7A46; }\n.st { border-left-color: var(--border); padding: 7px 12px; }\n\n/* Timeline selector and tabs: underline tabs, one card */\n.tl-tab { border-color: var(--border-strong); border-radius: 6px; }\n.tl-tab[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); }\n.tabs { background: var(--surface); border: 1px solid var(--border); border-bottom: 0; border-radius: 10px 10px 0 0; padding: 0 6px; gap: 2px; }\n.tab { background: transparent; border: 0; border-bottom: 2px solid transparent; margin: 0; color: var(--muted); padding: 11px 12px 9px; font-weight: 500; }\n.tab:hover { background: transparent; color: var(--text); }\n.tab[aria-selected=\"true\"] { background: transparent; color: var(--title); border-bottom-color: var(--navy); font-weight: 600; }\n.tab-panel { border-color: var(--border); border-radius: 0 0 10px 10px; padding: 16px; box-shadow: var(--shadow); }\n@media (max-width: 520px) { .tab { padding: 10px 9px 8px; } .tab-panel { padding: 12px 10px; } }\n/* 3.9: on a phone the five tabs stay in sight in every language (German, Spanish, Portuguese ran past the edge) */\n@media (max-width: 420px) { .tabs { padding: 0 2px; gap: 0; } .tab { padding: 10px 4px 8px; font-size: 13px; } }\n\n/* Record panel */\n.rec-next { border-radius: 10px; min-height: 64px; padding: 10px 16px; background: var(--navy); border-color: var(--navy); }\n.rec-next:hover { background: var(--navy-deep); border-color: var(--navy-deep); }\n.rn-step, .rn-key { color: rgba(255, 255, 255, .78); }\n.step-grid { gap: 8px; margin-top: 12px; }\n.step-btn { border-color: var(--border); border-radius: 8px; overflow: hidden; }\n.step-btn .sb-key { background: var(--surface-2); border-right-color: var(--border); }\n.step-btn:hover { background: var(--btn-hover); }\n.step-btn.is-current { background: var(--row-now); border-color: color-mix(in srgb, var(--navy) 30%, var(--border)); }\n.step-btn.is-next { outline: 2px solid var(--accent); outline-offset: -2px; }\n.ev-grid { gap: 8px; }\n.ev-btn { border-color: var(--border); border-radius: 8px; background: var(--surface); }\n.ev-btn:hover { background: var(--btn-hover); }\n.fix-go { border-color: var(--border); border-radius: 8px; }\n.fix-row .btn.small { min-height: 30px; }\n.fix-row .btn:not(.danger) { border-color: var(--border); }\n\n/* Start guide */\n.guide { border-color: var(--border); border-radius: 10px; background: var(--surface-2); }\n.gn { border-radius: 50%; }\n\n/* Results */\n.tile { border: 1px solid var(--border); border-top: 3px solid var(--navy); border-radius: 8px; padding: 10px 14px; }\n.tile.tile-warn { border-top-color: var(--warn-line); }\n.tile-v { font-weight: 650; letter-spacing: -.01em; }\n.tbl-wrap { border-color: var(--border); border-radius: 8px; }\n.tbl th { background: var(--surface-2); color: var(--title); border: 0; border-bottom: 2px solid var(--navy); font-weight: 600; padding: 7px 8px; }\n.tbl td { border: 0; border-bottom: 1px solid var(--border); padding: 6px 8px; }\n.tbl tbody tr:last-child td { border-bottom: 0; }\n.tbl tr.total td { border-top: 2px solid var(--border-strong); }\n.steps-head { background: var(--surface-2); color: var(--title); border-bottom: 2px solid var(--navy); border-radius: 8px 8px 0 0; }\n.warn { border-color: var(--warn-line); border-radius: 8px; }\n.tpl-row { border-color: var(--border); border-radius: 8px; }\n\n/* Study form */\n.form-grid { border-color: var(--border); border-radius: 8px; overflow: hidden; }\n.field, .field > label, .field > .flabel { border-color: var(--border); }\n\n/* Journal */\n.lcyc { background: var(--surface-2); }\n\n/* Dialogs */\n.overlay { background: rgba(13, 18, 34, .45); }\n.panel { border: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px rgba(13, 18, 34, .28); }\n.panel-head { background: var(--surface); color: var(--title); border-bottom: 1px solid var(--border); padding: 14px 16px 12px; }\n.panel-body { padding: 14px 16px; }\n.panel-foot { padding: 12px 16px; background: var(--surface-2); }\n.cat-btn { border-radius: 8px; }\n.cat-btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); }\n.kcap { border-radius: 4px; }\n\n/* Toast */\n.toast { background: #1C2333; border-radius: 8px; box-shadow: 0 8px 24px rgba(13, 18, 34, .25); }\n.toast button { border-radius: 6px; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .toast { background: #2A3354; } :root:not([data-theme=\"light\"]) .st-keys.k-on { color: #7FD6A4; } }\n:root[data-theme=\"dark\"] .toast { background: #2A3354; }\n:root[data-theme=\"dark\"] .st-keys.k-on { color: #7FD6A4; }\n\n@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }\n\n.video-empty .ve-what { max-width: 460px; color: #E3E7F3; margin: -4px 0 14px; line-height: 1.45; }\n\n/* Operator load chart */\n.sec-head { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; margin-bottom: 4px; }\n.sec-head h2 { margin: 0; }\n.load-wrap { margin: 8px 0 6px; padding: 8px 6px 2px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }\n.load-svg { display: block; width: 100%; height: auto; }\n.load-svg text { font-family: inherit; }\n.ld-grid { stroke: var(--border); stroke-width: 1; }\n.ld-ax { fill: var(--muted); font-size: 11px; }\n.ld-tot { fill: var(--text); font-size: 12px; font-weight: 600; }\n.ld-name { fill: var(--text); font-size: 12px; }\n.ld-sat { fill: var(--muted); font-size: 11px; }\n.ld-over { fill: var(--danger); }\n.ld-takt { stroke: var(--danger); stroke-width: 2; stroke-dasharray: 6 4; }\n.ld-takt-l { fill: var(--danger); font-size: 11px; font-weight: 600; }\n\n/* Printed report: hidden on screen, alone on the page when printing */\n#printReport { display: none; }\n@media print {\n  @page { size: A4 landscape; margin: 12mm; }\n  :root, :root[data-theme=\"dark\"], :root:not([data-theme=\"light\"]) {\n    --text: #1C2333 !important; --muted: #5F6780 !important; --border: #D5DAE5 !important; --surface: #FFFFFF !important;\n    --title: #132034 !important; --logo-ink: #132034 !important; --logo-dark: #14214E !important; --danger: #B42318 !important;\n  }\n  body.printing { background: #FFFFFF !important; color: #1C2333; }\n  body.printing > *:not(#printReport) { display: none !important; }\n  body.printing #printReport { display: block; font-size: 11px; }\n  #printReport * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }\n  .rp-head { display: flex; align-items: center; gap: 14px; padding-bottom: 8px; margin-bottom: 4px; border-bottom: 2px solid #132034; }\n  .rp-head .tb-logo { height: 34px; }\n  .rp-head h1 { margin: 0; font-size: 18px; color: #132034; }\n  .rp-head p { margin: 2px 0 0; color: #5F6780; }\n  #printReport h2 { margin: 12px 0 6px; font-size: 13px; color: #132034; }\n  .rp-tbl { width: 100%; border-collapse: collapse; }\n  .rp-tbl th { padding: 3px 6px; text-align: left; color: #132034; border-bottom: 1.5px solid #132034; }\n  .rp-tbl td { padding: 3px 6px; border-bottom: 1px solid #E0E4EE; }\n  .rp-tbl .num { text-align: right; font-variant-numeric: tabular-nums; }\n  .rp-tbl tr { break-inside: avoid; }\n  .rp-chart .load-svg { max-height: 72mm; }\n  .rp-load { break-inside: avoid; }\n  .rp-op { break-before: page; }\n  .rp-foot { margin-top: 10px; font-size: 9px; color: #5F6780; }\n  .rp-info { width: 100%; border-collapse: collapse; margin: 6px 0 2px; }\n  .rp-info th { text-align: left; font-weight: 600; color: #5F6780; padding: 2px 10px 2px 0; width: 18%; vertical-align: top; }\n  .rp-info td { padding: 2px 18px 2px 0; width: 32%; color: #1C2333; }\n  #printReport h3 { margin: 10px 0 4px; font-size: 12px; color: #132034; }\n  .rp-note { margin: 4px 0; color: #5F6780; }\n  .rp-warn { color: #B42318; font-weight: 600; }\n  .rp-tbl tr.is-ref td { background: #FFF5D1; font-weight: 600; }\n  .rp-tbl tr.is-off td { color: #8A90A2; }\n  .rp-split, .rp-per { width: auto; min-width: 45%; }\n}\n\n/* ---------- Line balancing (Yamazumi) ---------- */\n#vts-app.bal-on #layout { display: none; }\n.bal-view { padding: 14px 16px 18px; min-width: 0; }\n.bal-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }\n.bal-top h2 { margin: 0; font-size: 18px; color: var(--accent); }\n.bal-top-act { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }\n.bal-tabs { margin-bottom: 6px; }\n.bal-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0 10px; }\n.bal-bar .note { margin: 0 6px 0 0; }\n.bal-sep { width: 1px; align-self: stretch; background: var(--border); margin: 0 4px; }\n.bal-kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-bottom: 8px; }\n.bal-kpi { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--navy); border-radius: 6px; padding: 7px 10px; min-width: 0; }\n.bal-kpi .k-l { font-size: 12px; color: var(--muted); }\n.bal-kpi .k-v { font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.25; overflow-wrap: anywhere; }\n.bal-kpi .k-s { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.bal-kpi .k-d { font-size: 12px; font-weight: 700; }\n.k-d.good { color: var(--c-op); } .k-d.bad { color: var(--danger); } .k-d.same { color: var(--muted); }\n.bal-kpi-split { grid-column: span 2; }\n.bal-split { display: flex; height: 10px; border-radius: 3px; overflow: hidden; margin: 6px 0 4px; background: var(--band-out); }\n.bal-split i { display: block; height: 100%; background: var(--type); }\n.bal-split-l { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 10px; }\n.bal-warn { margin: 0 0 8px; padding: 7px 10px; border-radius: 6px; background: var(--warn-bg); border: 1px solid var(--warn-line); font-size: 13px; }\n.bal-warn .btn { margin-left: 6px; }\n.bal-wrap { overflow-x: auto; overflow-y: hidden; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); padding: 10px 12px 8px; }\n.bal-board { display: flex; align-items: flex-end; gap: 14px; min-width: min-content; }\n.bal-axis { flex: 0 0 46px; width: 46px; }\n.bal-ax { position: relative; }\n.bal-ax span { position: absolute; right: 4px; transform: translateY(50%); font-size: 11px; color: var(--muted); }\n.bal-ax .bal-takt-l { position: absolute; right: 4px; text-align: right; font-size: 11px; line-height: 1.15; color: var(--danger); white-space: nowrap; }\n.bal-col { flex: 0 0 132px; width: 132px; display: flex; flex-direction: column; }\n.bal-col-h { position: relative; height: 54px; padding: 2px 24px 4px 2px; font-size: 13px; line-height: 1.35; }\n.bal-col-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n.bal-badge { font-size: 10px; font-weight: 700; color: var(--muted); border: 1px solid var(--border-strong); border-radius: 3px; padding: 0 3px; }\n.bal-tot { font-weight: 600; }\n.bal-tot.preview { color: var(--accent); }\n.bal-gap { font-size: 12px; color: var(--muted); }\n.bal-gap.over { color: var(--danger); font-weight: 700; }\n.bal-col-menu { position: absolute; top: 0; right: 0; width: 22px; height: 22px; padding: 0; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 4px; cursor: pointer; line-height: 1; }\n.bal-stack { position: relative; display: flex; flex-direction: column-reverse; border-bottom: 2px solid var(--border-strong); background: var(--band-bg); }\n.bal-col.is-over .bal-stack { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--danger) 55%, transparent); }\n.bal-col.is-mach .bal-stack { background-image: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in srgb, var(--c-mach) 16%, transparent) 6px 8px); }\n.bal-grid { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid var(--band-grid); pointer-events: none; }\n.bal-takt { position: absolute; left: -8px; right: -8px; height: 0; margin-bottom: -1px; border-top: 2px dashed var(--danger); z-index: 2; pointer-events: none; }\n.bal-top h2:focus { outline: none; }\n.bal-b { position: relative; display: flex; flex-direction: column; justify-content: center; width: 100%; flex: 0 0 auto; min-height: 3px; padding: 0 6px; margin: 0; border: 0; border-top: 1px solid rgba(255, 255, 255, .8); border-radius: 0; background: var(--type); color: #fff; font: inherit; font-size: 11px; line-height: 1.2; text-align: left; overflow: hidden; cursor: pointer; }\n.bal-b.ty-walk { color: #1C2333; }\n.bal-b:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; z-index: 3; }\n.bal-scen .bal-b { touch-action: none; cursor: grab; }\n.bal-bl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }\n.bal-bd { white-space: nowrap; opacity: .92; }\n.bal-b.is-dragging { display: none; }\n.bal-ph { flex: 0 0 auto; border: 2px dashed var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); box-sizing: border-box; }\n.bal-ph.in-pool { width: 96px; height: 30px !important; border-radius: 4px; }\n.bal-ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; opacity: .92; box-shadow: 0 8px 22px rgba(0, 0, 0, .28); }\nhtml.bal-dragging, html.bal-dragging * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }\n.bal-empty { position: absolute; left: 6px; right: 6px; bottom: 10px; margin: 0; font-size: 12px; color: var(--muted); text-align: center; }\n.bal-add-col { flex: 0 0 auto; align-self: center; }\n.bal-pool { margin-top: 10px; border: 1px dashed var(--border-strong); border-radius: 6px; padding: 8px 10px; background: var(--surface-2); }\n.bal-pool.is-target { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface-2)); }\n.bal-pool-h { font-weight: 700; font-size: 13px; margin-bottom: 6px; }\n.bal-pool-list { display: flex; flex-wrap: wrap; gap: 6px; min-height: 34px; align-items: center; }\n.bal-pool-list .note { margin: 0; }\n.bal-chip { width: auto; max-width: 280px; min-height: 30px; flex-direction: row; align-items: center; gap: 8px; padding: 4px 10px; border-top: 0; border-radius: 4px; font-size: 12px; }\n.bal-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; font-size: 12px; color: var(--muted); }\n.bal-tip { position: fixed; z-index: 60; max-width: 300px; padding: 7px 9px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: 6px; box-shadow: 0 6px 18px rgba(0, 0, 0, .18); font-size: 12px; line-height: 1.4; pointer-events: none; }\n.bal-tip b { display: block; font-size: 13px; margin-bottom: 2px; }\n.bal-detail { margin: 0 0 10px; }\n@media (max-width: 640px) {\n  .bal-view { padding: 10px 8px 14px; }\n  .bal-col { flex-basis: 112px; width: 112px; }\n  .bal-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n  .bal-top-act { margin-left: 0; }\n}\n\n/* ---------- 3.1: example, balancing improvements, balancing report ---------- */\n.ve-ex { margin-top: 8px; }\n.ve-link { background: none; border: 0; padding: 6px 4px; min-height: 32px; color: #C9D6FF; font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }\n.ve-link:hover { color: #FFFFFF; }\n.film-tips { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.45; }\n.ex-bar .btn.primary { margin-left: auto; }\n.ex-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 7px 16px; background: var(--tint); border-bottom: 1px solid var(--border); font-size: 13px; }\n.ex-bar p { margin: 0 6px 0 0; font-weight: 600; }\n.help-ex { margin: 0 0 12px; }\n.bal-help { margin: 4px 0 10px; padding-left: 18px; }\n.bal-help li { margin: 3px 0; }\n.bal-col-h { height: 64px; }\n.bal-was-l { font-size: 11px; color: var(--muted); }\n.bal-was { position: absolute; left: -6px; right: -6px; height: 0; margin-bottom: -1px; border-top: 2px dotted var(--text); opacity: .5; z-index: 2; pointer-events: none; }\n.bal-b.is-review { background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .38) 0 4px, transparent 4px 9px); }\n.bal-note { margin: -4px 0 10px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }\n.bal-note-in { width: 100%; box-sizing: border-box; font: inherit; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--input-bg); color: var(--text); resize: vertical; }\n@media print {\n  .rp-yama svg { display: block; width: 100%; height: auto; }\n  .rp-det tr.rp-grp td { background: #EDF0FA; font-weight: 600; }\n  .rp-cmp tr.is-shown td { font-weight: 700; }\n}\n\n/* ---------- 3.2: header, menu, locked tabs, events, export window ---------- */\n.tb-study { flex: 1 1 220px; min-width: 120px; max-width: 420px; }\n.tb-name { width: 100%; box-sizing: border-box; font: inherit; font-size: 14px; padding: 5px 9px; border: 1px solid var(--border); border-radius: 6px; background: var(--input-bg); color: var(--text); }\n.tb-name:hover { border-color: var(--border-strong); }\n.tb-name:focus { outline: 2px solid var(--focus); outline-offset: 0; }\n/* Line balancing and Layout open a view: white like the other buttons, coloured only while the view is open */\n.tb-btn.tb-view { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 10px; background: var(--surface); border-color: var(--border-strong); color: var(--text); font-weight: 600; }\n.tb-btn.tb-view:hover { background: var(--btn-hover); }\n.tb-btn.tb-view[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.tb-btn.tb-view[aria-pressed=\"true\"]:hover { filter: brightness(1.12); }\n.tb-ico { width: 15px; height: 15px; fill: currentColor; flex: none; }\n.tb-menu { position: relative; }\n.tb-menu-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; }\n.tb-drop { position: absolute; right: 0; top: calc(100% + 6px); z-index: 45; min-width: 220px; padding: 8px; display: flex; flex-direction: column; gap: 2px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; box-shadow: 0 10px 28px rgba(0, 0, 0, .18); }\n.tb-drop[hidden] { display: none; }\n.tb-drop .tb-lang { margin: 0 0 6px; }\n.tb-item { text-align: left; font: inherit; font-size: 14px; padding: 7px 10px; border: 0; border-radius: 6px; background: none; color: var(--text); cursor: pointer; }\n.tb-item:hover, .tb-item:focus-visible { background: var(--btn-hover); }\n/* 3.9: the language list next to Help (the names in the language shown), and Erase everything at the end of the menu.\n   On a phone the two views keep their icon only (their name stays for screen readers), so that the bar holds on one line. */\n.tb-btn.tb-lang-sel { appearance: none; -webkit-appearance: none; font: inherit; font-size: 13px; padding: 4px 24px 4px 10px; width: 9.5em; text-overflow: ellipsis;\n  background: var(--surface) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23667085'/%3E%3C/svg%3E\") no-repeat right 9px center; }\n.tb-btn.tb-lang-sel:hover { background-color: var(--btn-hover); }\n@media (max-width: 520px) {\n  .tb-btn.tb-view > span { display: none; }\n  .tb-btn.tb-view { padding: 4px 10px; }\n  .tb-btn.tb-lang-sel { width: 8em; }\n}\n@media (max-width: 359px) { .tb-actions { flex-wrap: wrap; } }\n/* 3.9: on a narrow phone the credit can go under the name of the site: no separator left alone on its left */\n@media (max-width: 380px) { .tb-credit { border-left: 0; padding-left: 0; margin-left: 0; } }\n.pf-wait { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; white-space: nowrap; }\n.pf-row .pf-wait input { width: auto; margin: 0; }\n.steps-sp { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }\n.tb-purge { margin-top: 6px; border-top: 1px solid var(--border); border-radius: 0 0 6px 6px; color: var(--danger, #B42318); }\n.tab:disabled { opacity: .42; cursor: not-allowed; }\n#vts-app.no-video .transport, #vts-app.no-video .transport2 { display: none; }\n.rec-keys { margin: 10px 0 6px; font-size: 12px; color: var(--muted); }\n.ev-more { margin: 6px 0 4px; }\n.ev-more > summary { cursor: pointer; font-weight: 700; font-size: 13px; color: var(--accent); padding: 4px 0; }\n.ev-more[open] > summary { margin-bottom: 6px; }\n.tile-s { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); font-weight: 400; }\n.takt-calc { margin-top: 6px; }\n.exp-grp { margin: 0 0 12px; }\n.exp-grp h3 { margin: 0 0 6px; font-size: 14px; }\n.bal-b.has-act::after { content: ''; position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .4); }\n\n/* ---------- 3.3: protected column heads, line cycle, overflow above the takt, machine idle time ---------- */\n.bal-col { flex: 0 0 146px; width: 146px; }\n.bal-col-h { height: 90px; padding: 2px 2px 0 2px; overflow: hidden; position: relative; z-index: 3; background: var(--surface); font-size: 12px; line-height: 16px; }\n.bal-axis .bal-col-h { padding: 0; }\n.bh-l { height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }\n.bh-name { height: 20px; display: flex; align-items: center; gap: 5px; color: var(--text); padding-right: 24px; }\n.bh-name .bal-col-name { min-width: 0; font-size: 13px; }\n.bh-name .bal-badge { flex: none; line-height: 14px; }\n.bal-col-h .bal-tot { font-size: 13px; color: var(--text); }\n.bal-col-h .bal-gap { font-size: 12px; }\n.bal-col-h .bal-was-l { font-size: 12px; }\n.bal-bott { color: var(--accent); font-weight: 700; }\n.bal-col.is-over .bal-stack { box-shadow: none; }\n.bal-col.is-mach .bal-stack { background-image: none; }\n.bal-over { position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none; box-sizing: border-box; border: 2px solid var(--danger); border-bottom: 0; background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--danger) 26%, transparent) 0 5px, color-mix(in srgb, var(--danger) 8%, transparent) 5px 10px); }\n.bal-cycle { position: absolute; left: -8px; right: -8px; height: 0; margin-bottom: -1.5px; border-top: 3px solid var(--accent); z-index: 2; pointer-events: none; }\n.bal-was { z-index: 2; }\n.bal-lines { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin: 0 0 8px 48px; font-size: 12px; color: var(--muted); }\n.bal-lines span { display: inline-flex; align-items: center; gap: 6px; }\n.bal-lines .ln { display: inline-block; width: 26px; height: 0; }\n.ln-takt { border-top: 2px dashed var(--danger); }\n.ln-cycle { border-top: 3px solid var(--accent); }\n.ln-was { border-top: 2px dotted var(--text); opacity: .55; }\n.bal-b.is-idle { background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c-mach) 24%, transparent) 0 4px, transparent 4px 9px), var(--band-bg); color: var(--muted); border: 1px dashed var(--border-strong); border-bottom: 0; }\n\n/* ---------- 3.4: contact and feedback ---------- */\n.contact .ct-intro { margin: 0 0 12px; }\n.ct-choices { display: grid; gap: 8px; }\n.ct-choice { display: block; padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); text-decoration: none; background: var(--surface); }\n.ct-choice:hover, .ct-choice:focus-visible { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }\n.ct-choice b { display: block; color: var(--accent); }\n.ct-choice span { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }\n.ct-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }\n.contact h3 { margin: 16px 0 6px; font-size: 14px; }\n.ct-direct { margin: 0; line-height: 2.1; }\n.ct-copy { margin-left: 10px; padding: 2px 10px; font-size: 12px; }\n\n/* ---------- 3.5: what's new, parts per cycle, periodic tasks ---------- */\n/* V5.3: What's new by version, the five versions as rings (the identity), each opening on its own versions */\n.news { display: flex; flex-direction: column; gap: 8px; }\n.nw { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }\n.nw[open] { border-color: var(--border-strong); background: color-mix(in srgb, var(--tint) 45%, var(--surface)); }\n.nw > summary { display: flex; align-items: center; gap: 12px; padding: 10px 12px; cursor: pointer; list-style: none; border-radius: 12px; }\n.nw > summary::-webkit-details-marker { display: none; }\n.nw > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }\n.nw > summary::after { content: \"\"; flex: 0 0 auto; margin: 0 4px 0 auto; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-2px) rotate(45deg); transition: transform .15s; }\n.nw[open] > summary::after { transform: translateY(2px) rotate(-135deg); }\n.nw-big { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; box-sizing: border-box; border-radius: 50%; border: 4px solid var(--logo-ink); color: var(--logo-ink); font: 800 16px/1 \"VTS Brand\", system-ui, sans-serif; letter-spacing: .01em; }\n.nw[data-v=\"5\"] .nw-big { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px #FFB904; }\n.nw-head { display: flex; flex-direction: column; gap: 2px; min-width: 0; }\n.nw-head b { font-size: 15px; color: var(--text); }\n.nw-head span { font-size: 13px; color: var(--muted); line-height: 1.35; }\n.nw-subs { list-style: none; margin: 0; padding: 0 14px 10px 70px; }\n.nw-subs li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }\n.nw-subs li > div { min-width: 0; }\n.nw-subs b { font-size: 13.5px; }\n.nw-v { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 22px; padding: 0 7px; box-sizing: border-box; border-radius: 11px; background: var(--logo-ink); color: var(--surface); font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; }\n.nw-subs p, .nw-one { margin: 2px 0 0; font-size: 13.5px; line-height: 1.45; }\n.nw-one { padding: 0 14px 12px 70px; }\n@media (max-width: 560px) {\n  .nw-subs, .nw-one { padding-left: 14px; }\n}\n.field .hint { grid-column: 1 / -1; margin: 0; padding: 2px 8px 7px; font-size: 12px; color: var(--muted); }\n#tlPpc { width: 90px; }\n.pf-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 4px 0; }\n.pf-row .pf-name { min-width: 150px; font-weight: 600; }\n.pf-row input { width: 80px; }\n.perfreq { margin: 14px 0 4px; }\n.perfreq h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; }\n.pf-row .pf-t { color: var(--muted); font-size: 13px; }\n.pf-row .pf-in { width: 230px; max-width: 100%; }\n.pf-inline { display: flex; align-items: center; gap: 8px; margin: 4px 0; }\n.pf-inline input { width: 90px; }\n/* 4.2: dark labels where white text is too pale (green operations, grey machines) */\n.bal-b.ty-op { color: #0F2417; }\n.bal-b.ty-mach { color: #000000; }\n.res-out .btn-row { margin-top: 4px; }\n.bal-badge.ppc { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }\n.exp-grp .note { margin: 0 0 6px; }\n\n/* ---------- Layout and walking paths (4.0 to 4.2) ---------- */\n#vts-app.ly-on #layout { display: none; }\n@media (max-width: 560px) { #btnLy span { display: none; } }\n.ly-view { --ly-good: #12803C; padding: 12px 16px 24px; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .ly-view { --ly-good: #5BD38A; } }\n:root[data-theme=\"dark\"] .ly-view { --ly-good: #5BD38A; }\n.ly-top { display: flex; align-items: center; gap: 12px; }\n.ly-top h2 { margin: 0; font-size: 20px; color: var(--accent); }\n.ly-scbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 10px 0 4px; }\n.ly-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; }\n.ly-state { font-size: 13px; color: var(--muted); margin-right: 2px; }\n.ly-lk { width: 12px; height: 12px; margin: 0 5px -1px 0; fill: currentColor; }\n.ly-note { margin: 2px 0 4px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }\n.ly-row2 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 8px 0 10px; }\n.ly-steps { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }\n.ly-step { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }\n.ly-step b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--border); color: var(--text); font-size: 12px; }\n.ly-step.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); color: var(--accent); }\n.ly-step.on b { background: var(--accent); color: var(--surface); }\n#lyKpis { margin-left: auto; }\n.ly-kpis { display: flex; flex-wrap: wrap; gap: 8px; }\n.ly-kpi { display: grid; grid-template-columns: auto auto; column-gap: 8px; align-items: baseline; padding: 4px 10px 5px; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 6px; }\n.ly-kpi .k-l { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }\n.ly-kpi .k-v { font-size: 16px; font-weight: 700; color: var(--text); }\n.ly-kpi .k-d { font-size: 12px; font-weight: 700; }\n.ly-kpi .k-d.good, .ly-tab td.good { color: var(--ly-good); }\n.ly-kpi .k-d.bad, .ly-tab td.bad { color: var(--danger); }\n.ly-kpi .k-d.same { color: var(--muted); }\n\n/* panel on the left */\n.ly-main { display: flex; gap: 14px; align-items: stretch; }\n.ly-side { width: 310px; flex: none; font-size: 14px; }\n.ly-side p { margin: 0 0 10px; }\n.ly-side h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); }\n.ly-side h4 { margin: 12px 0 6px; font-size: 14px; }\n.ly-tip { font-size: 13px; color: var(--muted); }\n.ly-warn { font-size: 13px; color: var(--danger); }\n.ly-next { margin-top: 16px !important; }\n.ly-btns { display: flex; flex-wrap: wrap; gap: 6px; }\n.ly-2 { display: flex; gap: 8px; }\n.ly-2 > * { flex: 1; min-width: 0; }\n.ly-f { margin: 0 0 8px; }\n.ly-f label { display: block; margin: 0 0 3px; font-size: 12px; font-weight: 600; color: var(--muted); }\n.ly-f input, .ly-f select { display: block; width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; }\n.ly-card { margin: 12px 0; padding: 10px; border: 1px solid var(--border); border-radius: 8px; }\n.ly-card h4 { margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }\n.ly-lockcard { border-left: 3px solid var(--warn-line); background: var(--warn-bg); }\n.ly-lockcard p { margin: 0 0 8px; }\n.ly-lockcard .ly-btns { margin: 0; }\n.ly-selcard { border-left: 3px solid #B42318; }\n.ly-rotf { align-items: flex-end; }\n.ly-rotf .ly-f { flex: none; width: 5.5em; }\n.ly-rotf .ly-btns { margin: 0 0 8px !important; }\n.ly-pal { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }\n.ly-tool { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; font-weight: 600; text-align: left; cursor: pointer; }\n.ly-tool.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }\n.ly-cuttool { grid-column: 1 / -1; }\n.ly-sw { display: inline-block; width: 18px; height: 13px; border-radius: 3px; flex: none; }\n.ly-sw.ly-k-post { background: #DCE6F7; border: 2px solid #2F4FA0; }\n.ly-sw.ly-k-machine { background: #D9D9D9; border: 2px solid #595959; }\n.ly-sw.ly-k-rack { background: #FFF0C2; border: 2px solid #B8860B; }\n.ly-sw.ly-k-table { background: #D6F0DC; border: 2px solid #2E8B57; }\n.ly-sw.ly-sw-cut { background: transparent; border: 2px dashed var(--accent); }\n.ly-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }\n.ly-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; cursor: pointer; }\n.ly-chip.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; font-weight: 700; }\n.ly-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }\n.ly-dot.c0 { background: #0070C0; }\n.ly-dot.c1 { background: #C00000; }\n.ly-dot.c2 { background: #00B050; }\n.ly-dot.c3 { background: #7030A0; }\n.ly-dot.c4 { background: #ED7D31; }\n.ly-dot.c5 { background: #B8860B; }\n.ly-dot.c6 { background: #00A3A3; }\n.ly-dot.c7 { background: #D6007A; }\n.ly-dot.c8 { background: #1F3B73; }\n.ly-dot.c9 { background: #6B8E23; }\n.ly-order { margin: 0 0 8px; padding-left: 22px; }\n.ly-wpi { color: var(--muted); font-style: italic; }\n.ly-sum { font-weight: 600; }\n.ly-set summary { cursor: pointer; font-weight: 600; margin: 8px 0; }\n.ly-tab { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 13px; }\n.ly-tab th, .ly-tab td { padding: 4px 5px; border-bottom: 1px solid var(--border); text-align: right; }\n.ly-tab th:first-child, .ly-tab td:first-child { text-align: left; }\n.ly-tab .ly-oph td { padding-top: 10px; font-weight: 700; text-align: left; }\n.ly-tab .ly-oph .ly-dot { margin-right: 6px; }\n.ly-tab .ly-spd td { font-size: 12px; color: var(--muted); text-align: left; }\n.ly-tab td.good, .ly-tab td.bad { font-weight: 700; }\n.ly-tab td:not(:first-child) { white-space: nowrap; }\n.ly-tab td small { display: block; font-size: 11px; font-weight: 600; }\n\n/* steps of the cycle, placed on the stations */\n.ly-slist { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 4px; max-height: 340px; overflow: auto; }\n.ly-srow { width: 100%; box-sizing: border-box; display: grid; grid-template-columns: 1.9em 3em minmax(0, 1fr); column-gap: 6px; align-items: center; padding: 5px 8px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }\n.ly-srow:hover { border-color: var(--accent); }\n.ly-srow.on { border-color: #FFB700; box-shadow: 0 0 0 2px #FFB700 inset; background: color-mix(in srgb, #FFB700 9%, var(--surface)); }\n.ly-srow.walk { border-style: dashed; }\n.ly-sn { display: inline-grid; place-items: center; min-width: 1.6em; height: 1.6em; padding: 0 3px; box-sizing: border-box; border-radius: 999px; background: var(--navy); color: var(--on-navy); font-size: 11px; font-weight: 700; }\n.ly-srow.walk .ly-sn { background: var(--surface); color: var(--text); border: 1.5px dashed var(--border-strong); }\n.ly-scode { font-weight: 700; color: var(--muted); }\n.ly-sname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ly-swhere, .ly-sbare { grid-column: 2 / -1; font-size: 12px; color: var(--muted); }\n.ly-srow.set .ly-swhere { color: var(--text); }\n.ly-swhere i { font-style: normal; color: var(--muted); }\n.ly-sbare { font-style: italic; }\n.ly-stepcard { border-left: 3px solid #FFB700; }\n.ly-way { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px !important; }\n.ly-wfrom, .ly-wto { padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #FFFFFF; }\n.ly-wfrom { background: #E8890C; }\n.ly-wto { background: #12803C; }\n.ly-wto.ask { background: transparent; color: var(--text); border: 1.5px dashed #12803C; }\n.ly-donecard { border-left: 3px solid var(--ly-good); }\n.ly-lab { margin: 8px 0 4px !important; font-size: 12px; font-weight: 600; color: var(--muted); }\n.ly-seg { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 6px; }\n.ly-sdb { padding: 5px 9px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 12px; cursor: pointer; }\n.ly-sdb.on { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.ly-exp .ly-btns, .ly-sheets p { margin-bottom: 6px; }\n\n/* the plan */\n.ly-canvas { position: relative; flex: 1; min-width: 0; height: calc(100vh - 320px); min-height: 440px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); touch-action: none; }\n.ly-bgc { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }\n.ly-canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; cursor: grab; }\n.ly-banner { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); max-width: calc(100% - 24px); box-sizing: border-box; margin: 0; padding: 6px 14px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 600; text-align: center; pointer-events: none; box-shadow: 0 4px 14px rgba(20, 33, 78, .25); }\n.ly-banner[hidden] { display: none; }\n.ly-banner.track { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 8px 18px 9px; border-radius: 12px; font-size: 14px; }\n.ly-bn-step { font-size: 15px; font-weight: 700; }\n.ly-bn-way { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 8px; }\n.ly-bn-from, .ly-bn-to { padding: 2px 10px; border-radius: 999px; font-weight: 700; color: #FFFFFF; }\n.ly-bn-from { background: #E8890C; }\n.ly-bn-to { background: #12803C; }\n.ly-bn-to.ask { background: #FFB700; color: #1C2333; }\n.ly-bn-arr { font-size: 17px; line-height: 1; }\n.ly-bn-tail { display: inline-flex; align-items: center; gap: 8px; }\n.ly-bn-done { font-weight: 600; }\n.ly-zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 4px; }\n.ly-zoom .btn[disabled] { opacity: .45; cursor: default; }\n.ly-box, .ly-hit, .ly-shp { cursor: move; }\n.ly-shl, .ly-tx, .ly-pa, .ly-pahalo, .ly-arrow, .ly-ghost, .ly-oldpa, .ly-front, .ly-rl, .ly-hl, .ly-badge, .ly-wnum, .ly-tag, .ly-blead, .ly-bdot, .ly-wp, .ly-act, .ly-cal, .ly-calline, .ly-cutl, .ly-cutp, .ly-dot { pointer-events: none; }\n.ly-m-paths .ly-box, .ly-m-paths .ly-hit, .ly-m-paths .ly-shp { cursor: pointer; }\n.ly-rh { cursor: grab; }\n.ly-h { cursor: nwse-resize; }\n.ly-dot { stroke: #fff; }\n.ly-dot.old { fill: #8C93A8; fill-opacity: .85; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .ly-front { stroke: #E6E9F5; } }\n:root[data-theme=\"dark\"] .ly-front { stroke: #E6E9F5; }\n\n/* DXF import window */\n.ly-unit { max-width: 260px; }\n.ly-ph { margin: 14px 0 6px; font-size: 14px; }\n.ly-chks { display: grid; gap: 2px; max-height: 210px; overflow: auto; padding: 6px; border: 1px solid var(--border); border-radius: 8px; }\n.ly-chk { display: flex; align-items: center; gap: 8px; padding: 3px 4px; font-size: 13px; cursor: pointer; }\n.ly-chk span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\n.ly-chk span i { color: var(--muted); }\n.ly-chk small { color: var(--muted); }\n.ly-blk { display: flex; align-items: center; gap: 8px; }\n.ly-blk .ly-chk { flex: 1; min-width: 0; }\n.ly-blk select { flex: none; width: 9.5em; padding: 3px 6px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 12px; }\n\n@media (max-width: 860px) {\n  .ly-main { flex-direction: column; }\n  .ly-canvas.ly-m-compare, .ly-canvas.ly-m-ref { order: -1; }\n  .ly-side { width: 100%; }\n  .ly-canvas { height: 65vh; }\n  #lyKpis, .ly-acts { margin-left: 0; }\n}\n@media (max-width: 640px) {\n  .ly-zoom { left: 8px; right: 8px; flex-wrap: wrap; justify-content: flex-end; }\n  .ly-banner { left: 8px; right: 8px; top: 8px; transform: none; max-width: none; font-size: 12px; }\n  .ly-banner.track { gap: 3px; padding: 6px 10px; font-size: 12px; }\n  .ly-bn-step { font-size: 13px; }\n  .ly-bn-from, .ly-bn-to { padding: 1px 7px; }\n}\n\n/* printed layout report */\n@media print {\n  #printReport.lr h2 { margin: 10px 0 4px; }\n  .lr-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0 6px; }\n  .lr-k { display: grid; padding: 6px 10px; border: 1px solid #D5DAE5; border-left: 4px solid #12803C; border-radius: 6px; }\n  .lr-kl { font-size: 10px; color: #5F6780; }\n  .lr-kv { font-size: 20px; font-weight: 700; color: #12803C; }\n  .lr-kd { font-size: 10px; color: #5F6780; }\n  .lr-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0 2px; }\n  .lr-plans.one { grid-template-columns: 1fr; }\n  .lr-plans figure { margin: 0; border: 1px solid #D5DAE5; border-radius: 6px; overflow: hidden; break-inside: avoid; }\n  .lr-plans figcaption { padding: 4px 8px; font-weight: 700; color: #132034; background: #EDF0FA; }\n  .lr-plans img { display: block; width: 100%; height: auto; max-height: 112mm; object-fit: contain; }\n  .lr-steps { padding: 3px 8px 5px; border-top: 1px solid #E3E7F0; }\n  .lr-steps p { margin: 2px 0; font-size: 7.5pt; line-height: 1.35; color: #1C2333; }\n  .lr-steps .ly-dot { margin-right: 4px; vertical-align: -1px; }\n  .lr-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; margin: 4px 0; color: #5F6780; }\n  .lr-leg span { display: inline-flex; align-items: center; gap: 5px; }\n  .lr-legt { margin-left: auto; }\n  .lr-tbl { font-size: 10px; }\n  .lr-tbl .ly-dot { margin-right: 5px; }\n  .lr-tbl td.good { color: #12803C; font-weight: 700; }\n  .lr-tbl td.bad { color: #B42318; font-weight: 700; }\n  .lr-tbl tr.lr-tot td { font-weight: 700; border-top: 1.5px solid #132034; }\n}\n\n/* ---------- 4.2: one list of scenarios for the balancing and the layout ---------- */\n/* a walk timed by the plan of the scenario: its own colour, a navy edge, measured time -> new time written on it */\n.bal-b.is-plan { box-shadow: inset 4px 0 0 #132034; }\n.sw.sw-plan { background: linear-gradient(90deg, #132034 0 4px, #FFC000 4px); }\n.sw.sw-moved { width: auto; height: auto; padding: 0 3px; background: transparent; border: 1px dashed currentColor; font-style: normal; font-size: 10px; line-height: 12px; vertical-align: 0; }\n.scn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 10px 0 4px; }\n.scn-lab { font-size: 13px; font-weight: 700; color: var(--muted); }\n.scn-tabs { flex: 0 1 auto; }\n.scn-switch { margin-left: auto; font-weight: 700; color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--border-strong)); }\n.scn-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 6px 0 2px; padding: 8px 12px; border: 1px solid var(--border); border-left: 4px solid var(--navy); border-radius: 8px; background: color-mix(in srgb, var(--navy) 5%, var(--surface)); }\n.scn-what { flex: 1 1 420px; margin: 0; font-size: 14px; line-height: 1.45; }\n.scn-what i { color: var(--muted); }\n.scn-res { display: inline-block; margin-left: 6px; padding: 1px 9px; border-radius: 999px; background: var(--navy); color: var(--on-navy); font-size: 13px; font-weight: 700; white-space: nowrap; }\n.scn-acts { display: flex; flex-wrap: wrap; gap: 6px; }\n.scn-note { margin: 4px 0 6px; font-size: 13px; color: var(--muted); white-space: pre-wrap; }\n@media (max-width: 640px) { .scn-lab { display: none; } .scn-switch { margin-left: 0; } .scn-what { flex-basis: 100%; } }\n/* layout: modes of a scenario, figures before -> after, before / after on the plan */\n.ly-modes .ly-step { padding: 7px 14px; }\n.ly-kpi .k-v .k-a { color: var(--muted); font-weight: 600; }\n.ly-ba { display: inline-flex; margin-right: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(20, 33, 78, .18); }\n.ly-ba .btn { border-radius: 0; }\n.ly-ba .btn:first-child { border-radius: 8px 0 0 8px; }\n.ly-ba .btn:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }\n.ly-ba .btn[aria-pressed=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); }\n.ly-canvas.ly-before { box-shadow: inset 0 0 0 3px #8C93A8; }\n.ly-ops { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }\n.ly-ops li { display: grid; grid-template-columns: 14px 1fr; column-gap: 6px; align-items: baseline; font-size: 13px; }\n.ly-ops li span { grid-column: 2; color: var(--muted); }\n.ly-chg { border-left: 3px solid var(--navy); }\n.ly-chgl { margin: 0 0 6px; padding-left: 18px; font-size: 13px; }\n.ly-chgl li { margin: 2px 0; }\n.ly-chgb { padding: 0; border: 0; background: none; color: var(--accent); font: inherit; text-align: left; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }\n.ly-side details.ly-card > summary { cursor: pointer; font-weight: 700; }\n.ly-side details.ly-card[open] > summary { margin-bottom: 8px; }\n.ly-valcard { border-left: 3px solid var(--ly-good); }\n.ly-impcard { border-left: 3px solid var(--navy); }\n.ly-reset { margin-top: 4px !important; }\n\n/* ---------- 4.2: printed reports, fuller ---------- */\n@media print {\n  @page {\n    @bottom-left { content: \"Video Time Study \u00b7 vts-tool.com\"; font: 8pt \"Segoe UI\", Arial, sans-serif; color: #8A90A2; }\n    @bottom-right { content: counter(page) \" / \" counter(pages); font: 8pt \"Segoe UI\", Arial, sans-serif; color: #8A90A2; }\n  }\n  .rp-verdict { margin: 8px 0 6px; padding: 7px 12px; border-left: 4px solid #132034; background: #EDF0FA; font-size: 13px; font-weight: 600; color: #1C2333; border-radius: 0 6px 6px 0; }\n  .rp-page { break-before: page; }\n  .rp-list { margin: 4px 0 6px; padding-left: 18px; color: #3A4256; }\n  .rp-list li { margin: 2px 0; }\n  .lr-kpis { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }\n  .lr-k.bad { border-left-color: #B42318; }\n  .lr-k.bad .lr-kv { color: #B42318; }\n  .lr-k:not(.good):not(.bad) { border-left-color: #8A90A2; }\n  .lr-k:not(.good):not(.bad) .lr-kv { color: #1C2333; }\n  .lr-plans img { max-height: 104mm; }\n  .rp-sec { break-inside: avoid; }\n  #printReport h2 { break-after: avoid; }\n  .lr-plans figcaption small { font-weight: 400; color: #5F6780; }\n  .rp-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }\n  .rp-box { border: 1px solid #D5DAE5; border-radius: 6px; padding: 6px 10px; break-inside: avoid; }\n  .rp-box h3 { margin-top: 2px !important; }\n  .rp-cycc svg { display: block; width: 100%; height: auto; max-height: 56mm; }\n  .rp-method { margin: 6px 0; padding: 5px 10px; border: 1px solid #D5DAE5; border-radius: 6px; color: #3A4256; font-size: 10px; }\n  .rp-info.rp-col th { width: 48%; }\n  .rp-info.rp-col td { width: 52%; }\n  .rp-two .rp-info th { width: 22%; }\n  .rp-two .rp-info td { width: 28%; }\n  .rp-two .rp-chart .load-svg { max-height: 64mm; }\n}\n\n\n/* ---------- 4.2: start screen (the example first on a first visit, filming from a phone), the way through the example ---------- */\n.video-empty .btn.primary { background: #FFB700; border-color: #FFB700; color: #121A33; font-weight: 700; }\n.video-empty .btn.primary:hover { background: #FFC633; border-color: #FFC633; }\n.video-empty .btn:not(.primary) { background: transparent; border-color: #8FA3D9; color: #FFFFFF; }\n.video-empty .btn:not(.primary):hover { background: rgba(255, 255, 255, .08); }\n.ve-film { display: none; }\n@media (pointer: coarse) { .video-empty .ve-film { display: inline-flex; align-items: center; justify-content: center; } }\n.ve-first #btnPickVideo, .ve-first #btnPickVideo ~ * { order: 1; }\n.ve-first #btnExample { order: 0; margin-top: 0; background: #FFB700; border-color: #FFB700; color: #121A33; font-weight: 700; }\n.ve-first #btnExample:hover { background: #FFC633; border-color: #FFC633; }\n.ve-first #btnPickVideo { background: transparent; border-color: #8FA3D9; color: #FFFFFF; font-weight: 400; }\n.ve-first #btnPickVideo:hover { background: rgba(255, 255, 255, .08); }\n.ex-go { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; }\n.ex-go > span { color: var(--muted); }\n.ex-go .linkbtn { background: none; border: 0; padding: 4px 0; min-height: 28px; color: var(--accent); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }\n/* no video yet, on a computer too: the welcome screen sets the height of the box, nothing is squeezed on a laptop */\n@media (min-width: 600px) {\n  #vts-app.no-video .video-box { aspect-ratio: auto; max-height: none; min-height: 300px; }\n  #vts-app.no-video .video-box video { display: none; }\n  #vts-app.no-video .video-empty { position: static; width: 100%; align-self: stretch; padding: 26px 16px; }\n}\n\n/* ---------- 4.2: improvement report, what changes, cycles side by side ---------- */\n@media print {\n  #printReport h3 { break-after: avoid; }\n  .rp-cycw.side { break-inside: avoid; }\n  .rp-cycs.k2, .rp-cycs.k3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-items: start; }\n  .rp-cycs.k2 { grid-template-columns: repeat(2, 1fr); }\n  .rp-cycs .rp-cyc { font-size: 9px; }\n  /* one operator on one page: tighter rows and headings in the sections of each operator */\n  #printReport .rp-op h3 { margin: 6px 0 3px; }\n  .rp-op { font-size: 10px; }\n  .rp-op .rp-two .rp-info th { width: 1%; white-space: nowrap; }\n  .rp-op .rp-two .rp-info td { width: auto; vertical-align: top; }\n  .rp-op .rp-tbl td, .rp-op .rp-tbl th { padding-top: 2px; padding-bottom: 2px; }\n  .rp-op .rp-cycc svg { max-height: 48mm; }\n  .rp-cycs .rp-cyc td, .rp-cycs .rp-cyc th { padding-top: 2px; padding-bottom: 2px; }\n  .rp-chgs { columns: 2; column-gap: 18px; }\n  .rp-chg { break-inside: avoid; }\n  .rp-chg h3 { margin: 4px 0 2px !important; font-size: 11px; color: #132034; }\n  .rp-chg .rp-list { margin: 0 0 4px; }\n  .br .lr-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }\n  .br .lr-plans img { display: block; width: 100%; max-height: 92mm; object-fit: contain; }\n  .br .rp-flow { break-before: page; }\n  #printReport.im h1 { font-size: 18px; }\n  .im .rp-verdict { margin: 4px 0; font-size: 12px; }\n  .im-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; margin: 4px 0; }\n  .im-kpis .lr-k { padding: 4px 8px; }\n  .im-kpis .lr-kv { font-size: 15px; }\n  .im-kpis .lr-kv .im-a { color: #8A90A2; font-weight: 600; }\n  .im-yama svg { display: block; width: 100%; height: auto; max-height: 44mm; }\n  .im-yama.tall svg { max-height: 92mm; }\n  .im-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px; }\n  .im-plans figure { margin: 0; border: 1px solid #D5DAE5; border-radius: 6px; overflow: hidden; break-inside: avoid; }\n  .im-plans figcaption { padding: 3px 8px; font-weight: 700; font-size: 10px; color: #132034; background: #EDF0FA; }\n  .im-plans img { display: block; width: 100%; max-height: 52mm; object-fit: contain; }\n  .im .lr-leg { margin: 2px 0; font-size: 9px; }\n  .im-chg { break-inside: avoid; }\n  .im-chg h2 { margin: 4px 0 2px !important; font-size: 13px; }\n  .im .rp-chgs { font-size: 10px; columns: 3; }\n  .im .rp-chg .rp-list li { margin: 1px 0; }\n  .im .rp-foot { margin-top: 4px; }\n}\n\n/* ---------- 4.3: placing the steps, one question at a time, round spots on the stations ---------- */\n.ly-step.ok b { background: #1F8A4C; color: #FFFFFF; }\n.ly-qcard { margin: 10px 0 14px; padding: 12px 12px 10px; border: 2px solid #FFB700; border-radius: 10px; background: color-mix(in srgb, #FFB700 9%, var(--surface)); }\n.ly-qcard.ans { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }\n.ly-qcard.done { border-color: #1F8A4C; background: color-mix(in srgb, #1F8A4C 8%, var(--surface)); }\n.ly-qcard h4 { margin: 2px 0 4px; font-size: 16px; color: var(--text); }\n.ly-qcard p { margin: 4px 0; }\n.ly-qn { font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); }\n.ly-qcard.done .ly-qn { color: #1F8A4C; font-size: 14px; text-transform: none; }\n.ly-qask { font-weight: 700; color: var(--accent); }\n.ly-qhow { font-size: 13px; }\n.ly-qans { font-weight: 700; }\n.ly-qtop { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }\n.ly-qtop .btn.link { font-size: 12.5px; white-space: nowrap; }\n.ly-qtop .btn.link:disabled { visibility: hidden; }\n.ly-qnav { display: flex; gap: 6px; margin-top: 10px !important; }\n.ly-qnav .btn { flex: 1 1 0; justify-content: center; }\n.ly-seg4 { flex-wrap: wrap; }\n.btn.link { border: 0; background: none; padding: 0 2px; min-height: 0; color: var(--accent); text-decoration: underline; }\n.ly-ith { margin: 12px 0 6px; font-size: 14px; }\n.ly-itin { list-style: none; margin: 0; padding: 0 0 0 4px; --opc: var(--accent); }\n.ly-itin.c0 { --opc: #0070C0; } .ly-itin.c1 { --opc: #C00000; } .ly-itin.c2 { --opc: #00B050; } .ly-itin.c3 { --opc: #7030A0; } .ly-itin.c4 { --opc: #ED7D31; } .ly-itin.c5 { --opc: #B8860B; } .ly-itin.c6 { --opc: #00A3A3; } .ly-itin.c7 { --opc: #D6007A; } .ly-itin.c8 { --opc: #1F3B73; } .ly-itin.c9 { --opc: #6B8E23; }\n.ly-itin li { position: relative; margin: 0; padding: 0 0 0 18px; }\n.ly-itin li::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; border-left: 2px solid var(--border-strong); }\n.ly-itin li:first-child::before { top: 14px; }\n.ly-itin li:last-child::before { bottom: calc(100% - 14px); }\n.ly-itin button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; }\n.ly-ig { padding-top: 4px !important; padding-bottom: 4px !important; }\n.ly-igh { display: flex; align-items: center; gap: 6px; width: 100%; padding: 5px 6px; border-radius: 7px; font-weight: 700 !important; }\n.ly-ipin { position: absolute; left: 0; top: 10px; width: 12px; height: 12px; border-radius: 50%; background: var(--opc); box-shadow: 0 0 0 3px var(--surface); }\n.ly-ig.todo .ly-ipin { background: var(--surface); border: 2px dashed #B8860B; width: 8px; height: 8px; }\n.ly-ig.todo .ly-iname, .ly-iw.todo .ly-idist { color: #8A6100; font-style: italic; }\n.ly-isteps { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 0 6px 2px; }\n.ly-istep { display: flex; gap: 6px; font-size: 12.5px !important; color: var(--muted) !important; padding: 2px 0 !important; border-bottom: 1px dotted transparent !important; }\n.ly-istep:hover, .ly-istep.cur { color: var(--accent) !important; border-bottom-color: var(--accent) !important; }\n.ly-in { flex: none; min-width: 14px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }\n.ly-iw button { display: flex; align-items: center; gap: 6px; width: 100%; padding: 4px 6px; border-radius: 7px; font-size: 13px; color: var(--muted); }\n.ly-iarr { position: absolute; left: -1px; width: 16px; height: 16px; border: 1.5px solid var(--opc); border-radius: 50%; background: var(--surface); color: var(--opc); font-size: 9.5px; font-weight: 800; line-height: 13px; text-align: center; font-variant-numeric: tabular-nums; }\n.ly-iw.todo .ly-iarr { border-style: dashed; border-color: #B8860B; color: #8A6100; }\n.ly-iname { flex: 1; min-width: 0; }\n.ly-idist { flex: none; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); }\n.ly-igh:hover, .ly-iw button:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }\n.ly-ig.cur .ly-igh, .ly-iw.cur button { background: color-mix(in srgb, #FFB700 22%, var(--surface)); box-shadow: inset 3px 0 0 #FFB700; color: var(--text); }\n.ly-spot { cursor: pointer; transform-box: fill-box; transform-origin: center; transition: transform .12s ease; }\n.ly-spot:hover { transform: scale(1.35); }\n.ly-spot.ask { animation: lySpot 1.6s ease-in-out infinite; }\n@keyframes lySpot { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: .45; } }\n@media (prefers-reduced-motion: reduce) { .ly-spot.ask { animation: none; } }\n\n/* ---------- 4.3: scenarios side by side, reference of the improvement report ---------- */\n.tl-cmp { font-weight: 700; }\n.panel.wide:has(.cmp) { width: min(1100px, 100%); }\n.cmp-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin-bottom: 10px; }\n.cmp-reflab { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; white-space: nowrap; }\n.cmp-reflab select { min-width: 200px; }\n.cmp-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }\n.cmp-pick > span { color: var(--muted); font-weight: 600; }\n.cmp-pick label { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; cursor: pointer; }\n.cmp-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }\n.cmp-tab { width: 100%; border-collapse: collapse; font-size: 13px; }\n.cmp-tab th, .cmp-tab td { padding: 7px 12px; border-bottom: 1px solid var(--border); text-align: right; vertical-align: top; white-space: nowrap; }\n.cmp-tab thead th { color: var(--accent); font-size: 14px; vertical-align: bottom; }\n.cmp-tab thead th small { display: block; font-size: 11px; font-weight: 700; color: #8A6100; text-transform: uppercase; letter-spacing: .03em; }\n.cmp-tab tbody th { text-align: left; font-weight: 600; color: var(--muted); }\n.cmp-tab .is-ref { background: color-mix(in srgb, #FFB700 10%, var(--surface)); }\n.cmp-tab td b { display: block; font-size: 15px; color: var(--text); font-variant-numeric: tabular-nums; }\n.cmp-tab td small { display: block; font-weight: 700; font-variant-numeric: tabular-nums; }\n.cmp { --cmp-good: #12803C; }\n@media (prefers-color-scheme: dark) { :root:not([data-theme=\"light\"]) .cmp { --cmp-good: #5BD38A; } }\n:root[data-theme=\"dark\"] .cmp { --cmp-good: #5BD38A; }\n.cmp-tab .good, .cmp-tab td b.good { color: var(--cmp-good); } .cmp-tab .bad, .cmp-tab td b.bad { color: var(--danger); } .cmp-tab .same { color: var(--muted); }\n.cmp-tab td.best { background: color-mix(in srgb, #1F8A4C 13%, var(--surface)); }\n.cmp-tab td.cmp-txt { white-space: normal; text-align: left; font-size: 12px; color: var(--muted); min-width: 170px; max-width: 260px; }\n.cmp-tab td.cmp-txt span { display: block; margin: 1px 0; }\n.cmp-tab tr.cmp-act td { border-bottom: 0; white-space: normal; }\n.cmp-tab tr.cmp-act .btn { margin: 2px 0 2px 4px; }\n.cmp-leg { margin: 8px 0 0; }\n.imp-refs { display: flex; flex-direction: column; gap: 4px; margin: 8px 0 4px; }\n.imp-ref { display: flex; align-items: center; gap: 8px; min-height: 34px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }\n.imp-ref:has(input:checked) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); font-weight: 700; }\n@media print {\n  .cmpr .cmp-tab { font-size: 11px; }\n  .cmpr .cmp-tab th, .cmpr .cmp-tab td { padding: 4px 8px; border-bottom: 1px solid #E0E4EE; }\n  .cmpr .cmp-tab thead th { color: #132034; border-bottom: 1.5px solid #132034; }\n  .cmpr .cmp-tab .is-ref { background: #FFF5D1; }\n  .cmpr .cmp-tab td.best { background: #E3F4E9; }\n  .cmpr .cmp-tab td b { font-size: 12px; color: #1C2333; }\n  .cmpr .cmp-tab .good, .cmpr .cmp-tab td b.good { color: #12803C; }\n  .cmpr .cmp-tab .bad, .cmpr .cmp-tab td b.bad { color: #B42318; }\n  .cmpr .cmp-tab td.cmp-txt { font-size: 9.5px; color: #3A4256; }\n}\n.std-for { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 10px 0 4px; }\n.std-for label { font-weight: 700; }\n.std-for select { min-width: 240px; max-width: 100%; }\n.std-sim { border-left: 3px solid var(--navy); padding-left: 8px; }\n/* 4.3: quick start, automatic codes */\n.qs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0; }\n.qs-f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }\n.qs-f label { font-weight: 700; }\n.qs-n { display: flex; align-items: center; gap: 4px; }\n.qs-n input { width: 58px; min-width: 0; text-align: center; padding-left: 4px; padding-right: 4px; }\n.qs-n .btn { min-width: 36px; justify-content: center; font-weight: 700; }\n@media (max-width: 520px) { .qs-grid { grid-template-columns: 1fr; } }\n.steps-auto { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }\n.empty-hint .linkbtn { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }\n.qs-n input::-webkit-outer-spin-button, .qs-n input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }\n.qs-n input[type=\"number\"] { -moz-appearance: textfield; appearance: textfield; }\n/* 4.3: iPhone videos converted, video filmed or converted kept in this browser */\n.ve-iphone { max-width: 34em; opacity: .9; }\n.made-last { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; margin: 8px 0 0; padding: 8px 12px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 10px; font-size: 13px; }\n.made-last b { color: #FFB700; }\n.made-last .made-acts { display: inline-flex; gap: 6px; flex-wrap: wrap; }\n.video-empty .made-last .btn { background: transparent; border-color: #8FA3D9; color: #FFFFFF; min-height: 32px; padding: 4px 12px; font-size: 13px; width: auto; margin: 0; }\n.made-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 8px 0 0; padding: 8px 12px; border: 1px solid #E8890C; border-left-width: 4px; border-radius: 8px; background: color-mix(in srgb, #FFB700 12%, var(--surface)); }\n.made-bar p { margin: 0; flex: 1 1 260px; font-size: 14px; font-weight: 600; }\n.made-bar .btn-row { margin: 0; }\n.video-msg progress { display: block; width: 100%; height: 12px; margin: 8px 0 4px; accent-color: #FFB700; }\n.video-msg .cv-err { color: #FFB4B4; font-weight: 600; }\n/* 4.3: a few lines on the tool at the bottom of the page (also read by search engines), under the time study only */\n.about { max-width: 1800px; margin: 8px auto 0; padding: 12px 16px 4px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }\n.about h2 { margin: 0 0 4px; font-size: 14px; color: var(--text); }\n.about p { margin: 2px 0; max-width: 72em; }\n.about-links { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 6px !important; }\n.about a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }\n#vts-app.bal-on .about, #vts-app.ly-on .about { display: none; }\n\n/* V5: languages (menu, footer, line toward the page of the language of the browser) */\na.tb-btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }\n.tb-drop .tb-lang { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 0 0 6px; }\n.tb-drop .tb-lang .tb-btn, .tb-drop .tb-lang .tb-btn:first-child, .tb-drop .tb-lang .tb-btn:last-child { border-radius: 6px; margin: 0; min-width: 0; padding: 4px 0; }\n.tb-lang .tb-btn[aria-current=\"true\"] { background: var(--navy); border-color: var(--navy); color: var(--on-navy); font-weight: bold; }\n.lang-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 7px 16px; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 14px; }\n.lang-bar a { font-weight: 600; color: var(--accent); }\n.lang-bar .lang-x { margin-left: auto; font: inherit; font-size: 20px; line-height: 1; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 0 4px; }\n.lang-bar[hidden] { display: none; }\n.ftr-langs { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 14px; }\n.ftr-langs a[aria-current=\"true\"] { font-weight: bold; text-decoration: none; color: var(--text); }\n\n/* V5: presentation below the tool (example in figures, comparison, uses, questions) */\n.about { color: var(--text); font-size: 14px; padding: 18px 16px 10px; }\n.about h2 { font-size: 19px; margin: 0 0 8px; line-height: 1.3; }\n.about h3 { font-size: 16px; margin: 22px 0 8px; }\n.about h4 { font-size: 14px; margin: 0 0 4px; }\n.about p { max-width: 62em; margin: 4px 0; }\n.about-lead { font-size: 15px; }\n.about-faq { max-width: 62em; }\n.about-q { border-bottom: 1px solid var(--border); padding: 7px 0; }\n.about-q summary { cursor: pointer; font-weight: 600; }\n.about .about-q p { margin: 6px 0 4px; color: var(--muted); }\n\n/* V5: a step done by another operator than the one it was measured on */\n.bal-b.is-moved { outline: 2px dashed rgba(28, 35, 51, .85); outline-offset: -3px; }\n.bal-b.is-moved.ty-walk, .bal-b.is-moved.ty-wait { outline-color: rgba(28, 35, 51, .7); }\n.ly-mv { display: inline-block; margin-right: 4px; padding: 0 4px; border-radius: 4px; background: #132034; color: #fff; font-size: 11px; font-weight: 700; line-height: 16px; }\n.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }\n/* V5: opacity of the plan, in the bar over the plan */\n.ly-zoom { flex-wrap: wrap; justify-content: flex-end; max-width: calc(100% - 20px); }\n.ly-opg { display: inline-flex; align-items: center; gap: 6px; margin-right: 6px; padding: 2px 8px 2px 2px; border-radius: 8px; background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(20, 33, 78, .18); font-size: 12px; }\n.ly-opg input[type=\"range\"] { width: 92px; margin: 0; accent-color: var(--navy); }\n.ly-opg output { min-width: 34px; text-align: right; font-variant-numeric: tabular-nums; }\n.ly-opl { color: var(--muted); white-space: nowrap; }\n.ly-eye[aria-pressed=\"true\"] { background: var(--navy); color: #fff; }\n@media (max-width: 860px) { .ly-opl { display: none; } .ly-opg input[type=\"range\"] { width: 70px; } }\n/* V5: lock of the reference in the bar of the scenarios */\n.scn-lock { display: inline-flex; align-items: center; gap: 5px; }\n.scn-lock .ly-lk { width: 13px; height: 13px; fill: currentColor; }\n.scn-lock.on, .scn-lock.on:hover { background: var(--tint); border-color: var(--border-strong); color: var(--text); }\n.ly-befcard { border-color: var(--navy); }\n.scn-waits { margin: 10px 0 0; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; }\n.scn-waits legend { padding: 0 4px; font-weight: 600; }\n.scn-waits[hidden] { display: none; }\n/* V5: Compare / Reports */\n.cmp-h { margin: 6px 0 8px; font-size: 15px; color: var(--navy); }\n:root[data-theme=\"dark\"] .cmp-h { color: var(--text); }\n.cmp-h + .note { margin-top: 0; }\n.cmp-scope { display: grid; gap: 6px; }\n.cmp-sc span { display: flex; flex-direction: column; gap: 2px; }\n.cmp-sc small { color: var(--muted); font-size: 12px; }\n.cmp-sc.off { opacity: .55; }\n@media print {\n  #printReport.cr h1 { font-size: 18px; }\n  .cr .cr-h { margin: 0 0 4px; font-size: 15px; color: #132034; }\n  .cr .rp-verdict { margin: 4px 0; font-size: 12px; }\n  .cr-yama svg { display: block; width: 100%; height: auto; max-height: 62mm; }\n  .cr-yama.tall svg { max-height: 120mm; }\n  .cr .cr-plans img { max-height: 92mm; }\n  .cr .cr-plans.one img { max-height: 120mm; }\n  .cr-blk { break-inside: avoid; }\n  .cr-blk h2 { margin: 8px 0 4px !important; font-size: 12px; }\n  .cr .rp-chgs { font-size: 10px; }\n  /* A3 landscape presentation of the layout */\n  #printReport.lp { page: vtsA3; }\n  .lp .lp-kpis { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }\n  .lp .lp-kpis .lr-kv { font-size: 26px; }\n  .lp .lp-plans img { max-height: 205mm; }\n  .lp .lp-plans.one img { max-height: 225mm; }\n  .lp .lr-steps p { font-size: 9pt; }\n}\n@page vtsA3 { size: 420mm 297mm; margin: 10mm; }\n\n/* V5.2: the ring identity (brand/anneau.py). Header: ring, Vts-Tool.com and Video Time Study; big logo at the bottom of the page */\n.tb-logo { width: 34px; height: 34px; flex: none; stroke: none; }\n.tb-logo .lg-ring, .ftr-logo .lg-ring { stroke: var(--logo-ink); }\n.tb-logo .lg-ring-f, .ftr-logo .lg-ring-f, .ftr-logo .lg-ink { fill: var(--logo-ink); }\n.ftr-logo .lg-sub { fill: var(--muted); }\n.tb-title h1.tb-brand { display: flex; flex-direction: column; gap: 3px; margin: 0; }\n.tb-wm { font: 800 19.5px/1 \"VTS Brand\", \"Segoe UI\", system-ui, -apple-system, Arial, sans-serif; letter-spacing: -.01em; color: var(--title); white-space: nowrap; }\n.tb-hy { color: #FFB904; }\n.tb-sub { font: 700 11.5px/1 \"VTS Brand\", \"Segoe UI\", system-ui, -apple-system, Arial, sans-serif; color: var(--muted); white-space: nowrap; }\n.tb-credit { border-left: 1px solid var(--border-strong); padding-left: 10px; margin-left: 2px; line-height: 1.3; }\n.ftr-brand { flex: 1 0 100%; display: flex; justify-content: center; padding: 30px 0 18px; }\n.ftr-logo { width: 230px; max-width: 70%; height: auto; }\n.rp-head .tb-logo { width: 34px; height: 34px; }\n@media (max-width: 640px) { .tb-wm { font-size: 18px; } .tb-sub { font-size: 11.5px; } .tb-logo { width: 32px; height: 32px; } .ftr-logo { width: 190px; } }\n\n/* ---------- V5.3: the station of each step (Steps tab), used by the layout ---------- */\n.ly-qsta { display: flex; align-items: center; gap: 7px; font-weight: 700; color: var(--ly-good, #12803C); }\n.ly-qsta::before { content: \"\"; flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; border: 3px solid currentColor; box-sizing: border-box; }\n.ly-qsta.miss { color: var(--text); font-weight: 600; }\n.ly-qsta.miss::before { border-color: #E8890C; border-style: dashed; }\n.ly-stacard .ly-chips { margin: 6px 0 8px; }\n.ly-stacard .ly-chip { font-size: 12.5px; padding: 5px 10px; }\n.s-sta::placeholder { color: var(--muted); opacity: .7; }\n@font-face { font-family: \"VTS Brand\"; font-weight: 800; font-style: normal; font-display: swap; src: url(data:font/woff;base64,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) format(\"woff\"); }\n@font-face { font-family: \"VTS Brand\"; font-weight: 700; font-style: normal; font-display: swap; src: url(data:font/woff;base64,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) format(\"woff\"); }\n", CSS_H = '30b1f29177', APP = "<div id=\"vts-app\" data-h=\"75c511f0d1\" class=\"no-video\">\n<header class=\"topbar\">\n  <div class=\"tb-title\">\n    <svg class=\"tb-logo\" viewBox=\"0 0 100 100\" aria-hidden=\"true\"><circle cx=\"50.00\" cy=\"50.00\" r=\"45.50\" class=\"lg-ring\" fill=\"none\" stroke=\"#132034\" stroke-width=\"9.00\"/><rect x=\"26.27\" y=\"21.80\" width=\"8.04\" height=\"54.80\" rx=\"4.02\" fill=\"#01A25E\"/><rect x=\"39.42\" y=\"46.00\" width=\"8.04\" height=\"30.60\" rx=\"4.02\" fill=\"#FFB904\"/><rect x=\"52.54\" y=\"26.00\" width=\"8.04\" height=\"50.60\" rx=\"4.02\" fill=\"#046AB3\"/><rect x=\"65.69\" y=\"42.60\" width=\"8.04\" height=\"34.00\" rx=\"4.02\" fill=\"#AF0002\"/><rect x=\"20.45\" y=\"36.30\" width=\"59.10\" height=\"3.20\" rx=\"1.60\" class=\"lg-ring-f\" fill=\"#132034\"/></svg>\n    <h1 class=\"tb-brand\"><span class=\"tb-wm\">Vts<span class=\"tb-hy\">-</span>Tool.com</span> <span class=\"tb-sub\">Video Time Study</span></h1>\n    <span class=\"tb-credit\" data-i18n=\"hdr.credit\">Created by Ilyas Baqloul</span>\n  </div>\n  <div class=\"tb-study\"><input type=\"text\" id=\"hdrName\" class=\"tb-name\" maxlength=\"120\" autocomplete=\"off\" spellcheck=\"false\" aria-label=\"Study name\"></div>\n  <div class=\"tb-actions\">\n    <button type=\"button\" class=\"tb-btn tb-view tb-bal\" id=\"btnBal\" aria-pressed=\"false\" aria-label=\"Line balancing\" data-i18n-aria=\"hdr.balance\"><svg class=\"tb-ico\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1 15V9h3.5v6zM6.25 15V2h3.5v13zM11.5 15V6H15v9z\"/></svg><span data-i18n=\"hdr.balance\">Line balancing</span></button>\n    <button type=\"button\" class=\"tb-btn tb-view tb-ly\" id=\"btnLy\" aria-pressed=\"false\" aria-label=\"Layout\" data-i18n-aria=\"ly.btn\"><svg class=\"tb-ico\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1 1h6v5H1zM9 1h6v8H9zM1 8h6v7H1zM9 11h6v4H9z\"/></svg><span data-i18n=\"ly.btn\">Layout</span></button>\n    <button type=\"button\" class=\"tb-btn\" id=\"btnHelp\" data-i18n=\"hdr.help\">Help</button>\n    <select class=\"tb-btn tb-lang-sel\" id=\"langSel\" aria-label=\"Language\" data-i18n-aria=\"hdr.lang\" data-i18n-title=\"hdr.lang\" title=\"Language\">\n      <option value=\"en\" data-i18n=\"lang.en\">English</option>\n      <option value=\"fr\" data-i18n=\"lang.fr\">French</option>\n      <option value=\"de\" data-i18n=\"lang.de\">German</option>\n      <option value=\"es\" data-i18n=\"lang.es\">Spanish</option>\n      <option value=\"cs\" data-i18n=\"lang.cs\">Czech</option>\n      <option value=\"it\" data-i18n=\"lang.it\">Italian</option>\n      <option value=\"pl\" data-i18n=\"lang.pl\">Polish</option>\n      <option value=\"pt\" data-i18n=\"lang.pt\">Portuguese</option>\n    </select>\n    <div class=\"tb-menu\">\n      <button type=\"button\" class=\"tb-btn tb-menu-btn\" id=\"btnMenu\" aria-haspopup=\"true\" aria-expanded=\"false\" data-i18n-aria=\"hdr.menu\" data-i18n-title=\"hdr.menu\"><svg class=\"tb-ico\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1 3h14v2H1zM1 7h14v2H1zM1 11h14v2H1z\"/></svg></button>\n      <div class=\"tb-drop\" id=\"tbDrop\" hidden>\n        <button type=\"button\" class=\"tb-item\" id=\"btnTheme\">Theme: auto</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnNewStudy\" data-i18n=\"new.title\">New study</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnOffline\" data-i18n=\"hdr.offline\" data-i18n-title=\"hdr.offline.title\">Offline copy</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnContact\" data-i18n=\"contact.menu\">Contact and feedback</button>\n        <button type=\"button\" class=\"tb-item\" id=\"btnNewsM\" data-i18n=\"news.menu\">What\u2019s new</button>\n        <button type=\"button\" class=\"tb-item tb-purge\" id=\"btnPurge\" data-i18n=\"purge.menu\">Erase everything</button>\n      </div>\n    </div>\n  </div>\n</header>\n<div class=\"alert-bar\" id=\"alertBar\" role=\"alert\" hidden></div>\n<div class=\"lang-bar\" id=\"langBar\" role=\"status\" hidden></div>\n<div class=\"ex-bar\" id=\"exBar\" hidden></div>\n\n<main class=\"layout pin\" id=\"layout\">\n  <section class=\"col-video\" id=\"colVideo\">\n    <div class=\"video-box\" id=\"videoBox\">\n      <video id=\"video\" playsinline preload=\"auto\" tabindex=\"-1\"></video>\n      <div class=\"video-empty\" id=\"videoEmpty\">\n        <svg class=\"ve-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><rect x=\"4\" y=\"12\" width=\"30\" height=\"24\" rx=\"2\"/><path d=\"M34 21l10-6v18l-10-6z\"/><path d=\"M15 20v8l7-4z\"/></svg>\n        <p class=\"ve-title\" data-i18n=\"ve.title\">Choose the video to study</p>\n        <p class=\"ve-text ve-what\" data-i18n=\"ve.what\">Press one key when each step starts. The site works out cycle times and T1, and fills your standard sheets. Free.</p>\n        <p class=\"ve-expected\" id=\"veExpected\" hidden></p>\n        <button type=\"button\" class=\"btn primary\" id=\"btnPickVideo\" data-i18n=\"ve.choose\">Choose video file</button>\n        <button type=\"button\" class=\"btn ve-film\" id=\"btnFilm\" data-i18n=\"ve.film\">Film with this phone</button>\n        <button type=\"button\" class=\"btn ve-ex\" id=\"btnExample\" data-i18n=\"ex.try\">Try an example</button>\n        <p class=\"ve-text ve-drop\" data-i18n=\"ve.drop\">Or drop the file here.</p>\n        <p class=\"ve-text small\" data-i18n=\"ve.local\">The video stays on this device. Nothing is uploaded.</p>\n        <p class=\"ve-text small ve-iphone\" data-i18n=\"ve.iphone\">iPhone: in Settings, Camera, choose Formats \u201cMost Compatible\u201d and turn off \u201cHDR Video\u201d. Otherwise the site converts the video.</p>\n        <p class=\"made-last\" id=\"madeLast\" hidden></p>\n        <button type=\"button\" class=\"ve-link\" id=\"btnFilmTips\" data-i18n=\"film.btn\">How to film a workstation</button>\n      </div>\n      <script>try { if (!localStorage.getItem('vts-study-v1') && !localStorage.getItem('vts-visited')) document.getElementById('videoEmpty').className += ' ve-first'; } catch (e) { /* storage blocked */ }</script>\n    </div>\n    <div class=\"video-msg\" id=\"videoMsg\" role=\"alert\" hidden></div>\n    <div class=\"made-bar\" id=\"madeBar\" role=\"status\" hidden></div>\n\n    <div class=\"transport\">\n      <button type=\"button\" class=\"btn t-play\" id=\"btnPlay\" data-i18n-title=\"tr.play.title\"><svg viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M2 1l9 5-9 5z\"/></svg><span>Play</span></button>\n      <div class=\"seg\" role=\"group\">\n        <button type=\"button\" class=\"btn\" data-skip=\"-5\" data-i18n-title=\"tr.back5\" data-i18n-aria=\"tr.back5\"><span class=\"lg\">&minus;5 s</span><span class=\"sm\">&minus;5</span></button>\n        <button type=\"button\" class=\"btn\" data-skip=\"-1\" data-i18n-title=\"tr.back1\" data-i18n-aria=\"tr.back1\"><span class=\"lg\">&minus;1 s</span><span class=\"sm\">&minus;1</span></button>\n        <button type=\"button\" class=\"btn\" data-frame=\"-1\" data-i18n-title=\"tr.prevFrame\" data-i18n-aria=\"tr.prevFrame\"><span class=\"lg\" data-i18n=\"tr.frameBack\">&lsaquo; Frame</span><span class=\"sm\">&lsaquo;</span></button>\n        <button type=\"button\" class=\"btn\" data-frame=\"1\" data-i18n-title=\"tr.nextFrame\" data-i18n-aria=\"tr.nextFrame\"><span class=\"lg\" data-i18n=\"tr.frameFwd\">Frame &rsaquo;</span><span class=\"sm\">&rsaquo;</span></button>\n        <button type=\"button\" class=\"btn\" data-skip=\"1\" data-i18n-title=\"tr.fwd1\" data-i18n-aria=\"tr.fwd1\"><span class=\"lg\">+1 s</span><span class=\"sm\">+1</span></button>\n        <button type=\"button\" class=\"btn\" data-skip=\"5\" data-i18n-title=\"tr.fwd5\" data-i18n-aria=\"tr.fwd5\"><span class=\"lg\">+5 s</span><span class=\"sm\">+5</span></button>\n      </div>\n      <div class=\"time-display wide-only\"><span id=\"timeNow\">00:00.00</span><span class=\"time-total\"> / <span id=\"timeTotal\">00:00.00</span></span></div>\n    </div>\n    <div class=\"transport2\">\n      <span class=\"time-mini narrow-only\" id=\"timeNow2\">00:00.00</span>\n      <div class=\"ctl\"><span class=\"ctl-label\" data-i18n=\"tr.speed\">Speed</span><div class=\"seg wide-only\" id=\"speedSeg\" role=\"group\" data-i18n-aria=\"tr.speed\"></div><select class=\"narrow-only ctl-sel\" id=\"speedSel\" data-i18n-aria=\"tr.speed\"></select></div>\n      <div class=\"ctl\"><span class=\"ctl-label\" data-i18n=\"tr.zoom\">Zoom</span><div class=\"seg wide-only\" id=\"zoomSeg\" role=\"group\" data-i18n-aria=\"tr.zoom\"></div><select class=\"narrow-only ctl-sel\" id=\"zoomSel\" data-i18n-aria=\"tr.zoom\"></select></div>\n      <span class=\"t2-right\">\n        <button type=\"button\" class=\"btn\" id=\"btnSaveVideo\" data-i18n=\"made.save\" hidden>Save the video</button>\n        <button type=\"button\" class=\"btn\" id=\"btnCloseVideo\" data-i18n=\"tr.closeVideo\">Close video</button>\n        <button type=\"button\" class=\"btn\" id=\"btnMute\">Sound on</button>\n      </span>\n    </div>\n\n    <div class=\"band-wrap\" id=\"bandWrap\">\n      <canvas id=\"band\" tabindex=\"-1\" data-i18n-aria=\"band.aria\"></canvas>\n      <canvas id=\"overview\" tabindex=\"-1\" data-i18n-aria=\"overview.aria\"></canvas>\n    </div>\n    <div class=\"legend\" id=\"legend\">\n      <span><i class=\"sw ty-op\"></i><span data-i18n=\"lg.op\">Operation</span></span>\n      <span><i class=\"sw ty-insp\"></i><span data-i18n=\"lg.insp\">Inspection</span></span>\n      <span><i class=\"sw ty-walk\"></i><span data-i18n=\"lg.walk\">Walk</span></span>\n      <span><i class=\"sw ty-wait\"></i><span data-i18n=\"lg.wait\">Wait</span></span>\n      <span><i class=\"sw ty-mach\"></i><span data-i18n=\"lg.mach\">Machine</span></span>\n      <span><i class=\"sw ty-per\"></i><span data-i18n=\"lg.per\">Periodic task</span></span>\n      <span><i class=\"sw ty-int\"></i><span data-i18n=\"lg.int\">Interruption</span></span>\n      <span><i class=\"sw ty-oov\"></i><span data-i18n=\"lg.oov\">Out of view</span></span>\n      <span><i class=\"sw ty-issue\"></i><span data-i18n=\"lg.issue\">Issue</span></span>\n    </div>\n\n    <div class=\"status\" id=\"status\">\n      <div class=\"st-head\"><span class=\"st-tl\" id=\"stTl\"></span><span class=\"st-keys\" id=\"stKeys\"></span></div>\n      <div class=\"st\"><div class=\"st-label\" data-i18n=\"st.cycle\">Cycle</div><div class=\"st-value\" id=\"stCycle\">&ndash;</div><div class=\"st-sub\" id=\"stCycleT\">&nbsp;</div></div>\n      <div class=\"st st-click\" id=\"stCurBox\" role=\"button\" data-i18n-title=\"st.fix\"><div class=\"st-label\" data-i18n=\"st.current\">Current step</div><div class=\"st-value\" id=\"stCur\">&ndash;</div><div class=\"st-sub\" id=\"stCurT\">&nbsp;</div></div>\n      <div class=\"st\"><div class=\"st-label\" data-i18n=\"st.next\">Next planned</div><div class=\"st-value\" id=\"stNext\">&ndash;</div><div class=\"st-sub\" id=\"stNextK\">&nbsp;</div></div>\n    </div>\n  </section>\n\n  <section class=\"col-work\">\n    <div class=\"tl-bar\">\n      <span class=\"tl-label\" data-i18n=\"tl.label\">Timeline</span>\n      <div class=\"tl-tabs\" id=\"tlTabs\"></div>\n    </div>\n    <div class=\"tabs\" id=\"tabs\" role=\"tablist\">\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"record\" id=\"tabbtn-record\" data-i18n=\"tab.record\">Record</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"steps\" id=\"tabbtn-steps\" data-i18n=\"tab.steps\">Steps</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"results\" id=\"tabbtn-results\" data-i18n=\"tab.results\">Results</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"log\" id=\"tabbtn-log\" data-i18n=\"tab.log\">Log</button>\n      <button type=\"button\" class=\"tab\" role=\"tab\" data-tab=\"study\" id=\"tabbtn-study\" data-i18n=\"tab.study\">Study</button>\n    </div>\n    <div class=\"tab-panel\" id=\"tab-record\" role=\"tabpanel\" aria-labelledby=\"tabbtn-record\"></div>\n    <div class=\"tab-panel\" id=\"tab-steps\" role=\"tabpanel\" aria-labelledby=\"tabbtn-steps\" hidden></div>\n    <div class=\"tab-panel\" id=\"tab-results\" role=\"tabpanel\" aria-labelledby=\"tabbtn-results\" hidden></div>\n    <div class=\"tab-panel\" id=\"tab-log\" role=\"tabpanel\" aria-labelledby=\"tabbtn-log\" hidden></div>\n    <div class=\"tab-panel\" id=\"tab-study\" role=\"tabpanel\" aria-labelledby=\"tabbtn-study\" hidden></div>\n  </section>\n</main>\n<section class=\"bal-view\" id=\"balView\" aria-labelledby=\"balTitle\" hidden></section>\n<section class=\"ly-view\" id=\"lyView\" aria-labelledby=\"lyTitle\" hidden></section>\n<div class=\"bal-tip\" id=\"balTip\" role=\"tooltip\" hidden></div>\n\n<section class=\"about\" id=\"about\" aria-labelledby=\"aboutTitle\">\n  <h2 id=\"aboutTitle\" data-i18n=\"about.t\">.</h2>\n  <p class=\"about-lead\" data-i18n=\"about.p1\">.</p>\n  <h3 data-i18n=\"about.faqT\">.</h3>\n  <div class=\"about-faq\">\n    <details class=\"about-q\"><summary data-i18n=\"about.q1\">.</summary><p data-i18n=\"about.a1\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q2\">.</summary><p data-i18n=\"about.a2\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q3\">.</summary><p data-i18n=\"about.a3\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q4\">.</summary><p data-i18n=\"about.a4\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q5\">.</summary><p data-i18n=\"about.a5\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q6\">.</summary><p data-i18n=\"about.a6\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q7\">.</summary><p data-i18n=\"about.a7\">.</p></details>\n    <details class=\"about-q\"><summary data-i18n=\"about.q8\">.</summary><p data-i18n=\"about.a8\">.</p></details>\n  </div>\n  <p data-i18n=\"about.p3\">.</p>\n  <p class=\"about-links\"><a href=\"https://vts-tool.com/guide/\" hreflang=\"en\" data-i18n=\"about.guide\">User guide: how to use Video Time Study, step by step</a></p>\n</section>\n\n<footer class=\"footer\">\n  <div class=\"ftr-brand\"><svg class=\"ftr-logo\" viewBox=\"0 0 600 301\" role=\"img\" aria-label=\"Vts-Tool.com, Video Time Study\"><g transform=\"translate(215.00 0)\"><circle cx=\"85.00\" cy=\"85.00\" r=\"77.35\" class=\"lg-ring\" fill=\"none\" stroke=\"#132034\" stroke-width=\"15.30\"/><rect x=\"44.66\" y=\"37.06\" width=\"13.67\" height=\"93.16\" rx=\"6.83\" fill=\"#01A25E\"/><rect x=\"67.01\" y=\"78.20\" width=\"13.67\" height=\"52.02\" rx=\"6.83\" fill=\"#FFB904\"/><rect x=\"89.32\" y=\"44.20\" width=\"13.67\" height=\"86.02\" rx=\"6.83\" fill=\"#046AB3\"/><rect x=\"111.67\" y=\"72.42\" width=\"13.67\" height=\"57.80\" rx=\"6.83\" fill=\"#AF0002\"/><rect x=\"34.77\" y=\"61.71\" width=\"100.47\" height=\"5.44\" rx=\"2.72\" class=\"lg-ring-f\" fill=\"#132034\"/></g><path transform=\"translate(47.10 254.40) scale(0.0720 -0.0720)\" d=\"M285.37860394537176 0 -14.034901365705615 700H199.62367223065252L452.10546282245826 94.10470409711684H325.9309559939302L584.1714719271623 700H779.5538694992413L480.4506828528073 0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(102.25 254.40) scale(0.0720 -0.0720)\" d=\"M302.8285280728376 -8.758725341426404Q198.8277693474962 -8.758725341426404 141.10318664643398 42.48292867981791Q83.37860394537178 93.72458270106222 83.37860394537178 198.03566009104702V663.4833080424886H273.3816388467375V200.34597875569045Q273.3816388467375 170.69119878603948 289.0538694992413 154.20864946889228Q304.7261001517451 137.72610015174507 330.3118361153263 137.72610015174507Q363.65629742033383 137.72610015174507 387.8285280728376 155.20864946889225L435.3118361153263 22.41350531107739Q410.55311077389985 6.482549317147193 375.60470409711684 -1.1380880121396055Q340.65629742033383 -8.758725341426404 302.8285280728376 -8.758725341426404ZM4.034142640364188 400.61911987860395V542.345220030349H396.55311077389985V400.61911987860395Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(134.44 254.40) scale(0.0720 -0.0720)\" d=\"M258.1039453717754 -8.758725341426404Q189.03490136570562 -8.758725341426404 123.36229135053111 7.017071320182095Q57.6896813353566 22.792867981790593 17.861911987860395 47.10318664643399L74.89681335356602 176.86342943854325Q112.65553869499242 153.86342943854325 163.6900606980273 140.24279210925644Q214.72458270106222 126.62215477996965 264.0349013657056 126.62215477996965Q311.551593323217 126.62215477996965 330.2408952959029 136.72534142640365Q348.93019726858876 146.82852807283763 348.93019726858876 164.4142640364188Q348.93019726858876 179.8277693474962 331.6198786039454 187.5Q314.30955993930195 195.1722306525038 285.84408194233686 199.2583459787557Q257.37860394537176 203.3444613050076 223.25796661608496 207.9996206373293Q189.13732928679818 212.65477996965097 154.67185128983309 221.4996206373293Q120.20637329286798 230.3444613050076 91.74089529590287 247.7238239757208Q63.27541729893778 265.103186646434 45.965098634294385 294.82738998482546Q28.65477996965099 324.551593323217 28.65477996965099 371.2412746585736Q28.65477996965099 422.6206373292868 59.22382397572079 463.0690440060698Q89.7928679817906 503.5174506828528 148.7242033383915 527.3106980273142Q207.6555386949924 551.1039453717755 292.51820940819425 551.1039453717755Q350.34597875569045 551.1039453717755 408.63922610015175 539.6384673748103Q466.93247344461304 528.1729893778452 507.44992412746586 505.4833080424886L450.41502276176027 375.72306525037936Q409.96661608497726 398.72306525037936 370.08725341426407 407.22306525037936Q330.2078907435508 415.72306525037936 294.27693474962064 415.72306525037936Q246.31183611532626 415.72306525037936 226.4673748103187 404.6198786039454Q206.6229135053111 393.5166919575114 206.6229135053111 377.6206373292868Q206.6229135053111 361.5864946889226 223.9332321699545 353.4142640364188Q241.2435508345979 345.24203338391504 269.709028831563 340.8455993930197Q298.1745068285281 336.44916540212444 332.2951441578149 331.7940060698027Q366.41578148710164 327.138846737481 400.53641881638845 317.94916540212444Q434.65705614567526 308.7594840667678 463.12253414264035 291.5352807283763Q491.58801213960544 274.3110773899848 508.89833080424887 244.74203338391501Q526.2086494688923 215.17298937784523 526.2086494688923 168.79362670713203Q526.2086494688923 119.48330804248862 495.82928679817906 79.00037936267071Q465.44992412746586 38.51745068285281 405.70827010622156 14.879362670713203Q345.96661608497726 -8.758725341426404 258.1039453717754 -8.758725341426404Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(173.82 254.40) scale(0.0720 -0.0720)\" d=\"M48.41350531107739 211.75796661608499V358.48406676783003H339.7245827010622V211.75796661608499Z\" fill=\"#FFB904\"/><path transform=\"translate(201.76 254.40) scale(0.0720 -0.0720)\" d=\"M218.61987860394538 0V543.0667678300456H4V700H631.3808801213961V543.0667678300456H416.76100151745067V0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(247.48 254.40) scale(0.0720 -0.0720)\" d=\"M333.1039453717754 -8.758725341426404Q243.9636386006644 -8.758725341426404 175.0334126235492 27.275796661608496Q106.10318664643398 63.3103186646434 66.49962063732929 126.59270675265554Q26.896054628224583 189.87509484066769 26.896054628224583 271.5699310452557Q26.896054628224583 353.5864946889226 66.55769703546088 416.6690308108465Q106.21933944269716 479.75156693277034 175.02355439509668 515.4277561522729Q243.8277693474962 551.1039453717755 333.1039453717754 551.1039453717755Q422.3801213960546 551.1039453717755 491.7016725867024 515.4478742181977Q561.0232237773502 479.79180306462 600.1675299463382 416.7443984906544Q639.3118361153263 353.6969939166888 639.3118361153263 271.56625450844956Q639.3118361153263 189.7587253414264 600.2082701062216 126.53452200303491Q561.1047040971168 63.3103186646434 491.667335650301 27.275796661608496Q422.2299672034852 -8.758725341426404 333.1039453717754 -8.758725341426404ZM333.1039453717754 142.41578148710167Q365.551593323217 142.41578148710167 391.13732928679815 157.36380880121396Q416.72306525037936 172.31183611532623 431.82625189681335 201.62177541729892Q446.92943854324733 230.9317147192716 446.92943854324733 271.5565117735072Q446.92943854324733 313.103186646434 431.82625189681335 341.5682852807284Q416.72306525037936 370.0333839150228 391.13732928679815 384.98141122913506Q365.551593323217 399.92943854324733 333.2591047040971 399.92943854324733Q300.96661608497726 399.92943854324733 275.3808801213961 384.98141122913506Q249.7951441578149 370.0333839150228 234.5367981790592 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5565117735072Q219.2784522003035 230.9317147192716 234.5367981790592 201.62177541729892Q249.7951441578149 172.31183611532623 275.35897527448003 157.36380880121396Q300.92280639114523 142.41578148710167 333.1039453717754 142.41578148710167Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(295.43 254.40) scale(0.0720 -0.0720)\" d=\"M333.1039453717754 -8.758725341426404Q243.9636386006644 -8.758725341426404 175.0334126235492 27.275796661608496Q106.10318664643398 63.3103186646434 66.49962063732929 126.59270675265554Q26.896054628224583 189.87509484066769 26.896054628224583 271.5699310452557Q26.896054628224583 353.5864946889226 66.55769703546088 416.6690308108465Q106.21933944269716 479.75156693277034 175.02355439509668 515.4277561522729Q243.8277693474962 551.1039453717755 333.1039453717754 551.1039453717755Q422.3801213960546 551.1039453717755 491.7016725867024 515.4478742181977Q561.0232237773502 479.79180306462 600.1675299463382 416.7443984906544Q639.3118361153263 353.6969939166888 639.3118361153263 271.56625450844956Q639.3118361153263 189.7587253414264 600.2082701062216 126.53452200303491Q561.1047040971168 63.3103186646434 491.667335650301 27.275796661608496Q422.2299672034852 -8.758725341426404 333.1039453717754 -8.758725341426404ZM333.1039453717754 142.41578148710167Q365.551593323217 142.41578148710167 391.13732928679815 157.36380880121396Q416.72306525037936 172.31183611532623 431.82625189681335 201.62177541729892Q446.92943854324733 230.9317147192716 446.92943854324733 271.5565117735072Q446.92943854324733 313.103186646434 431.82625189681335 341.5682852807284Q416.72306525037936 370.0333839150228 391.13732928679815 384.98141122913506Q365.551593323217 399.92943854324733 333.2591047040971 399.92943854324733Q300.96661608497726 399.92943854324733 275.3808801213961 384.98141122913506Q249.7951441578149 370.0333839150228 234.5367981790592 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5565117735072Q219.2784522003035 230.9317147192716 234.5367981790592 201.62177541729892Q249.7951441578149 172.31183611532623 275.35897527448003 157.36380880121396Q300.92280639114523 142.41578148710167 333.1039453717754 142.41578148710167Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(343.38 254.40) scale(0.0720 -0.0720)\" d=\"M61.48179059180576 0V742H251.48482549317146V0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(365.92 254.40) scale(0.0720 -0.0720)\" d=\"M141.44916540212444 -8.758725341426404Q93.2071320182094 -8.758725341426404 60.17223065250379 23.08649468892261Q27.137329286798177 54.931714719271625 27.137329286798177 104.48406676783004Q27.137329286798177 155.03641881638848 60.17223065250379 185.69195751138088Q93.2071320182094 216.34749620637328 141.44916540212444 216.34749620637328Q189.38088012139605 216.34749620637328 222.41578148710167 185.69195751138088Q255.4506828528073 155.03641881638848 255.4506828528073 104.48406676783004Q255.4506828528073 54.931714719271625 222.41578148710167 23.08649468892261Q189.38088012139605 -8.758725341426404 141.44916540212444 -8.758725341426404Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(386.29 254.40) scale(0.0720 -0.0720)\" d=\"M337.79362670713203 -8.758725341426404Q247.5174506828528 -8.758725341426404 177.1551593323217 26.930955993930198Q106.7928679817906 62.6206373292868 66.84446130500758 126.18968133535661Q26.896054628224583 189.7587253414264 26.896054628224583 271.5174506828528Q26.896054628224583 353.5864946889226 66.84446130500758 416.6555386949924Q106.7928679817906 479.7245827010622 177.1551593323217 515.4142640364189Q247.5174506828528 551.1039453717755 337.79362670713203 551.1039453717755Q430.035660091047 551.1039453717755 497.00151745068285 512.1380880121396Q563.9673748103187 473.1722306525038 592.2086494688923 402.4476479514416L445.4476479514416 326.99848254931715Q425.9650986342944 364.99848254931715 397.8964339908953 382.46396054628224Q369.8277693474962 399.92943854324733 336.79362670713203 399.92943854324733Q304.34597875569045 399.92943854324733 277.41540212443095 384.98141122913506Q250.48482549317146 370.0333839150228 234.88163884673747 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5174506828528Q219.2784522003035 229.9317147192716 234.88163884673747 201.12177541729892Q250.48482549317146 172.31183611532623 277.41540212443095 157.36380880121396Q304.34597875569045 142.41578148710167 336.79362670713203 142.41578148710167Q369.8277693474962 142.41578148710167 397.8964339908953 159.72610015174507Q425.9650986342944 177.03641881638848 445.4476479514416 215.34673748103188L592.2086494688923 139.89757207890744Q563.9673748103187 69.48330804248862 497.00151745068285 30.362291350531105Q430.035660091047 -8.758725341426404 337.79362670713203 -8.758725341426404Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(429.71 254.40) scale(0.0720 -0.0720)\" d=\"M333.1039453717754 -8.758725341426404Q243.9636386006644 -8.758725341426404 175.0334126235492 27.275796661608496Q106.10318664643398 63.3103186646434 66.49962063732929 126.59270675265554Q26.896054628224583 189.87509484066769 26.896054628224583 271.5699310452557Q26.896054628224583 353.5864946889226 66.55769703546088 416.6690308108465Q106.21933944269716 479.75156693277034 175.02355439509668 515.4277561522729Q243.8277693474962 551.1039453717755 333.1039453717754 551.1039453717755Q422.3801213960546 551.1039453717755 491.7016725867024 515.4478742181977Q561.0232237773502 479.79180306462 600.1675299463382 416.7443984906544Q639.3118361153263 353.6969939166888 639.3118361153263 271.56625450844956Q639.3118361153263 189.7587253414264 600.2082701062216 126.53452200303491Q561.1047040971168 63.3103186646434 491.667335650301 27.275796661608496Q422.2299672034852 -8.758725341426404 333.1039453717754 -8.758725341426404ZM333.1039453717754 142.41578148710167Q365.551593323217 142.41578148710167 391.13732928679815 157.36380880121396Q416.72306525037936 172.31183611532623 431.82625189681335 201.62177541729892Q446.92943854324733 230.9317147192716 446.92943854324733 271.5565117735072Q446.92943854324733 313.103186646434 431.82625189681335 341.5682852807284Q416.72306525037936 370.0333839150228 391.13732928679815 384.98141122913506Q365.551593323217 399.92943854324733 333.2591047040971 399.92943854324733Q300.96661608497726 399.92943854324733 275.3808801213961 384.98141122913506Q249.7951441578149 370.0333839150228 234.5367981790592 341.5682852807284Q219.2784522003035 313.103186646434 219.2784522003035 271.5565117735072Q219.2784522003035 230.9317147192716 234.5367981790592 201.62177541729892Q249.7951441578149 172.31183611532623 275.35897527448003 157.36380880121396Q300.92280639114523 142.41578148710167 333.1039453717754 142.41578148710167Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(477.66 254.40) scale(0.0720 -0.0720)\" d=\"M61.48179059180576 0V542.345220030349H242.34673748103188V390.6206373292868L206.41502276176024 434Q235.86342943854325 492.2761760242792 287.70827010622156 521.6900606980273Q339.55311077389985 551.1039453717755 404.48406676783003 551.1039453717755Q477.41502276176027 551.1039453717755 532.9150227617603 513.7591047040971Q588.4150227617603 476.4142640364188 607.1047040971168 397.2761760242792L545.242033383915 410.448406676783Q573.690440060698 475.6555386949924 632.1213960546282 513.379742033384Q690.5523520485584 551.1039453717755 767.4833080424886 551.1039453717755Q830.4142640364188 551.1039453717755 879.9142640364188 525.7591047040971Q929.4142640364188 500.4142640364188 957.7591047040971 447.1900606980273Q986.1039453717755 393.96585735963583 986.1039453717755 309.8277693474962V0H796.1009104704096V278.8960546282246Q796.1009104704096 337.03338391502274 773.9806525037936 363.34332321699543Q751.8603945371775 389.6532625189681 713.9992412746585 389.6532625189681Q686.551593323217 389.6532625189681 664.9658573596358 376.8603945371775Q643.3801213960546 364.06752655538696 631.0872534142641 337.7575872534143Q618.7943854324734 311.4476479514416 618.7943854324734 268.551593323217V0H428.79135053110775V278.8960546282246Q428.79135053110775 337.03338391502274 407.36077389984825 363.34332321699543Q385.93019726858876 389.6532625189681 346.6896813353566 389.6532625189681Q319.24203338391504 389.6532625189681 297.6562974203339 376.8603945371775Q276.07056145675267 364.06752655538696 263.77769347496206 337.7575872534143Q251.48482549317146 311.4476479514416 251.48482549317146 268.551593323217V0Z\" class=\"lg-ink\" fill=\"#132034\"/><path transform=\"translate(140.41 295.10) scale(0.0210 -0.0210)\" d=\"M293.2918924777802 0 -9.345545198352482 700H166.21200953826144L429.53793626707136 80.03663559505745H326.8102102753089L594.7225233037069 700H755.5209191415565L453.48688489052677 0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(163.22 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H245.3311294168654V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(177.24 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H400.79319314979404Q515.3795794493822 700 602.2676674615218 656.5948948623455Q689.1557554736614 613.1897897246911 737.9489486234554 534.8880880121396Q786.7421417732495 456.5863862995881 786.7421417732495 350Q786.7421417732495 243.81021027530892 737.9489486234554 165.31021027530892Q689.1557554736614 86.8102102753089 602.2676674615218 43.40510513765445Q515.3795794493822 0 400.79319314979404 0ZM245.3311294168654 132.71070886624756H393.20680685020596Q463.11911987860395 132.71070886624756 514.4973986559722 159.25325168003468Q565.8756774333406 185.7957944938218 594.4182202471277 234.76045957077824Q622.9607630609148 283.7251246477347 622.9607630609148 350Q622.9607630609148 417.2748753522653 594.4182202471277 465.73954042922173Q565.8756774333406 514.2042055061781 514.4973986559722 540.7467483199653Q463.11911987860395 567.2892911337524 393.20680685020596 567.2892911337524H245.3311294168654Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(201.73 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H611.5183177975288V569.6688705831347H243.74474311727727V130.3311294168654H625.1217212226317V0ZM231.96856709299806 292.32592672880986V418.2774766962931H569.3115109473227V292.32592672880986Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(222.96 295.10) scale(0.0210 -0.0210)\" d=\"M422.519354722162 -11.776176024279211Q339.86593684514776 -11.776176024279211 269.64828383553726 15.22382397572079Q199.43063082592673 42.22382397572079 147.93913938868417 91.12042055061782Q96.44764795144158 140.01701712551485 67.85275308909604 205.95268766080028Q39.257858226750486 271.88835819608573 39.257858226750486 350.1869669567372Q39.257858226750486 428.4855757173886 67.85406632278774 494.14929431560176Q96.450274418825 559.813012913815 148.01720130363896 608.8816627485082Q199.58412818845292 657.9503125832016 269.5651650922421 684.8632443037404Q339.5462019960313 711.7761760242793 422.1897897246911 711.7761760242793Q505.17277259917626 711.7761760242793 574.8107657706482 684.9705610202856Q644.4487589421201 658.1649460162919 695.8873302737871 609.2906811776049Q747.3259016054542 560.416416338918 775.9221097014915 494.54446440184574Q804.5183177975288 428.6725124647735 804.5183177975288 350.1266266142269Q804.5183177975288 271.5807407636803 775.9234229351832 205.49717723204608Q747.3285280728377 139.41361370041187 695.888643507479 90.62433384206Q644.4487589421201 41.835053983708136 574.8107657706482 15.029438979714463Q505.17277259917626 -11.776176024279211 422.519354722162 -11.776176024279211ZM422.17203166909866 125.52091914155648Q469.0680685020594 125.52091914155648 508.77572841647196 141.83461171250536Q548.4833883308845 158.14830428345425 578.084638019767 188.10097850201328Q607.6858877086495 218.0536527205723 624.2114133969218 259.18346019657326Q640.7369390851941 300.3132676725742 640.7369390851941 350.1821595245594Q640.7369390851941 400.05105137654454 624.2792115345737 440.9468803315555Q607.8214839839535 481.8427092865665 578.1913573105155 511.828826970907Q548.5612306370776 541.8149446552475 508.83240762516095 558.1470127568455Q469.1035846132442 574.4790808584435 422.2075477802835 574.4790808584435Q375.3115109473228 574.4790808584435 335.4248137286662 558.1274423641048Q295.53811651000956 541.7758038697662 265.80403269217186 511.7540680706378Q236.06994887433413 481.7323322715094 219.55459290670967 440.78914296606615Q203.03923693908519 399.84595366062285 203.03923693908519 350.19915285459064Q203.03923693908519 300.5523520485584 219.5267861880153 259.42254457255746Q236.01433543694546 218.2927370965565 265.6982581151777 188.13065209477728Q295.38218079340993 157.96856709299806 335.32908781477397 141.74474311727727Q375.27599483613795 125.52091914155648 422.17203166909866 125.52091914155648Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(260.91 295.10) scale(0.0210 -0.0210)\" d=\"M227.70550617819208 0V567.6858877086495H4V700H613.7957944938219V567.6858877086495H390.0902883156298V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(281.03 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H245.3311294168654V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(295.05 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H216.60600476913072L514.7081075222198 205.58898764361587H444.08508562757424L736.6008020810752 700H870.2604595707783L871.6570561456753 0H720.0144157814871L718.6178192065901 466.51051376544547H747.1871883806633L512.9149143724258 74.46466507695644H440.2918924777802L201.03663559505745 466.51051376544547H234.58898764361587V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(322.25 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H611.5183177975288V569.6688705831347H243.74474311727727V130.3311294168654H625.1217212226317V0ZM231.96856709299806 292.32592672880986V418.2774766962931H569.3115109473227V292.32592672880986Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(356.56 295.10) scale(0.0210 -0.0210)\" d=\"M313.17277259917626 -11.776176024279211Q229.39659657489702 -11.776176024279211 152.2238239757208 10.63743767613267Q75.05105137654455 33.05105137654455 28.085085627574244 68.67147192716237L82.9659657489703 191.19239106871885Q127.53533492304356 159.175373943204 189.33703663559504 138.65835681768914Q251.13873834814655 118.14133969217428 313.9659657489703 118.14133969217428Q362.4476479514416 118.14133969217428 391.9038044656406 127.77026880554953Q421.35996097983957 137.39919791892478 435.1871883806633 154.34684587036634Q449.0144157814871 171.29449382180792 449.0144157814871 192.94894862345546Q449.0144157814871 221 426.80760893128115 237.7323325384782Q404.60080208107524 254.46466507695644 368.5922935183178 264.9816822024713Q332.58378495556036 275.4986993279861 289.1701712551485 284.9038044656406Q245.75655755473662 294.30890960329504 202.14464556687622 308.00720789074353Q158.53273357901583 321.7055061781921 122.5242250162584 343.8004010405376Q86.51571645350097 365.89529590288316 64.30890960329504 402.18848905267726Q42.1021027530891 438.4816822024713 42.1021027530891 494.4816822024713Q42.1021027530891 554.0510513765446 74.37827877736831 603.3272274008239Q106.65445480164752 652.603403425103 172.21531541296338 682.1897897246911Q237.7761760242792 711.7761760242793 337.3285280728376 711.7761760242793Q402.89789724691093 711.7761760242793 467.0706698460872 696.1727725991763Q531.2434424452634 680.5693691740732 580.2094081942337 650.1727725991763L529.7251246477347 527.4450466074138Q481.3455451983525 555.2552568827227 431.94044006069805 568.5569585952742Q382.5353349230436 581.8586603078257 335.9319314979406 581.8586603078257Q288.65705614567526 581.8586603078257 259.00260134402777 571.031432907002Q229.34814654238022 560.2042055061781 216.02091914155648 542.3599609798396Q202.6936917407327 524.515716453501 202.6936917407327 502.2578582267505Q202.6936917407327 474.60340342510295 224.90049859093864 458.06936917407324Q247.1073054411446 441.5353349230436 283.115814003902 431.51831779752877Q319.12432256665943 421.5013006720139 362.7362345545198 411.99279210925647Q406.3481465423802 402.484283546499 449.7617602427921 389.087686971602Q493.175373943204 375.69109039670496 529.1838825059615 353.89789724691093Q565.1923910687188 332.10470409711684 587.3991979189248 296.0098092347713Q609.6060047691308 259.91491437242576 609.6060047691308 204.91491437242576Q609.6060047691308 146.34554519835248 577.0281270323001 97.06936917407327Q544.4502492954693 47.793193149794064 478.7859852590505 18.008508562757427Q413.12172122263166 -11.776176024279211 313.17277259917626 -11.776176024279211Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(377.10 295.10) scale(0.0210 -0.0210)\" d=\"M227.70550617819208 0V567.6858877086495H4V700H613.7957944938219V567.6858877086495H390.0902883156298V0Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(397.22 295.10) scale(0.0210 -0.0210)\" d=\"M393.8102102753089 -11.776176024279211Q244.8782787773683 -11.776176024279211 160.912313028398 71.0Q76.9463472794277 153.7761760242792 76.9463472794277 308.36256232386734V700H239.3311294168654V313.5523520485584Q239.3311294168654 214.24344244526338 280.39919791892476 169.88218079340993Q321.4672664209842 125.52091914155648 395.20680685020596 125.52091914155648Q469.34294385432474 125.52091914155648 510.2127140689356 169.88218079340993Q551.0824842835465 214.24344244526338 551.0824842835465 313.5523520485584V700H710.6740732711901V308.36256232386734Q710.6740732711901 153.7761760242792 626.7081075222197 71.0Q542.7421417732495 -11.776176024279211 393.8102102753089 -11.776176024279211Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(420.91 295.10) scale(0.0210 -0.0210)\" d=\"M82.9463472794277 0V700H400.79319314979404Q515.3795794493822 700 602.2676674615218 656.5948948623455Q689.1557554736614 613.1897897246911 737.9489486234554 534.8880880121396Q786.7421417732495 456.5863862995881 786.7421417732495 350Q786.7421417732495 243.81021027530892 737.9489486234554 165.31021027530892Q689.1557554736614 86.8102102753089 602.2676674615218 43.40510513765445Q515.3795794493822 0 400.79319314979404 0ZM245.3311294168654 132.71070886624756H393.20680685020596Q463.11911987860395 132.71070886624756 514.4973986559722 159.25325168003468Q565.8756774333406 185.7957944938218 594.4182202471277 234.76045957077824Q622.9607630609148 283.7251246477347 622.9607630609148 350Q622.9607630609148 417.2748753522653 594.4182202471277 465.73954042922173Q565.8756774333406 514.2042055061781 514.4973986559722 540.7467483199653Q463.11911987860395 567.2892911337524 393.20680685020596 567.2892911337524H245.3311294168654Z\" class=\"lg-sub\" fill=\"#56617A\"/><path transform=\"translate(445.39 295.10) scale(0.0210 -0.0210)\" d=\"M256.912313028398 0V285.88088012139605L294.0170171255148 187.7225233037069L-14.328528072837635 700H158.03923693908519L393.5549533925862 307.2434424452634H295.0170171255148L531.9293301539128 700H690.5379362670714L382.9855842185129 187.7225233037069L419.2970951658357 285.88088012139605V0Z\" class=\"lg-sub\" fill=\"#56617A\"/></svg></div>\n  <span data-i18n=\"ftr.rights\">\u00a9 2026 Ilyas Baqloul. All rights reserved. Free to use.</span>\n  <a href=\"https://github.com/Ilyas-Baqloul/Video-Time-Study/blob/main/LICENSE\" target=\"_blank\" rel=\"noopener\" data-i18n=\"ftr.terms\">Terms of use</a>\n  <button type=\"button\" class=\"ftr-link\" id=\"btnContactF\" data-i18n=\"contact.menu\">Contact and feedback</button>\n  <button type=\"button\" class=\"ftr-link\" id=\"btnLegal\" data-i18n=\"ftr.legal\">Legal notice</button>\n  <button type=\"button\" class=\"ftr-link\" id=\"btnNews\" data-i18n-title=\"news.title\">V3.9</button>\n  <nav class=\"ftr-langs\" data-i18n-aria=\"hdr.lang\">\n    <a data-lang=\"en\" hreflang=\"en\" lang=\"en\" href=\"https://vts-tool.com/\">English</a>\n    <a data-lang=\"fr\" hreflang=\"fr\" lang=\"fr\" href=\"https://vts-tool.com/fr/\">Fran\u00e7ais</a>\n    <a data-lang=\"de\" hreflang=\"de\" lang=\"de\" href=\"https://vts-tool.com/de/\">Deutsch</a>\n    <a data-lang=\"es\" hreflang=\"es\" lang=\"es\" href=\"https://vts-tool.com/es/\">Espa\u00f1ol</a>\n    <a data-lang=\"cs\" hreflang=\"cs\" lang=\"cs\" href=\"https://vts-tool.com/cs/\">\u010ce\u0161tina</a>\n    <a data-lang=\"it\" hreflang=\"it\" lang=\"it\" href=\"https://vts-tool.com/it/\">Italiano</a>\n    <a data-lang=\"pl\" hreflang=\"pl\" lang=\"pl\" href=\"https://vts-tool.com/pl/\">Polski</a>\n    <a data-lang=\"pt\" hreflang=\"pt\" lang=\"pt\" href=\"https://vts-tool.com/pt/\">Portugu\u00eas</a>\n  </nav>\n</footer>\n\n<div class=\"overlay\" id=\"overlay\" hidden></div>\n<div class=\"toast\" id=\"toast\" role=\"status\" aria-live=\"polite\" hidden></div>\n<input type=\"file\" id=\"fileVideo\" accept=\"video/*,.mp4,.m4v,.mov,.webm,.mkv,.avi,.wmv,.mts,.m2ts,.3gp,.mpg,.mpeg,.flv,.ogv\" hidden>\n<input type=\"file\" id=\"fileCam\" accept=\"video/*\" capture=\"environment\" hidden>\n<input type=\"file\" id=\"fileStudy\" accept=\".json,application/json\" hidden>\n<input type=\"file\" id=\"fileMct\" accept=\".xlsx,.xlsm\" hidden>\n<input type=\"file\" id=\"fileTct\" accept=\".xlsm,.xlsx\" hidden>\n<input type=\"file\" id=\"fileWcb\" accept=\".xlsx,.xlsm\" hidden>\n<input type=\"file\" id=\"filePlan\" accept=\"image/*,.pdf,.PDF,application/pdf,.dxf,.DXF\" hidden>\n</div>\n", APP_H = '75c511f0d1';
   window.VTS_BASE = cs && cs.src ? cs.src.replace(/[^\/]*$/, '') : '';
   var st = d.getElementById('vts-style'), app = d.getElementById('vts-app');
   if (st && st.getAttribute('data-h') !== CSS_H) { st.textContent = CSS; st.setAttribute('data-h', CSS_H); }
@@ -60,7 +60,7 @@ var L = (function () {
     'cat.Quality issue': 'Quality issue', 'cat.Machine issue': 'Machine issue', 'cat.Material issue': 'Material issue',
     'cat.Method deviation': 'Method deviation', 'cat.Interference': 'Interference', 'cat.Other': 'Other',
     'reason.incomplete': 'Incomplete', 'reason.issue': 'Issue', 'reason.issues': '{n} issues', 'reason.interrupt': 'Interruption',
-    'reason.oov': 'Out of view', 'reason.end': 'End of study', 'reason.deleted': 'Deleted step',
+    'reason.oov': 'Out of view', 'reason.end': 'End of study', 'reason.deleted': 'Deleted step', 'reason.periodic': 'Periodic task',
     'log.head': ['Study', 'Timeline', 'Kind', 'Cycle', 'Start (s)', 'End (s)', 'Duration (s)', 'Code', 'Step', 'Type', 'Distance (m)', 'Issue', 'Note'],
     'sum.study': 'Study', 'sum.plant': 'Plant', 'sum.line': 'Line or machine', 'sum.observer': 'Observer', 'sum.date': 'Date', 'sum.video': 'Video',
     'sum.timeline': 'Timeline', 'sum.operator': 'Operator', 'sum.machine': 'Machine', 'sum.complete': 'Complete cycles', 'sum.usable': 'Usable cycles',
@@ -87,7 +87,8 @@ var L = (function () {
     'sum.res1': 'to the second', 'sum.res01': 'to the tenth of a second', 'sum.used': 'Cycles used for T1',
     'sum.prec': 'Precision of the mean (c) at 95 %', 'sum.need': 'Cycles needed for +/- 5 %',
     'sum.perPart': 'Periodic tasks per part (s)', 'sum.cycP': 'Reference cycle with periodic tasks (s)', 'sum.cad': 'Output (parts per hour)', 'sum.ppc': 'Parts per cycle',
-    'std.nOp1': '1 operator', 'std.nOps': '{n} operators', 'ly.scenN': 'Scenario {n}'
+    'std.nOp1': '1 operator', 'std.nOps': '{n} operators', 'ly.scenN': 'Scenario {n}',
+    'std.ppcNote': '{n} parts per cycle: takt {t} s \u00d7 {n}', 'per.waitTag': 'during a wait', 'std.c.per': 'periodic task {name}, {s} s'
   };
   var S = S_EN;
   function setStrings(o) { S = {}; var k; for (k in S_EN) S[k] = S_EN[k]; if (o) for (k in o) S[k] = o[k]; }
@@ -229,19 +230,27 @@ var L = (function () {
   }
   // Periodic tasks of a timeline: the ones timed with P (grouped by name, average time) and the ones typed in
   // (not filmed). Each comes back every freq parts: its time per part is time / freq; per cycle, x parts per cycle.
+  // 3.9: a task done during a wait (for a machine or another operator) counts in the work content but does not make
+  // the cycle longer: perPart / perCycle hold every task (work content), perPartCyc / perCycleCyc only the ones that
+  // make the cycle longer (process cycle time, output, balancing). tl.perWait[name] or perMan[i].wait marks them.
   function periodicOf(tl) {
-    var ev = tl.events || [], list = [], by = {}, R = function (t) { return Math.round(t * 10) / 10; }, fq = tl.perFreq || {};
+    var ev = tl.events || [], list = [], by = {}, R = function (t) { return Math.round(t * 10) / 10; }, fq = tl.perFreq || {}, pw = tl.perWait || {};
     ev.forEach(function (e, x) {
       if (e.kind !== 'periodic' || x + 1 >= ev.length) return;
       var nm = evName(tl, e).trim(), key = nm.toLowerCase();
       if (!by[key]) { by[key] = { name: nm, sum: 0, count: 0, src: 'video' }; list.push(by[key]); }
       by[key].sum += R(ev[x + 1].t) - R(e.t); by[key].count++;
     });
-    list = list.map(function (p) { var f = Math.round(+fq[p.name.toLowerCase()]); return { name: p.name, time: r1(p.sum / p.count), count: p.count, freq: f >= 1 ? f : null, src: 'video' }; });
-    (tl.perMan || []).forEach(function (p) { list.push({ name: p.name, time: r1(p.time), count: 0, freq: p.freq >= 1 ? Math.round(p.freq) : null, src: 'manual' }); });
-    var ppc = Math.max(1, Math.round(+tl.ppc) || 1), perPart = 0, missing = 0;
-    list.forEach(function (p) { p.perPart = p.freq ? p.time / p.freq : null; if (p.perPart != null) perPart += p.perPart; else missing++; });
-    return { list: list, perPart: r3(perPart), perCycle: r3(perPart * ppc), missing: missing, ppc: ppc };
+    list = list.map(function (p) { var k = p.name.toLowerCase(), f = Math.round(+fq[k]); return { name: p.name, time: r1(p.sum / p.count), count: p.count, freq: f >= 1 ? f : null, src: 'video', wait: !!pw[k] }; });
+    (tl.perMan || []).forEach(function (p) { list.push({ name: p.name, time: r1(p.time), count: 0, freq: p.freq >= 1 ? Math.round(p.freq) : null, src: 'manual', wait: !!p.wait }); });
+    var ppc = Math.max(1, Math.round(+tl.ppc) || 1), perPart = 0, perCyc = 0, missing = 0;
+    list.forEach(function (p) {
+      p.perPart = p.freq ? p.time / p.freq : null;
+      // frequency in cycles, as the standard sheets read it (a cycle makes ppc parts)
+      p.freqCyc = p.freq ? Math.round(p.freq / ppc * 100) / 100 : null;
+      if (p.perPart != null) { perPart += p.perPart; if (!p.wait) perCyc += p.perPart; } else missing++;
+    });
+    return { list: list, perPart: r3(perPart), perCycle: r3(perPart * ppc), perPartCyc: r3(perCyc), perCycleCyc: r3(perCyc * ppc), perPartWait: r3(perPart - perCyc), missing: missing, ppc: ppc };
   }
   function analyze(tl) {
     var ev = tl.events, n = ev.length;
@@ -300,6 +309,9 @@ var L = (function () {
       if (nOov) reasons.push(str('reason.oov'));
       if (nEnd) reasons.push(str('reason.end'));
       if (unknown) reasons.push(str('reason.deleted'));
+      // 3.9: a cycle with a periodic task is left out of T1 like a disturbed cycle (undisturbed cycles only, no
+      // periodic task in them); the periodic task is counted once, through its frequency
+      if (nPer) reasons.push(str('reason.periodic'));
       c.reasons = reasons;
       c.usable = reasons.length === 0;
     });
@@ -367,7 +379,8 @@ var L = (function () {
       }
     });
 
-    var per = periodicOf(tl), cycP = ref ? ref.a + per.perCycle : null;
+    // cycle with its periodic tasks: only the ones that make the cycle longer (not those done during a wait)
+    var per = periodicOf(tl), cycP = ref ? ref.a + per.perCycleCyc : null;
     return {
       evCycle: evCycle, cycles: cycles, pre: pre, usable: usable, used: used, nComplete: nComplete,
       t1: t1, t1info: t1info, res: res, method: METHOD.t1m, medA: medA, ref: ref, steps: rows, prec: precisionOf(cVals),
@@ -399,13 +412,15 @@ var L = (function () {
   // V5.3: the station of a step (where it is done), a name as on the layout; at most 80 characters
   function stationS(v) { return typeof v === 'string' || typeof v === 'number' ? String(v).replace(/\s+/g, ' ').trim().slice(0, 80) : ''; }
   function stationKey(v) { return stationS(v).toLowerCase(); }
+  // 3.9: starting point of a step (what marks its start, "SP:" of the standard sheets): free text, one line
+  function spS(v) { return typeof v === 'string' || typeof v === 'number' ? String(v).replace(/\s+/g, ' ').trim().replace(/^sp\s*:\s*/i, '').slice(0, 120) : ''; }
   function parseStepList(text, defaultType) {
     var out = [], errors = [];
     String(text || '').split(/\r?\n/).forEach(function (line, i) {
       if (!line.trim()) return;
       var parts = line.split(/\t|;/).map(function (p) { return p.trim(); });
       if (parts.length >= 3 && parts[2].toLowerCase() === 'type') return; // header line
-      var code = '', name = '', type = defaultType, dist = null, station = '';
+      var code = '', name = '', type = defaultType, dist = null, station = '', sp = '';
       if (parts.length === 1) name = parts[0];
       else {
         code = parts[0];
@@ -423,10 +438,13 @@ var L = (function () {
           if (isFinite(d) && d >= 0) dist = d;
         }
         if (type !== 'Walk') station = stationS(sc);
+        // 3.9: a 6th column is the starting point (Code; Name; Type; Distance; Station; Starting point)
+        if (parts.length >= 6) sp = spS(parts[5]);
       }
       if (!name) name = code;
       var o = { code: code, name: name, type: type, dist: type === 'Walk' ? dist : null };
       if (station) o.station = station;
+      if (sp) o.sp = sp;
       out.push(o);
     });
     return { steps: out, errors: errors };
@@ -434,7 +452,7 @@ var L = (function () {
   // Applies a pasted list. Existing steps keep their identity (and their recorded events) when the code
   // matches (or the name, for steps without code). Steps already used and missing from the new list are kept at the end.
   function mergeStepList(tl, parsed, mode) {
-    var mk = function (id, p) { var o = { id: id, code: p.code, name: p.name, type: p.type, dist: p.dist }; if (p.station) o.station = p.station; return o; };
+    var mk = function (id, p) { var o = { id: id, code: p.code, name: p.name, type: p.type, dist: p.dist }; if (p.station) o.station = p.station; if (p.sp) o.sp = p.sp; return o; };
     if (mode === 'append') {
       parsed.forEach(function (p) { tl.steps.push(mk(uid(), p)); });
       if (!findStep(tl, tl.startStepId) && tl.steps.length) tl.startStepId = tl.steps[0].id;
@@ -463,7 +481,9 @@ var L = (function () {
   function stepListText(tl) {
     return tl.steps.map(function (s) {
       var line = [s.code, s.name, s.type];
-      if (s.type === 'Walk' && s.dist != null) line.push(String(s.dist));
+      // 3.9: with a starting point, the full six columns (Code; Name; Type; Distance; Station; Starting point)
+      if (s.sp) line.push(s.type === 'Walk' && s.dist != null ? String(s.dist) : '', s.type !== 'Walk' && s.station ? s.station : '', s.sp);
+      else if (s.type === 'Walk' && s.dist != null) line.push(String(s.dist));
       else if (s.type !== 'Walk' && s.station) line.push(s.station);
       return line.join('; ');
     }).join('\n');
@@ -675,6 +695,8 @@ var L = (function () {
         return { sid: r.id, code: r.code, name: r.name, type: r.type, ref: ref, n: v.length, min: v.length ? Math.min.apply(null, v) : null, med: v.length ? r1(median(v)) : null, max: v.length ? Math.max.apply(null, v) : null };
       });
       var total = o.refCol >= 0 ? o.abc[o.refCol][0] : null, work = o.refCol >= 0 ? o.abc[o.refCol][2] : null, per = o.refCol >= 0 ? o.perCycle || 0 : 0;
+      // 3.9: the cycle only takes the periodic tasks that make it longer (not those done during a wait)
+      var perC = o.refCol >= 0 ? o.perCycleCyc || 0 : 0;
       // periodic tasks brought back to the cycle count as work: in the load, the line and the sheets
       parts.Periodic = per;
       LOAD_TYPES.forEach(function (t) { parts[t] = r1(parts[t]); });
@@ -682,9 +704,9 @@ var L = (function () {
       var ppc = o.ppc > 1 ? o.ppc : 1, pp = {};
       LOAD_TYPES.forEach(function (t) { pp[t] = ppc > 1 ? Math.round(parts[t] / ppc * 100) / 100 : parts[t]; });
       return { id: o.id, name: o.name, periodic: o.periodic, refN: o.refN, t1: o.t1, t1info: o.t1info, res: o.res, usable: o.nUsable, used: o.nUsed, cycles: o.cols.length, nComplete: o.nComplete,
-        a: total, b: o.refCol >= 0 ? o.abc[o.refCol][1] : null, c: work, per: r1(per), perPart: o.perPart, perMissing: o.perMissing, ppc: o.ppc,
-        aP: total != null ? r1(total + per) : null, cP: work != null ? r1(work + per) : null, cad: o.cad, prec: o.prec,
-        aPP: total != null ? r3((total + per) / ppc) : null, cPP: work != null ? r3((work + per) / ppc) : null, partsPP: pp,
+        a: total, b: o.refCol >= 0 ? o.abc[o.refCol][1] : null, c: work, per: r1(per), perPart: o.perPart, perPartCyc: o.perPartCyc, perMissing: o.perMissing, ppc: o.ppc,
+        aP: total != null ? r1(total + perC) : null, cP: work != null ? r1(work + per) : null, cad: o.cad, prec: o.prec,
+        aPP: total != null ? r3((total + perC) / ppc) : null, cPP: work != null ? r3((work + per) / ppc) : null, partsPP: pp,
         parts: parts, sat: takt && work != null ? Math.round((work + per) / ppc / takt * 100) : null, steps: steps };
     }) };
   }
@@ -692,10 +714,79 @@ var L = (function () {
   function toTSV(rows) { return rows.map(function (r) { return csvRow(r, '\t'); }).join('\r\n') + '\r\n'; }
   // ---------- Data for the standard sheets (one block per operator timeline) ----------
   // Relevé: one row per step (cycle start first), complete cycles (max 20, usable ones first), times to 0.1 s.
-  // TCT: times of the reference cycle; a walk goes in Transp. of the step before it, waits get no row
-  // (the sheet works out the wait from the process cycle time).
+  // TCT: times of the reference cycle; a walk goes in Transp. of the step before it. 3.9: a wait gets its row with no
+  // time (the waiting symbol only, the sheet works out the wait from the process cycle time), each row its starting
+  // point, the row that starts a machine its automated work, one process cycle time for the whole cell.
   function r1(v) { return v == null ? null : Math.round(v * 10) / 10; }
   function taktOf(v) { var n = typeof v === 'string' ? parseFloat(v.replace(',', '.')) : +v; return isFinite(n) && n > 0 ? Math.round(n * 10) / 10 : null; }
+  // ---------- 3.9: number of each operator in the standard sheets ----------
+  // The number written in his name ("Operator 2", "Op2 jig", "Opérateur 3"), otherwise the first number left, in the
+  // order of the list. Sheet names, operator number, Cell Organization and Work Cell Balancing all follow it: an
+  // operator added, removed or renamed keeps his own sheet (before 3.9 the sheets were numbered by position, so an
+  // operator added after a deletion took the sheet of another one).
+  function opNumbers(names) {
+    var used = {}, first = names.map(function (n) {
+      var m = /(?:^|\D)(\d{1,2})(?!\d)/.exec(String(n || '')), v = m ? +m[1] : 0;
+      if (v >= 1 && !used[v]) { used[v] = true; return v; }
+      return 0;
+    }), k = 1;
+    return first.map(function (v) { if (v) return v; while (used[k]) k++; used[k] = true; return k; });
+  }
+  // ---------- 3.9: the step of an operator that starts each machine (TCT: machine time on that row) ----------
+  // Each timeline is timed on the same video: a machine starts when the operator step that launches it ends (Load
+  // and start, Press START...). For each machine cycle, the operator step (not a walk or a wait) that ends nearest to
+  // its start (1.5 s at most) gets one point; a step that gets 2 points or more, for half of its own presses at least
+  // and a third of the machine cycles at least, starts the machine (a jig started twice in one cycle of the operator
+  // gives two steps). If no step qualifies, the same is tried with the starts of the steps (a button pressed at the
+  // beginning of a longer step). tl.startBy of the machine sets the step by hand ({ tl, step }), or 'none'.
+  // Returns { operator id: { step id: [{ id, name, time (automated work of one machine cycle), auto }] } }.
+  function machineStarts(study) {
+    var out = {}, tls = study.timelines || [];
+    var ops = tls.filter(function (t) { return t.kind === 'operator' && t.steps.length; });
+    tls.forEach(function (m) {
+      if (m.kind !== 'machine' || !m.steps.length || m.startBy === 'none') return;
+      var am = analyze(m);
+      if (!am.ref) return;
+      var time = r1(am.ref.c);
+      if (!(time > 0)) return;
+      var add = function (oid, sid, auto) { var o = out[oid] = out[oid] || {}; (o[sid] = o[sid] || []).push({ id: m.id, name: m.name, time: time, auto: auto }); };
+      if (m.startBy && typeof m.startBy === 'object') {
+        var ho = ops.filter(function (x) { return x.id === m.startBy.tl; })[0];
+        if (ho && findStep(ho, m.startBy.step)) { add(ho.id, m.startBy.step, false); return; }
+      }
+      var starts = am.cycles.map(function (c) { return c.start; });
+      if (starts.length < 2) return;
+      // a machine starts when the step that launches it ends (the operator then waits or goes on): the ends of the
+      // steps are tried first, then their starts (a button pressed in the middle of a longer step)
+      var cand = { end: [], start: [] }, seen = {};
+      ops.forEach(function (o) {
+        var ev = o.events;
+        for (var i = 0; i < ev.length; i++) {
+          var e = ev[i];
+          if (e.kind !== 'step') continue;
+          var s = findStep(o, e.stepId);
+          if (!s || s.type === 'Wait' || s.type === 'Walk') continue;
+          var key = o.id + '|' + s.id;
+          seen[key] = (seen[key] || 0) + 1;
+          cand.start.push({ k: key, t: e.t });
+          if (ev[i + 1]) cand.end.push({ k: key, t: ev[i + 1].t });
+        }
+      });
+      ['end', 'start'].some(function (kind) {
+        var pts = {}, n = 0;
+        starts.forEach(function (x) {
+          var best = null;
+          cand[kind].forEach(function (c) { var d = Math.abs(c.t - x); if (d <= 1.5 && (!best || d < best.d)) best = { k: c.k, d: d }; });
+          if (best) pts[best.k] = (pts[best.k] || 0) + 1;
+        });
+        Object.keys(pts).forEach(function (k) {
+          if (pts[k] >= 2 && pts[k] >= 0.5 * seen[k] && pts[k] >= starts.length / 3) { var p = k.split('|'); add(p[0], p[1], true); n++; }
+        });
+        return n > 0;
+      });
+    });
+    return out;
+  }
   function stdData(study, opts) {
     opts = opts || {};
     setMethod(study.meta);
@@ -703,6 +794,9 @@ var L = (function () {
     var num = function (v) { return Math.abs(v - Math.round(v)) < 0.05 ? String(Math.round(v)) : fmtNum(v, 1, dec); };
     var cyc = function (list) { return list.map(function (c) { return 'C' + c.n; }).join(', '); };
     var ops = [];
+    // 3.9: the machines each step starts (automated work written on that TCT row); opts.inner = called by the
+    // balancing to work out the cell, which needs neither the machines nor the cell cycle
+    var mst = opts.inner ? {} : machineStarts(study);
     study.timelines.forEach(function (tl0) {
       if (tl0.kind !== 'operator' || !tl0.steps.length) return;
       var tl = JSON.parse(JSON.stringify(tl0)), conv = 0;
@@ -730,7 +824,7 @@ var L = (function () {
       var maps = sel.map(sums);
       var stat = {};
       a.steps.forEach(function (r) { if (!r.generic) stat[r.key] = r; });
-      var rows = steps.map(function (s) { return { id: s.id, code: s.code || '', name: (s.name || '').toUpperCase(), type: s.type, wait: s.type === 'Wait', minRep: stat[s.id] ? stat[s.id].minRep : null }; });
+      var rows = steps.map(function (s) { return { id: s.id, code: s.code || '', name: (s.name || '').toUpperCase(), type: s.type, wait: s.type === 'Wait', sp: s.sp || '', minRep: stat[s.id] ? stat[s.id].minRep : null }; });
       var vals = steps.map(function (s) {
         return maps.map(function (m) { return m[s.id] != null ? r1(m[s.id]) : (s.type === 'Wait' ? 0 : null); });
       });
@@ -754,22 +848,30 @@ var L = (function () {
       // the operator leaves from, like the walks.
       var dmap = opts.dist && opts.dist[tl0.id] ? opts.dist[tl0.id] : null;
       var leave = function () { return tct.length ? tct[tct.length - 1] : (lead = lead || { P: null, Q: null }); };
+      var mOf = mst[tl0.id] || {};
       steps.forEach(function (s) {
         var d = refMap[s.id] != null ? refMap[s.id] : null;
         var dist = dmap ? (s.type === 'Walk' && dmap.walk[s.id] != null ? r1(dmap.walk[s.id]) : null) : (s.dist != null ? s.dist : null);
         if (dmap && dmap.bare[s.id] != null) { var lb = leave(); lb.Q = (lb.Q || 0) + dmap.bare[s.id]; }
-        if (s.type === 'Wait') return;
         if (s.type === 'Walk' && hasWork) {
           var to = leave();
           if (d != null) to.P = (to.P || 0) + d;
           if (dist != null && (d != null || dmap)) to.Q = (to.Q || 0) + dist;
           return;
         }
-        var row = { code: s.code || '', name: (s.name || '').toUpperCase(), M: null, N: null, O: null, P: null, Q: null };
-        if (d != null) {
+        // 3.9: a wait keeps its row with no time (the waiting symbol only)
+        var row = { code: s.code || '', name: (s.name || '').toUpperCase(), sp: s.sp || '', wait: s.type === 'Wait', M: null, N: null, O: null, P: null, Q: null };
+        if (d != null && !row.wait) {
           if (s.type === 'Inspection') row.N = d; else if (s.type === 'Machine') row.O = d;
           else if (s.type === 'Walk') row.P = d;
           else row.M = d;
+        }
+        // 3.9: the row that starts a machine gets its automated work (machines started together: the longest)
+        var ms = !row.wait && mOf[s.id];
+        if (ms && ms.length) {
+          var mt = 0; ms.forEach(function (x) { if (x.time > mt) mt = x.time; });
+          if (row.O == null) row.O = mt;
+          row.mach = ms.map(function (x) { return x.name; });
         }
         if (s.type === 'Walk' && dist != null && (d != null || dmap)) row.Q = dist;
         tct.push(row);
@@ -781,7 +883,8 @@ var L = (function () {
       }
       tct.forEach(function (r) { ['M', 'N', 'O', 'P', 'Q'].forEach(function (k) { r[k] = r1(r[k]); }); });
       // Periodic tasks: every P of the study grouped by name (average time) and the ones typed in, with their frequency
-      var per = a.per.list.map(function (p) { var o = { name: p.name, time: p.time, count: p.count }; if (p.freq) o.freq = p.freq; return o; });
+      // (3.9: in parts on the site, in cycles for the sheets: freqCyc), and whether they are done during a wait
+      var per = a.per.list.map(function (p) { var o = { name: p.name, time: p.time, count: p.count, wait: !!p.wait }; if (p.freq) { o.freq = p.freq; o.freqCyc = p.freqCyc; } if (p.wait) o.label = p.name + ' (' + str('per.waitTag') + ')'; return o; });
       // Comments
       var notes = [];
       sel.forEach(function (c) {
@@ -791,6 +894,7 @@ var L = (function () {
           if (e.kind === 'interrupt') items.push(str('std.c.int', { s: num(d) }) + (e.issue ? ', ' + catLabel(e.issue) : '') + note);
           else if (e.kind === 'oov') items.push(str('std.c.oov', { s: num(d) }) + note);
           else if (e.kind === 'end') items.push(str('std.c.end'));
+          else if (e.kind === 'periodic') items.push(str('std.c.per', { name: evName(tl, e), s: num(d) }) + note);
           else if (e.issue && canHaveIssue(e)) items.push(catLabel(e.issue) + ', ' + evLabel(tl, e) + note);
         }
         if (items.length) notes.push('C' + c.n + ': ' + items.join('; '));
@@ -822,8 +926,23 @@ var L = (function () {
         id: tl0.id, name: tl.name, rows: rows, cols: sel.map(function (c) { return { n: c.n, usable: c.usable, used: !!useN[c.n] }; }), vals: vals,
         refCol: refCol, refN: ref ? ref.n : null, t1: t1, t1info: t1info, res: a.res, aRef: aRef, periodic: per, abc: sel.map(function (c) { return [c.sa, c.sb, c.sc]; }), comments: lines.concat(notes, tail).slice(0, 9),
         tct: tct, nComplete: complete.length, converted: conv, nUsable: a.usable.length, nUsed: a.used.length, prec: a.prec,
-        perPart: a.per.perPart, perCycle: a.per.perCycle, perMissing: a.per.missing, ppc: a.ppc, cycP: a.cycP, cad: a.cad
+        perPart: a.per.perPart, perCycle: a.per.perCycle, perPartCyc: a.per.perPartCyc, perCycleCyc: a.per.perCycleCyc, perMissing: a.per.missing, ppc: a.ppc, cycP: a.cycP, cad: a.cad
       });
+    });
+    // 3.9: each operator keeps his own number and his own sheet, whatever the order of the list
+    var nums = opNumbers(ops.map(function (o) { return o.name; }));
+    ops.forEach(function (o, i) { o.no = nums[i]; });
+    ops.sort(function (x, y) { return x.no - y.no; });
+    // 3.9: several parts per cycle: the TCT shows one cycle, so its takt is the takt of the parts of one cycle
+    // (takt x parts per cycle, written in the title); the process cycle time is the one of the cell, the same for
+    // every operator: the line cycle of the balancing (per part) brought back to the cycle of each operator
+    var takt = taktOf(study.meta && study.meta.takt), cell = null;
+    if (!opts.inner) { var kc = balKpis(balActual(study), takt); cell = kc.bott ? kc.bott.v : null; }
+    ops.forEach(function (o) {
+      var k = o.ppc > 1 ? o.ppc : 1;
+      o.taktCyc = takt ? r1(takt * k) : null;
+      o.ppcNote = k > 1 && takt ? str('std.ppcNote', { n: k, t: fmtNum(takt, Math.abs(takt - Math.round(takt)) < 0.05 ? 0 : 1, dec) }) : '';
+      o.pct = cell != null ? r1(cell * k) : null;
     });
     var m = study.meta || {}, dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(m.date || '');
     return {
@@ -873,7 +992,9 @@ var L = (function () {
         t.perMan.slice(0, 20).forEach(function (p) {
           var tm = typeof p === 'object' && p ? +p.time : NaN, fr = p ? Math.round(+p.freq) : NaN;
           if (!(tm > 0 && tm <= 36000)) return;
-          pm.push({ name: str(p.name).trim().slice(0, 120) || 'Periodic task', time: Math.round(tm * 10) / 10, freq: fr >= 1 && fr <= 1000000 ? fr : null });
+          var pmo = { name: str(p.name).trim().slice(0, 120) || 'Periodic task', time: Math.round(tm * 10) / 10, freq: fr >= 1 && fr <= 1000000 ? fr : null };
+          if (p.wait === true) pmo.wait = true;
+          pm.push(pmo);
         });
         if (pm.length) tl.perMan = pm;
       }
@@ -881,17 +1002,28 @@ var L = (function () {
         var pf = {}; Object.keys(t.perFreq).forEach(function (k) { var f = Math.round(+t.perFreq[k]); if (f >= 1) pf[str(k).trim().toLowerCase()] = f; });
         if (Object.keys(pf).length) tl.perFreq = pf;
       }
+      // 3.9: periodic tasks timed with P that are done during a wait (by name)
+      if (t.perWait && typeof t.perWait === 'object') {
+        var pwo = {}; Object.keys(t.perWait).forEach(function (k) { if (t.perWait[k] === true) pwo[str(k).trim().toLowerCase()] = true; });
+        if (Object.keys(pwo).length) tl.perWait = pwo;
+      }
       var map = {};
       (Array.isArray(t.steps) ? t.steps : []).forEach(function (st) {
         if (!st || typeof st !== 'object') return;
         var id = fresh(st.id);
         if (typeof st.id === 'string') map[st.id] = id;
         var type = TYPES.indexOf(st.type) >= 0 ? st.type : 'Operation';
-        var so = { id: id, code: str(st.code), name: str(st.name), type: type, dist: type === 'Walk' ? num(st.dist) : null }, sn = type === 'Walk' ? '' : stationS(st.station);
+        var so = { id: id, code: str(st.code), name: str(st.name), type: type, dist: type === 'Walk' ? num(st.dist) : null }, sn = type === 'Walk' ? '' : stationS(st.station), spv = spS(st.sp);
         if (sn) so.station = sn;
+        if (spv) so.sp = spv;
         tl.steps.push(so);
       });
       tl.startStepId = map[t.startStepId] || (tl.steps.length ? tl.steps[0].id : null);
+      // 3.9: the step of an operator that starts this machine ('none', or { tl, step } ids; absent = found from the times)
+      if (tl.kind === 'machine' && t.startBy) {
+        if (t.startBy === 'none') tl.startBy = 'none';
+        else if (typeof t.startBy === 'object' && typeof t.startBy.tl === 'string' && typeof t.startBy.step === 'string') tl.startBy = { tl: t.startBy.tl, step: t.startBy.step };
+      }
       (Array.isArray(t.events) ? t.events : []).forEach(function (e) {
         if (!e || typeof e !== 'object' || KINDS.indexOf(e.kind) < 0 || typeof e.t !== 'number' || !isFinite(e.t) || e.t < 0) return;
         var ev = { id: fresh(e.id), t: r3(e.t), kind: e.kind };
@@ -908,10 +1040,18 @@ var L = (function () {
       s.timelines.push(tl);
     });
     if (!s.timelines.length) s.timelines.push(newTimeline('operator', 'Operator 1'));
+    // a machine started by a step that no longer exists goes back to the automatic link
+    s.timelines.forEach(function (m) {
+      if (!m.startBy || m.startBy === 'none') return;
+      var o = s.timelines.filter(function (x) { return x.id === m.startBy.tl && x.kind === 'operator'; })[0];
+      if (!o || !findStep(o, m.startBy.step)) delete m.startBy;
+    });
     var act = null;
     s.timelines.forEach(function (t) { if (t.id === o.activeId) act = t.id; });
     s.activeId = act || s.timelines[0].id;
     if (o.exv === 2) s.exv = 2;
+    // 3.9: the language the example was built in (it follows a change of language, app4.js exFollowLang)
+    if (s.example && typeof o.exLang === 'string' && /^[a-z]{2}$/.test(o.exLang)) s.exLang = o.exLang;
     if (s.layout) scenPair(s, s.layout.sv !== 2);
     return s;
   }
@@ -924,7 +1064,7 @@ var L = (function () {
   function balEmpty() { return { active: 'actual', scenarios: [] }; }
   function balActual(study) {
     var ops = {};
-    loadData(study).ops.forEach(function (o) { ops[o.id] = o; });
+    loadData(study, { inner: true }).ops.forEach(function (o) { ops[o.id] = o; });
     return { cols: study.timelines.map(function (tl) {
       // names as typed in the Steps tab (the sheets write them in capitals)
       // parts per cycle (tool with several cavities): the balancing works with the time per part
@@ -933,18 +1073,34 @@ var L = (function () {
       var add = function (r, k) {
         if (r.ref != null && r.ref > 0) blocks.push({ id: tl.id + ':' + k, sid: r.sid || (r.generic ? null : r.key) || null, code: r.code || '', name: (r.code && typed[r.code] != null ? typed[r.code] : r.name) || '', type: TYPES.indexOf(r.type) >= 0 ? r.type : 'Operation', dur: ppc > 1 ? Math.round(r1(r.ref) / ppc * 100) / 100 : r1(r.ref), src: tl.id });
       };
-      var perPart = 0;
+      var perPart = 0, perWait = 0;
       if (tl.kind === 'machine') {
         var a = analyze(tl);
         if (a.ref) {
           var named = a.steps.filter(function (r) { return !r.generic; }), k0 = Math.max(0, stepIndex(tl, startStepId(tl)));
           named.slice(k0).concat(named.slice(0, k0)).concat(a.steps.filter(function (r) { return r.generic; })).forEach(add);
-          perPart = a.per.perPart;
+          // 3.9: a periodic task done while the machine waits is not part of its active time
+          perPart = a.per.perPartCyc;
         }
-      } else if (ops[tl.id]) { ops[tl.id].steps.forEach(add); if (ops[tl.id].refN) perPart = ops[tl.id].perPart || 0; }
+      } else if (ops[tl.id]) {
+        ops[tl.id].steps.forEach(add);
+        if (ops[tl.id].refN) { perPart = ops[tl.id].perPart || 0; perWait = Math.max(0, perPart - (ops[tl.id].perPartCyc || 0)); }
+      }
       // periodic tasks brought back to one part: one block, counted as work. With several parts per cycle, and for
       // the periodic tasks, times per part keep two decimals: rounding each block to 0.1 s would add up wrong
       if (perPart > 0.0005 && blocks.length) blocks.push({ id: tl.id + ':per', sid: null, code: 'P', name: str('per.block'), type: 'Periodic', dur: Math.max(0.01, Math.round(perPart * 100) / 100), src: tl.id });
+      // 3.9: the periodic tasks done during a wait take their time out of the waits of the operator: the work content
+      // grows, the cycle does not (only what the waits cannot hold makes it longer)
+      if (perWait > 0.0005 && blocks.length) {
+        var left = perWait;
+        for (var wi = blocks.length - 1; wi >= 0 && left > 0.0005; wi--) {
+          var wb = blocks[wi];
+          if (wb.type !== 'Wait') continue;
+          var take = Math.min(wb.dur, left);
+          wb.dur = Math.round((wb.dur - take) * 100) / 100; left -= take;
+        }
+        blocks = blocks.filter(function (b) { return b.type !== 'Wait' || b.dur > 0.005; });
+      }
       // a machine's idle time always sits on top of its active steps, so the line cycle meets the top of the active time
       if (tl.kind === 'machine') blocks = blocks.filter(function (b) { return b.type !== 'Wait'; }).concat(blocks.filter(function (b) { return b.type === 'Wait'; }));
       return { id: tl.id, kind: tl.kind === 'machine' ? 'machine' : 'op', name: tl.name, src: tl.id, blocks: blocks };
@@ -959,15 +1115,20 @@ var L = (function () {
   // constraint until it is reviewed. A machine column counts its active steps only: its idle time is set by the
   // operators and never limits the line.
   function balCycle(col) { var x = balTotals(col); return col.kind === 'machine' ? x.work : x.total; }
-  // Bottleneck = longest cycle, operators and machines together. Output = 3600 / bottleneck.
-  // Theoretical operators = sum of (c) / takt. Line balance = sum of (c) / (operators x bottleneck).
+  // Line cycle = longest cycle, operators and machines together. Output = 3600 / line cycle.
+  // Theoretical operators = sum of (c) / takt. Line balance = sum of (c) / (operators x line cycle).
+  // 3.9: bott.v stays the line cycle, but the bottleneck named is the resource with the most work (operators: work
+  // without their waits; machines: active time). An operator whose column sets the line cycle only through his
+  // waits (he waits for a machine) is no longer called the bottleneck: the machine he waits for is. bott.id = its
+  // column, bott.wait = the waiting the line cycle holds beyond that work (0 when the bottleneck is saturated).
   function balKpis(state, takt) {
-    var ops = [], mach = null, bott = null, parts = {}, ptot = 0, sumC = 0;
+    var ops = [], mach = null, bott = null, parts = {}, ptot = 0, sumC = 0, busy = null;
     LOAD_TYPES.forEach(function (t) { parts[t] = 0; });
     state.cols.forEach(function (c) {
       if (!c.blocks.length) return;
       var x = balTotals(c), cy = c.kind === 'machine' ? x.work : x.total;
-      if (cy > 0 && (!bott || cy > bott.v + 1e-9)) bott = { name: c.name, v: cy, machine: c.kind === 'machine' };
+      if (cy > 0 && (!bott || cy > bott.v + 1e-9)) bott = { name: c.name, v: cy, machine: c.kind === 'machine', id: c.id, work: x.work };
+      if (x.work > 0 && (!busy || x.work > busy.work + 1e-9)) busy = { name: c.name, machine: c.kind === 'machine', id: c.id, work: x.work };
       if (c.kind === 'machine') { if (!mach || x.work > mach.v) mach = { name: c.name, v: x.work }; return; }
       ops.push({ name: c.name, a: x.total, c: x.work });
       c.blocks.forEach(function (b) { var k = LOAD_TYPES.indexOf(b.type) >= 0 ? b.type : 'Operation'; parts[k] += b.dur; ptot += b.dur; });
@@ -975,6 +1136,11 @@ var L = (function () {
     ops.forEach(function (o) { sumC += o.c; });
     sumC = r3(sumC);
     LOAD_TYPES.forEach(function (t) { parts[t] = r1(parts[t]); });
+    if (bott) {
+      // the column that sets the line cycle holds waits: the bottleneck is the busiest resource
+      if (bott.work < bott.v - 0.05 && busy && busy.id !== bott.id) { bott.setBy = bott.name; bott.name = busy.name; bott.machine = busy.machine; bott.id = busy.id; bott.work = busy.work; }
+      bott.wait = Math.max(0, r1(bott.v - bott.work));
+    }
     return {
       nOps: ops.length, bott: bott, output: bott && bott.v > 0 ? 3600 / bott.v : null, sumC: ops.length ? sumC : null,
       theo: takt && ops.length ? sumC / takt : null, theoN: takt && ops.length ? Math.ceil(sumC / takt - 1e-9) : null,
@@ -1417,7 +1583,7 @@ var L = (function () {
     precisionOf: precisionOf, periodicOf: periodicOf, BLOCK_TYPES: BLOCK_TYPES,
     findStep: findStep, stepIndex: stepIndex, startStepId: startStepId, evType: evType, evCode: evCode, evName: evName, evLabel: evLabel, canHaveIssue: canHaveIssue,
     indexAt: indexAt, plannedNext: plannedNext, insertEvent: insertEvent, analyze: analyze,
-    parseType: parseType, parseStepList: parseStepList, mergeStepList: mergeStepList, stepListText: stepListText, stationS: stationS, stationKey: stationKey,
+    parseType: parseType, parseStepList: parseStepList, mergeStepList: mergeStepList, stepListText: stepListText, stationS: stationS, stationKey: stationKey, spS: spS, opNumbers: opNumbers, machineStarts: machineStarts,
     fmtClock: fmtClock, fmtNum: fmtNum, csvRow: csvRow, logRows: logRows, summaryRows: summaryRows, LOG_HEAD: LOG_HEAD,
     stdBlocks: stdBlocks, stdData: stdData, loadData: loadData, LOAD_TYPES: LOAD_TYPES, taktOf: taktOf, toTSV: toTSV, genericToSteps: genericToSteps, setStrings: setStrings, typeLabel: typeLabel, catLabel: catLabel, str: str,
     newTimeline: newTimeline, newStudy: newStudy, sanitizeStudy: sanitizeStudy,
@@ -2736,7 +2902,7 @@ var X = (function () {
     var t = textOf(wb, cell(m, col, r)), i = t.indexOf(':');
     return i >= 0 ? t.slice(0, i + 1) + ' ' : (t ? t + ' ' : '');
   }
-  function setLabelled(wb, m, col, r, value) { setStr(m, col, r, labelOf(wb, m, col, r) + (value || '')); }
+  function setLabelled(wb, m, col, r, value) { var l = labelOf(wb, m, col, r); setStr(m, col, r, value ? l + value : l.replace(/\s+$/, '')); }
   function numbered(base, i) {
     var b = base.replace(/\b(example|exemple)\b\s*/ig, '').replace(/\s+/g, ' ').trim();
     var out = /\d+\s*$/.test(b) ? b.replace(/\d+\s*$/, String(i)) : b + ' ' + i;
@@ -2812,6 +2978,8 @@ var X = (function () {
     op.rows.forEach(function (row, k2) {
       var rr = g.first + 2 * k2;
       setStr(m, 1, rr, row.code);
+      // 3.9: the starting point of the step after "SP:"
+      if (row.sp) setLabelled(wb, m, 2, rr, row.sp);
       setStr(m, 2, rr + 1, row.name);
       for (var c = 0; c < NC && c < op.cols.length; c++) setNum(m, C1 + c, rr, op.vals[k2][c]);
     });
@@ -2829,7 +2997,14 @@ var X = (function () {
       // median or the mean, the value itself (the reference cycle is then only the real cycle closest to it)
       if (op.t1info && op.t1info.method && op.t1info.method !== 'rep' && op.t1 != null) setNum(m, T1, a + 3, op.t1);
       else setF(m, T1, a + 3, 'ROUND(' + rc + (a + 2) + ',' + (op.res === 0.1 ? 1 : 0) + ')');
-      setF(m, T1, a + 11, 'IFERROR(' + rc + a + '+' + colName(T1) + (a + 7) + ',\" \")');
+      // T4 = cycle with its periodic tasks. 3.9: a task done during a wait does not make the cycle longer, so T4
+      // then adds only the others (time / frequency of their rows); T2 and T3 (work content) keep every task.
+      var pw = (op.periodic || []).slice(0, 4), cycOnly = pw.some(function (p) { return p.wait; });
+      if (cycOnly) {
+        var adds = [];
+        pw.forEach(function (p, k3) { if (!p.wait) { var r4 = a + 5 + 2 * k3; adds.push('IFERROR(L' + r4 + '/M' + r4 + ',0)'); } });
+        setF(m, T1, a + 11, 'IFERROR(' + rc + a + (adds.length ? '+' + adds.join('+') : '') + ',\" \")');
+      } else setF(m, T1, a + 11, 'IFERROR(' + rc + a + '+' + colName(T1) + (a + 7) + ',\" \")');
     } else {
       setStr(m, T1, a + 3, ''); setStr(m, T1, a + 11, '');
     }
@@ -2837,7 +3012,8 @@ var X = (function () {
       r = a + 5 + 2 * k;
       setStr(m, 2, r, ''); clear(m, 12, r); clear(m, 13, r);
       var p = op.periodic[k];
-      if (p) { setStr(m, 2, r, p.name); setNum(m, 12, r, p.time); if (p.freq) setNum(m, 13, r, p.freq); }
+      // 3.9: frequency in cycles (the sheet divides by it per cycle); a task done during a wait says so in its name
+      if (p) { setStr(m, 2, r, p.label || p.name); setNum(m, 12, r, p.time); if (p.freq) setNum(m, 13, r, p.freqCyc != null ? p.freqCyc : p.freq); }
     }
     for (k = 0; k < 9; k++) setStr(m, 15, a + 4 + k, op.comments[k] || '');
     setLabelled(wb, m, 1, 5, d.meta.plant);
@@ -2858,7 +3034,8 @@ var X = (function () {
     if (!d.ops.length) throw Err('noOperator');
     var base = notExample(mcts), names = [], i;
     sheets(wb).forEach(function (s) { if (!same(s.name, base)) deleteSheet(wb, s.name); });
-    for (i = 1; i <= d.ops.length; i++) names.push('MCT Op.' + i);
+    // 3.9: each sheet carries the number of its operator (L.opNumbers), not its place in the list
+    for (i = 1; i <= d.ops.length; i++) names.push('MCT Op.' + (d.ops[i - 1].no || i));
     for (i = 2; i <= d.ops.length; i++) copySheet(wb, base, names[i - 1], i === 2 ? base : names[i - 2]);
     renameSheet(wb, base, names[0]);
     names.forEach(function (n, k) { fillMctSheet(wb, sheetByName(wb, n), d, d.ops[k]); });
@@ -2910,12 +3087,17 @@ var X = (function () {
       for (j = 13; j <= 17; j++) { clear(m, j, r); clear(m, j, r + 1); }
     }
     clear(m, 16, g.last + 1); clear(m, 17, g.last + 1);
+    var waits = [];
     op.tct.forEach(function (row, k2) {
       var rr = g.first + 2 * k2;
       setStr(m, 2, rr, row.code);
+      // 3.9: the starting point of the step after "Starting Point:"
+      if (row.sp) setLabelled(wb, m, 3, rr, row.sp);
       setStr(m, 3, rr + 1, row.name);
       setNum(m, 13, rr, row.M); setNum(m, 14, rr, row.N); setNum(m, 15, rr, row.O);
       setNum(m, 16, rr + 1, row.P); setNum(m, 17, rr + 1, row.Q);
+      // 3.9: a wait has no time, only the waiting symbol in its Operator cell (the sheet works out the wait itself)
+      if (row.wait) waits.push(rr);
     });
     var pr = g.per.slice(0, 5), tcol = g.perCol === 'J' ? 10 : 13;
     pr.forEach(function (rr, k2) {
@@ -2923,23 +3105,46 @@ var X = (function () {
       if (g.perCol === 'J') { clear(m, 10, rr); clear(m, 11, rr); for (j = 13; j <= 17; j++) clear(m, j, rr); }
       else { clear(m, 13, rr); clear(m, 15, rr); }
       var p = op.periodic[k2];
-      if (p) { setStr(m, 3, rr, p.name); setNum(m, tcol, rr, p.time); if (p.freq) setNum(m, g.perCol === 'J' ? 11 : 15, rr, p.freq); }
+      // 3.9: frequency in cycles; a task done during a wait says so in its name
+      if (p) { setStr(m, 3, rr, p.label || p.name); setNum(m, tcol, rr, p.time); if (p.freq) setNum(m, g.perCol === 'J' ? 11 : 15, rr, p.freqCyc != null ? p.freqCyc : p.freq); }
     });
+    // Process Cycle Time. 3.9: the one of the cell (line cycle of the balancing, brought back to the cycle of this
+    // operator), the same in every TCT; without it, as before: (a) of the reference cycle + periodic time per cycle
     var perTotal = 'L' + g.wait;
-    if (op.aRef != null) setF(m, 47, 4, Math.round(op.aRef * 10) / 10 + '+' + perTotal);
+    if (op.pct != null) setNum(m, 47, 4, op.pct);
+    else if (op.aRef != null) setF(m, 47, 4, Math.round(op.aRef * 10) / 10 + '+' + perTotal);
     else setStr(m, 47, 4, '');
-    if (d.meta.takt) setNum(m, 18, 4, d.meta.takt);
+    // 3.9: several parts per cycle: the takt of the parts of one cycle, said in the title
+    var tk = op.taktCyc != null ? op.taktCyc : d.meta.takt;
+    if (tk) setNum(m, 18, 4, tk);
     setStr(m, 11, 4, d.meta.line);
     setStr(m, 3, 6, d.meta.ref);
-    setNum(m, 11, 6, idx + 1);
+    setNum(m, 11, 6, op.no || idx + 1);
     setStr(m, 11, 7, d.meta.plant);
     setNum(m, 47, 6, d.ops.length);
     setStr(m, 74, 5, d.meta.observer);
     setStr(m, 74, 7, d.meta.date);
     // a scenario (4.3): a simulation, written in the title and in "Configuration"
     if (d.sim) { simTitle(wb, m, 2, 1, d.sim); setStr(m, 18, 6, d.sim); }
+    if (op.ppcNote) simTitle(wb, m, 2, 1, op.ppcNote);
     dropCache(m);
-    return { name: si.name, sum: g.sum, wait: g.wait, opTotal: g.opTotal, typeRow: g.typeRow };
+    waits.forEach(function (rr) { addPicture(wb, si, { data: b64u8(WAIT_PNG), w: 40, h: 40 }, { c1: 13, r1: rr, c2: 13, r2: rr }, 'Waiting'); });
+    return { name: si.name, sum: g.sum, wait: g.wait, opTotal: g.opTotal, typeRow: g.typeRow, no: op.no || idx + 1, ppc: op.ppc > 1 ? op.ppc : 1 };
+  }
+  // 3.9: the waiting symbol of the TCT (red D), put in the Operator cell of each wait row
+  var WAIT_PNG = 'iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAEFUlEQVR42s3Yy2tdVRQG8N/e5ySpedVWFB0q1IETR4p0YJv6duQk0YEOOrH+BQoiVAcdCP4BiiII0kEUteCgWm0rKraIiAOrIlYEsVoK1TRPc87ZDvYNCfHe5sYkN2443Mt57PWdtb611ncW//MVOl1IV7m2xobpf/3Gh4mJ4hTlYeKWeDARvmJ0jliRZtbw5hCpJMzT3MdfK69NUsAE9YYBJkIgvcu1u/i6YGdl7Vin5XuqknM4H/i04MRd/LoEdJxmvRRoC/B9dg3zSz8j3QBcuVm/5bjOMVVwrOKNu/m4ZSMGmm4BXo0jixWppqlI3RyLpFnqaaor1InRAZ4o+egzXn+H6wLNKcoNASyzM0JY8dvtIXOuDBQ16QrVAs0QB2/kixPcMUbVLci2AKcyodMmZGBogY1/sliwZ5gPPuKRMaqlBOoa4PMtug0zUtCXNrGmBfpmqRt2DXH0OHdOZBrE9SRJgXSa40PcN5s9WWxmnUzU/RQNF//i9i+5CC90SJywElygPsmzuzlymTpsMril1VCNUk7x4QEeuFpmx6Xqj+YEtw7wzJV8c9yqbhMpp6lGuP8kjwaaTnyMsD+/QSp4apDRxVxQg61dockhfPowcbwD32MijFG9x0jksRnSVoV21SpmaXZw+z7u6OTFeLp1cif7BrlpMQMMeiOlmoHM/XG4vo3dOLJ88sGi9VCvlE8i/p3/HniFvv1tBEU8vwzotnoNjbgVTlzMBm++gaFAWq1D43jujcOJPYs9BhgIFamfoWH2tKvNMWQt1xfY2WxASW8k0iV9A4zCW6sBQpVTvLFNq2W8c6FuAazC9gFs6g6KO05S3MsUfujrfRangjjPzALfwfgq+/H6looO/FQse7xXSZLKbPD3P7iypOjbyq2Gj0Pvk6Tpz6Xl84PMt+v/cak4LvDhDNNFbn898WLTarUFb7cy+N8cDKRJioe4UPH+UHZz3Qt8Owgz/NzHyUSYaMP/1S59eTHf1IswNwNZ0by2l7kWltQW4AT1JMUBPpnlzZ1Z8VZbmL31QNaEP17ipZbsX1NRB4TT7C45W3LLfNaFcQtKSyoJC+wd48yainrl0GeMS9M8npiPW1D3Is01xDkOjXFmMsutptvPzpSywvhmgdm4iRmdqCMGKaY4cg+vnqJca2YT2xXPims2UbQ2qHZQDOSpw5P38NwpyrEueN72675/A+0u5a60JD5CfwYWF/h2jkMH+LxbcB0BLr15ykZSt92lNfeIZQYWmyxEvp/l6AVenODvSYqxdVSI8iqzmZHBPB/sOtYtQH82/DbPWRyb4vjDLKyYbK2rCZTtxrcDWd3cO09ZrWOjmnqIc+e5vJL8raFAE7ZRc7bjYjFJsVHx0fHhyf/4bdyaovZUtm3r+gex/HyKdKDixQAAAABJRU5ErkJggg==';
+  function b64u8(s) {
+    if (typeof atob === 'function') { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+    return new Uint8Array(Buffer.from(s, 'base64'));
+  }
+  // 3.9: places for the operators of Cell Organization (6) and Work Cell Balancing (8): each one at his number
+  // when there is room, the others in the places left. Returns the list with holes (undefined).
+  function byNo(list, cap) {
+    var out = [], rest = [];
+    list.forEach(function (x) { var n = x && x.no; if (n >= 1 && n <= cap && !out[n - 1]) out[n - 1] = x; else rest.push(x); });
+    rest.forEach(function (x) { for (var i = 0; i < cap; i++) if (!out[i]) { out[i] = x; return; } });
+    out.length = Math.min(cap, out.length);
+    return out;
   }
   function simTitle(wb, m, c, r, sim) {
     var t = textOf(wb, cell(m, c, r)) || '';
@@ -2949,19 +3154,20 @@ var X = (function () {
     var m = model(wb, si);
     unshare(m);
     if (d.sim) simTitle(wb, m, 2, 2, d.sim);
-    var h = coGeo(m, wb).head;
+    var h = coGeo(m, wb).head, slots = byNo(refs, 6);
     for (var i = 0; i < 6; i++) {
-      var col = 24 + i, t = refs[i];
+      var col = 24 + i, t = slots[i];
       for (var k = 1; k <= 4; k++) clear(m, col, h + k);
       if (!t) continue;
-      // Same cells as the TCT's own "Operator Saturation" chart.
-      var s = q(t.name) + '!';
+      // Same cells as the TCT's own "Operator Saturation" chart. 3.9: per part (a TCT shows one cycle, which can
+      // make several parts), like the takt of the sheet (parts per hour) and Work Cell Balancing.
+      var s = q(t.name) + '!', dv = t.ppc > 1 ? '/' + t.ppc : '';
       if (t.typeRow) {
-        setF(m, col, h + 1, s + 'M' + t.typeRow); setF(m, col, h + 2, s + 'N' + t.typeRow); setF(m, col, h + 3, s + 'P' + t.typeRow);
+        setF(m, col, h + 1, s + 'M' + t.typeRow + dv); setF(m, col, h + 2, s + 'N' + t.typeRow + dv); setF(m, col, h + 3, s + 'P' + t.typeRow + dv);
       } else {
-        setF(m, col, h + 1, s + (t.opTotal ? 'O' + t.opTotal : 'M' + t.sum)); setF(m, col, h + 2, s + 'N' + t.sum); setF(m, col, h + 3, s + 'P' + t.sum);
+        setF(m, col, h + 1, s + (t.opTotal ? 'O' + t.opTotal : 'M' + t.sum) + dv); setF(m, col, h + 2, s + 'N' + t.sum + dv); setF(m, col, h + 3, s + 'P' + t.sum + dv);
       }
-      setF(m, col, h + 4, s + 'J' + t.wait);
+      setF(m, col, h + 4, s + 'J' + t.wait + dv);
     }
     setStr(m, 18, 3, d.meta.line);
     setStr(m, 28, 3, d.meta.plant);
@@ -3041,11 +3247,11 @@ var X = (function () {
     setStr(m, 10, 3, d.meta.date);
     setStr(m, 18, 3, d.meta.line);
     if (d.meta.takt > 0) setNum(m, 24, 3, Math.round(3600 / d.meta.takt * 10) / 10);
-    setNum(m, 28, 3, idx + 1);
+    setNum(m, 28, 3, op.no || idx + 1);
     setStr(m, 11, 4, d.meta.observer);
     setNum(m, 28, 4, d.ops.length);
     dropCache(m);
-    if (pic) addPicture(wb, si, pic, LPO_AREA, 'Layout Op. ' + (idx + 1));
+    if (pic) addPicture(wb, si, pic, LPO_AREA, 'Layout Op. ' + (op.no || idx + 1));
   }
   // Work Cell Balancing ("Template"): operator numbers in row 52, then operation, inspection, transport, waiting
   function wcbGeo(wb, m) {
@@ -3067,13 +3273,13 @@ var X = (function () {
     var lpo = pics && pics.ops ? lpos.filter(notEx)[0] || null : null;
     sheets(wb).forEach(function (s) { if (!same(s.name, base) && (!co || !same(s.name, co)) && (!lpo || !same(s.name, lpo))) deleteSheet(wb, s.name); });
     var names = [], i;
-    for (i = 1; i <= d.ops.length; i++) names.push('#2 TCT Op. ' + i);
+    for (i = 1; i <= d.ops.length; i++) names.push('#2 TCT Op. ' + (d.ops[i - 1].no || i));
     for (i = 2; i <= d.ops.length; i++) copySheet(wb, base, names[i - 1], i === 2 ? base : names[i - 2]);
     renameSheet(wb, base, names[0]);
     var refs = names.map(function (n, k) { return fillTctSheet(wb, sheetByName(wb, n), d, d.ops[k], k); });
     if (lpo) {
       var ln = [];
-      for (i = 1; i <= d.ops.length; i++) ln.push('#1 L&PO Op. ' + i);
+      for (i = 1; i <= d.ops.length; i++) ln.push('#1 L&PO Op. ' + (d.ops[i - 1].no || i));
       for (i = 2; i <= d.ops.length; i++) copySheet(wb, lpo, ln[i - 1], i === 2 ? lpo : ln[i - 2]);
       renameSheet(wb, lpo, ln[0]);
       ln.forEach(function (n, k) { fillLpo(wb, sheetByName(wb, n), d, d.ops[k], k, pics.ops[d.ops[k].id] || null); });
@@ -3112,22 +3318,24 @@ var X = (function () {
     var w = d.wcb;
     if (!w || !w.cur || !w.cur.ops.length) throw Err('noOperator');
     sheets(wb).forEach(function (s) { if (!same(s.name, name)) deleteSheet(wb, s.name); });
-    var si = sheetByName(wb, name), m = model(wb, si), counts = {};
+    var si = sheetByName(wb, name), m = model(wb, si), counts = {}, real = {};
     unshare(m);
     [[w.cur, 4], [w.tgt, 15]].forEach(function (p) {
       var st = p[0], c0 = p[1], k, r;
       for (k = 0; k < 8; k++) for (r = 53; r <= 56; r++) clear(m, c0 + k, r);
       [0, 3, 6].forEach(function (o) { clear(m, c0 + o, 50); });
-      if (!st || !st.ops.length) { counts[c0] = 0; return; }
-      var ops = st.ops.slice(0, 8);
-      ops.forEach(function (o, i) { setNum(m, c0 + i, 53, o.op); setNum(m, c0 + i, 54, o.insp); setNum(m, c0 + i, 55, o.walk); setNum(m, c0 + i, 56, o.wait); });
+      if (!st || !st.ops.length) { counts[c0] = 0; real[c0] = 0; return; }
+      // 3.9: each operator in the column of his number (L.opNumbers), the others in the columns left
+      var ops = byNo(st.ops, 8);
+      ops.forEach(function (o, i) { if (!o) return; setNum(m, c0 + i, 53, o.op); setNum(m, c0 + i, 54, o.insp); setNum(m, c0 + i, 55, o.walk); setNum(m, c0 + i, 56, o.wait); });
+      st.slots = ops;
       if (st.takt > 0) setNum(m, c0, 50, st.takt);
-      setNum(m, c0 + 3, 50, st.cycle); setNum(m, c0 + 6, 50, ops.length);
-      counts[c0] = ops.length;
+      setNum(m, c0 + 3, 50, st.cycle); setNum(m, c0 + 6, 50, Math.min(8, st.ops.length));
+      counts[c0] = ops.length; real[c0] = Math.min(8, st.ops.length);
     });
     setStr(m, 4, 3, d.meta.line); setStr(m, 9, 3, d.meta.ref); setStr(m, 18, 3, d.meta.observer); setStr(m, 21, 3, d.meta.date);
     if (d.sim) simTitle(wb, m, 13, 9, d.sim);
-    setNum(m, 9, 5, counts[4]); setStr(m, 13, 5, d.meta.ref); setStr(m, 21, 5, d.meta.plant);
+    setNum(m, 9, 5, real[4]); setStr(m, 13, 5, d.meta.ref); setStr(m, 21, 5, d.meta.plant);
     dropCache(m);
     // charts: as many bars as operators, caches written so they show before Excel recalculates
     relsOf(wb.pkg, si.path).forEach(function (r) {
@@ -3139,8 +3347,9 @@ var X = (function () {
           var st = p[0], c0 = p[1], n = counts[c0];
           if (!n) return;
           x = wcbChart(x, c0, n, function (row, k) {
-            var o = st.ops[k];
+            var o = (st.slots || st.ops)[k];
             if (row === 52) return k + 1;
+            if (!o && row >= 53 && row <= 56) return null;
             if (row === 53) return o.op; if (row === 54) return o.insp; if (row === 55) return o.walk; if (row === 56) return o.wait;
             if (row === 63) return st.takt > 0 ? st.takt : null;
             if (row === 64) return st.cycle;
@@ -3206,33 +3415,72 @@ var I18N_SUGGEST = {
 var I18N_XLW = {}, I18N_EX = {};
 var I18N = {
   en: {
-    'news.v3.0': 'The Yamazumi chart and its scenarios, drag and drop with the mouse or a finger, PDF report, the address vts-tool.com.',
-    'news.n3.0': 'Line balancing',
-    'news.v3.2': 'A ready-to-try example, with its video built into the page.',
-    'news.n3.2': 'Example',
-    'news.v3.3': 'Machines counted for their active time, the bottleneck and the cycle of the line drawn on the chart, balancing rate worked out on the bottleneck.',
-    'news.n3.3': 'Machines and bottleneck',
-    'news.v3.4': 'Contact and feedback by e-mail, version shown at the bottom of the page.',
-    'news.n3.4': 'Contact',
-    'news.v3.5': 'An Excel workbook without template, parts per cycle, periodic tasks with their frequency.',
-    'news.n3.5': 'Excel for any company',
-    'news.v3.6': 'Stations placed on a plan, walking paths with their distance, undo and redo, a layout example.',
-    'news.n3.6': 'First layout',
-    'news.v4.0': 'The current layout and its scenarios, stations turned and reached from one side, walks with or without a part, steps placed on the stations, comparison and animation.',
-    'news.n4.0': 'Current state and scenarios',
-    'news.v4.1': 'AutoCAD DXF plans with their layers and blocks, stations cut out of a picture, layout exported in PNG, DXF and PDF, plans in the standard sheets.',
-    'news.n4.1': 'Precise plans',
-    'news.v4.2': 'Each scenario holds its balancing and its layout. One-page improvement report, Excel workbook for any company, T1 of your choice with its precision at 95%, periodic tasks typed in, page in French.',
-    'news.n4.2': 'Shared scenarios and reports',
-    'news.v4.3': 'The steps placed one question at a time, on round spots around the stations. PDF plans, scenarios compared side by side, Excel workbook of a scenario, quick start.',
-    'news.n4.3': 'Placing the steps',
-    'news.v5.3': 'A Station column in the Steps tab and in pasted lists. On the layout, each question then goes to the station of the step: you still click where exactly the operator arrives and the path walked to get there. What\u2019s new by version, and lighter pages: the example video comes only when you open it.',
-    'news.n5.3': 'Station of each step',
-    'news.s1': 'One key per step to time a video: the cycles, the T1 and the reference cycle.',
-    'news.s2': 'Your standard sheets filled in from your own Excel templates, the takt time and the PDF report.',
-    'news.s3': 'The Yamazumi chart, with scenarios changed by drag and drop, the bottleneck and the cycle of the line.',
-    'news.s4': 'The plan of the cell, the walking paths of each operator, and the same scenarios for balancing and layout.',
-    'news.s5': 'The tool in eight languages, scenarios compared in a PDF report, a full user guide and a new look.',
+    'nw.t1': 'Time study and standard sheets',
+    'nw.s1': 'One key per step to time a video, then your own standard sheets filled in, the takt time and the PDF report.',
+    'nw.t1.0': 'Time study on video',
+    'nw.d1.0': 'One key per step to time a video, with several operators and machines: cycles, T1 and reference cycle, disturbances, timeline, editable log, CSV and JSON exports, automatic saving and offline copy.',
+    'nw.t1.1': 'Walks and waits as steps',
+    'nw.d1.1': 'Walks and waits recorded with W and A become steps of the list in one click.',
+    'nw.t1.2': 'Copy to the sheets',
+    'nw.d1.2': 'Times copied as a table to paste into the standard sheets, replaced by the filled sheets in 1.3.',
+    'nw.t1.3': 'Filled standard sheets',
+    'nw.d1.3': 'Your time measurement sheet and combination table filled in from your own Excel templates, kept in this browser. Quick correction of a step.',
+    'nw.t1.4': 'One rounding rule',
+    'nw.d1.4': 'The same rounded times everywhere, on the screen and in the sheets; the standard templates are recognised.',
+    'nw.t1.5': 'Lighter design',
+    'nw.d1.5': 'A lighter look in the colours of the logo, with a dark theme.',
+    'nw.t1.6': 'New logo',
+    'nw.d1.6': 'A new logo, a home screen that explains the tool and a reminder to save the study.',
+    'nw.t1.7': 'Takt time and report',
+    'nw.d1.7': 'Customer takt time, operator load chart and a PDF report to print.',
+    'nw.t1.8': 'Terms of use',
+    'nw.d1.8': 'All rights reserved, free to use: the terms are linked at the bottom of the page.',
+    'nw.t1.9': 'Reference and full report',
+    'nw.d1.9': 'A Reference field for the sheets, line indicators in the PDF report, legal notice.',
+    'nw.t2': 'Line balancing and layout',
+    'nw.s2': 'The Yamazumi chart and its scenarios, then the plan of the cell and the walking path of each operator.',
+    'nw.t2.0': 'Line balancing',
+    'nw.d2.0': 'The Yamazumi chart and its scenarios, drag and drop with the mouse or a finger, PDF report, the address vts-tool.com.',
+    'nw.t2.1': 'Example',
+    'nw.d2.1': 'A ready-to-try example: a short video with its study and a balancing scenario, help and PDF report for the balancing.',
+    'nw.t2.2': 'Header and menu',
+    'nw.d2.2': 'The study name in the header, a menu, the takt time calculator, kaizen actions on the steps and an export window.',
+    'nw.t2.3': 'Machines and bottleneck',
+    'nw.d2.3': 'Machines counted for their active time, the bottleneck and the cycle of the line drawn on the chart, balancing rate worked out on the bottleneck.',
+    'nw.t2.4': 'Contact',
+    'nw.d2.4': 'Contact and feedback by e-mail, version shown at the bottom of the page.',
+    'nw.t2.5': 'Excel for any company',
+    'nw.d2.5': 'An Excel workbook without template, parts per cycle, periodic tasks with their frequency.',
+    'nw.t2.6': 'Layout',
+    'nw.d2.6': 'Stations placed on a plan at scale, the walking path of each operator with its distance, DXF export.',
+    'nw.t2.7': 'Layout in four steps',
+    'nw.d2.7': 'Plan, stations, paths, compare: the layout guided step by step.',
+    'nw.t2.8': 'Undo and waypoints',
+    'nw.d2.8': 'Undo and redo on the layout, waypoints in the paths and a layout example.',
+    'nw.t2.9': 'Current state and scenarios',
+    'nw.d2.9': 'The current layout and its scenarios, stations turned and reached from one side, walks with or without a part, steps placed on the stations, comparison and animation.',
+    'nw.t3': 'Precise plans, eight languages',
+    'nw.s3': 'DXF plans and the layout in the standard sheets, shared scenarios, eight languages, the user guide and more complete sheets.',
+    'nw.t3.0': 'Precise plans',
+    'nw.d3.0': 'AutoCAD DXF plans with their layers and blocks, stations cut out of a picture, layout exported in PNG, DXF and PDF, plans in the standard sheets.',
+    'nw.t3.1': 'Sheets with the layout',
+    'nw.d3.1': 'Walking distances of the layout in the TCT, a layout sheet per operator, Work Cell Balancing filled in, and a faster start.',
+    'nw.t3.2': 'T1 and figures per part',
+    'nw.d3.2': 'T1 of your choice with its precision, the first 20 cycles everywhere, periodic tasks counted everywhere, every figure per part.',
+    'nw.t3.3': 'Shared scenarios and reports',
+    'nw.d3.3': 'Each scenario holds its balancing and its layout, with one undo history; a one-page improvement report.',
+    'nw.t3.4': 'Placing the steps',
+    'nw.d3.4': 'The steps placed one question at a time, on round spots around the stations. PDF plans, scenarios compared side by side, Excel workbook of a scenario, quick start.',
+    'nw.t3.5': 'Eight languages',
+    'nw.d3.5': 'English, French, German, Spanish, Czech, Italian, Polish and Portuguese, each on its own page; scenarios compared in one PDF report.',
+    'nw.t3.6': 'User guide',
+    'nw.d3.6': 'A detailed user guide in English (vts-tool.com/guide/), section by section, replaces the two short guide pages.',
+    'nw.t3.7': 'New look',
+    'nw.d3.7': 'A new look: the ring logo, with the four step colours under the takt line, and the colours of the site to match.',
+    'nw.t3.8': 'Station of each step',
+    'nw.d3.8': 'A Station column in the Steps tab and in pasted lists. On the layout, each question then goes to the station of the step: you still click where exactly the operator arrives and the path walked to get there. What\u2019s new by version, and lighter pages: the example video comes only when you open it.',
+    'nw.t3.9': 'Standard sheets',
+    'nw.d3.9': 'In the TCT: automated work of the machines, waits and starting points, one process cycle time for the cell. Periodic tasks done during a wait. Libraries served by the site, Erase everything, language list.',
     'off.fail': 'The offline copy could not be made. Check the connection and try again.',
     'off.prep': 'Preparing the offline copy\u2026',
     'ly11.allDone': 'Stations added: {n}. Drag them to their place.',
@@ -3252,7 +3500,7 @@ var I18N = {
     'xl.making': 'Making the workbook\u2026',
     'cv.bigGo': 'Convert anyway',
     'cv.small': 'The converted video is 720p at 30 frames a second: enough to time the steps, lighter to move in.',
-    'cv.bigTip': 'Tip: a short clip is enough for a time study (3 to 5 cycles, 1 to 2 minutes). Or film in MP4 (H.264), which opens without conversion: on an iPhone, Settings, Camera, Formats, Most Compatible.',
+    'cv.bigTip': 'Tip: about ten cycles are enough for a time study, a few minutes of video. Or film in MP4 (H.264), which opens without conversion: on an iPhone, Settings, Camera, Formats, Most Compatible.',
     'cv.bigTxt': 'This video is {mb} MB ({dur}): converting it in the browser can take several minutes, and the page must stay open.',
     'cv.bigT': 'A heavy video',
     'ly10.presGo': 'Make the presentation',
@@ -3296,21 +3544,9 @@ var I18N = {
     'ly10.opT': 'Plan opacity',
     'bal.movedLeg': 'Step given to another operator',
     'bal.movedFrom': 'moved from {name}',
-    'news.v5.1': 'A detailed user guide in English (vts-tool.com/guide/), section by section, replaces the two short guide pages.',
-    'news.n5.1': 'User guide',
-    'news.v5.2': 'A new look: the ring logo, with the four step colours under the takt line, and the colours of the site to match.',
-    'news.n5.2': 'New look',
-    'news.v5': 'English, French, German, Spanish, Czech, Italian, Polish and Portuguese, each on its own page. Below the tool: the example in figures, a comparison, uses by profile and frequently asked questions. Compare / Reports: the states compared, then one PDF report on the layout, the line balancing or both. A new scenario starts from the current state or from any scenario. Opacity of the plan, PDF plans sharp when zooming in, reference locked from the bar of the scenarios, A3 presentation of the layout, plans in the Excel workbook. Heavy iPhone videos converted in 720p. Versions numbered from V1 to V5.',
-    'news.n5': 'Eight languages',
-    'news.n4': 'Layout',
-    'news.n3': 'Line balancing',
-    'news.v2': 'English and French. Your standard sheets filled in from your own Excel templates (time measurement sheet and combination table, macros kept). Takt time, operator load chart and PDF report. Quick step correction, Reference field, light and dark themes.',
-    'news.n2': 'Standard sheets and reports',
-    'news.v1': 'One key per step to time a video, with several operators and machines: cycles, T1 and reference cycle, disturbances, timeline, editable log, CSV and JSON exports, automatic saving and offline copy.',
-    'news.n1': 'Time study on video',
     'about.a8': 'English, French, German, Spanish, Czech, Italian, Polish and Portuguese, each with its own page.',
     'about.q8': 'In which languages?',
-    'about.a7': 'Yes, once the page is open. The menu also gives an offline copy in a single file. Only reading PDF plans and converting iPhone videos need internet the first time.',
+    'about.a7': 'Yes, once the page is open. The menu also gives an offline copy in a single file, which holds everything, the PDF reader and the iPhone video converter too. On the site, these two come from vts-tool.com the first time they are used.',
     'about.q7': 'Does it work without internet?',
     'about.a6': 'PDF reports (the time study, and from Compare / Reports the line balancing, the layout or both), an A3 PDF presentation of the layout, an Excel workbook with the plans, and your own standard sheets filled in if you use them.',
     'about.q6': 'What can I export?',
@@ -3558,6 +3794,31 @@ var I18N = {
     'hdr.credit': 'Created by Ilyas Baqloul', 'ftr.rights': '\u00a9 2026 Ilyas Baqloul. All rights reserved. Free to use.', 'ftr.terms': 'Terms of use',
     'hdr.help': 'Help', 'hdr.offline': 'Offline copy',
     'hdr.offline.title': 'Download this tool as one HTML file that works without internet', 'hdr.theme': 'Theme: {v}', 
+    'lang.en': 'English',
+    'lang.fr': 'French',
+    'lang.de': 'German',
+    'lang.es': 'Spanish',
+    'lang.cs': 'Czech',
+    'lang.it': 'Italian',
+    'lang.pl': 'Polish',
+    'lang.pt': 'Portuguese',
+    'steps.showSp': 'Starting points (SP)',
+    'steps.sp': 'Starting point (SP:) of the sheets',
+    'per.wait': 'during a wait',
+    'per.waitHint': 'Ticked: done while the operator waits (for a machine, for example). It counts in the work content but does not make the cycle longer.',
+    'per.totWait': 'Of which {s} s per part during waits, without making the cycle longer.',
+    'mach.startBy': 'Started by',
+    'mach.startAuto': 'Step found from the times',
+    'mach.startNone': 'No step (nothing in the TCT)',
+    'mach.startHint': 'Its active time goes into the TCT, column Automated work, on the row of the step that starts it.',
+    'mach.found': 'Found: {what}.',
+    'mach.notFound': 'No step found: choose the one that starts it.',
+    'bal.setBy': 'line cycle with the waits of {name}',
+    'u.pts': 'pts',
+    'purge.menu': 'Erase everything',
+    'purge.title': 'Erase everything from this browser',
+    'purge.text': 'The study and its history, the settings, the video converted here, the plans and the Excel templates kept by the tool in this browser are erased, then the page opens again, empty. None of it was ever sent anywhere. Close the other tabs of the tool first.',
+    'purge.ok': 'Erase everything',
     'hdr.lang': 'Language',
     'theme.auto': 'auto', 'theme.light': 'light', 'theme.dark': 'dark',
     've.title': 'Choose the video to study', 've.choose': 'Choose video file', 've.drop': 'Or drop the file here.',
@@ -3715,7 +3976,7 @@ var I18N = {
     'int.cause': 'Cause of the interruption.', 'int.save': 'Save interruption', 'int.cancel': 'Cancel interruption', 'panel.optional': '(optional)',
     'hint.0': 'Defect, rework', 'hint.1': 'Breakdown, micro-stop, button pressed several times', 'hint.2': 'Missing or wrong material',
     'hint.3': 'Different order, extra or missing movement', 'hint.4': 'Someone or something interrupts', 'hint.5': 'Anything else',
-    'per.title': 'Periodic task at {time}', 'per.intro': 'The time of a periodic task stays out of (a) and the cycle stays usable. With how often it comes back, it is spread over the parts.', 'per.cancel': 'Cancel periodic task',
+    'per.title': 'Periodic task at {time}', 'per.intro': 'The time of a periodic task stays out of (a), and its cycle no longer counts for T1, like a disturbed cycle. With how often it comes back, the task is spread over the parts.', 'per.cancel': 'Cancel periodic task',
     'per.d1': 'Stillage change', 'per.d2': 'Waste bin', 'per.d3': 'Material replenishment',
     'chg.title': 'Change event', 'chg.text': 'Event at {time}. Choose what it is.',
     'delStep.title': 'Delete step {step}', 'delStep.ok': 'Delete step and events',
@@ -3723,7 +3984,7 @@ var I18N = {
     'delStep.text.other': 'This step is used by {n} recorded events. They will be deleted too, and the time of each one will go to the event just before it.',
     'delTl.title': 'Delete {name}', 'delTl.text': '{steps} and {events} will be deleted.', 'delTl.ok': 'Delete timeline',
     'addTl.title': 'Add a timeline', 'addTl.text': 'A new line of time on the same video, with its own steps.',
-    'paste.title': 'Paste a list of steps for {name}', 'paste.text': 'One step per line: <b>Code; Name; Type; Station</b>. For walks, put the distance in metres in place of the station. Type is optional ({def} by default), the station too. Columns copied from Excel work too.',
+    'paste.title': 'Paste a list of steps for {name}', 'paste.text': 'One step per line: <b>Code; Name; Type; Station</b>. For walks, put the distance in metres in place of the station. Type is optional ({def} by default), the station too. A 6th column gives the starting point (SP:) of the sheets: Code; Name; Type; Distance; Station; Starting point. Columns copied from Excel work too.',
     'paste.ph': 'M10; Load part in thermoformer; Operation; Thermoformer\nM20; Walk to waterjet; Walk; 4\nQ30; Check trim edges; Inspection; Waterjet\nM40; Wait for waterjet; Wait; Waterjet',
     'paste.types': 'Types: Operation, Inspection, Walk, Wait, Machine. French words work too: Op\u00e9ration, Contr\u00f4le, Marche, Attente.',
     'paste.replaceNote': 'Replace list keeps the recording of steps whose code stays the same. Steps already recorded and missing from the new list are kept at the end.',
@@ -4140,7 +4401,7 @@ var I18N = {
     'takt.title': 'Calculate the takt time',
     'takt.avail': 'Available time (min)',
     'takt.demand': 'Customer demand (parts)',
-    'takt.note': 'Both over the same period: one shift, one day\u2026 Available time is the opening time minus the breaks.',
+    'takt.note': 'Both over the same period: one shift, one day\u2026 Available time is the opening time minus planned stops (breaks, meetings, planned maintenance).',
     'takt.res': 'Takt time: {v} s',
     'takt.bad': 'Enter a time and a demand above 0.',
     'res.disp': 'spread {r} s \u00b7 std dev {sd} s',
@@ -4172,7 +4433,7 @@ var I18N = {
     'ex.name': 'Line A: 2 operators and a press',
     'ex.desc': 'A fictional video with its study ready: steps listed, a dozen timed cycles, a periodic task, takt time, a balancing scenario and its layout. You can change everything.',
     'ex.keep': 'Your current study is put aside. You get it back when you leave the example.',
-    'ex.net': 'Nothing to download: the example is built into the page and works offline.',
+    'ex.net': 'Nothing to install: the example comes with the tool, and the offline copy holds it too.',
     'ex.load': 'Load the example',
     'ex.loaded': 'Example loaded. Look at Results, then Line balancing and Layout.',
     'ex.fail': 'The example could not be opened in this browser.',
@@ -4299,7 +4560,7 @@ var I18N = {
     'legal.host': 'Host',
     'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Phone: +1 877 448 4820.',
     'legal.data': 'Personal data',
-    'legal.dataText': 'Visits are counted with GoatCounter: page viewed, referring site, browser, screen size and country. No cookies, and IP addresses are not stored. The video and your studies are never uploaded: they stay on your device. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. A video filmed or converted on the site is kept in this browser (the last one only) so that it opens again with your study; you can save it on your device or delete this copy at any time. To read a PDF plan or convert an iPhone video, the site downloads a reader (pdf.js) or a converter (hevc.js, mp4box.js) from jsDelivr the first time; your files are not sent. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service. If you write by email, your message and your address are only used to answer you and improve the tool. They are never passed on to anyone. GoatCounter also counts which features are used (for example: example opened, report printed), never the content of your studies or videos.',
+    'legal.dataText': 'Visits are counted with GoatCounter: page viewed, referring site, browser, screen size and country. No cookies, and IP addresses are not stored. The video and your studies are never uploaded: they stay on your device. Your study and your templates are kept in this browser so you find them again; you can delete them in your browser settings. A video filmed or converted on the site is kept in this browser (the last one only) so that it opens again with your study; you can save it on your device or delete this copy at any time. Menu, Erase everything removes all of it at once. To read a PDF plan or convert an iPhone video, the site loads a reader (pdf.js) or a converter (hevc.js, mp4box.js), files of vts-tool.com itself, the first time (the offline copy holds them); your files are not sent. As the host, GitHub may log technical connection data, such as IP addresses, to run and protect the service. If you write by email, your message and your address are only used to answer you and improve the tool. They are never passed on to anyone. GoatCounter also counts which features are used (for example: example opened, report printed), never the content of your studies or videos.',
     'legal.ip': 'Intellectual property',
     'legal.ipText': '\u00a9 2026 Ilyas Baqloul. All rights reserved. The tool is free to use, including at work.',
     'load.title': 'Operator load',
@@ -4322,33 +4583,72 @@ var I18N = {
   },
   /* FR-START */
   fr: {
-    'news.v3.0': 'Le Yamazumi et ses sc\u00e9narios, glisser-d\u00e9poser \u00e0 la souris ou au doigt, rapport PDF, l\u2019adresse vts-tool.com.',
-    'news.n3.0': '\u00c9quilibrage de ligne',
-    'news.v3.2': 'Un exemple pr\u00eat \u00e0 essayer, avec sa vid\u00e9o dans la page.',
-    'news.n3.2': 'Exemple',
-    'news.v3.3': 'Machines compt\u00e9es pour leur temps actif, goulot et cycle de la ligne trac\u00e9s sur le graphique, taux d\u2019\u00e9quilibrage calcul\u00e9 sur le goulot.',
-    'news.n3.3': 'Machines et goulot',
-    'news.v3.4': 'Contact et avis par mail, version affich\u00e9e en bas de la page.',
-    'news.n3.4': 'Contact',
-    'news.v3.5': 'Un classeur Excel sans mod\u00e8le, pi\u00e8ces par cycle, t\u00e2ches p\u00e9riodiques avec leur fr\u00e9quence.',
-    'news.n3.5': 'Excel pour toutes les entreprises',
-    'news.v3.6': 'Postes pos\u00e9s sur un plan, trajets avec leur distance, annuler et r\u00e9tablir, un exemple de layout.',
-    'news.n3.6': 'Premier layout',
-    'news.v4.0': 'Le layout actuel et ses sc\u00e9narios, postes tourn\u00e9s et abord\u00e9s par un c\u00f4t\u00e9, marches avec ou sans pi\u00e8ce, \u00e9tapes plac\u00e9es sur les postes, comparaison et animation.',
-    'news.n4.0': '\u00c9tat actuel et sc\u00e9narios',
-    'news.v4.1': 'Plans DXF AutoCAD avec leurs calques et leurs blocs, postes d\u00e9coup\u00e9s dans une image, layout export\u00e9 en PNG, DXF et PDF, plans dans les fiches standard.',
-    'news.n4.1': 'Plans pr\u00e9cis',
-    'news.v4.2': 'Chaque sc\u00e9nario tient son \u00e9quilibrage et son layout. Rapport d\u2019am\u00e9lioration d\u2019une page, classeur Excel pour toutes les entreprises, T1 au choix avec sa pr\u00e9cision \u00e0 95\u00a0%, t\u00e2ches p\u00e9riodiques saisies, page en fran\u00e7ais.',
-    'news.n4.2': 'Sc\u00e9narios communs et rapports',
-    'news.v4.3': 'Les \u00e9tapes plac\u00e9es une question \u00e0 la fois, sur des ronds autour des postes. Plans en PDF, sc\u00e9narios compar\u00e9s c\u00f4te \u00e0 c\u00f4te, classeur Excel d\u2019un sc\u00e9nario, d\u00e9marrage rapide.',
-    'news.n4.3': 'Placement des \u00e9tapes',
-    'news.v5.3': 'Une colonne Poste dans l\u2019onglet \u00c9tapes et dans les listes coll\u00e9es. Sur le layout, chaque question va alors au poste de l\u2019\u00e9tape\u00a0: vous cliquez toujours o\u00f9 arrive exactement l\u2019op\u00e9rateur et le chemin qu\u2019il prend pour y aller. Quoi de neuf par version, et des pages plus l\u00e9g\u00e8res\u00a0: la vid\u00e9o de l\u2019exemple ne vient que quand on l\u2019ouvre.',
-    'news.n5.3': 'Poste de chaque \u00e9tape',
-    'news.s1': 'Une touche par \u00e9tape pour chronom\u00e9trer une vid\u00e9o\u00a0: les cycles, le T1 et le cycle de r\u00e9f\u00e9rence.',
-    'news.s2': 'Vos fiches standard remplies \u00e0 partir de vos propres mod\u00e8les Excel, le takt time et le rapport PDF.',
-    'news.s3': 'Le Yamazumi, avec des sc\u00e9narios modifi\u00e9s par glisser-d\u00e9poser, le goulot et le cycle de la ligne.',
-    'news.s4': 'Le plan de la cellule, les trajets de chaque op\u00e9rateur et les m\u00eames sc\u00e9narios pour l\u2019\u00e9quilibrage et le layout.',
-    'news.s5': 'L\u2019outil en huit langues, les sc\u00e9narios compar\u00e9s dans un rapport PDF, un mode d\u2019emploi complet et une nouvelle identit\u00e9.',
+    'nw.t1': 'Chronom\u00e9trage et fiches standard',
+    'nw.s1': 'Une touche par \u00e9tape pour chronom\u00e9trer une vid\u00e9o, puis vos propres fiches standard remplies, le takt time et le rapport PDF.',
+    'nw.t1.0': 'Chronom\u00e9trage sur vid\u00e9o',
+    'nw.d1.0': 'Une touche par \u00e9tape pour chronom\u00e9trer une vid\u00e9o, avec plusieurs op\u00e9rateurs et machines\u00a0: cycles, T1 et cycle de r\u00e9f\u00e9rence, anomalies, bande chronologique, journal modifiable, exports CSV et JSON, sauvegarde automatique et copie hors ligne.',
+    'nw.t1.1': 'Marches et attentes en \u00e9tapes',
+    'nw.d1.1': 'Les marches et attentes enregistr\u00e9es avec W et A deviennent des \u00e9tapes de la liste en un clic.',
+    'nw.t1.2': 'Copie vers les fiches',
+    'nw.d1.2': 'Les temps copi\u00e9s en tableau pour les coller dans les fiches standard, remplac\u00e9s par les fiches remplies en 1.3.',
+    'nw.t1.3': 'Fiches standard remplies',
+    'nw.d1.3': 'Votre relev\u00e9 de temps et votre tableau de combinaison remplis \u00e0 partir de vos propres mod\u00e8les Excel, gard\u00e9s dans ce navigateur. Correction rapide d\u2019une \u00e9tape.',
+    'nw.t1.4': 'Une seule r\u00e8gle d\u2019arrondi',
+    'nw.d1.4': 'Les m\u00eames temps arrondis partout, \u00e0 l\u2019\u00e9cran et dans les fiches\u00a0; les mod\u00e8les standard sont reconnus.',
+    'nw.t1.5': 'Design all\u00e9g\u00e9',
+    'nw.d1.5': 'Un design plus l\u00e9ger aux couleurs du logo, avec un th\u00e8me sombre.',
+    'nw.t1.6': 'Nouveau logo',
+    'nw.d1.6': 'Un nouveau logo, un \u00e9cran d\u2019accueil qui explique l\u2019outil et un rappel pour enregistrer l\u2019\u00e9tude.',
+    'nw.t1.7': 'Takt time et rapport',
+    'nw.d1.7': 'Takt time client, graphique de charge des op\u00e9rateurs et rapport PDF \u00e0 imprimer.',
+    'nw.t1.8': 'Conditions d\u2019utilisation',
+    'nw.d1.8': 'Tous droits r\u00e9serv\u00e9s, utilisation gratuite\u00a0: les conditions sont en lien en bas de page.',
+    'nw.t1.9': 'R\u00e9f\u00e9rence et rapport complet',
+    'nw.d1.9': 'Un champ R\u00e9f\u00e9rence pour les fiches, les indicateurs de la ligne dans le rapport PDF, les mentions l\u00e9gales.',
+    'nw.t2': '\u00c9quilibrage et layout',
+    'nw.s2': 'Le Yamazumi et ses sc\u00e9narios, puis le plan de la cellule et le trajet de chaque op\u00e9rateur.',
+    'nw.t2.0': '\u00c9quilibrage de ligne',
+    'nw.d2.0': 'Le Yamazumi et ses sc\u00e9narios, glisser-d\u00e9poser \u00e0 la souris ou au doigt, rapport PDF, l\u2019adresse vts-tool.com.',
+    'nw.t2.1': 'Exemple',
+    'nw.d2.1': 'Un exemple pr\u00eat \u00e0 essayer\u00a0: une courte vid\u00e9o avec son \u00e9tude et un sc\u00e9nario d\u2019\u00e9quilibrage, l\u2019aide et le rapport PDF de l\u2019\u00e9quilibrage.',
+    'nw.t2.2': 'En-t\u00eate et menu',
+    'nw.d2.2': 'Le nom de l\u2019\u00e9tude dans l\u2019en-t\u00eate, un menu, le calcul du takt time, des actions kaizen sur les \u00e9tapes et une fen\u00eatre d\u2019export.',
+    'nw.t2.3': 'Machines et goulot',
+    'nw.d2.3': 'Machines compt\u00e9es pour leur temps actif, goulot et cycle de la ligne trac\u00e9s sur le graphique, taux d\u2019\u00e9quilibrage calcul\u00e9 sur le goulot.',
+    'nw.t2.4': 'Contact',
+    'nw.d2.4': 'Contact et avis par mail, version affich\u00e9e en bas de la page.',
+    'nw.t2.5': 'Excel pour toutes les entreprises',
+    'nw.d2.5': 'Un classeur Excel sans mod\u00e8le, pi\u00e8ces par cycle, t\u00e2ches p\u00e9riodiques avec leur fr\u00e9quence.',
+    'nw.t2.6': 'Layout',
+    'nw.d2.6': 'Postes pos\u00e9s sur un plan \u00e0 l\u2019\u00e9chelle, le trajet de chaque op\u00e9rateur avec sa distance, export DXF.',
+    'nw.t2.7': 'Layout en quatre \u00e9tapes',
+    'nw.d2.7': 'Plan, postes, trajets, comparer\u00a0: le layout guid\u00e9 pas \u00e0 pas.',
+    'nw.t2.8': 'Annuler et points de passage',
+    'nw.d2.8': 'Annuler et r\u00e9tablir sur le layout, points de passage dans les trajets et un layout d\u2019exemple.',
+    'nw.t2.9': '\u00c9tat actuel et sc\u00e9narios',
+    'nw.d2.9': 'Le layout actuel et ses sc\u00e9narios, postes tourn\u00e9s et abord\u00e9s par un c\u00f4t\u00e9, marches avec ou sans pi\u00e8ce, \u00e9tapes plac\u00e9es sur les postes, comparaison et animation.',
+    'nw.t3': 'Plans pr\u00e9cis, huit langues',
+    'nw.s3': 'Plans DXF et layout dans les fiches standard, sc\u00e9narios communs, huit langues, le mode d\u2019emploi et des fiches plus compl\u00e8tes.',
+    'nw.t3.0': 'Plans pr\u00e9cis',
+    'nw.d3.0': 'Plans DXF AutoCAD avec leurs calques et leurs blocs, postes d\u00e9coup\u00e9s dans une image, layout export\u00e9 en PNG, DXF et PDF, plans dans les fiches standard.',
+    'nw.t3.1': 'Fiches avec le layout',
+    'nw.d3.1': 'Les distances du layout dans la TCT, une feuille de layout par op\u00e9rateur, la Work Cell Balancing remplie et un d\u00e9marrage plus rapide.',
+    'nw.t3.2': 'T1 et chiffres par pi\u00e8ce',
+    'nw.d3.2': 'T1 au choix avec sa pr\u00e9cision, les 20 premiers cycles partout, les t\u00e2ches p\u00e9riodiques compt\u00e9es partout, tous les chiffres par pi\u00e8ce.',
+    'nw.t3.3': 'Sc\u00e9narios communs et rapports',
+    'nw.d3.3': 'Chaque sc\u00e9nario tient son \u00e9quilibrage et son layout, avec une seule histoire Annuler\u00a0; un rapport d\u2019am\u00e9lioration d\u2019une page.',
+    'nw.t3.4': 'Placement des \u00e9tapes',
+    'nw.d3.4': 'Les \u00e9tapes plac\u00e9es une question \u00e0 la fois, sur des ronds autour des postes. Plans en PDF, sc\u00e9narios compar\u00e9s c\u00f4te \u00e0 c\u00f4te, classeur Excel d\u2019un sc\u00e9nario, d\u00e9marrage rapide.',
+    'nw.t3.5': 'Huit langues',
+    'nw.d3.5': 'Anglais, fran\u00e7ais, allemand, espagnol, tch\u00e8que, italien, polonais et portugais, chacune sur sa page\u00a0; les sc\u00e9narios compar\u00e9s dans un seul rapport PDF.',
+    'nw.t3.6': 'Mode d\u2019emploi',
+    'nw.d3.6': 'Un mode d\u2019emploi d\u00e9taill\u00e9 en anglais (vts-tool.com/guide/), section par section, remplace les deux courtes pages de guide.',
+    'nw.t3.7': 'Nouvelle identit\u00e9',
+    'nw.d3.7': 'Nouvelle identit\u00e9\u00a0: le logo en anneau, avec les quatre couleurs des \u00e9tapes sous la ligne de takt, et les couleurs du site assorties.',
+    'nw.t3.8': 'Poste de chaque \u00e9tape',
+    'nw.d3.8': 'Une colonne Poste dans l\u2019onglet \u00c9tapes et dans les listes coll\u00e9es. Sur le layout, chaque question va alors au poste de l\u2019\u00e9tape\u00a0: vous cliquez toujours o\u00f9 arrive exactement l\u2019op\u00e9rateur et le chemin qu\u2019il prend pour y aller. Quoi de neuf par version, et des pages plus l\u00e9g\u00e8res\u00a0: la vid\u00e9o de l\u2019exemple ne vient que quand on l\u2019ouvre.',
+    'nw.t3.9': 'Fiches standard',
+    'nw.d3.9': 'Dans la TCT\u00a0: travail automatique des machines, attentes et points de d\u00e9part, un seul temps de cycle process pour la cellule. T\u00e2ches p\u00e9riodiques faites pendant une attente. Biblioth\u00e8ques servies par le site, Tout effacer, liste des langues.',
     'off.fail': 'La copie hors ligne n\u2019a pas pu \u00eatre faite. V\u00e9rifiez la connexion et r\u00e9essayez.',
     'off.prep': 'Pr\u00e9paration de la copie hors ligne\u2026',
     'ly11.allDone': 'Postes ajout\u00e9s\u00a0: {n}. Glissez-les \u00e0 leur place.',
@@ -4368,7 +4668,7 @@ var I18N = {
     'xl.making': 'Classeur en pr\u00e9paration\u2026',
     'cv.bigGo': 'Convertir quand m\u00eame',
     'cv.small': 'La vid\u00e9o convertie est en 720p \u00e0 30 images par seconde\u00a0: assez pour chronom\u00e9trer les \u00e9tapes, plus l\u00e9g\u00e8re pour s\u2019y d\u00e9placer.',
-    'cv.bigTip': 'Conseil\u00a0: un extrait court suffit pour chronom\u00e9trer (3 \u00e0 5 cycles, 1 \u00e0 2 minutes). Ou filmez en MP4 (H.264), qui s\u2019ouvre sans conversion\u00a0: sur iPhone, R\u00e9glages, Appareil photo, Formats, Le plus compatible.',
+    'cv.bigTip': 'Conseil\u00a0: une dizaine de cycles suffit pour chronom\u00e9trer, soit quelques minutes de vid\u00e9o. Ou filmez en MP4 (H.264), qui s\u2019ouvre sans conversion\u00a0: sur iPhone, R\u00e9glages, Appareil photo, Formats, Le plus compatible.',
     'cv.bigTxt': 'Cette vid\u00e9o fait {mb} Mo ({dur})\u00a0: sa conversion dans le navigateur peut prendre plusieurs minutes, et la page doit rester ouverte.',
     'cv.bigT': 'Une vid\u00e9o lourde',
     'ly10.presGo': 'Faire la pr\u00e9sentation',
@@ -4412,21 +4712,9 @@ var I18N = {
     'ly10.opT': 'Opacit\u00e9 du plan',
     'bal.movedLeg': '\u00c9tape donn\u00e9e \u00e0 un autre op\u00e9rateur',
     'bal.movedFrom': 'vient de {name}',
-    'news.v5.1': 'Un mode d\u2019emploi d\u00e9taill\u00e9 en anglais (vts-tool.com/guide/), section par section, remplace les deux courtes pages de guide.',
-    'news.n5.1': 'Mode d\u2019emploi',
-    'news.v5.2': 'Nouvelle identit\u00e9\u00a0: le logo en anneau, avec les quatre couleurs des \u00e9tapes sous la ligne de takt, et les couleurs du site assorties.',
-    'news.n5.2': 'Nouvelle identit\u00e9',
-    'news.v5': 'Anglais, fran\u00e7ais, allemand, espagnol, tch\u00e8que, italien, polonais et portugais, chacune sur sa page. Sous l\u2019outil\u00a0: l\u2019exemple en chiffres, un comparatif, les usages par profil et les questions fr\u00e9quentes. Comparer / Rapports\u00a0: les \u00e9tats compar\u00e9s, puis un seul rapport PDF sur le layout, l\u2019\u00e9quilibrage ou les deux. Un nouveau sc\u00e9nario part de l\u2019actuel ou de n\u2019importe quel sc\u00e9nario. Opacit\u00e9 du plan, plans PDF nets au zoom, r\u00e9f\u00e9rence verrouill\u00e9e depuis la barre des sc\u00e9narios, pr\u00e9sentation A3 du layout, plans dans le classeur Excel. Vid\u00e9os d\u2019iPhone lourdes converties en 720p. Versions num\u00e9rot\u00e9es de V1 \u00e0 V5.',
-    'news.n5': 'Huit langues',
-    'news.n4': 'Layout',
-    'news.n3': '\u00c9quilibrage de ligne',
-    'news.v2': 'Anglais et fran\u00e7ais. Vos fiches standard remplies \u00e0 partir de vos propres mod\u00e8les Excel (relev\u00e9 de temps et tableau de combinaison, macros gard\u00e9es). Takt time, graphique de charge des op\u00e9rateurs et rapport PDF. Correction rapide des \u00e9tapes, champ R\u00e9f\u00e9rence, th\u00e8mes clair et sombre.',
-    'news.n2': 'Fiches standard et rapports',
-    'news.v1': 'Une touche par \u00e9tape pour chronom\u00e9trer une vid\u00e9o, avec plusieurs op\u00e9rateurs et machines\u00a0: cycles, T1 et cycle de r\u00e9f\u00e9rence, anomalies, bande chronologique, journal modifiable, exports CSV et JSON, sauvegarde automatique et copie hors ligne.',
-    'news.n1': 'Chronom\u00e9trage sur vid\u00e9o',
     'about.a8': 'Anglais, fran\u00e7ais, allemand, espagnol, tch\u00e8que, italien, polonais et portugais, chacune avec sa page.',
     'about.q8': 'Dans quelles langues\u00a0?',
-    'about.a7': 'Oui, une fois la page ouverte. Le menu propose aussi une copie hors ligne en un seul fichier. Seules la lecture des plans PDF et la conversion des vid\u00e9os d\u2019iPhone demandent internet la premi\u00e8re fois.',
+    'about.a7': 'Oui, une fois la page ouverte. Le menu propose aussi une copie hors ligne en un seul fichier, qui contient tout, le lecteur de PDF et le convertisseur de vid\u00e9os d\u2019iPhone compris. Sur le site, ces deux-l\u00e0 viennent de vts-tool.com la premi\u00e8re fois qu\u2019on s\u2019en sert.',
     'about.q7': 'Est-ce que \u00e7a marche sans internet\u00a0?',
     'about.a6': 'Des rapports PDF (le chronom\u00e9trage et, depuis Comparer / Rapports, l\u2019\u00e9quilibrage, le layout ou les deux), une pr\u00e9sentation PDF A3 du layout, un classeur Excel avec les plans, et vos propres fiches standard remplies si vous les utilisez.',
     'about.q6': 'Que peut-on exporter\u00a0?',
@@ -4674,6 +4962,31 @@ var I18N = {
     'hdr.credit': 'Cr\u00e9\u00e9 par Ilyas Baqloul', 'ftr.rights': '\u00a9 2026 Ilyas Baqloul. Tous droits r\u00e9serv\u00e9s. Utilisation gratuite.', 'ftr.terms': 'Conditions d\u2019utilisation',
     'hdr.help': 'Aide', 'hdr.offline': 'Copie hors ligne',
     'hdr.offline.title': 'T\u00e9l\u00e9charger l\u2019outil en un seul fichier HTML qui marche sans internet', 'hdr.theme': 'Th\u00e8me\u00a0: {v}', 
+    'lang.en': 'Anglais',
+    'lang.fr': 'Fran\u00e7ais',
+    'lang.de': 'Allemand',
+    'lang.es': 'Espagnol',
+    'lang.cs': 'Tch\u00e8que',
+    'lang.it': 'Italien',
+    'lang.pl': 'Polonais',
+    'lang.pt': 'Portugais',
+    'steps.showSp': 'Points de d\u00e9part (SP)',
+    'steps.sp': 'Point de d\u00e9part (SP) des fiches',
+    'per.wait': 'pendant une attente',
+    'per.waitHint': 'Coch\u00e9\u00a0: faite pendant que l\u2019op\u00e9rateur attend (une machine, par exemple). Elle compte dans le contenu de travail sans allonger le cycle.',
+    'per.totWait': 'Dont {s} s par pi\u00e8ce pendant des attentes, sans allonger le cycle.',
+    'mach.startBy': 'Lanc\u00e9e par',
+    'mach.startAuto': '\u00c9tape trouv\u00e9e d\u2019apr\u00e8s les temps',
+    'mach.startNone': 'Aucune \u00e9tape (rien dans la TCT)',
+    'mach.startHint': 'Son temps actif va dans la TCT, colonne Automated work, sur la ligne de l\u2019\u00e9tape qui la lance.',
+    'mach.found': 'Trouv\u00e9e\u00a0: {what}.',
+    'mach.notFound': 'Aucune \u00e9tape trouv\u00e9e\u00a0: choisissez celle qui la lance.',
+    'bal.setBy': 'cycle de la ligne avec les attentes de {name}',
+    'u.pts': 'pts',
+    'purge.menu': 'Tout effacer',
+    'purge.title': 'Tout effacer de ce navigateur',
+    'purge.text': 'L\u2019\u00e9tude et son historique, les r\u00e9glages, la vid\u00e9o convertie ici, les plans et les mod\u00e8les Excel gard\u00e9s par l\u2019outil dans ce navigateur sont effac\u00e9s, puis la page se rouvre, vide. Rien de tout cela n\u2019a jamais \u00e9t\u00e9 envoy\u00e9. Fermez d\u2019abord les autres onglets de l\u2019outil.',
+    'purge.ok': 'Tout effacer',
     'hdr.lang': 'Langue',
     'theme.auto': 'auto', 'theme.light': 'clair', 'theme.dark': 'sombre',
     've.title': 'Choisissez la vid\u00e9o \u00e0 \u00e9tudier', 've.choose': 'Choisir la vid\u00e9o', 've.drop': 'Ou d\u00e9posez le fichier ici.',
@@ -4831,7 +5144,7 @@ var I18N = {
     'int.cause': 'Cause de l\u2019interruption.', 'int.save': 'Enregistrer l\u2019interruption', 'int.cancel': 'Annuler l\u2019interruption', 'panel.optional': '(facultatif)',
     'hint.0': 'D\u00e9faut, retouche', 'hint.1': 'Panne, micro-arr\u00eat, bouton appuy\u00e9 plusieurs fois', 'hint.2': 'Mati\u00e8re manquante ou mauvaise',
     'hint.3': 'Ordre diff\u00e9rent, geste en plus ou oubli\u00e9', 'hint.4': 'Quelqu\u2019un ou quelque chose l\u2019interrompt', 'hint.5': 'Autre cas',
-    'per.title': 'T\u00e2che p\u00e9riodique \u00e0 {time}', 'per.intro': 'Le temps d\u2019une t\u00e2che p\u00e9riodique reste hors de (a) et le cycle reste utilisable. Avec sa fr\u00e9quence, il est r\u00e9parti sur les pi\u00e8ces.', 'per.cancel': 'Annuler la t\u00e2che p\u00e9riodique',
+    'per.title': 'T\u00e2che p\u00e9riodique \u00e0 {time}', 'per.intro': 'Le temps d\u2019une t\u00e2che p\u00e9riodique reste hors de (a), et son cycle ne compte plus pour le T1, comme un cycle perturb\u00e9. Avec sa fr\u00e9quence, la t\u00e2che est r\u00e9partie sur les pi\u00e8ces.', 'per.cancel': 'Annuler la t\u00e2che p\u00e9riodique',
     'per.d1': 'Changement de stillage', 'per.d2': 'Bac \u00e0 d\u00e9chets', 'per.d3': 'R\u00e9approvisionnement',
     'chg.title': 'Changer l\u2019\u00e9v\u00e9nement', 'chg.text': '\u00c9v\u00e9nement \u00e0 {time}. Choisissez ce que c\u2019est.',
     'delStep.title': 'Supprimer l\u2019\u00e9tape {step}', 'delStep.ok': 'Supprimer l\u2019\u00e9tape et ses \u00e9v\u00e9nements',
@@ -4839,7 +5152,7 @@ var I18N = {
     'delStep.text.other': 'Cette \u00e9tape est utilis\u00e9e par {n} \u00e9v\u00e9nements enregistr\u00e9s. Ils seront supprim\u00e9s aussi, et le temps de chacun ira \u00e0 l\u2019\u00e9v\u00e9nement juste avant.',
     'delTl.title': 'Supprimer {name}', 'delTl.text': '{steps} et {events} seront supprim\u00e9s.', 'delTl.ok': 'Supprimer la ligne de temps',
     'addTl.title': 'Ajouter une ligne de temps', 'addTl.text': 'Une nouvelle ligne de temps sur la m\u00eame vid\u00e9o, avec ses propres \u00e9tapes.',
-    'paste.title': 'Coller une liste d\u2019\u00e9tapes pour {name}', 'paste.text': 'Une \u00e9tape par ligne\u00a0: <b>Code\u00a0; Nom\u00a0; Type\u00a0; Poste</b>. Pour les marches, mettez la distance en m\u00e8tres \u00e0 la place du poste. Le type est facultatif ({def} par d\u00e9faut), le poste aussi. Les colonnes copi\u00e9es depuis Excel marchent aussi.',
+    'paste.title': 'Coller une liste d\u2019\u00e9tapes pour {name}', 'paste.text': 'Une \u00e9tape par ligne\u00a0: <b>Code\u00a0; Nom\u00a0; Type\u00a0; Poste</b>. Pour les marches, mettez la distance en m\u00e8tres \u00e0 la place du poste. Le type est facultatif ({def} par d\u00e9faut), le poste aussi. Une 6e colonne donne le point de d\u00e9part (SP:) des fiches\u00a0: Code\u00a0; Nom\u00a0; Type\u00a0; Distance\u00a0; Poste\u00a0; Point de d\u00e9part. Les colonnes copi\u00e9es depuis Excel marchent aussi.',
     'paste.ph': 'M10; Charger la pi\u00e8ce dans la thermoformeuse; Op\u00e9ration; Thermoformeuse\nM20; Aller \u00e0 la waterjet; Marche; 4\nQ30; Contr\u00f4ler les bords; Contr\u00f4le; Waterjet\nM40; Attendre la waterjet; Attente; Waterjet',
     'paste.types': 'Types\u00a0: Op\u00e9ration, Contr\u00f4le, Marche, Attente, Machine. Les mots anglais marchent aussi\u00a0: Operation, Inspection, Walk, Wait.',
     'paste.replaceNote': 'Remplacer la liste garde l\u2019enregistrement des \u00e9tapes dont le code ne change pas. Les \u00e9tapes d\u00e9j\u00e0 enregistr\u00e9es et absentes de la nouvelle liste sont gard\u00e9es \u00e0 la fin.',
@@ -5256,7 +5569,7 @@ var I18N = {
     'takt.title': 'Calculer le takt time',
     'takt.avail': 'Temps disponible (min)',
     'takt.demand': 'Demande client (pi\u00e8ces)',
-    'takt.note': 'Les deux sur la m\u00eame p\u00e9riode\u00a0: une \u00e9quipe, une journ\u00e9e\u2026 Le temps disponible est le temps d\u2019ouverture moins les pauses.',
+    'takt.note': 'Les deux sur la m\u00eame p\u00e9riode\u00a0: une \u00e9quipe, une journ\u00e9e\u2026 Le temps disponible est le temps d\u2019ouverture moins les arr\u00eats planifi\u00e9s (pauses, r\u00e9unions, maintenance planifi\u00e9e).',
     'takt.res': 'Takt time\u00a0: {v} s',
     'takt.bad': 'Entrez un temps et une demande sup\u00e9rieurs \u00e0 0.',
     'res.disp': '\u00e9cart {r} s \u00b7 \u00e9cart-type {sd} s',
@@ -5288,7 +5601,7 @@ var I18N = {
     'ex.name': 'Ligne A\u00a0: 2 op\u00e9rateurs et une presse',
     'ex.desc': 'Une vid\u00e9o fictive avec son \u00e9tude pr\u00eate\u00a0: \u00e9tapes list\u00e9es, une douzaine de cycles chronom\u00e9tr\u00e9s, une t\u00e2che p\u00e9riodique, takt time, un sc\u00e9nario d\u2019\u00e9quilibrage et son layout. Vous pouvez tout modifier.',
     'ex.keep': 'Votre \u00e9tude en cours est mise de c\u00f4t\u00e9. Vous la retrouvez en quittant l\u2019exemple.',
-    'ex.net': 'Rien \u00e0 t\u00e9l\u00e9charger\u00a0: l\u2019exemple est dans la page et marche sans internet.',
+    'ex.net': 'Rien \u00e0 installer\u00a0: l\u2019exemple vient avec l\u2019outil, et la copie hors ligne le contient aussi.',
     'ex.load': 'Charger l\u2019exemple',
     'ex.loaded': 'Exemple charg\u00e9. Regardez R\u00e9sultats, puis \u00c9quilibrage et Layout.',
     'ex.fail': 'L\u2019exemple n\u2019a pas pu s\u2019ouvrir dans ce navigateur.',
@@ -5415,7 +5728,7 @@ var I18N = {
     'legal.host': 'H\u00e9bergeur',
     'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, \u00c9tats-Unis. T\u00e9l\u00e9phone\u00a0: +1 877 448 4820.',
     'legal.data': 'Donn\u00e9es personnelles',
-    'legal.dataText': 'Les visites sont compt\u00e9es avec GoatCounter\u00a0: page vue, site d\u2019origine, navigateur, taille d\u2019\u00e9cran et pays. Pas de cookie, et l\u2019adresse IP n\u2019est pas conserv\u00e9e. La vid\u00e9o et vos \u00e9tudes ne sont jamais envoy\u00e9es\u00a0: elles restent sur votre appareil. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez\u00a0; vous pouvez les effacer dans les r\u00e9glages du navigateur. Une vid\u00e9o film\u00e9e ou convertie sur le site est gard\u00e9e dans ce navigateur (la derni\u00e8re seulement) pour se rouvrir avec votre \u00e9tude\u00a0; vous pouvez l\u2019enregistrer sur votre appareil ou supprimer cette copie \u00e0 tout moment. Pour lire un plan PDF ou convertir une vid\u00e9o d\u2019iPhone, le site t\u00e9l\u00e9charge la premi\u00e8re fois un lecteur (pdf.js) ou un convertisseur (hevc.js, mp4box.js) depuis jsDelivr\u00a0; vos fichiers ne sont pas envoy\u00e9s. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service. Si vous \u00e9crivez par mail, votre message et votre adresse servent seulement \u00e0 vous r\u00e9pondre et \u00e0 am\u00e9liorer l\u2019outil. Ils ne sont jamais transmis \u00e0 personne. GoatCounter compte aussi les fonctions utilis\u00e9es (par exemple\u00a0: exemple ouvert, rapport imprim\u00e9), jamais le contenu de vos \u00e9tudes ni de vos vid\u00e9os.',
+    'legal.dataText': 'Les visites sont compt\u00e9es avec GoatCounter\u00a0: page vue, site d\u2019origine, navigateur, taille d\u2019\u00e9cran et pays. Pas de cookie, et l\u2019adresse IP n\u2019est pas conserv\u00e9e. La vid\u00e9o et vos \u00e9tudes ne sont jamais envoy\u00e9es\u00a0: elles restent sur votre appareil. Votre \u00e9tude et vos mod\u00e8les sont gard\u00e9s dans ce navigateur pour que vous les retrouviez\u00a0; vous pouvez les effacer dans les r\u00e9glages du navigateur. Une vid\u00e9o film\u00e9e ou convertie sur le site est gard\u00e9e dans ce navigateur (la derni\u00e8re seulement) pour se rouvrir avec votre \u00e9tude\u00a0; vous pouvez l\u2019enregistrer sur votre appareil ou supprimer cette copie \u00e0 tout moment. Menu, Tout effacer supprime tout d\u2019un coup. Pour lire un plan PDF ou convertir une vid\u00e9o d\u2019iPhone, le site charge la premi\u00e8re fois un lecteur (pdf.js) ou un convertisseur (hevc.js, mp4box.js), fichiers de vts-tool.com lui-m\u00eame (la copie hors ligne les contient)\u00a0; vos fichiers ne sont pas envoy\u00e9s. En tant qu\u2019h\u00e9bergeur, GitHub peut enregistrer des donn\u00e9es techniques de connexion, comme l\u2019adresse IP, pour faire fonctionner et prot\u00e9ger le service. Si vous \u00e9crivez par mail, votre message et votre adresse servent seulement \u00e0 vous r\u00e9pondre et \u00e0 am\u00e9liorer l\u2019outil. Ils ne sont jamais transmis \u00e0 personne. GoatCounter compte aussi les fonctions utilis\u00e9es (par exemple\u00a0: exemple ouvert, rapport imprim\u00e9), jamais le contenu de vos \u00e9tudes ni de vos vid\u00e9os.',
     'legal.ip': 'Propri\u00e9t\u00e9 intellectuelle',
     'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Tous droits r\u00e9serv\u00e9s. L\u2019outil est gratuit, y compris au travail.',
     'load.title': 'Charge des op\u00e9rateurs',
@@ -5442,6 +5755,10 @@ var I18N_LOGIC = {
   en: null,
   /* FR-START */
   fr: {
+    'reason.periodic': 'T\u00e2che p\u00e9riodique',
+    'std.ppcNote': '{n} pi\u00e8ces par cycle\u00a0: takt {t} s \u00d7 {n}',
+    'per.waitTag': 'pendant une attente',
+    'std.c.per': 't\u00e2che p\u00e9riodique {name}, {s} s',
     'sum.ppc': 'Pi\u00e8ces par cycle',
     'sum.cad': 'Cadence (pi\u00e8ces par heure)',
     'sum.cycP': 'Cycle de r\u00e9f\u00e9rence avec t\u00e2ches p\u00e9riodiques (s)',
@@ -5506,33 +5823,72 @@ var I18N_LOGIC = {
 
 /* LANG-de: texts of the de page, made with tools/i18n_lang.py (English where a key is missing) */
 I18N.de = {
-  'news.v3.0': 'Das Yamazumi-Diagramm und seine Szenarien, Drag-and-drop mit Maus oder Finger, PDF-Bericht, die Adresse vts-tool.com.',
-  'news.n3.0': 'Austaktung',
-  'news.v3.2': 'Ein Beispiel zum Ausprobieren, mit seinem Video in der Seite.',
-  'news.n3.2': 'Beispiel',
-  'news.v3.3': 'Maschinen mit ihrer aktiven Zeit gez\u00e4hlt, Engpass und Zyklus der Linie im Diagramm, Austaktungsgrad auf den Engpass bezogen.',
-  'news.n3.3': 'Maschinen und Engpass',
-  'news.v3.4': 'Kontakt und Feedback per E-Mail, Version unten auf der Seite.',
-  'news.n3.4': 'Kontakt',
-  'news.v3.5': 'Eine Excel-Arbeitsmappe ohne Vorlage, Teile pro Zyklus, periodische T\u00e4tigkeiten mit ihrer H\u00e4ufigkeit.',
-  'news.n3.5': 'Excel f\u00fcr jedes Unternehmen',
-  'news.v3.6': 'Stationen auf einem Plan, Laufwege mit ihrer Entfernung, R\u00fcckg\u00e4ngig und Wiederholen, ein Layout-Beispiel.',
-  'news.n3.6': 'Erstes Layout',
-  'news.v4.0': 'Das aktuelle Layout und seine Szenarien, gedrehte Stationen mit Zugang von einer Seite, Gehwege mit oder ohne Teil, Arbeitsschritte auf den Stationen platziert, Vergleich und Animation.',
-  'news.n4.0': 'Ist-Zustand und Szenarien',
-  'news.v4.1': 'AutoCAD-DXF-Pl\u00e4ne mit Layern und Bl\u00f6cken, aus einem Bild ausgeschnittene Stationen, Layout als PNG, DXF und PDF, Pl\u00e4ne in den Standardbl\u00e4ttern.',
-  'news.n4.1': 'Genaue Pl\u00e4ne',
-  'news.v4.2': 'Jedes Szenario enth\u00e4lt seine Austaktung und sein Layout. Verbesserungsbericht auf einer Seite, Excel-Arbeitsmappe f\u00fcr jedes Unternehmen, T1 nach Wahl mit seiner Genauigkeit bei 95 %, eingegebene periodische T\u00e4tigkeiten, Seite auf Franz\u00f6sisch.',
-  'news.n4.2': 'Gemeinsame Szenarien und Berichte',
-  'news.v4.3': 'Die Arbeitsschritte werden Frage f\u00fcr Frage auf runden Punkten um die Stationen platziert. PDF-Pl\u00e4ne, Szenarien nebeneinander verglichen, Excel-Arbeitsmappe eines Szenarios, Schnellstart.',
-  'news.n4.3': 'Arbeitsschritte platzieren',
-  'news.v5.3': 'Eine Spalte Station im Reiter Arbeitsschritte und in eingef\u00fcgten Listen. Im Layout f\u00fchrt dann jede Frage zur Station des Arbeitsschritts: Sie klicken weiterhin, wo genau der Mitarbeiter ankommt und welchen Weg er dorthin geht. Neuigkeiten nach Version und leichtere Seiten: das Video des Beispiels kommt erst, wenn Sie es \u00f6ffnen.',
-  'news.n5.3': 'Station jedes Arbeitsschritts',
-  'news.s1': 'Eine Taste pro Arbeitsschritt, um ein Video zu erfassen: die Zyklen, T1 und der Referenzzyklus.',
-  'news.s2': 'Ihre Standardbl\u00e4tter, ausgef\u00fcllt aus Ihren eigenen Excel-Vorlagen, die Taktzeit und der PDF-Bericht.',
-  'news.s3': 'Das Yamazumi-Diagramm mit Szenarien per Drag-and-drop, der Engpass und der Zyklus der Linie.',
-  'news.s4': 'Der Plan der Zelle, die Laufwege jedes Mitarbeiters und dieselben Szenarien f\u00fcr Austaktung und Layout.',
-  'news.s5': 'Das Werkzeug in acht Sprachen, Szenarien im PDF-Bericht verglichen, eine vollst\u00e4ndige Anleitung und ein neues Erscheinungsbild.',
+  'nw.t1': 'Zeitaufnahme und Standardbl\u00e4tter',
+  'nw.s1': 'Eine Taste pro Arbeitsschritt, um ein Video zu erfassen, dann Ihre eigenen Standardbl\u00e4tter ausgef\u00fcllt, die Taktzeit und der PDF-Bericht.',
+  'nw.t1.0': 'Zeitaufnahme per Video',
+  'nw.d1.0': 'Eine Taste pro Arbeitsschritt, um ein Video zu erfassen, mit mehreren Mitarbeitern und Maschinen: Zyklen, T1 und Referenzzyklus, St\u00f6rungen, Zeitleiste, bearbeitbares Protokoll, Export als CSV und JSON, automatisches Speichern und Offline-Kopie.',
+  'nw.t1.1': 'Gehen und Warten als Schritte',
+  'nw.d1.1': 'Mit W und A erfasstes Gehen und Warten wird mit einem Klick zu Arbeitsschritten der Liste.',
+  'nw.t1.2': 'Kopie f\u00fcr die Bl\u00e4tter',
+  'nw.d1.2': 'Die Zeiten als Tabelle kopiert, um sie in die Standardbl\u00e4tter einzuf\u00fcgen; ab 1.3 durch die ausgef\u00fcllten Bl\u00e4tter ersetzt.',
+  'nw.t1.3': 'Ausgef\u00fcllte Standardbl\u00e4tter',
+  'nw.d1.3': 'Ihr Zeitaufnahmebogen und Ihre Kombinationstabelle, ausgef\u00fcllt aus Ihren eigenen Excel-Vorlagen, die in diesem Browser bleiben. Schnelle Korrektur eines Arbeitsschritts.',
+  'nw.t1.4': 'Eine Rundungsregel',
+  'nw.d1.4': '\u00dcberall dieselben gerundeten Zeiten, am Bildschirm und in den Bl\u00e4ttern; die Standardvorlagen werden erkannt.',
+  'nw.t1.5': 'Leichteres Design',
+  'nw.d1.5': 'Ein leichteres Erscheinungsbild in den Farben des Logos, mit dunklem Design.',
+  'nw.t1.6': 'Neues Logo',
+  'nw.d1.6': 'Ein neues Logo, ein Startbildschirm, der das Werkzeug erkl\u00e4rt, und eine Erinnerung, die Studie zu speichern.',
+  'nw.t1.7': 'Taktzeit und Bericht',
+  'nw.d1.7': 'Kundentaktzeit, Diagramm der Auslastung der Mitarbeiter und ein PDF-Bericht zum Drucken.',
+  'nw.t1.8': 'Nutzungsbedingungen',
+  'nw.d1.8': 'Alle Rechte vorbehalten, kostenlose Nutzung: die Bedingungen sind unten auf der Seite verlinkt.',
+  'nw.t1.9': 'Referenz und vollst\u00e4ndiger Bericht',
+  'nw.d1.9': 'Ein Feld Referenz f\u00fcr die Bl\u00e4tter, Kennzahlen der Linie im PDF-Bericht, Impressum.',
+  'nw.t2': 'Austaktung und Layout',
+  'nw.s2': 'Das Yamazumi-Diagramm und seine Szenarien, dann der Plan der Zelle und der Laufweg jedes Mitarbeiters.',
+  'nw.t2.0': 'Austaktung',
+  'nw.d2.0': 'Das Yamazumi-Diagramm und seine Szenarien, Drag-and-drop mit Maus oder Finger, PDF-Bericht, die Adresse vts-tool.com.',
+  'nw.t2.1': 'Beispiel',
+  'nw.d2.1': 'Ein Beispiel zum Ausprobieren: ein kurzes Video mit seiner Studie und einem Austaktungs-Szenario, Hilfe und PDF-Bericht der Austaktung.',
+  'nw.t2.2': 'Kopfzeile und Men\u00fc',
+  'nw.d2.2': 'Der Name der Studie in der Kopfzeile, ein Men\u00fc, die Berechnung der Taktzeit, Kaizen-Ma\u00dfnahmen an den Arbeitsschritten und ein Exportfenster.',
+  'nw.t2.3': 'Maschinen und Engpass',
+  'nw.d2.3': 'Maschinen mit ihrer aktiven Zeit gez\u00e4hlt, Engpass und Zyklus der Linie im Diagramm, Austaktungsgrad auf den Engpass bezogen.',
+  'nw.t2.4': 'Kontakt',
+  'nw.d2.4': 'Kontakt und Feedback per E-Mail, Version unten auf der Seite.',
+  'nw.t2.5': 'Excel f\u00fcr jedes Unternehmen',
+  'nw.d2.5': 'Eine Excel-Arbeitsmappe ohne Vorlage, Teile pro Zyklus, periodische T\u00e4tigkeiten mit ihrer H\u00e4ufigkeit.',
+  'nw.t2.6': 'Layout',
+  'nw.d2.6': 'Stationen auf einem ma\u00dfst\u00e4blichen Plan, der Laufweg jedes Mitarbeiters mit seiner Entfernung, DXF-Export.',
+  'nw.t2.7': 'Layout in vier Schritten',
+  'nw.d2.7': 'Plan, Stationen, Wege, Vergleich: das Layout Schritt f\u00fcr Schritt gef\u00fchrt.',
+  'nw.t2.8': 'R\u00fcckg\u00e4ngig und Wegpunkte',
+  'nw.d2.8': 'R\u00fcckg\u00e4ngig und Wiederholen im Layout, Wegpunkte in den Wegen und ein Beispiel-Layout.',
+  'nw.t2.9': 'Ist-Zustand und Szenarien',
+  'nw.d2.9': 'Das aktuelle Layout und seine Szenarien, gedrehte Stationen mit Zugang von einer Seite, Gehwege mit oder ohne Teil, Arbeitsschritte auf den Stationen platziert, Vergleich und Animation.',
+  'nw.t3': 'Pr\u00e4zise Pl\u00e4ne, acht Sprachen',
+  'nw.s3': 'DXF-Pl\u00e4ne und das Layout in den Standardbl\u00e4ttern, gemeinsame Szenarien, acht Sprachen, die Anleitung und vollst\u00e4ndigere Bl\u00e4tter.',
+  'nw.t3.0': 'Genaue Pl\u00e4ne',
+  'nw.d3.0': 'AutoCAD-DXF-Pl\u00e4ne mit Layern und Bl\u00f6cken, aus einem Bild ausgeschnittene Stationen, Layout als PNG, DXF und PDF, Pl\u00e4ne in den Standardbl\u00e4ttern.',
+  'nw.t3.1': 'Bl\u00e4tter mit dem Layout',
+  'nw.d3.1': 'Die Entfernungen des Layouts in der TCT, ein Layout-Blatt je Mitarbeiter, Work Cell Balancing ausgef\u00fcllt und ein schnellerer Start.',
+  'nw.t3.2': 'T1 und Werte je Teil',
+  'nw.d3.2': 'T1 nach Wahl mit seiner Genauigkeit, \u00fcberall die ersten 20 Zyklen, periodische T\u00e4tigkeiten \u00fcberall gez\u00e4hlt, alle Werte je Teil.',
+  'nw.t3.3': 'Gemeinsame Szenarien und Berichte',
+  'nw.d3.3': 'Jedes Szenario enth\u00e4lt seine Austaktung und sein Layout, mit einem einzigen Verlauf zum R\u00fcckg\u00e4ngigmachen; ein einseitiger Verbesserungsbericht.',
+  'nw.t3.4': 'Arbeitsschritte platzieren',
+  'nw.d3.4': 'Die Arbeitsschritte werden Frage f\u00fcr Frage auf runden Punkten um die Stationen platziert. PDF-Pl\u00e4ne, Szenarien nebeneinander verglichen, Excel-Arbeitsmappe eines Szenarios, Schnellstart.',
+  'nw.t3.5': 'Acht Sprachen',
+  'nw.d3.5': 'Englisch, Franz\u00f6sisch, Deutsch, Spanisch, Tschechisch, Italienisch, Polnisch und Portugiesisch, jede Sprache auf ihrer eigenen Seite; Szenarien in einem PDF-Bericht verglichen.',
+  'nw.t3.6': 'Anleitung',
+  'nw.d3.6': 'Eine ausf\u00fchrliche Anleitung auf Englisch (vts-tool.com/guide/), Abschnitt f\u00fcr Abschnitt, ersetzt die beiden kurzen Anleitungsseiten.',
+  'nw.t3.7': 'Neues Erscheinungsbild',
+  'nw.d3.7': 'Neues Erscheinungsbild: das Ring-Logo mit den vier Schrittfarben unter der Taktlinie und die passenden Farben der Seite.',
+  'nw.t3.8': 'Station jedes Arbeitsschritts',
+  'nw.d3.8': 'Eine Spalte Station im Reiter Arbeitsschritte und in eingef\u00fcgten Listen. Im Layout f\u00fchrt dann jede Frage zur Station des Arbeitsschritts: Sie klicken weiterhin, wo genau der Mitarbeiter ankommt und welchen Weg er dorthin geht. Neuigkeiten nach Version und leichtere Seiten: das Video des Beispiels kommt erst, wenn Sie es \u00f6ffnen.',
+  'nw.t3.9': 'Standardbl\u00e4tter',
+  'nw.d3.9': 'In der TCT: automatische Arbeit der Maschinen, Wartezeiten und Startpunkte, eine einzige Prozesszykluszeit f\u00fcr die Zelle. Periodische T\u00e4tigkeiten w\u00e4hrend einer Wartezeit. Bibliotheken von der Website selbst, Alles l\u00f6schen, Sprachliste.',
   'off.fail': 'Die Offline-Kopie konnte nicht erstellt werden. Pr\u00fcfen Sie die Verbindung und versuchen Sie es erneut.',
   'off.prep': 'Offline-Kopie wird vorbereitet\u2026',
   'ly11.allDone': 'Stationen hinzugef\u00fcgt: {n}. Ziehen Sie sie an ihren Platz.',
@@ -5552,7 +5908,7 @@ I18N.de = {
   'xl.making': 'Arbeitsmappe wird erstellt\u2026',
   'cv.bigGo': 'Trotzdem umwandeln',
   'cv.small': 'Das umgewandelte Video hat 720p mit 30 Bildern pro Sekunde: genug, um die Arbeitsschritte zu messen, und leichter zu bedienen.',
-  'cv.bigTip': 'Tipp: F\u00fcr eine Zeitaufnahme gen\u00fcgt ein kurzer Ausschnitt (3 bis 5 Zyklen, 1 bis 2 Minuten). Oder filmen Sie in MP4 (H.264), das ohne Umwandlung \u00f6ffnet: auf dem iPhone Einstellungen, Kamera, Formate, Maximale Kompatibilit\u00e4t.',
+  'cv.bigTip': 'Tipp: F\u00fcr eine Zeitaufnahme gen\u00fcgen etwa zehn Zyklen, also wenige Minuten Video. Oder filmen Sie in MP4 (H.264), das ohne Umwandlung \u00f6ffnet: auf dem iPhone Einstellungen, Kamera, Formate, Maximale Kompatibilit\u00e4t.',
   'cv.bigTxt': 'Dieses Video hat {mb} MB ({dur}): die Umwandlung im Browser kann mehrere Minuten dauern, und die Seite muss ge\u00f6ffnet bleiben.',
   'cv.bigT': 'Ein gro\u00dfes Video',
   'ly10.presGo': 'Pr\u00e4sentation erstellen',
@@ -5596,21 +5952,9 @@ I18N.de = {
   'ly10.opT': 'Deckkraft des Plans',
   'bal.movedLeg': 'Arbeitsschritt an einen anderen Mitarbeiter gegeben',
   'bal.movedFrom': 'kommt von {name}',
-  'news.v5.1': 'Eine ausf\u00fchrliche Anleitung auf Englisch (vts-tool.com/guide/), Abschnitt f\u00fcr Abschnitt, ersetzt die beiden kurzen Anleitungsseiten.',
-  'news.n5.1': 'Anleitung',
-  'news.v5.2': 'Neues Erscheinungsbild: das Ring-Logo mit den vier Schrittfarben unter der Taktlinie und die passenden Farben der Seite.',
-  'news.n5.2': 'Neues Erscheinungsbild',
-  'news.v5': 'Englisch, Franz\u00f6sisch, Deutsch, Spanisch, Tschechisch, Italienisch, Polnisch und Portugiesisch, jede Sprache mit eigener Seite. Unter dem Werkzeug: das Beispiel in Zahlen, ein Vergleich, Anwendungen nach Profil und h\u00e4ufige Fragen. Vergleichen / Berichte: die verglichenen Zust\u00e4nde, dann ein einziger PDF-Bericht zum Layout, zur Austaktung oder zu beidem. Ein neues Szenario geht vom Ist-Zustand oder von einem beliebigen Szenario aus. Deckkraft des Plans, PDF-Pl\u00e4ne beim Zoomen scharf, Referenz in der Leiste der Szenarien gesperrt, A3-Pr\u00e4sentation des Layouts, Pl\u00e4ne in der Excel-Arbeitsmappe. Gro\u00dfe iPhone-Videos in 720p umgewandelt. Versionen von V1 bis V5 nummeriert.',
-  'news.n5': 'Acht Sprachen',
-  'news.n4': 'Layout',
-  'news.n3': 'Austaktung',
-  'news.v2': 'Englisch und Franz\u00f6sisch. Ihre Standardbl\u00e4tter, ausgef\u00fcllt aus Ihren eigenen Excel-Vorlagen (Zeitaufnahmebogen und Kombinationstabelle, Makros bleiben erhalten). Taktzeit, Auslastungsdiagramm der Mitarbeiter und PDF-Bericht. Schnelle Korrektur der Arbeitsschritte, Feld Referenz, helles und dunkles Design.',
-  'news.n2': 'Standardbl\u00e4tter und Berichte',
-  'news.v1': 'Eine Taste pro Arbeitsschritt, um ein Video zu erfassen, mit mehreren Mitarbeitern und Maschinen: Zyklen, T1 und Referenzzyklus, St\u00f6rungen, Zeitleiste, bearbeitbares Protokoll, Export als CSV und JSON, automatisches Speichern und Offline-Kopie.',
-  'news.n1': 'Zeitaufnahme per Video',
   'about.a8': 'Englisch, Franz\u00f6sisch, Deutsch, Spanisch, Tschechisch, Italienisch, Polnisch und Portugiesisch, jeweils mit eigener Seite.',
   'about.q8': 'In welchen Sprachen?',
-  'about.a7': 'Ja, sobald die Seite ge\u00f6ffnet ist. Das Men\u00fc bietet au\u00dferdem eine Offline-Kopie in einer einzigen Datei. Nur das Lesen von PDF-Pl\u00e4nen und das Umwandeln von iPhone-Videos brauchen beim ersten Mal Internet.',
+  'about.a7': 'Ja, sobald die Seite ge\u00f6ffnet ist. Das Men\u00fc bietet au\u00dferdem eine Offline-Kopie in einer einzigen Datei, die alles enth\u00e4lt, auch das PDF-Leseprogramm und den Konverter f\u00fcr iPhone-Videos. Auf der Website kommen diese beiden beim ersten Gebrauch von vts-tool.com.',
   'about.q7': 'Funktioniert es ohne Internet?',
   'about.a6': 'PDF-Berichte (die Zeitaufnahme und unter Vergleichen / Berichte die Austaktung, das Layout oder beides), eine PDF-Pr\u00e4sentation des Layouts in A3, eine Excel-Arbeitsmappe mit den Pl\u00e4nen und Ihre eigenen ausgef\u00fcllten Standardbl\u00e4tter, wenn Sie welche nutzen.',
   'about.q6': 'Was kann ich exportieren?',
@@ -5862,6 +6206,31 @@ I18N.de = {
   'hdr.offline': 'Offline-Kopie',
   'hdr.offline.title': 'Dieses Tool als eine HTML-Datei herunterladen, die ohne Internet funktioniert',
   'hdr.theme': 'Design: {v}',
+  'lang.en': 'Englisch',
+  'lang.fr': 'Franz\u00f6sisch',
+  'lang.de': 'Deutsch',
+  'lang.es': 'Spanisch',
+  'lang.cs': 'Tschechisch',
+  'lang.it': 'Italienisch',
+  'lang.pl': 'Polnisch',
+  'lang.pt': 'Portugiesisch',
+  'steps.showSp': 'Startpunkte (SP)',
+  'steps.sp': 'Startpunkt (SP:) f\u00fcr die Bl\u00e4tter',
+  'per.wait': 'w\u00e4hrend einer Wartezeit',
+  'per.waitHint': 'Angehakt: erledigt, w\u00e4hrend der Mitarbeiter wartet (zum Beispiel auf eine Maschine). Sie z\u00e4hlt zum Arbeitsinhalt, verl\u00e4ngert den Zyklus aber nicht.',
+  'per.totWait': 'Davon {s} s je Teil w\u00e4hrend Wartezeiten, ohne den Zyklus zu verl\u00e4ngern.',
+  'mach.startBy': 'Gestartet durch',
+  'mach.startAuto': 'Schritt aus den Zeiten ermittelt',
+  'mach.startNone': 'Kein Schritt (nichts in der TCT)',
+  'mach.startHint': 'Ihre aktive Zeit kommt in die TCT, Spalte Automated work, in die Zeile des Schritts, der sie startet.',
+  'mach.found': 'Ermittelt: {what}.',
+  'mach.notFound': 'Kein Schritt gefunden: w\u00e4hlen Sie den, der sie startet.',
+  'bal.setBy': 'Linienzyklus mit den Wartezeiten von {name}',
+  'u.pts': 'Pp.',
+  'purge.menu': 'Alles l\u00f6schen',
+  'purge.title': 'Alles aus diesem Browser l\u00f6schen',
+  'purge.text': 'Die Studie mit ihrem Verlauf, die Einstellungen, das hier umgewandelte Video, die Pl\u00e4ne und die Excel-Vorlagen, die das Werkzeug in diesem Browser aufbewahrt, werden gel\u00f6scht; danach \u00f6ffnet sich die Seite leer. Nichts davon wurde je gesendet. Schlie\u00dfen Sie zuerst die anderen Tabs des Werkzeugs.',
+  'purge.ok': 'Alles l\u00f6schen',
   'hdr.lang': 'Sprache',
   'theme.auto': 'automatisch',
   'theme.light': 'hell',
@@ -5930,7 +6299,7 @@ I18N.de = {
   'kind.machine': 'Maschine',
   'kind.periodicDefault': 'Periodische T\u00e4tigkeit',
   'tab.record': 'Erfassen',
-  'tab.steps': 'Arbeitsschritte',
+  'tab.steps': 'Schritte',
   'tab.results': 'Ergebnisse',
   'tab.log': 'Protokoll',
   'tab.study': 'Studie',
@@ -6193,7 +6562,7 @@ I18N.de = {
   'hint.4': 'Jemand oder etwas unterbricht',
   'hint.5': 'Alles andere',
   'per.title': 'Periodische T\u00e4tigkeit um {time}',
-  'per.intro': 'Die Zeit einer periodischen T\u00e4tigkeit bleibt au\u00dferhalb von (a), und der Zyklus bleibt verwertbar. Mit ihrer H\u00e4ufigkeit wird sie auf die Teile verteilt.',
+  'per.intro': 'Die Zeit einer periodischen T\u00e4tigkeit bleibt au\u00dferhalb von (a), und ihr Zyklus z\u00e4hlt nicht mehr f\u00fcr T1, wie ein gest\u00f6rter Zyklus. Mit ihrer H\u00e4ufigkeit wird die T\u00e4tigkeit auf die Teile verteilt.',
   'per.cancel': 'Periodische T\u00e4tigkeit aufheben',
   'per.d1': 'Beh\u00e4lterwechsel',
   'per.d2': 'Abfallbeh\u00e4lter',
@@ -6210,7 +6579,7 @@ I18N.de = {
   'addTl.title': 'Zeitleiste hinzuf\u00fcgen',
   'addTl.text': 'Eine neue Zeitlinie auf demselben Video, mit eigenen Arbeitsschritten.',
   'paste.title': 'Liste von Arbeitsschritten f\u00fcr {name} einf\u00fcgen',
-  'paste.text': 'Ein Arbeitsschritt pro Zeile: <b>Code; Name; Typ; Station</b>. Bei Gehwegen steht statt der Station die Entfernung in Metern. Der Typ ist optional (standardm\u00e4\u00dfig {def}), die Station auch. Aus Excel kopierte Spalten funktionieren auch.',
+  'paste.text': 'Ein Arbeitsschritt pro Zeile: <b>Code; Name; Typ; Station</b>. Bei Gehwegen steht statt der Station die Entfernung in Metern. Der Typ ist optional (standardm\u00e4\u00dfig {def}), die Station auch. Eine 6. Spalte gibt den Startpunkt (SP:) der Bl\u00e4tter an: Code; Name; Typ; Entfernung; Station; Startpunkt. Aus Excel kopierte Spalten funktionieren auch.',
   'paste.ph': 'M10; Teil in die Thermoformmaschine legen; Bearbeitung; Thermoformmaschine\nM20; Zur Wasserstrahlanlage gehen; Gehen; 4\nQ30; Schnittkanten pr\u00fcfen; Pr\u00fcfung; Wasserstrahlanlage\nM40; Auf die Wasserstrahlanlage warten; Warten; Wasserstrahlanlage',
   'paste.types': 'Typen: Bearbeitung, Pr\u00fcfung, Gehen, Warten, Maschine. Englische und franz\u00f6sische Begriffe funktionieren auch.',
   'paste.replaceNote': 'Liste ersetzen beh\u00e4lt die Erfassung der Arbeitsschritte, deren Code gleich bleibt. Bereits erfasste Arbeitsschritte, die in der neuen Liste fehlen, bleiben am Ende erhalten.',
@@ -6395,7 +6764,7 @@ I18N.de = {
   'ly2.r.walkAll': 'Gehen, alle Mitarbeiter',
   'ly2.r.per1000': 'Gehen auf 1.000 Teile',
   'ly2.exBtn': 'Beispiel-Layout laden',
-  'ly2.ex.bin': 'Teilekiste',
+  'ly2.ex.bin': 'Teilebeh\u00e4lter',
   'ly2.ex.press': 'Presse',
   'ly2.ex.table': 'Clip-Tisch',
   'ly2.ex.box': 'Karton',
@@ -6466,10 +6835,10 @@ I18N.de = {
   'ly4.toSteps': 'Aus den Arbeitsschritten neu erstellen',
   'ly4.playTip': 'Abspielen zeigt jeden Mitarbeiter, wie er seinen Weg in seinem Tempo geht und an jedem Ort so lange bleibt wie seine Arbeitsschritte. Beim Vergleichen wird der heutige Weg ebenfalls gegangen, in Grau.',
   'ly4.speedHint': 'Lassen Sie die Geschwindigkeit leer: sie stammt aus dem aktuellen Layout und den in der Studie gemessenen Gehwegen. Sonst 1 m/s.',
-  'ly4.exTip': 'Teilekiste, Presse, Clip-Tisch und Karton: das heutige Layout, das Austaktungs-Szenario des Beispiels und eine kompakte Zelle.',
+  'ly4.exTip': 'Teilebeh\u00e4lter, Presse, Clip-Tisch und Karton: das heutige Layout, das Austaktungs-Szenario des Beispiels und eine kompakte Zelle.',
   'ly4.exDone': 'Beispiel-Layout geladen: das aktuelle Layout und zwei Szenarien. Dr\u00fccken Sie auf Abspielen, um die Mitarbeiter gehen zu sehen.',
   'ly4.ex.scen': 'Kompakte Zelle',
-  'ly4.ex.note': 'Wie im ersten Szenario erledigt Mitarbeiter 1 B30 Teil pr\u00fcfen, w\u00e4hrend die Presse l\u00e4uft. Kompakte Zelle: Kiste und Karton zu den Mitarbeitern gedreht, Clip-Tisch neben der Presse.',
+  'ly4.ex.note': 'Wie im ersten Szenario erledigt Mitarbeiter 1 B30 Teil pr\u00fcfen, w\u00e4hrend die Presse l\u00e4uft. Kompakte Zelle: Beh\u00e4lter und Karton zu den Mitarbeitern gedreht, Clip-Tisch neben der Presse.',
   'ly5.cutStart': 'Klicken Sie im Plan auf die Ecken der Maschine oder ziehen Sie ein Rechteck darum.',
   'ly5.cutNext': 'N\u00e4chste Ecke. Klicken Sie erneut auf den ersten Punkt (oder Enter, oder Doppelklick), um den Umriss zu schlie\u00dfen.',
   'ly5.bnStep': 'Aktueller Arbeitsschritt: {n} \u00b7 {step}',
@@ -6696,7 +7065,7 @@ I18N.de = {
   'takt.title': 'Taktzeit berechnen',
   'takt.avail': 'Verf\u00fcgbare Zeit (min)',
   'takt.demand': 'Kundenbedarf (Teile)',
-  'takt.note': 'Beides \u00fcber denselben Zeitraum: eine Schicht, ein Tag\u2026 Die verf\u00fcgbare Zeit ist die Betriebszeit abz\u00fcglich der Pausen.',
+  'takt.note': 'Beides \u00fcber denselben Zeitraum: eine Schicht, ein Tag\u2026 Die verf\u00fcgbare Zeit ist die Betriebszeit abz\u00fcglich der geplanten Stillst\u00e4nde (Pausen, Besprechungen, geplante Wartung).',
   'takt.res': 'Taktzeit: {v} s',
   'takt.bad': 'Geben Sie eine Zeit und einen Bedarf \u00fcber 0 ein.',
   'res.disp': 'Spannweite {r} s \u00b7 Std.-Abw. {sd} s',
@@ -6728,7 +7097,7 @@ I18N.de = {
   'ex.name': 'Linie A: 2 Mitarbeiter und eine Presse',
   'ex.desc': 'Ein fiktives Video mit fertiger Studie: aufgelistete Arbeitsschritte, ein Dutzend gemessene Zyklen, eine periodische T\u00e4tigkeit, Taktzeit, ein Austaktungs-Szenario und sein Layout. Sie k\u00f6nnen alles \u00e4ndern.',
   'ex.keep': 'Ihre aktuelle Studie wird beiseitegelegt. Sie bekommen sie zur\u00fcck, wenn Sie das Beispiel verlassen.',
-  'ex.net': 'Nichts herunterzuladen: das Beispiel ist in die Seite eingebaut und funktioniert offline.',
+  'ex.net': 'Nichts zu installieren: das Beispiel geh\u00f6rt zum Werkzeug, und die Offline-Kopie enth\u00e4lt es auch.',
   'ex.load': 'Beispiel laden',
   'ex.loaded': 'Beispiel geladen. Sehen Sie sich Ergebnisse an, dann Austaktung und Layout.',
   'ex.fail': 'Das Beispiel konnte in diesem Browser nicht ge\u00f6ffnet werden.',
@@ -6855,7 +7224,7 @@ I18N.de = {
   'legal.host': 'Hosting',
   'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Vereinigte Staaten. Telefon: +1 877 448 4820.',
   'legal.data': 'Personenbezogene Daten',
-  'legal.dataText': 'Besuche werden mit GoatCounter gez\u00e4hlt: aufgerufene Seite, verweisende Website, Browser, Bildschirmgr\u00f6\u00dfe und Land. Keine Cookies, IP-Adressen werden nicht gespeichert. Das Video und Ihre Studien werden nie hochgeladen: sie bleiben auf Ihrem Ger\u00e4t. Ihre Studie und Ihre Vorlagen werden in diesem Browser gespeichert, damit Sie sie wiederfinden; Sie k\u00f6nnen sie in den Einstellungen Ihres Browsers l\u00f6schen. Ein auf der Seite gefilmtes oder umgewandeltes Video wird in diesem Browser aufbewahrt (nur das letzte), damit es sich mit Ihrer Studie wieder \u00f6ffnet; Sie k\u00f6nnen es jederzeit auf Ihrem Ger\u00e4t speichern oder diese Kopie l\u00f6schen. Um einen PDF-Plan zu lesen oder ein iPhone-Video umzuwandeln, l\u00e4dt die Seite beim ersten Mal ein Leseprogramm (pdf.js) oder einen Konverter (hevc.js, mp4box.js) von jsDelivr; Ihre Dateien werden nicht gesendet. Als Hoster kann GitHub technische Verbindungsdaten wie IP-Adressen protokollieren, um den Dienst zu betreiben und zu sch\u00fctzen. Wenn Sie per E-Mail schreiben, werden Ihre Nachricht und Ihre Adresse nur verwendet, um Ihnen zu antworten und das Werkzeug zu verbessern. Sie werden nie an Dritte weitergegeben. GoatCounter z\u00e4hlt auch, welche Funktionen genutzt werden (zum Beispiel: Beispiel ge\u00f6ffnet, Bericht gedruckt), nie den Inhalt Ihrer Studien oder Videos.',
+  'legal.dataText': 'Besuche werden mit GoatCounter gez\u00e4hlt: aufgerufene Seite, verweisende Website, Browser, Bildschirmgr\u00f6\u00dfe und Land. Keine Cookies, IP-Adressen werden nicht gespeichert. Das Video und Ihre Studien werden nie hochgeladen: sie bleiben auf Ihrem Ger\u00e4t. Ihre Studie und Ihre Vorlagen werden in diesem Browser gespeichert, damit Sie sie wiederfinden; Sie k\u00f6nnen sie in den Einstellungen Ihres Browsers l\u00f6schen. Ein auf der Seite gefilmtes oder umgewandeltes Video wird in diesem Browser aufbewahrt (nur das letzte), damit es sich mit Ihrer Studie wieder \u00f6ffnet; Sie k\u00f6nnen es jederzeit auf Ihrem Ger\u00e4t speichern oder diese Kopie l\u00f6schen. Men\u00fc, Alles l\u00f6schen entfernt alles auf einmal. Um einen PDF-Plan zu lesen oder ein iPhone-Video umzuwandeln, l\u00e4dt die Seite beim ersten Mal ein Leseprogramm (pdf.js) oder einen Konverter (hevc.js, mp4box.js), Dateien von vts-tool.com selbst (die Offline-Kopie enth\u00e4lt sie); Ihre Dateien werden nicht gesendet. Als Hoster kann GitHub technische Verbindungsdaten wie IP-Adressen protokollieren, um den Dienst zu betreiben und zu sch\u00fctzen. Wenn Sie per E-Mail schreiben, werden Ihre Nachricht und Ihre Adresse nur verwendet, um Ihnen zu antworten und das Werkzeug zu verbessern. Sie werden nie an Dritte weitergegeben. GoatCounter z\u00e4hlt auch, welche Funktionen genutzt werden (zum Beispiel: Beispiel ge\u00f6ffnet, Bericht gedruckt), nie den Inhalt Ihrer Studien oder Videos.',
   'legal.ip': 'Geistiges Eigentum',
   'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Alle Rechte vorbehalten. Die Nutzung des Werkzeugs ist kostenlos, auch bei der Arbeit.',
   'load.title': 'Auslastung der Mitarbeiter',
@@ -6913,6 +7282,7 @@ I18N_LOGIC.de = {
   'reason.oov': 'Au\u00dfer Sicht',
   'reason.end': 'Ende der Studie',
   'reason.deleted': 'Gel\u00f6schter Arbeitsschritt',
+  'reason.periodic': 'Periodische T\u00e4tigkeit',
   'log.head': ['Studie', 'Zeitleiste', 'Art', 'Zyklus', 'Beginn (s)', 'Ende (s)', 'Dauer (s)', 'Code', 'Arbeitsschritt', 'Typ', 'Entfernung (m)', 'St\u00f6rung', 'Notiz'],
   'sum.study': 'Studie',
   'sum.plant': 'Werk',
@@ -6970,7 +7340,10 @@ I18N_LOGIC.de = {
   'sum.ppc': 'Teile pro Zyklus',
   'std.nOp1': '1 Mitarbeiter',
   'std.nOps': '{n} Mitarbeiter',
-  'ly.scenN': 'Szenario {n}'
+  'ly.scenN': 'Szenario {n}',
+  'std.ppcNote': '{n} Teile je Zyklus: Takt {t} s \u00d7 {n}',
+  'per.waitTag': 'w\u00e4hrend einer Wartezeit',
+  'std.c.per': 'periodische T\u00e4tigkeit {name}, {s} s'
 };
 I18N_XLW.de = {
   'sum': '\u00dcbersicht',
@@ -7100,14 +7473,14 @@ I18N_EX.de = { names: {
     'Sample plant': 'Beispielwerk',
     'Line A': 'Linie A',
     'Operator 1': 'Mitarbeiter 1',
-    'Take a part from the bin': 'Teil aus der Kiste nehmen',
-    'Take the part on the table': 'Teil vom Tisch nehmen',
+    'Take a part from the bin': 'Teil aus dem Beh\u00e4lter nehmen',
     'Walk to the press': 'Zur Presse gehen',
     'Load the press': 'Presse beladen',
     'Wait for the press': 'Auf die Presse warten',
     'Unload and put down': 'Entnehmen und ablegen',
-    'Walk back to the bin': 'Zur\u00fcck zur Kiste gehen',
+    'Walk back to the bin': 'Zur\u00fcck zum Beh\u00e4lter gehen',
     'Operator 2': 'Mitarbeiter 2',
+    'Take the part on the table': 'Teil vom Tisch nehmen',
     'Clip the fasteners': 'Clips einsetzen',
     'Check the part': 'Teil pr\u00fcfen',
     'Walk to the box': 'Zum Karton gehen',
@@ -7116,39 +7489,79 @@ I18N_EX.de = { names: {
     'Fastener dropped': 'Clip heruntergefallen',
     'Change the box': 'Karton wechseln',
     'Press': 'Presse',
+    'Press the part': 'Teil pressen',
     'Open and eject': '\u00d6ffnen und auswerfen',
-    'Wait for loading': 'Auf Beladung warten'
+    'Wait for loading': 'Auf das Beladen warten'
 }, scen: { name: 'Pr\u00fcfung durch Mitarbeiter 1', note: '\u201eB30 Teil pr\u00fcfen\u201c geht von Mitarbeiter 2 zu Mitarbeiter 1, der es erledigt, w\u00e4hrend die Presse l\u00e4uft: die Wartezeit von Mitarbeiter 1 sinkt von 2,1 s auf 0,5 s.' } };
 
 /* LANG-es: texts of the es page, made with tools/i18n_lang.py (English where a key is missing) */
 I18N.es = {
-  'news.v3.0': 'El diagrama Yamazumi y sus escenarios, arrastrar y soltar con el rat\u00f3n o con el dedo, informe PDF, la direcci\u00f3n vts-tool.com.',
-  'news.n3.0': 'Balanceo de l\u00ednea',
-  'news.v3.2': 'Un ejemplo listo para probar, con su video dentro de la p\u00e1gina.',
-  'news.n3.2': 'Ejemplo',
-  'news.v3.3': 'M\u00e1quinas contadas por su tiempo activo, cuello de botella y ciclo de la l\u00ednea trazados en el gr\u00e1fico, tasa de balanceo calculada sobre el cuello de botella.',
-  'news.n3.3': 'M\u00e1quinas y cuello de botella',
-  'news.v3.4': 'Contacto y opiniones por correo, versi\u00f3n indicada al pie de la p\u00e1gina.',
-  'news.n3.4': 'Contacto',
-  'news.v3.5': 'Un libro de Excel sin plantilla, piezas por ciclo, tareas peri\u00f3dicas con su frecuencia.',
-  'news.n3.5': 'Excel para cualquier empresa',
-  'news.v3.6': 'Puestos colocados en un plano, recorridos con su distancia, deshacer y rehacer, un ejemplo de layout.',
-  'news.n3.6': 'Primer layout',
-  'news.v4.0': 'El layout actual y sus escenarios, puestos girados y abordados por un lado, desplazamientos con o sin pieza, pasos colocados en los puestos, comparaci\u00f3n y animaci\u00f3n.',
-  'news.n4.0': 'Estado actual y escenarios',
-  'news.v4.1': 'Planos DXF de AutoCAD con sus capas y bloques, puestos recortados de una imagen, layout exportado en PNG, DXF y PDF, planos en las hojas est\u00e1ndar.',
-  'news.n4.1': 'Planos precisos',
-  'news.v4.2': 'Cada escenario re\u00fane su balanceo y su layout. Informe de mejora de una p\u00e1gina, libro de Excel para cualquier empresa, T1 a elegir con su precisi\u00f3n al 95 %, tareas peri\u00f3dicas introducidas a mano, p\u00e1gina en franc\u00e9s.',
-  'news.n4.2': 'Escenarios comunes e informes',
-  'news.v4.3': 'Los pasos se colocan pregunta por pregunta, en puntos redondos alrededor de los puestos. Planos en PDF, escenarios comparados lado a lado, libro de Excel de un escenario, inicio r\u00e1pido.',
-  'news.n4.3': 'Colocar los pasos',
-  'news.v5.3': 'Una columna Puesto en la pesta\u00f1a Pasos y en las listas pegadas. En el layout, cada pregunta va entonces al puesto del paso: sigues haciendo clic en el lugar exacto donde llega el operador y en el camino que recorre para llegar. Novedades por versi\u00f3n y p\u00e1ginas m\u00e1s ligeras: el video del ejemplo solo llega cuando lo abres.',
-  'news.n5.3': 'Puesto de cada paso',
-  'news.s1': 'Una tecla por paso para cronometrar un video: los ciclos, el T1 y el ciclo de referencia.',
-  'news.s2': 'Tus hojas est\u00e1ndar rellenadas a partir de tus propias plantillas de Excel, el tiempo takt y el informe PDF.',
-  'news.s3': 'El diagrama Yamazumi, con escenarios que se cambian arrastrando y soltando, el cuello de botella y el ciclo de la l\u00ednea.',
-  'news.s4': 'El plano de la c\u00e9lula, los recorridos de cada operador y los mismos escenarios para el balanceo y el layout.',
-  'news.s5': 'La herramienta en ocho idiomas, los escenarios comparados en un informe PDF, una gu\u00eda de uso completa y una nueva imagen.',
+  'nw.t1': 'Estudio de tiempos y hojas est\u00e1ndar',
+  'nw.s1': 'Una tecla por paso para cronometrar un video, y luego tus propias hojas est\u00e1ndar rellenadas, el tiempo takt y el informe PDF.',
+  'nw.t1.0': 'Estudio de tiempos con video',
+  'nw.d1.0': 'Una tecla por paso para cronometrar un video, con varios operadores y m\u00e1quinas: ciclos, T1 y ciclo de referencia, incidencias, l\u00ednea de tiempo, registro editable, exportaci\u00f3n CSV y JSON, guardado autom\u00e1tico y copia sin conexi\u00f3n.',
+  'nw.t1.1': 'Desplazamientos y esperas como pasos',
+  'nw.d1.1': 'Los desplazamientos y esperas registrados con W y A pasan a ser pasos de la lista con un clic.',
+  'nw.t1.2': 'Copia a las hojas',
+  'nw.d1.2': 'Los tiempos copiados como tabla para pegarlos en las hojas est\u00e1ndar; desde la 1.3, sustituidos por las hojas rellenadas.',
+  'nw.t1.3': 'Hojas est\u00e1ndar rellenadas',
+  'nw.d1.3': 'Tu hoja de toma de tiempos y tu tabla de combinaci\u00f3n rellenadas a partir de tus propias plantillas de Excel, guardadas en este navegador. Correcci\u00f3n r\u00e1pida de un paso.',
+  'nw.t1.4': 'Una sola regla de redondeo',
+  'nw.d1.4': 'Los mismos tiempos redondeados en todas partes, en pantalla y en las hojas; se reconocen las plantillas est\u00e1ndar.',
+  'nw.t1.5': 'Dise\u00f1o m\u00e1s ligero',
+  'nw.d1.5': 'Un dise\u00f1o m\u00e1s ligero con los colores del logotipo, con tema oscuro.',
+  'nw.t1.6': 'Nuevo logotipo',
+  'nw.d1.6': 'Un nuevo logotipo, una pantalla de inicio que explica la herramienta y un aviso para guardar el estudio.',
+  'nw.t1.7': 'Tiempo takt e informe',
+  'nw.d1.7': 'Tiempo takt del cliente, gr\u00e1fico de carga de los operadores e informe PDF para imprimir.',
+  'nw.t1.8': 'Condiciones de uso',
+  'nw.d1.8': 'Todos los derechos reservados, uso gratuito: las condiciones est\u00e1n enlazadas al pie de la p\u00e1gina.',
+  'nw.t1.9': 'Referencia e informe completo',
+  'nw.d1.9': 'Un campo Referencia para las hojas, los indicadores de la l\u00ednea en el informe PDF, el aviso legal.',
+  'nw.t2': 'Balanceo de l\u00ednea y layout',
+  'nw.s2': 'El diagrama Yamazumi y sus escenarios, y luego el plano de la c\u00e9lula y el recorrido de cada operador.',
+  'nw.t2.0': 'Balanceo de l\u00ednea',
+  'nw.d2.0': 'El diagrama Yamazumi y sus escenarios, arrastrar y soltar con el rat\u00f3n o con el dedo, informe PDF, la direcci\u00f3n vts-tool.com.',
+  'nw.t2.1': 'Ejemplo',
+  'nw.d2.1': 'Un ejemplo listo para probar: un video corto con su estudio y un escenario de balanceo, la ayuda y el informe PDF del balanceo.',
+  'nw.t2.2': 'Encabezado y men\u00fa',
+  'nw.d2.2': 'El nombre del estudio en el encabezado, un men\u00fa, el c\u00e1lculo del tiempo takt, acciones kaizen en los pasos y una ventana de exportaci\u00f3n.',
+  'nw.t2.3': 'M\u00e1quinas y cuello de botella',
+  'nw.d2.3': 'M\u00e1quinas contadas por su tiempo activo, cuello de botella y ciclo de la l\u00ednea trazados en el gr\u00e1fico, tasa de balanceo calculada sobre el cuello de botella.',
+  'nw.t2.4': 'Contacto',
+  'nw.d2.4': 'Contacto y opiniones por correo, versi\u00f3n indicada al pie de la p\u00e1gina.',
+  'nw.t2.5': 'Excel para cualquier empresa',
+  'nw.d2.5': 'Un libro de Excel sin plantilla, piezas por ciclo, tareas peri\u00f3dicas con su frecuencia.',
+  'nw.t2.6': 'Layout',
+  'nw.d2.6': 'Puestos colocados en un plano a escala, el recorrido de cada operador con su distancia, exportaci\u00f3n DXF.',
+  'nw.t2.7': 'Layout en cuatro pasos',
+  'nw.d2.7': 'Plano, puestos, recorridos, comparar: el layout guiado paso a paso.',
+  'nw.t2.8': 'Deshacer y puntos de paso',
+  'nw.d2.8': 'Deshacer y rehacer en el layout, puntos de paso en los recorridos y un layout de ejemplo.',
+  'nw.t2.9': 'Estado actual y escenarios',
+  'nw.d2.9': 'El layout actual y sus escenarios, puestos girados y abordados por un lado, desplazamientos con o sin pieza, pasos colocados en los puestos, comparaci\u00f3n y animaci\u00f3n.',
+  'nw.t3': 'Planos precisos, ocho idiomas',
+  'nw.s3': 'Planos DXF y el layout en las hojas est\u00e1ndar, escenarios compartidos, ocho idiomas, la gu\u00eda de uso y hojas m\u00e1s completas.',
+  'nw.t3.0': 'Planos precisos',
+  'nw.d3.0': 'Planos DXF de AutoCAD con sus capas y bloques, puestos recortados de una imagen, layout exportado en PNG, DXF y PDF, planos en las hojas est\u00e1ndar.',
+  'nw.t3.1': 'Hojas con el layout',
+  'nw.d3.1': 'Las distancias del layout en la TCT, una hoja de layout por operador, la Work Cell Balancing rellenada y un arranque m\u00e1s r\u00e1pido.',
+  'nw.t3.2': 'T1 y cifras por pieza',
+  'nw.d3.2': 'T1 a elegir con su precisi\u00f3n, los 20 primeros ciclos en todas partes, las tareas peri\u00f3dicas contadas en todas partes, todas las cifras por pieza.',
+  'nw.t3.3': 'Escenarios comunes e informes',
+  'nw.d3.3': 'Cada escenario contiene su balanceo y su layout, con un solo historial para deshacer; un informe de mejora de una p\u00e1gina.',
+  'nw.t3.4': 'Colocar los pasos',
+  'nw.d3.4': 'Los pasos se colocan pregunta por pregunta, en puntos redondos alrededor de los puestos. Planos en PDF, escenarios comparados lado a lado, libro de Excel de un escenario, inicio r\u00e1pido.',
+  'nw.t3.5': 'Ocho idiomas',
+  'nw.d3.5': 'Ingl\u00e9s, franc\u00e9s, alem\u00e1n, espa\u00f1ol, checo, italiano, polaco y portugu\u00e9s, cada uno en su p\u00e1gina; los escenarios comparados en un solo informe PDF.',
+  'nw.t3.6': 'Gu\u00eda de uso',
+  'nw.d3.6': 'Una gu\u00eda de uso detallada en ingl\u00e9s (vts-tool.com/guide/), secci\u00f3n por secci\u00f3n, sustituye a las dos p\u00e1ginas de gu\u00eda breves.',
+  'nw.t3.7': 'Nueva imagen',
+  'nw.d3.7': 'Nueva imagen: el logotipo en anillo, con los cuatro colores de los pasos bajo la l\u00ednea de takt, y los colores del sitio a juego.',
+  'nw.t3.8': 'Puesto de cada paso',
+  'nw.d3.8': 'Una columna Puesto en la pesta\u00f1a Pasos y en las listas pegadas. En el layout, cada pregunta va entonces al puesto del paso: sigues haciendo clic en el lugar exacto donde llega el operador y en el camino que recorre para llegar. Novedades por versi\u00f3n y p\u00e1ginas m\u00e1s ligeras: el video del ejemplo solo llega cuando lo abres.',
+  'nw.t3.9': 'Hojas est\u00e1ndar',
+  'nw.d3.9': 'En la TCT: trabajo autom\u00e1tico de las m\u00e1quinas, esperas y puntos de inicio, un \u00fanico tiempo de ciclo de proceso para la c\u00e9lula. Tareas peri\u00f3dicas hechas durante una espera. Bibliotecas servidas por el sitio, Borrar todo, lista de idiomas.',
   'off.fail': 'No se pudo hacer la copia sin conexi\u00f3n. Comprueba la conexi\u00f3n y vuelve a intentarlo.',
   'off.prep': 'Preparando la copia sin conexi\u00f3n\u2026',
   'ly11.allDone': 'Puestos a\u00f1adidos: {n}. Arr\u00e1stralos a su lugar.',
@@ -7168,7 +7581,7 @@ I18N.es = {
   'xl.making': 'Preparando el libro\u2026',
   'cv.bigGo': 'Convertir de todos modos',
   'cv.small': 'El video convertido est\u00e1 en 720p a 30 im\u00e1genes por segundo: suficiente para cronometrar los pasos y m\u00e1s ligero para moverse en \u00e9l.',
-  'cv.bigTip': 'Consejo: para un estudio de tiempos basta un fragmento corto (3 a 5 ciclos, 1 a 2 minutos). O graba en MP4 (H.264), que se abre sin conversi\u00f3n: en un iPhone, Ajustes, C\u00e1mara, Formatos, M\u00e1s compatible.',
+  'cv.bigTip': 'Consejo: para un estudio de tiempos bastan unos diez ciclos, es decir, unos minutos de video. O graba en MP4 (H.264), que se abre sin conversi\u00f3n: en un iPhone, Ajustes, C\u00e1mara, Formatos, M\u00e1s compatible.',
   'cv.bigTxt': 'Este video pesa {mb} MB ({dur}): convertirlo en el navegador puede tardar varios minutos y la p\u00e1gina debe quedar abierta.',
   'cv.bigT': 'Un video pesado',
   'ly10.presGo': 'Hacer la presentaci\u00f3n',
@@ -7212,21 +7625,9 @@ I18N.es = {
   'ly10.opT': 'Opacidad del plano',
   'bal.movedLeg': 'Paso dado a otro operador',
   'bal.movedFrom': 'viene de {name}',
-  'news.v5.1': 'Una gu\u00eda de uso detallada en ingl\u00e9s (vts-tool.com/guide/), secci\u00f3n por secci\u00f3n, sustituye a las dos p\u00e1ginas de gu\u00eda breves.',
-  'news.n5.1': 'Gu\u00eda de uso',
-  'news.v5.2': 'Nueva imagen: el logotipo en anillo, con los cuatro colores de los pasos bajo la l\u00ednea de takt, y los colores del sitio a juego.',
-  'news.n5.2': 'Nueva imagen',
-  'news.v5': 'Ingl\u00e9s, franc\u00e9s, alem\u00e1n, espa\u00f1ol, checo, italiano, polaco y portugu\u00e9s, cada uno con su p\u00e1gina. Debajo de la herramienta: el ejemplo en cifras, una comparaci\u00f3n, usos por perfil y preguntas frecuentes. Comparar / Informes: los estados comparados y luego un solo informe PDF sobre el layout, el balanceo de l\u00ednea o ambos. Un nuevo escenario parte del estado actual o de cualquier escenario. Opacidad del plano, planos PDF n\u00edtidos al hacer zoom, referencia bloqueada desde la barra de escenarios, presentaci\u00f3n A3 del layout, planos en el libro de Excel. Videos pesados de iPhone convertidos en 720p. Versiones numeradas de V1 a V5.',
-  'news.n5': 'Ocho idiomas',
-  'news.n4': 'Layout',
-  'news.n3': 'Balanceo de l\u00ednea',
-  'news.v2': 'Ingl\u00e9s y franc\u00e9s. Tus hojas est\u00e1ndar rellenadas a partir de tus propias plantillas de Excel (hoja de toma de tiempos y tabla de combinaci\u00f3n, macros conservadas). Tiempo takt, gr\u00e1fico de carga de los operadores e informe PDF. Correcci\u00f3n r\u00e1pida de pasos, campo Referencia, temas claro y oscuro.',
-  'news.n2': 'Hojas est\u00e1ndar e informes',
-  'news.v1': 'Una tecla por paso para cronometrar un video, con varios operadores y m\u00e1quinas: ciclos, T1 y ciclo de referencia, incidencias, l\u00ednea de tiempo, registro editable, exportaci\u00f3n CSV y JSON, guardado autom\u00e1tico y copia sin conexi\u00f3n.',
-  'news.n1': 'Estudio de tiempos con video',
   'about.a8': 'Ingl\u00e9s, franc\u00e9s, alem\u00e1n, espa\u00f1ol, checo, italiano, polaco y portugu\u00e9s, cada uno con su propia p\u00e1gina.',
   'about.q8': '\u00bfEn qu\u00e9 idiomas?',
-  'about.a7': 'S\u00ed, una vez abierta la p\u00e1gina. El men\u00fa tambi\u00e9n ofrece una copia sin conexi\u00f3n en un solo archivo. Solo la lectura de planos PDF y la conversi\u00f3n de videos de iPhone necesitan internet la primera vez.',
+  'about.a7': 'S\u00ed, una vez abierta la p\u00e1gina. El men\u00fa tambi\u00e9n ofrece una copia sin conexi\u00f3n en un solo archivo, que lo contiene todo, tambi\u00e9n el lector de PDF y el conversor de videos de iPhone. En el sitio, estos dos vienen de vts-tool.com la primera vez que se usan.',
   'about.q7': '\u00bfFunciona sin internet?',
   'about.a6': 'Informes PDF (el estudio de tiempos y, desde Comparar / Informes, el balanceo de l\u00ednea, el layout o ambos), una presentaci\u00f3n PDF A3 del layout, un libro de Excel con los planos y tus propias hojas est\u00e1ndar rellenadas si las usas.',
   'about.q6': '\u00bfQu\u00e9 puedo exportar?',
@@ -7478,6 +7879,31 @@ I18N.es = {
   'hdr.offline': 'Copia sin conexi\u00f3n',
   'hdr.offline.title': 'Descargar esta herramienta como un solo archivo HTML que funciona sin internet',
   'hdr.theme': 'Tema: {v}',
+  'lang.en': 'Ingl\u00e9s',
+  'lang.fr': 'Franc\u00e9s',
+  'lang.de': 'Alem\u00e1n',
+  'lang.es': 'Espa\u00f1ol',
+  'lang.cs': 'Checo',
+  'lang.it': 'Italiano',
+  'lang.pl': 'Polaco',
+  'lang.pt': 'Portugu\u00e9s',
+  'steps.showSp': 'Puntos de inicio (SP)',
+  'steps.sp': 'Punto de inicio (SP:) de las hojas',
+  'per.wait': 'durante una espera',
+  'per.waitHint': 'Marcada: se hace mientras el operador espera (a una m\u00e1quina, por ejemplo). Cuenta en el contenido de trabajo sin alargar el ciclo.',
+  'per.totWait': 'De ellos, {s} s por pieza durante esperas, sin alargar el ciclo.',
+  'mach.startBy': 'Arrancada por',
+  'mach.startAuto': 'Paso deducido de los tiempos',
+  'mach.startNone': 'Ning\u00fan paso (nada en la TCT)',
+  'mach.startHint': 'Su tiempo activo va a la TCT, columna Automated work, en la fila del paso que la arranca.',
+  'mach.found': 'Encontrado: {what}.',
+  'mach.notFound': 'Ning\u00fan paso encontrado: elige el que la arranca.',
+  'bal.setBy': 'ciclo de la l\u00ednea con las esperas de {name}',
+  'u.pts': 'p. p.',
+  'purge.menu': 'Borrar todo',
+  'purge.title': 'Borrar todo de este navegador',
+  'purge.text': 'El estudio y su historial, los ajustes, el video convertido aqu\u00ed, los planos y las plantillas de Excel que la herramienta guarda en este navegador se borran, y la p\u00e1gina se vuelve a abrir vac\u00eda. Nada de ello se envi\u00f3 nunca. Cierra antes las otras pesta\u00f1as de la herramienta.',
+  'purge.ok': 'Borrar todo',
   'hdr.lang': 'Idioma',
   'theme.auto': 'autom\u00e1tico',
   'theme.light': 'claro',
@@ -7809,7 +8235,7 @@ I18N.es = {
   'hint.4': 'Alguien o algo interrumpe',
   'hint.5': 'Cualquier otra cosa',
   'per.title': 'Tarea peri\u00f3dica a los {time}',
-  'per.intro': 'El tiempo de una tarea peri\u00f3dica queda fuera de (a) y el ciclo sigue siendo utilizable. Con su frecuencia, se reparte entre las piezas.',
+  'per.intro': 'El tiempo de una tarea peri\u00f3dica queda fuera de (a), y su ciclo ya no cuenta para el T1, como un ciclo con incidencia. Con su frecuencia, la tarea se reparte entre las piezas.',
   'per.cancel': 'Anular la tarea peri\u00f3dica',
   'per.d1': 'Cambio de contenedor',
   'per.d2': 'Cesto de desechos',
@@ -7826,7 +8252,7 @@ I18N.es = {
   'addTl.title': 'Agregar una l\u00ednea de tiempo',
   'addTl.text': 'Una nueva l\u00ednea de tiempo sobre el mismo video, con sus propios pasos.',
   'paste.title': 'Pegar una lista de pasos para {name}',
-  'paste.text': 'Un paso por l\u00ednea: <b>C\u00f3digo; Nombre; Tipo; Puesto</b>. Para los desplazamientos, pon la distancia en metros en lugar del puesto. El tipo es opcional ({def} por defecto), el puesto tambi\u00e9n. Las columnas copiadas de Excel tambi\u00e9n sirven.',
+  'paste.text': 'Un paso por l\u00ednea: <b>C\u00f3digo; Nombre; Tipo; Puesto</b>. Para los desplazamientos, pon la distancia en metros en lugar del puesto. El tipo es opcional ({def} por defecto), el puesto tambi\u00e9n. Una 6.\u00aa columna da el punto de inicio (SP:) de las hojas: C\u00f3digo; Nombre; Tipo; Distancia; Puesto; Punto de inicio. Las columnas copiadas de Excel tambi\u00e9n sirven.',
   'paste.ph': 'M10; Cargar la pieza en la termoformadora; Operaci\u00f3n; Termoformadora\nM20; Ir al chorro de agua; Desplazamiento; 4\nQ30; Revisar los bordes cortados; Inspecci\u00f3n; Chorro de agua\nM40; Esperar el chorro de agua; Espera; Chorro de agua',
   'paste.types': 'Tipos: Operaci\u00f3n, Inspecci\u00f3n, Desplazamiento, Espera, M\u00e1quina. Las palabras en ingl\u00e9s y en franc\u00e9s tambi\u00e9n sirven.',
   'paste.replaceNote': 'Reemplazar la lista conserva el registro de los pasos cuyo c\u00f3digo no cambia. Los pasos ya registrados que faltan en la nueva lista se conservan al final.',
@@ -8312,7 +8738,7 @@ I18N.es = {
   'takt.title': 'Calcular el tiempo takt',
   'takt.avail': 'Tiempo disponible (min)',
   'takt.demand': 'Demanda del cliente (piezas)',
-  'takt.note': 'Los dos sobre el mismo periodo: un turno, un d\u00eda\u2026 El tiempo disponible es el tiempo de apertura menos las pausas.',
+  'takt.note': 'Los dos sobre el mismo periodo: un turno, un d\u00eda\u2026 El tiempo disponible es el tiempo de apertura menos las paradas planificadas (pausas, reuniones, mantenimiento planificado).',
   'takt.res': 'Tiempo takt: {v} s',
   'takt.bad': 'Introduce un tiempo y una demanda mayores que 0.',
   'res.disp': 'rango {r} s \u00b7 desv. est\u00e1ndar {sd} s',
@@ -8344,7 +8770,7 @@ I18N.es = {
   'ex.name': 'L\u00ednea A: 2 operadores y una prensa',
   'ex.desc': 'Un video ficticio con su estudio listo: pasos enumerados, una docena de ciclos cronometrados, una tarea peri\u00f3dica, tiempo takt, un escenario de balanceo y su layout. Puedes cambiarlo todo.',
   'ex.keep': 'Tu estudio actual se aparta. Lo recuperas al salir del ejemplo.',
-  'ex.net': 'Nada que descargar: el ejemplo est\u00e1 integrado en la p\u00e1gina y funciona sin conexi\u00f3n.',
+  'ex.net': 'Nada que instalar: el ejemplo viene con la herramienta, y la copia sin conexi\u00f3n tambi\u00e9n lo incluye.',
   'ex.load': 'Cargar el ejemplo',
   'ex.loaded': 'Ejemplo cargado. Mira Resultados, luego Balanceo de l\u00ednea y Layout.',
   'ex.fail': 'No se pudo abrir el ejemplo en este navegador.',
@@ -8471,7 +8897,7 @@ I18N.es = {
   'legal.host': 'Alojamiento',
   'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Estados Unidos. Tel\u00e9fono: +1 877 448 4820.',
   'legal.data': 'Datos personales',
-  'legal.dataText': 'Las visitas se cuentan con GoatCounter: p\u00e1gina vista, sitio de procedencia, navegador, tama\u00f1o de pantalla y pa\u00eds. Sin cookies, y las direcciones IP no se guardan. El video y tus estudios nunca se suben: se quedan en tu dispositivo. Tu estudio y tus plantillas se guardan en este navegador para que los encuentres de nuevo; puedes borrarlos en los ajustes de tu navegador. Un video grabado o convertido en el sitio se guarda en este navegador (solo el \u00faltimo) para que se abra de nuevo con tu estudio; puedes guardarlo en tu dispositivo o borrar esta copia en cualquier momento. Para leer un plano PDF o convertir un video de iPhone, el sitio descarga un lector (pdf.js) o un conversor (hevc.js, mp4box.js) desde jsDelivr la primera vez; tus archivos no se env\u00edan. Como alojamiento, GitHub puede registrar datos t\u00e9cnicos de conexi\u00f3n, como las direcciones IP, para hacer funcionar y proteger el servicio. Si escribes por correo, tu mensaje y tu direcci\u00f3n solo se usan para responderte y mejorar la herramienta. Nunca se ceden a nadie. GoatCounter tambi\u00e9n cuenta qu\u00e9 funciones se usan (por ejemplo: ejemplo abierto, informe impreso), nunca el contenido de tus estudios o videos.',
+  'legal.dataText': 'Las visitas se cuentan con GoatCounter: p\u00e1gina vista, sitio de procedencia, navegador, tama\u00f1o de pantalla y pa\u00eds. Sin cookies, y las direcciones IP no se guardan. El video y tus estudios nunca se suben: se quedan en tu dispositivo. Tu estudio y tus plantillas se guardan en este navegador para que los encuentres de nuevo; puedes borrarlos en los ajustes de tu navegador. Un video grabado o convertido en el sitio se guarda en este navegador (solo el \u00faltimo) para que se abra de nuevo con tu estudio; puedes guardarlo en tu dispositivo o borrar esta copia en cualquier momento. Men\u00fa, Borrar todo lo elimina todo de una vez. Para leer un plano PDF o convertir un video de iPhone, el sitio carga la primera vez un lector (pdf.js) o un conversor (hevc.js, mp4box.js), archivos del propio vts-tool.com (la copia sin conexi\u00f3n los incluye); tus archivos no se env\u00edan. Como alojamiento, GitHub puede registrar datos t\u00e9cnicos de conexi\u00f3n, como las direcciones IP, para hacer funcionar y proteger el servicio. Si escribes por correo, tu mensaje y tu direcci\u00f3n solo se usan para responderte y mejorar la herramienta. Nunca se ceden a nadie. GoatCounter tambi\u00e9n cuenta qu\u00e9 funciones se usan (por ejemplo: ejemplo abierto, informe impreso), nunca el contenido de tus estudios o videos.',
   'legal.ip': 'Propiedad intelectual',
   'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Todos los derechos reservados. El uso de la herramienta es gratuito, tambi\u00e9n en el trabajo.',
   'load.title': 'Carga de los operadores',
@@ -8529,6 +8955,7 @@ I18N_LOGIC.es = {
   'reason.oov': 'Fuera de c\u00e1mara',
   'reason.end': 'Fin del estudio',
   'reason.deleted': 'Paso eliminado',
+  'reason.periodic': 'Tarea peri\u00f3dica',
   'log.head': ['Estudio', 'L\u00ednea de tiempo', 'Clase', 'Ciclo', 'Inicio (s)', 'Fin (s)', 'Duraci\u00f3n (s)', 'C\u00f3digo', 'Paso', 'Tipo', 'Distancia (m)', 'Incidencia', 'Nota'],
   'sum.study': 'Estudio',
   'sum.plant': 'Planta',
@@ -8586,7 +9013,10 @@ I18N_LOGIC.es = {
   'sum.ppc': 'Piezas por ciclo',
   'std.nOp1': '1 operador',
   'std.nOps': '{n} operadores',
-  'ly.scenN': 'Escenario {n}'
+  'ly.scenN': 'Escenario {n}',
+  'std.ppcNote': '{n} piezas por ciclo: takt {t} s \u00d7 {n}',
+  'per.waitTag': 'durante una espera',
+  'std.c.per': 'tarea peri\u00f3dica {name}, {s} s'
 };
 I18N_XLW.es = {
   'sum': 'Resumen',
@@ -8717,54 +9147,94 @@ I18N_EX.es = { names: {
     'Line A': 'L\u00ednea A',
     'Operator 1': 'Operador 1',
     'Take a part from the bin': 'Tomar una pieza del contenedor',
-    'Take the part on the table': 'Tomar la pieza de la mesa',
     'Walk to the press': 'Ir a la prensa',
     'Load the press': 'Cargar la prensa',
     'Wait for the press': 'Esperar la prensa',
-    'Unload and put down': 'Descargar y dejar',
+    'Unload and put down': 'Descargar y depositar',
     'Walk back to the bin': 'Volver al contenedor',
     'Operator 2': 'Operador 2',
+    'Take the part on the table': 'Tomar la pieza de la mesa',
     'Clip the fasteners': 'Colocar los clips',
     'Check the part': 'Inspeccionar la pieza',
     'Walk to the box': 'Ir a la caja',
     'Pack': 'Embalar',
-    'Walk back to the table': 'Regresar a la mesa',
+    'Walk back to the table': 'Volver a la mesa',
     'Fastener dropped': 'Clip ca\u00eddo',
     'Change the box': 'Cambiar la caja',
     'Press': 'Prensa',
+    'Press the part': 'Prensar la pieza',
     'Open and eject': 'Abrir y expulsar',
     'Wait for loading': 'Esperar la carga'
 }, scen: { name: 'Inspecci\u00f3n por el operador 1', note: '\u201cB30 Inspeccionar la pieza\u201d pasa del operador 2 al operador 1, que lo hace mientras trabaja la prensa: la espera del operador 1 pasa de 2,1 s a 0,5 s.' } };
 
 /* LANG-cs: texts of the cs page, made with tools/i18n_lang.py (English where a key is missing) */
 I18N.cs = {
-  'news.v3.0': 'Graf Yamazumi a jeho sc\u00e9n\u00e1\u0159e, p\u0159etahov\u00e1n\u00ed my\u0161\u00ed nebo prstem, zpr\u00e1va PDF, adresa vts-tool.com.',
-  'news.n3.0': 'Vyva\u017eov\u00e1n\u00ed linky',
-  'news.v3.2': 'P\u0159\u00edklad p\u0159ipraven\u00fd k vyzkou\u0161en\u00ed, s videem p\u0159\u00edmo ve str\u00e1nce.',
-  'news.n3.2': 'P\u0159\u00edklad',
-  'news.v3.3': 'Stroje zapo\u010dten\u00e9 jen aktivn\u00edm \u010dasem, \u00fazk\u00e9 m\u00edsto a cyklus linky vyzna\u010den\u00e9 v grafu, m\u00edra vyv\u00e1\u017een\u00ed po\u010d\u00edtan\u00e1 z \u00fazk\u00e9ho m\u00edsta.',
-  'news.n3.3': 'Stroje a \u00fazk\u00e9 m\u00edsto',
-  'news.v3.4': 'Kontakt a n\u00e1zory e-mailem, verze uveden\u00e1 v doln\u00ed \u010d\u00e1sti str\u00e1nky.',
-  'news.n3.4': 'Kontakt',
-  'news.v3.5': 'Se\u0161it Excel bez \u0161ablony, kusy na cyklus, periodick\u00e9 \u010dinnosti s \u010detnost\u00ed.',
-  'news.n3.5': 'Excel pro ka\u017edou firmu',
-  'news.v3.6': 'Pracovi\u0161t\u011b um\u00edst\u011bn\u00e1 na v\u00fdkresu, trasy s jejich vzd\u00e1lenost\u00ed, zp\u011bt a znovu, p\u0159\u00edklad layoutu.',
-  'news.n3.6': 'Prvn\u00ed layout',
-  'news.v4.0': 'Sou\u010dasn\u00fd layout a jeho sc\u00e9n\u00e1\u0159e, oto\u010den\u00e1 pracovi\u0161t\u011b s p\u0159\u00edstupem z jedn\u00e9 strany, ch\u016fze s d\u00edlem nebo bez n\u011bj, \u00fakony um\u00edst\u011bn\u00e9 na pracovi\u0161t\u011b, porovn\u00e1n\u00ed a animace.',
-  'news.n4.0': 'Sou\u010dasn\u00fd stav a sc\u00e9n\u00e1\u0159e',
-  'news.v4.1': 'V\u00fdkresy DXF z AutoCADu s hladinami a bloky, pracovi\u0161t\u011b vy\u0159\u00edznut\u00e1 z obr\u00e1zku, export layoutu do PNG, DXF a PDF, v\u00fdkresy ve standardn\u00edch listech.',
-  'news.n4.1': 'P\u0159esn\u00e9 v\u00fdkresy',
-  'news.v4.2': 'Ka\u017ed\u00fd sc\u00e9n\u00e1\u0159 obsahuje sv\u00e9 vyva\u017eov\u00e1n\u00ed i sv\u016fj layout. Zpr\u00e1va o zlep\u0161en\u00ed na jedn\u00e9 str\u00e1nce, se\u0161it Excel pro ka\u017edou firmu, T1 podle volby s p\u0159esnost\u00ed na 95 %, ru\u010dn\u011b zadan\u00e9 periodick\u00e9 \u010dinnosti, str\u00e1nka ve francouz\u0161tin\u011b.',
-  'news.n4.2': 'Spole\u010dn\u00e9 sc\u00e9n\u00e1\u0159e a zpr\u00e1vy',
-  'news.v4.3': '\u00dakony se um\u00eds\u0165uj\u00ed ot\u00e1zku po ot\u00e1zce na kulat\u00e9 body kolem pracovi\u0161\u0165. V\u00fdkresy v PDF, sc\u00e9n\u00e1\u0159e porovnan\u00e9 vedle sebe, se\u0161it Excel jednoho sc\u00e9n\u00e1\u0159e, rychl\u00fd start.',
-  'news.n4.3': 'Um\u00eds\u0165ov\u00e1n\u00ed \u00fakon\u016f',
-  'news.v5.3': 'Sloupec Pracovi\u0161t\u011b na kart\u011b \u00dakony a ve vlo\u017een\u00fdch seznamech. V layoutu pak ka\u017ed\u00e1 ot\u00e1zka vede k pracovi\u0161ti \u00fakonu: st\u00e1le klik\u00e1te, kam p\u0159esn\u011b oper\u00e1tor p\u0159ich\u00e1z\u00ed a kudy tam jde. Novinky podle verz\u00ed a leh\u010d\u00ed str\u00e1nky: video p\u0159\u00edkladu se na\u010dte, a\u017e kdy\u017e ho otev\u0159ete.',
-  'news.n5.3': 'Pracovi\u0161t\u011b ka\u017ed\u00e9ho \u00fakonu',
-  'news.s1': 'Jedna kl\u00e1vesa na \u00fakon pro m\u011b\u0159en\u00ed videa: cykly, T1 a referen\u010dn\u00ed cyklus.',
-  'news.s2': 'Va\u0161e standardn\u00ed listy vypln\u011bn\u00e9 podle va\u0161ich vlastn\u00edch \u0161ablon Excel, takt time a zpr\u00e1va PDF.',
-  'news.s3': 'Graf Yamazumi se sc\u00e9n\u00e1\u0159i upravovan\u00fdmi p\u0159etahov\u00e1n\u00edm, \u00fazk\u00e9 m\u00edsto a cyklus linky.',
-  'news.s4': 'V\u00fdkres bu\u0148ky, trasy ka\u017ed\u00e9ho oper\u00e1tora a stejn\u00e9 sc\u00e9n\u00e1\u0159e pro vyva\u017eov\u00e1n\u00ed i layout.',
-  'news.s5': 'N\u00e1stroj v osmi jazyc\u00edch, sc\u00e9n\u00e1\u0159e porovnan\u00e9 ve zpr\u00e1v\u011b PDF, \u00fapln\u00fd n\u00e1vod a nov\u00fd vzhled.',
+  'nw.t1': '\u010casov\u00e1 studie a standardn\u00ed listy',
+  'nw.s1': 'Jedna kl\u00e1vesa na \u00fakon pro m\u011b\u0159en\u00ed videa, pak va\u0161e vlastn\u00ed vypln\u011bn\u00e9 standardn\u00ed listy, takt time a zpr\u00e1va PDF.',
+  'nw.t1.0': '\u010casov\u00e1 studie z videa',
+  'nw.d1.0': 'Jedna kl\u00e1vesa na \u00fakon pro m\u011b\u0159en\u00ed videa, s v\u00edce oper\u00e1tory a stroji: cykly, T1 a referen\u010dn\u00ed cyklus, probl\u00e9my, \u010dasov\u00e1 osa, upraviteln\u00fd protokol, export CSV a JSON, automatick\u00e9 ukl\u00e1d\u00e1n\u00ed a offline kopie.',
+  'nw.t1.1': 'Ch\u016fze a \u010dek\u00e1n\u00ed jako \u00fakony',
+  'nw.d1.1': 'Ch\u016fze a \u010dek\u00e1n\u00ed zaznamenan\u00e9 kl\u00e1vesami W a A se jedn\u00edm klikem stanou \u00fakony seznamu.',
+  'nw.t1.2': 'Kopie do list\u016f',
+  'nw.d1.2': '\u010casy zkop\u00edrovan\u00e9 jako tabulka pro vlo\u017een\u00ed do standardn\u00edch list\u016f; od verze 1.3 nahrazeno vypln\u011bn\u00fdmi listy.',
+  'nw.t1.3': 'Vypln\u011bn\u00e9 standardn\u00ed listy',
+  'nw.d1.3': 'V\u00e1\u0161 list m\u011b\u0159en\u00ed \u010dasu a kombina\u010dn\u00ed tabulka vypln\u011bn\u00e9 podle va\u0161ich vlastn\u00edch \u0161ablon Excel, ulo\u017een\u00fdch v tomto prohl\u00ed\u017ee\u010di. Rychl\u00e1 oprava \u00fakonu.',
+  'nw.t1.4': 'Jedno pravidlo zaokrouhlen\u00ed',
+  'nw.d1.4': 'V\u0161ude stejn\u011b zaokrouhlen\u00e9 \u010dasy, na obrazovce i v listech; standardn\u00ed \u0161ablony se rozpoznaj\u00ed.',
+  'nw.t1.5': 'Leh\u010d\u00ed vzhled',
+  'nw.d1.5': 'Leh\u010d\u00ed vzhled v barv\u00e1ch loga, s tmav\u00fdm motivem.',
+  'nw.t1.6': 'Nov\u00e9 logo',
+  'nw.d1.6': 'Nov\u00e9 logo, \u00favodn\u00ed obrazovka, kter\u00e1 n\u00e1stroj vysv\u011btluje, a p\u0159ipom\u00ednka ulo\u017eit studii.',
+  'nw.t1.7': 'Takt time a zpr\u00e1va',
+  'nw.d1.7': 'Takt time z\u00e1kazn\u00edka, graf vyt\u00ed\u017een\u00ed oper\u00e1tor\u016f a zpr\u00e1va PDF k tisku.',
+  'nw.t1.8': 'Podm\u00ednky pou\u017e\u00edv\u00e1n\u00ed',
+  'nw.d1.8': 'V\u0161echna pr\u00e1va vyhrazena, pou\u017e\u00edv\u00e1n\u00ed zdarma: podm\u00ednky jsou v odkazu dole na str\u00e1nce.',
+  'nw.t1.9': 'Reference a \u00fapln\u00e1 zpr\u00e1va',
+  'nw.d1.9': 'Pole Reference pro listy, ukazatele linky ve zpr\u00e1v\u011b PDF, pr\u00e1vn\u00ed informace.',
+  'nw.t2': 'Vyva\u017eov\u00e1n\u00ed linky a layout',
+  'nw.s2': 'Graf Yamazumi a jeho sc\u00e9n\u00e1\u0159e, pak v\u00fdkres bu\u0148ky a trasa ka\u017ed\u00e9ho oper\u00e1tora.',
+  'nw.t2.0': 'Vyva\u017eov\u00e1n\u00ed linky',
+  'nw.d2.0': 'Graf Yamazumi a jeho sc\u00e9n\u00e1\u0159e, p\u0159etahov\u00e1n\u00ed my\u0161\u00ed nebo prstem, zpr\u00e1va PDF, adresa vts-tool.com.',
+  'nw.t2.1': 'P\u0159\u00edklad',
+  'nw.d2.1': 'P\u0159\u00edklad p\u0159ipraven\u00fd k vyzkou\u0161en\u00ed: kr\u00e1tk\u00e9 video se studi\u00ed a sc\u00e9n\u00e1\u0159em vyva\u017eov\u00e1n\u00ed, n\u00e1pov\u011bda a zpr\u00e1va PDF vyva\u017eov\u00e1n\u00ed.',
+  'nw.t2.2': 'Z\u00e1hlav\u00ed a nab\u00eddka',
+  'nw.d2.2': 'N\u00e1zev studie v z\u00e1hlav\u00ed, nab\u00eddka, v\u00fdpo\u010det takt time, kaizen akce u \u00fakon\u016f a okno exportu.',
+  'nw.t2.3': 'Stroje a \u00fazk\u00e9 m\u00edsto',
+  'nw.d2.3': 'Stroje zapo\u010dten\u00e9 jen aktivn\u00edm \u010dasem, \u00fazk\u00e9 m\u00edsto a cyklus linky vyzna\u010den\u00e9 v grafu, m\u00edra vyv\u00e1\u017een\u00ed po\u010d\u00edtan\u00e1 z \u00fazk\u00e9ho m\u00edsta.',
+  'nw.t2.4': 'Kontakt',
+  'nw.d2.4': 'Kontakt a n\u00e1zory e-mailem, verze uveden\u00e1 v doln\u00ed \u010d\u00e1sti str\u00e1nky.',
+  'nw.t2.5': 'Excel pro ka\u017edou firmu',
+  'nw.d2.5': 'Se\u0161it Excel bez \u0161ablony, kusy na cyklus, periodick\u00e9 \u010dinnosti s \u010detnost\u00ed.',
+  'nw.t2.6': 'Layout',
+  'nw.d2.6': 'Pracovi\u0161t\u011b rozm\u00edst\u011bn\u00e1 na v\u00fdkresu v m\u011b\u0159\u00edtku, trasa ka\u017ed\u00e9ho oper\u00e1tora s jej\u00ed vzd\u00e1lenost\u00ed, export DXF.',
+  'nw.t2.7': 'Layout ve \u010dty\u0159ech kroc\u00edch',
+  'nw.d2.7': 'V\u00fdkres, pracovi\u0161t\u011b, trasy, porovn\u00e1n\u00ed: layout krok za krokem.',
+  'nw.t2.8': 'Zp\u011bt a pr\u016fchoz\u00ed body',
+  'nw.d2.8': 'Zp\u011bt a znovu v layoutu, pr\u016fchoz\u00ed body v tras\u00e1ch a vzorov\u00fd layout.',
+  'nw.t2.9': 'Sou\u010dasn\u00fd stav a sc\u00e9n\u00e1\u0159e',
+  'nw.d2.9': 'Sou\u010dasn\u00fd layout a jeho sc\u00e9n\u00e1\u0159e, oto\u010den\u00e1 pracovi\u0161t\u011b s p\u0159\u00edstupem z jedn\u00e9 strany, ch\u016fze s d\u00edlem nebo bez n\u011bj, \u00fakony um\u00edst\u011bn\u00e9 na pracovi\u0161t\u011b, porovn\u00e1n\u00ed a animace.',
+  'nw.t3': 'P\u0159esn\u00e9 v\u00fdkresy, osm jazyk\u016f',
+  'nw.s3': 'V\u00fdkresy DXF a layout ve standardn\u00edch listech, spole\u010dn\u00e9 sc\u00e9n\u00e1\u0159e, osm jazyk\u016f, n\u00e1vod a \u00fapln\u011bj\u0161\u00ed listy.',
+  'nw.t3.0': 'P\u0159esn\u00e9 v\u00fdkresy',
+  'nw.d3.0': 'V\u00fdkresy DXF z AutoCADu s hladinami a bloky, pracovi\u0161t\u011b vy\u0159\u00edznut\u00e1 z obr\u00e1zku, export layoutu do PNG, DXF a PDF, v\u00fdkresy ve standardn\u00edch listech.',
+  'nw.t3.1': 'Listy s layoutem',
+  'nw.d3.1': 'Vzd\u00e1lenosti z layoutu v TCT, list layoutu pro ka\u017ed\u00e9ho oper\u00e1tora, vypln\u011bn\u00fd Work Cell Balancing a rychlej\u0161\u00ed spu\u0161t\u011bn\u00ed.',
+  'nw.t3.2': 'T1 a hodnoty na kus',
+  'nw.d3.2': 'T1 podle volby s jeho p\u0159esnost\u00ed, v\u0161ude prvn\u00edch 20 cykl\u016f, periodick\u00e9 \u010dinnosti zapo\u010dten\u00e9 v\u0161ude, v\u0161echny hodnoty na kus.',
+  'nw.t3.3': 'Spole\u010dn\u00e9 sc\u00e9n\u00e1\u0159e a zpr\u00e1vy',
+  'nw.d3.3': 'Ka\u017ed\u00fd sc\u00e9n\u00e1\u0159 obsahuje sv\u00e9 vyva\u017eov\u00e1n\u00ed i layout, s jedinou histori\u00ed pro Zp\u011bt; jednostr\u00e1nkov\u00e1 zpr\u00e1va o zlep\u0161en\u00ed.',
+  'nw.t3.4': 'Um\u00eds\u0165ov\u00e1n\u00ed \u00fakon\u016f',
+  'nw.d3.4': '\u00dakony se um\u00eds\u0165uj\u00ed ot\u00e1zku po ot\u00e1zce na kulat\u00e9 body kolem pracovi\u0161\u0165. V\u00fdkresy v PDF, sc\u00e9n\u00e1\u0159e porovnan\u00e9 vedle sebe, se\u0161it Excel jednoho sc\u00e9n\u00e1\u0159e, rychl\u00fd start.',
+  'nw.t3.5': 'Osm jazyk\u016f',
+  'nw.d3.5': 'Angli\u010dtina, francouz\u0161tina, n\u011bm\u010dina, \u0161pan\u011bl\u0161tina, \u010de\u0161tina, ital\u0161tina, pol\u0161tina a portugal\u0161tina, ka\u017ed\u00e1 na vlastn\u00ed str\u00e1nce; sc\u00e9n\u00e1\u0159e porovnan\u00e9 v jedn\u00e9 zpr\u00e1v\u011b PDF.',
+  'nw.t3.6': 'N\u00e1vod',
+  'nw.d3.6': 'Podrobn\u00fd n\u00e1vod v angli\u010dtin\u011b (vts-tool.com/guide/), odd\u00edl po odd\u00edlu, nahrazuje dv\u011b kr\u00e1tk\u00e9 str\u00e1nky s n\u00e1vodem.',
+  'nw.t3.7': 'Nov\u00fd vzhled',
+  'nw.d3.7': 'Nov\u00fd vzhled: logo v podob\u011b prstence se \u010dty\u0159mi barvami krok\u016f pod \u010darou taktu a barvy str\u00e1nky k n\u011bmu.',
+  'nw.t3.8': 'Pracovi\u0161t\u011b ka\u017ed\u00e9ho \u00fakonu',
+  'nw.d3.8': 'Sloupec Pracovi\u0161t\u011b na kart\u011b \u00dakony a ve vlo\u017een\u00fdch seznamech. V layoutu pak ka\u017ed\u00e1 ot\u00e1zka vede k pracovi\u0161ti \u00fakonu: st\u00e1le klik\u00e1te, kam p\u0159esn\u011b oper\u00e1tor p\u0159ich\u00e1z\u00ed a kudy tam jde. Novinky podle verz\u00ed a leh\u010d\u00ed str\u00e1nky: video p\u0159\u00edkladu se na\u010dte, a\u017e kdy\u017e ho otev\u0159ete.',
+  'nw.t3.9': 'Standardn\u00ed listy',
+  'nw.d3.9': 'V TCT: automatick\u00e1 pr\u00e1ce stroj\u016f, \u010dek\u00e1n\u00ed a v\u00fdchoz\u00ed body, jedin\u00fd procesn\u00ed \u010das cyklu pro bu\u0148ku. Periodick\u00e9 \u010dinnosti prov\u00e1d\u011bn\u00e9 b\u011bhem \u010dek\u00e1n\u00ed. Knihovny p\u0159\u00edmo z webu, Smazat v\u0161e, seznam jazyk\u016f.',
   'off.fail': 'Offline kopii se nepoda\u0159ilo vytvo\u0159it. Zkontrolujte p\u0159ipojen\u00ed a zkuste to znovu.',
   'off.prep': 'P\u0159ipravuje se offline kopie\u2026',
   'ly11.allDone': 'P\u0159idan\u00e1 pracovi\u0161t\u011b: {n}. P\u0159et\u00e1hn\u011bte je na jejich m\u00edsto.',
@@ -8784,7 +9254,7 @@ I18N.cs = {
   'xl.making': 'Vytv\u00e1\u0159\u00ed se se\u0161it\u2026',
   'cv.bigGo': 'P\u0159esto p\u0159ev\u00e9st',
   'cv.small': 'P\u0159eveden\u00e9 video m\u00e1 720p p\u0159i 30 sn\u00edmc\u00edch za sekundu: sta\u010d\u00ed na m\u011b\u0159en\u00ed \u00fakon\u016f a sn\u00e1z se v n\u011bm posouv\u00e1.',
-  'cv.bigTip': 'Tip: pro \u010dasovou studii sta\u010d\u00ed kr\u00e1tk\u00fd \u00fasek (3 a\u017e 5 cykl\u016f, 1 a\u017e 2 minuty). Nebo nat\u00e1\u010dejte v MP4 (H.264), kter\u00e9 se otev\u0159e bez p\u0159evodu: na iPhonu Nastaven\u00ed, Fotoapar\u00e1t, Form\u00e1ty, Nejkompatibiln\u011bj\u0161\u00ed.',
+  'cv.bigTip': 'Tip: pro \u010dasovou studii sta\u010d\u00ed asi deset cykl\u016f, tedy n\u011bkolik minut videa. Nebo nat\u00e1\u010dejte v MP4 (H.264), kter\u00e9 se otev\u0159e bez p\u0159evodu: na iPhonu Nastaven\u00ed, Fotoapar\u00e1t, Form\u00e1ty, Nejkompatibiln\u011bj\u0161\u00ed.',
   'cv.bigTxt': 'Toto video m\u00e1 {mb} MB ({dur}): p\u0159evod v prohl\u00ed\u017ee\u010di m\u016f\u017ee trvat n\u011bkolik minut a str\u00e1nka mus\u00ed z\u016fstat otev\u0159en\u00e1.',
   'cv.bigT': 'Velk\u00e9 video',
   'ly10.presGo': 'Vytvo\u0159it prezentaci',
@@ -8828,21 +9298,9 @@ I18N.cs = {
   'ly10.opT': 'Viditelnost v\u00fdkresu',
   'bal.movedLeg': '\u00dakon p\u0159edan\u00fd jin\u00e9mu oper\u00e1torovi',
   'bal.movedFrom': 'p\u0159esunuto od: {name}',
-  'news.v5.1': 'Podrobn\u00fd n\u00e1vod v angli\u010dtin\u011b (vts-tool.com/guide/), odd\u00edl po odd\u00edlu, nahrazuje dv\u011b kr\u00e1tk\u00e9 str\u00e1nky s n\u00e1vodem.',
-  'news.n5.1': 'N\u00e1vod',
-  'news.v5.2': 'Nov\u00fd vzhled: logo v podob\u011b prstence se \u010dty\u0159mi barvami krok\u016f pod \u010darou taktu a barvy str\u00e1nky k n\u011bmu.',
-  'news.n5.2': 'Nov\u00fd vzhled',
-  'news.v5': 'Angli\u010dtina, francouz\u0161tina, n\u011bm\u010dina, \u0161pan\u011bl\u0161tina, \u010de\u0161tina, ital\u0161tina, pol\u0161tina a portugal\u0161tina, ka\u017ed\u00e1 na vlastn\u00ed str\u00e1nce. Pod n\u00e1strojem: p\u0159\u00edklad v \u010d\u00edslech, srovn\u00e1n\u00ed, pou\u017eit\u00ed podle profilu a \u010dast\u00e9 dotazy. Porovnat / Zpr\u00e1vy: porovn\u00e1van\u00e9 stavy a pak jedna zpr\u00e1va PDF o layoutu, vyva\u017eov\u00e1n\u00ed linky nebo oboj\u00edm. Nov\u00fd sc\u00e9n\u00e1\u0159 vych\u00e1z\u00ed ze sou\u010dasn\u00e9ho stavu nebo z libovoln\u00e9ho sc\u00e9n\u00e1\u0159e. Viditelnost v\u00fdkresu, v\u00fdkresy PDF ostr\u00e9 i p\u0159i p\u0159ibl\u00ed\u017een\u00ed, reference uzam\u010den\u00e1 z li\u0161ty sc\u00e9n\u00e1\u0159\u016f, prezentace layoutu ve form\u00e1tu A3, v\u00fdkresy v se\u0161itu Excel. Velk\u00e1 videa z iPhonu p\u0159ev\u00e1d\u011bn\u00e1 na 720p. Verze \u010d\u00edslovan\u00e9 od V1 do V5.',
-  'news.n5': 'Osm jazyk\u016f',
-  'news.n4': 'Layout',
-  'news.n3': 'Vyva\u017eov\u00e1n\u00ed linky',
-  'news.v2': 'Angli\u010dtina a francouz\u0161tina. Va\u0161e standardn\u00ed listy vypln\u011bn\u00e9 podle va\u0161ich vlastn\u00edch \u0161ablon Excel (list m\u011b\u0159en\u00ed \u010dasu a tabulka kombinace, makra zachov\u00e1na). Takt time, graf vyt\u00ed\u017een\u00ed oper\u00e1tor\u016f a zpr\u00e1va PDF. Rychl\u00e1 oprava \u00fakon\u016f, pole Reference, sv\u011btl\u00fd a tmav\u00fd motiv.',
-  'news.n2': 'Standardn\u00ed listy a zpr\u00e1vy',
-  'news.v1': 'Jedna kl\u00e1vesa na \u00fakon pro m\u011b\u0159en\u00ed videa, s v\u00edce oper\u00e1tory a stroji: cykly, T1 a referen\u010dn\u00ed cyklus, probl\u00e9my, \u010dasov\u00e1 osa, upraviteln\u00fd protokol, export CSV a JSON, automatick\u00e9 ukl\u00e1d\u00e1n\u00ed a offline kopie.',
-  'news.n1': '\u010casov\u00e1 studie z videa',
   'about.a8': 'Angli\u010dtina, francouz\u0161tina, n\u011bm\u010dina, \u0161pan\u011bl\u0161tina, \u010de\u0161tina, ital\u0161tina, pol\u0161tina a portugal\u0161tina, ka\u017ed\u00fd jazyk s vlastn\u00ed str\u00e1nkou.',
   'about.q8': 'V jak\u00fdch jazyc\u00edch?',
-  'about.a7': 'Ano, jakmile je str\u00e1nka otev\u0159en\u00e1. Menu nab\u00edz\u00ed tak\u00e9 offline kopii v jednom souboru. Internet je poprv\u00e9 pot\u0159eba jen pro \u010dten\u00ed v\u00fdkres\u016f v PDF a p\u0159evod vide\u00ed z iPhonu.',
+  'about.a7': 'Ano, jakmile je str\u00e1nka otev\u0159en\u00e1. Menu nab\u00edz\u00ed tak\u00e9 offline kopii v jednom souboru, kter\u00e1 obsahuje v\u0161e, i \u010dte\u010dku PDF a p\u0159evodn\u00edk vide\u00ed z iPhonu. Na webu se tyto dva p\u0159i prvn\u00edm pou\u017eit\u00ed na\u010dtou z vts-tool.com.',
   'about.q7': 'Funguje to bez internetu?',
   'about.a6': 'Zpr\u00e1vy PDF (\u010dasov\u00e1 studie a z Porovnat / Zpr\u00e1vy vyva\u017eov\u00e1n\u00ed linky, layout nebo oboj\u00ed), prezentace layoutu ve form\u00e1tu PDF A3, se\u0161it Excel s v\u00fdkresy a va\u0161e vlastn\u00ed standardn\u00ed listy vypln\u011bn\u00e9, pokud je pou\u017e\u00edv\u00e1te.',
   'about.q6': 'Co mohu exportovat?',
@@ -9102,6 +9560,31 @@ I18N.cs = {
   'hdr.offline': 'Offline kopie',
   'hdr.offline.title': 'St\u00e1hnout tento n\u00e1stroj jako jeden soubor HTML, kter\u00fd funguje bez internetu',
   'hdr.theme': 'Motiv: {v}',
+  'lang.en': 'Angli\u010dtina',
+  'lang.fr': 'Francouz\u0161tina',
+  'lang.de': 'N\u011bm\u010dina',
+  'lang.es': '\u0160pan\u011bl\u0161tina',
+  'lang.cs': '\u010ce\u0161tina',
+  'lang.it': 'Ital\u0161tina',
+  'lang.pl': 'Pol\u0161tina',
+  'lang.pt': 'Portugal\u0161tina',
+  'steps.showSp': 'V\u00fdchoz\u00ed body (SP)',
+  'steps.sp': 'V\u00fdchoz\u00ed bod (SP:) pro listy',
+  'per.wait': 'b\u011bhem \u010dek\u00e1n\u00ed',
+  'per.waitHint': 'Za\u0161krtnuto: prov\u00e1d\u00ed se, zat\u00edmco oper\u00e1tor \u010dek\u00e1 (nap\u0159\u00edklad na stroj). Po\u010d\u00edt\u00e1 se do pracovn\u00edho obsahu, ale cyklus neprodlou\u017e\u00ed.',
+  'per.totWait': 'Z toho {s} s na kus b\u011bhem \u010dek\u00e1n\u00ed, bez prodlou\u017een\u00ed cyklu.',
+  'mach.startBy': 'Spou\u0161t\u011bn \u00fakonem',
+  'mach.startAuto': '\u00dakon zji\u0161t\u011bn\u00fd podle \u010das\u016f',
+  'mach.startNone': '\u017d\u00e1dn\u00fd \u00fakon (nic v TCT)',
+  'mach.startHint': 'Jeho aktivn\u00ed \u010das jde do TCT, sloupec Automated work, na \u0159\u00e1dek \u00fakonu, kter\u00fd ho spou\u0161t\u00ed.',
+  'mach.found': 'Zji\u0161t\u011bno: {what}.',
+  'mach.notFound': '\u017d\u00e1dn\u00fd \u00fakon nenalezen: vyberte ten, kter\u00fd ho spou\u0161t\u00ed.',
+  'bal.setBy': 'cyklus linky v\u010detn\u011b \u010dek\u00e1n\u00ed ({name})',
+  'u.pts': 'p. b.',
+  'purge.menu': 'Smazat v\u0161e',
+  'purge.title': 'Smazat v\u0161e z tohoto prohl\u00ed\u017ee\u010de',
+  'purge.text': 'Studie a jej\u00ed historie, nastaven\u00ed, zde p\u0159eveden\u00e9 video, v\u00fdkresy a \u0161ablony Excel, kter\u00e9 n\u00e1stroj uchov\u00e1v\u00e1 v tomto prohl\u00ed\u017ee\u010di, se sma\u017eou a str\u00e1nka se znovu otev\u0159e pr\u00e1zdn\u00e1. Nic z toho nebylo nikdy odesl\u00e1no. Nejprve zav\u0159ete ostatn\u00ed karty n\u00e1stroje.',
+  'purge.ok': 'Smazat v\u0161e',
   'hdr.lang': 'Jazyk',
   'theme.auto': 'automaticky',
   'theme.light': 'sv\u011btl\u00fd',
@@ -9441,7 +9924,7 @@ I18N.cs = {
   'hint.4': 'N\u011bkdo nebo n\u011bco ru\u0161\u00ed',
   'hint.5': 'Cokoli jin\u00e9ho',
   'per.title': 'Periodick\u00e1 \u010dinnost v {time}',
-  'per.intro': '\u010cas periodick\u00e9 \u010dinnosti z\u016fst\u00e1v\u00e1 mimo (a) a cyklus z\u016fst\u00e1v\u00e1 pou\u017eiteln\u00fd. Podle sv\u00e9 \u010detnosti se rozpo\u010d\u00edt\u00e1 na kusy.',
+  'per.intro': '\u010cas periodick\u00e9 \u010dinnosti z\u016fst\u00e1v\u00e1 mimo (a) a jej\u00ed cyklus se u\u017e nepo\u010d\u00edt\u00e1 do T1, stejn\u011b jako cyklus s probl\u00e9mem. Podle sv\u00e9 \u010detnosti se \u010dinnost rozpo\u010d\u00edt\u00e1 na kusy.',
   'per.cancel': 'Zru\u0161it periodickou \u010dinnost',
   'per.d1': 'V\u00fdm\u011bna p\u0159epravky',
   'per.d2': 'Ko\u0161 na odpad',
@@ -9459,7 +9942,7 @@ I18N.cs = {
   'addTl.title': 'P\u0159idat \u010dasovou osu',
   'addTl.text': 'Nov\u00e1 \u010dasov\u00e1 osa na stejn\u00e9m videu, s vlastn\u00edmi \u00fakony.',
   'paste.title': 'Vlo\u017eit seznam \u00fakon\u016f pro {name}',
-  'paste.text': 'Jeden \u00fakon na \u0159\u00e1dek: <b>K\u00f3d; N\u00e1zev; Typ; Pracovi\u0161t\u011b</b>. U ch\u016fze uve\u010fte m\u00edsto pracovi\u0161t\u011b vzd\u00e1lenost v metrech. Typ je voliteln\u00fd (v\u00fdchoz\u00ed {def}), pracovi\u0161t\u011b tak\u00e9. Funguj\u00ed i sloupce zkop\u00edrovan\u00e9 z Excelu.',
+  'paste.text': 'Jeden \u00fakon na \u0159\u00e1dek: <b>K\u00f3d; N\u00e1zev; Typ; Pracovi\u0161t\u011b</b>. U ch\u016fze uve\u010fte m\u00edsto pracovi\u0161t\u011b vzd\u00e1lenost v metrech. Typ je voliteln\u00fd (v\u00fdchoz\u00ed {def}), pracovi\u0161t\u011b tak\u00e9. 6. sloupec ud\u00e1v\u00e1 v\u00fdchoz\u00ed bod (SP:) list\u016f: K\u00f3d; N\u00e1zev; Typ; Vzd\u00e1lenost; Pracovi\u0161t\u011b; V\u00fdchoz\u00ed bod. Funguj\u00ed i sloupce zkop\u00edrovan\u00e9 z Excelu.',
   'paste.ph': 'M10; Zalo\u017eit d\u00edl do termoformovac\u00edho stroje; Operace; Termoformovac\u00ed stroj\nM20; P\u0159ej\u00edt k vodn\u00edmu paprsku; Ch\u016fze; 4\nQ30; Zkontrolovat o\u0159ezan\u00e9 hrany; Kontrola; Vodn\u00ed paprsek\nM40; \u010cekat na vodn\u00ed paprsek; \u010cek\u00e1n\u00ed; Vodn\u00ed paprsek',
   'paste.types': 'Typy: Operace, Kontrola, Ch\u016fze, \u010cek\u00e1n\u00ed, Stroj. Funguj\u00ed i anglick\u00e9 a francouzsk\u00e9 v\u00fdrazy.',
   'paste.replaceNote': 'Nahrazen\u00ed seznamu zachov\u00e1 z\u00e1znam \u00fakon\u016f, jejich\u017e k\u00f3d z\u016fst\u00e1v\u00e1 stejn\u00fd. U\u017e zaznamenan\u00e9 \u00fakony, kter\u00e9 v nov\u00e9m seznamu chyb\u00ed, z\u016fstanou na konci.',
@@ -9953,7 +10436,7 @@ I18N.cs = {
   'takt.title': 'Vypo\u010d\u00edtat takt time',
   'takt.avail': 'Dostupn\u00fd \u010das (min)',
   'takt.demand': 'Popt\u00e1vka z\u00e1kazn\u00edka (kusy)',
-  'takt.note': 'Oboj\u00ed za stejn\u00e9 obdob\u00ed: jedna sm\u011bna, jeden den\u2026 Dostupn\u00fd \u010das je provozn\u00ed doba minus p\u0159est\u00e1vky.',
+  'takt.note': 'Oboj\u00ed za stejn\u00e9 obdob\u00ed: jedna sm\u011bna, jeden den\u2026 Dostupn\u00fd \u010das je provozn\u00ed doba minus pl\u00e1novan\u00e9 prostoje (p\u0159est\u00e1vky, porady, pl\u00e1novan\u00e1 \u00fadr\u017eba).',
   'takt.res': 'Takt time: {v} s',
   'takt.bad': 'Zadejte \u010das a popt\u00e1vku v\u011bt\u0161\u00ed ne\u017e 0.',
   'res.disp': 'rozp\u011bt\u00ed {r} s \u00b7 sm\u011br. odch. {sd} s',
@@ -9985,7 +10468,7 @@ I18N.cs = {
   'ex.name': 'Linka A: 2 oper\u00e1to\u0159i a lis',
   'ex.desc': 'Smy\u0161len\u00e9 video s hotovou studi\u00ed: vypsan\u00e9 \u00fakony, tucet zm\u011b\u0159en\u00fdch cykl\u016f, periodick\u00e1 \u010dinnost, takt time, sc\u00e9n\u00e1\u0159 vyva\u017eov\u00e1n\u00ed a jeho layout. V\u0161e m\u016f\u017eete zm\u011bnit.',
   'ex.keep': 'Va\u0161e sou\u010dasn\u00e1 studie se odlo\u017e\u00ed stranou. Dostanete ji zp\u011bt, a\u017e p\u0159\u00edklad opust\u00edte.',
-  'ex.net': 'Nic se nestahuje: p\u0159\u00edklad je sou\u010d\u00e1st\u00ed str\u00e1nky a funguje i offline.',
+  'ex.net': 'Nic se neinstaluje: p\u0159\u00edklad je sou\u010d\u00e1st\u00ed n\u00e1stroje a obsahuje ho i offline kopie.',
   'ex.load': 'Na\u010d\u00edst p\u0159\u00edklad',
   'ex.loaded': 'P\u0159\u00edklad na\u010dten. Pod\u00edvejte se na V\u00fdsledky, pak na Vyva\u017eov\u00e1n\u00ed linky a Layout.',
   'ex.fail': 'P\u0159\u00edklad se v tomto prohl\u00ed\u017ee\u010di nepoda\u0159ilo otev\u0159\u00edt.',
@@ -10112,7 +10595,7 @@ I18N.cs = {
   'legal.host': 'Hosting',
   'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Spojen\u00e9 st\u00e1ty. Telefon: +1 877 448 4820.',
   'legal.data': 'Osobn\u00ed \u00fadaje',
-  'legal.dataText': 'N\u00e1v\u0161t\u011bvy se po\u010d\u00edtaj\u00ed pomoc\u00ed GoatCounter: zobrazen\u00e1 str\u00e1nka, odkazuj\u00edc\u00ed web, prohl\u00ed\u017ee\u010d, velikost obrazovky a zem\u011b. \u017d\u00e1dn\u00e9 cookies a IP adresy se neukl\u00e1daj\u00ed. Video a va\u0161e studie se nikdy nenahr\u00e1vaj\u00ed: z\u016fst\u00e1vaj\u00ed ve va\u0161em za\u0159\u00edzen\u00ed. Va\u0161e studie a \u0161ablony se ukl\u00e1daj\u00ed v tomto prohl\u00ed\u017ee\u010di, abyste je znovu na\u0161li; m\u016f\u017eete je smazat v nastaven\u00ed prohl\u00ed\u017ee\u010de. Video nato\u010den\u00e9 nebo p\u0159eveden\u00e9 na webu se uchov\u00e1v\u00e1 v tomto prohl\u00ed\u017ee\u010di (jen posledn\u00ed), aby se znovu otev\u0159elo s va\u0161\u00ed studi\u00ed; m\u016f\u017eete ho kdykoli ulo\u017eit do za\u0159\u00edzen\u00ed nebo tuto kopii smazat. Pro \u010dten\u00ed v\u00fdkresu PDF nebo p\u0159evod videa z iPhonu web p\u0159i prvn\u00edm pou\u017eit\u00ed st\u00e1hne z jsDelivr \u010dte\u010dku (pdf.js) nebo p\u0159evodn\u00edk (hevc.js, mp4box.js); va\u0161e soubory se neodes\u00edlaj\u00ed. Jako poskytovatel hostingu m\u016f\u017ee GitHub zaznamen\u00e1vat technick\u00e9 \u00fadaje o p\u0159ipojen\u00ed, nap\u0159\u00edklad IP adresy, aby slu\u017ebu provozoval a chr\u00e1nil. Pokud nap\u00ed\u0161ete e-mailem, va\u0161e zpr\u00e1va a adresa se pou\u017eij\u00ed jen k odpov\u011bdi a ke zlep\u0161en\u00ed n\u00e1stroje. Nikdy se nikomu nep\u0159ed\u00e1vaj\u00ed. GoatCounter tak\u00e9 po\u010d\u00edt\u00e1, kter\u00e9 funkce se pou\u017e\u00edvaj\u00ed (nap\u0159\u00edklad: otev\u0159en\u00fd p\u0159\u00edklad, vyti\u0161t\u011bn\u00e1 zpr\u00e1va), nikdy obsah va\u0161ich studi\u00ed nebo vide\u00ed.',
+  'legal.dataText': 'N\u00e1v\u0161t\u011bvy se po\u010d\u00edtaj\u00ed pomoc\u00ed GoatCounter: zobrazen\u00e1 str\u00e1nka, odkazuj\u00edc\u00ed web, prohl\u00ed\u017ee\u010d, velikost obrazovky a zem\u011b. \u017d\u00e1dn\u00e9 cookies a IP adresy se neukl\u00e1daj\u00ed. Video a va\u0161e studie se nikdy nenahr\u00e1vaj\u00ed: z\u016fst\u00e1vaj\u00ed ve va\u0161em za\u0159\u00edzen\u00ed. Va\u0161e studie a \u0161ablony se ukl\u00e1daj\u00ed v tomto prohl\u00ed\u017ee\u010di, abyste je znovu na\u0161li; m\u016f\u017eete je smazat v nastaven\u00ed prohl\u00ed\u017ee\u010de. Video nato\u010den\u00e9 nebo p\u0159eveden\u00e9 na webu se uchov\u00e1v\u00e1 v tomto prohl\u00ed\u017ee\u010di (jen posledn\u00ed), aby se znovu otev\u0159elo s va\u0161\u00ed studi\u00ed; m\u016f\u017eete ho kdykoli ulo\u017eit do za\u0159\u00edzen\u00ed nebo tuto kopii smazat. Menu, Smazat v\u0161e odstran\u00ed v\u0161e najednou. Pro \u010dten\u00ed v\u00fdkresu PDF nebo p\u0159evod videa z iPhonu web p\u0159i prvn\u00edm pou\u017eit\u00ed na\u010dte \u010dte\u010dku (pdf.js) nebo p\u0159evodn\u00edk (hevc.js, mp4box.js), soubory p\u0159\u00edmo z vts-tool.com (offline kopie je obsahuje); va\u0161e soubory se neodes\u00edlaj\u00ed. Jako poskytovatel hostingu m\u016f\u017ee GitHub zaznamen\u00e1vat technick\u00e9 \u00fadaje o p\u0159ipojen\u00ed, nap\u0159\u00edklad IP adresy, aby slu\u017ebu provozoval a chr\u00e1nil. Pokud nap\u00ed\u0161ete e-mailem, va\u0161e zpr\u00e1va a adresa se pou\u017eij\u00ed jen k odpov\u011bdi a ke zlep\u0161en\u00ed n\u00e1stroje. Nikdy se nikomu nep\u0159ed\u00e1vaj\u00ed. GoatCounter tak\u00e9 po\u010d\u00edt\u00e1, kter\u00e9 funkce se pou\u017e\u00edvaj\u00ed (nap\u0159\u00edklad: otev\u0159en\u00fd p\u0159\u00edklad, vyti\u0161t\u011bn\u00e1 zpr\u00e1va), nikdy obsah va\u0161ich studi\u00ed nebo vide\u00ed.',
   'legal.ip': 'Du\u0161evn\u00ed vlastnictv\u00ed',
   'legal.ipText': '\u00a9 2026 Ilyas Baqloul. V\u0161echna pr\u00e1va vyhrazena. Pou\u017e\u00edv\u00e1n\u00ed n\u00e1stroje je zdarma, i v pr\u00e1ci.',
   'load.title': 'Vyt\u00ed\u017een\u00ed oper\u00e1tor\u016f',
@@ -10170,6 +10653,7 @@ I18N_LOGIC.cs = {
   'reason.oov': 'Mimo z\u00e1b\u011br',
   'reason.end': 'Konec studie',
   'reason.deleted': 'Smazan\u00fd \u00fakon',
+  'reason.periodic': 'Periodick\u00e1 \u010dinnost',
   'log.head': ['Studie', '\u010casov\u00e1 osa', 'Druh', 'Cyklus', 'Za\u010d\u00e1tek (s)', 'Konec (s)', 'Trv\u00e1n\u00ed (s)', 'K\u00f3d', '\u00dakon', 'Typ', 'Vzd\u00e1lenost (m)', 'Probl\u00e9m', 'Pozn\u00e1mka'],
   'sum.study': 'Studie',
   'sum.plant': 'Z\u00e1vod',
@@ -10227,7 +10711,10 @@ I18N_LOGIC.cs = {
   'sum.ppc': 'Kus\u016f na cyklus',
   'std.nOp1': '1 oper\u00e1tor',
   'std.nOps': 'Po\u010det oper\u00e1tor\u016f: {n}',
-  'ly.scenN': 'Sc\u00e9n\u00e1\u0159 {n}'
+  'ly.scenN': 'Sc\u00e9n\u00e1\u0159 {n}',
+  'std.ppcNote': 'Kus\u016f za cyklus: {n}, takt {t} s \u00d7 {n}',
+  'per.waitTag': 'b\u011bhem \u010dek\u00e1n\u00ed',
+  'std.c.per': 'periodick\u00e1 \u010dinnost {name}, {s} s'
 };
 I18N_XLW.cs = {
   'sum': 'P\u0159ehled',
@@ -10358,13 +10845,13 @@ I18N_EX.cs = { names: {
     'Line A': 'Linka A',
     'Operator 1': 'Oper\u00e1tor 1',
     'Take a part from the bin': 'Vz\u00edt d\u00edl z p\u0159epravky',
-    'Take the part on the table': 'Vz\u00edt d\u00edl ze stolu',
     'Walk to the press': 'P\u0159ej\u00edt k lisu',
     'Load the press': 'Zalo\u017eit d\u00edl do lisu',
     'Wait for the press': '\u010cekat na lis',
     'Unload and put down': 'Vyjmout a odlo\u017eit',
     'Walk back to the bin': 'Vr\u00e1tit se k p\u0159epravce',
     'Operator 2': 'Oper\u00e1tor 2',
+    'Take the part on the table': 'Vz\u00edt d\u00edl ze stolu',
     'Clip the fasteners': 'Nacvaknout spony',
     'Check the part': 'Zkontrolovat d\u00edl',
     'Walk to the box': 'P\u0159ej\u00edt ke krabici',
@@ -10373,39 +10860,79 @@ I18N_EX.cs = { names: {
     'Fastener dropped': 'Spadl\u00e1 spona',
     'Change the box': 'Vym\u011bnit krabici',
     'Press': 'Lis',
+    'Press the part': 'Lisovat d\u00edl',
     'Open and eject': 'Otev\u0159\u00edt a vysunout',
     'Wait for loading': '\u010cekat na zalo\u017een\u00ed'
-}, scen: { name: 'Kontrola oper\u00e1torem 1', note: '\u201eB30 Zkontrolovat d\u00edl\u201c p\u0159ech\u00e1z\u00ed od oper\u00e1tora 2 k oper\u00e1torovi 1, kter\u00fd ho d\u011bl\u00e1, zat\u00edmco lis pracuje: \u010dek\u00e1n\u00ed oper\u00e1tora 1 klesne z 2,1 s na 0,5 s.' } };
+}, scen: { name: 'Kontrola oper\u00e1torem 1', note: '\u201eB30 Zkontrolovat d\u00edl\u201c p\u0159ech\u00e1z\u00ed od oper\u00e1tora 2 k oper\u00e1torovi 1, kter\u00fd ho prov\u00e1d\u00ed, zat\u00edmco lis pracuje: \u010dek\u00e1n\u00ed oper\u00e1tora 1 klesne z 2,1 s na 0,5 s.' } };
 
 /* LANG-it: texts of the it page, made with tools/i18n_lang.py (English where a key is missing) */
 I18N.it = {
-  'news.v3.0': 'Il diagramma Yamazumi e i suoi scenari, trascinamento con il mouse o con il dito, report PDF, l\u2019indirizzo vts-tool.com.',
-  'news.n3.0': 'Bilanciamento linea',
-  'news.v3.2': 'Un esempio pronto da provare, con il suo video dentro la pagina.',
-  'news.n3.2': 'Esempio',
-  'news.v3.3': 'Macchine contate per il loro tempo attivo, collo di bottiglia e ciclo della linea tracciati sul grafico, tasso di bilanciamento calcolato sul collo di bottiglia.',
-  'news.n3.3': 'Macchine e collo di bottiglia',
-  'news.v3.4': 'Contatto e feedback via e-mail, versione indicata in fondo alla pagina.',
-  'news.n3.4': 'Contatto',
-  'news.v3.5': 'Una cartella Excel senza modello, pezzi per ciclo, attivit\u00e0 periodiche con la loro frequenza.',
-  'news.n3.5': 'Excel per qualsiasi azienda',
-  'news.v3.6': 'Postazioni posizionate su una planimetria, percorsi con la loro distanza, annulla e ripristina, un esempio di layout.',
-  'news.n3.6': 'Primo layout',
-  'news.v4.0': 'Il layout attuale e i suoi scenari, postazioni ruotate e raggiunte da un lato, spostamenti con o senza pezzo, fasi posizionate sulle postazioni, confronto e animazione.',
-  'news.n4.0': 'Stato attuale e scenari',
-  'news.v4.1': 'Planimetrie DXF di AutoCAD con livelli e blocchi, postazioni ritagliate da un\u2019immagine, layout esportato in PNG, DXF e PDF, planimetrie nei fogli standard.',
-  'news.n4.1': 'Planimetrie precise',
-  'news.v4.2': 'Ogni scenario contiene il suo bilanciamento e il suo layout. Report di miglioramento di una pagina, cartella Excel per qualsiasi azienda, T1 a scelta con la sua precisione al 95%, attivit\u00e0 periodiche inserite a mano, pagina in francese.',
-  'news.n4.2': 'Scenari comuni e report',
-  'news.v4.3': 'Le fasi posizionate una domanda alla volta, su punti rotondi intorno alle postazioni. Planimetrie in PDF, scenari confrontati fianco a fianco, cartella Excel di uno scenario, avvio rapido.',
-  'news.n4.3': 'Posizionare le fasi',
-  'news.v5.3': 'Una colonna Postazione nella scheda Fasi e negli elenchi incollati. Nel layout ogni domanda porta allora alla postazione della fase: fai sempre clic sul punto esatto in cui arriva l\u2019operatore e sul percorso che fa per arrivarci. Novit\u00e0 per versione e pagine pi\u00f9 leggere: il video dell\u2019esempio arriva solo quando lo apri.',
-  'news.n5.3': 'Postazione di ogni fase',
-  'news.s1': 'Un tasto per fase per cronometrare un video: i cicli, il T1 e il ciclo di riferimento.',
-  'news.s2': 'I tuoi fogli standard compilati dai tuoi modelli Excel, il takt time e il report PDF.',
-  'news.s3': 'Il diagramma Yamazumi, con scenari modificati per trascinamento, il collo di bottiglia e il ciclo della linea.',
-  'news.s4': 'La planimetria della cella, i percorsi di ogni operatore e gli stessi scenari per il bilanciamento e il layout.',
-  'news.s5': 'Lo strumento in otto lingue, gli scenari confrontati in un report PDF, una guida completa e una nuova immagine.',
+  'nw.t1': 'Analisi tempi e fogli standard',
+  'nw.s1': 'Un tasto per fase per cronometrare un video, poi i tuoi fogli standard compilati, il takt time e il report PDF.',
+  'nw.t1.0': 'Analisi tempi da video',
+  'nw.d1.0': 'Un tasto per fase per cronometrare un video, con pi\u00f9 operatori e macchine: cicli, T1 e ciclo di riferimento, anomalie, linea del tempo, registro modificabile, esportazione CSV e JSON, salvataggio automatico e copia offline.',
+  'nw.t1.1': 'Spostamenti e attese come fasi',
+  'nw.d1.1': 'Gli spostamenti e le attese registrati con W e A diventano fasi dell\u2019elenco con un clic.',
+  'nw.t1.2': 'Copia nei fogli',
+  'nw.d1.2': 'I tempi copiati come tabella da incollare nei fogli standard; dalla 1.3 sostituiti dai fogli compilati.',
+  'nw.t1.3': 'Fogli standard compilati',
+  'nw.d1.3': 'Il tuo foglio di rilevazione tempi e la tabella di combinazione compilati dai tuoi modelli Excel, conservati in questo browser. Correzione rapida di una fase.',
+  'nw.t1.4': 'Una sola regola di arrotondamento',
+  'nw.d1.4': 'Gli stessi tempi arrotondati ovunque, sullo schermo e nei fogli; i modelli standard vengono riconosciuti.',
+  'nw.t1.5': 'Grafica pi\u00f9 leggera',
+  'nw.d1.5': 'Una grafica pi\u00f9 leggera nei colori del logo, con tema scuro.',
+  'nw.t1.6': 'Nuovo logo',
+  'nw.d1.6': 'Un nuovo logo, una schermata iniziale che spiega lo strumento e un promemoria per salvare lo studio.',
+  'nw.t1.7': 'Takt time e report',
+  'nw.d1.7': 'Takt time del cliente, grafico del carico degli operatori e report PDF da stampare.',
+  'nw.t1.8': 'Condizioni d\u2019uso',
+  'nw.d1.8': 'Tutti i diritti riservati, uso gratuito: le condizioni sono collegate in fondo alla pagina.',
+  'nw.t1.9': 'Riferimento e report completo',
+  'nw.d1.9': 'Un campo Riferimento per i fogli, gli indicatori della linea nel report PDF, le note legali.',
+  'nw.t2': 'Bilanciamento linea e layout',
+  'nw.s2': 'Il diagramma Yamazumi e i suoi scenari, poi la planimetria della cella e il percorso di ogni operatore.',
+  'nw.t2.0': 'Bilanciamento linea',
+  'nw.d2.0': 'Il diagramma Yamazumi e i suoi scenari, trascinamento con il mouse o con il dito, report PDF, l\u2019indirizzo vts-tool.com.',
+  'nw.t2.1': 'Esempio',
+  'nw.d2.1': 'Un esempio pronto da provare: un breve video con il suo studio e uno scenario di bilanciamento, la guida e il report PDF del bilanciamento.',
+  'nw.t2.2': 'Intestazione e menu',
+  'nw.d2.2': 'Il nome dello studio nell\u2019intestazione, un menu, il calcolo del takt time, azioni kaizen sulle fasi e una finestra di esportazione.',
+  'nw.t2.3': 'Macchine e collo di bottiglia',
+  'nw.d2.3': 'Macchine contate per il loro tempo attivo, collo di bottiglia e ciclo della linea tracciati sul grafico, tasso di bilanciamento calcolato sul collo di bottiglia.',
+  'nw.t2.4': 'Contatto',
+  'nw.d2.4': 'Contatto e feedback via e-mail, versione indicata in fondo alla pagina.',
+  'nw.t2.5': 'Excel per qualsiasi azienda',
+  'nw.d2.5': 'Una cartella Excel senza modello, pezzi per ciclo, attivit\u00e0 periodiche con la loro frequenza.',
+  'nw.t2.6': 'Layout',
+  'nw.d2.6': 'Postazioni posate su una planimetria in scala, il percorso di ogni operatore con la sua distanza, esportazione DXF.',
+  'nw.t2.7': 'Layout in quattro passi',
+  'nw.d2.7': 'Planimetria, postazioni, percorsi, confronto: il layout guidato passo dopo passo.',
+  'nw.t2.8': 'Annulla e punti di passaggio',
+  'nw.d2.8': 'Annulla e ripeti sul layout, punti di passaggio nei percorsi e un layout di esempio.',
+  'nw.t2.9': 'Stato attuale e scenari',
+  'nw.d2.9': 'Il layout attuale e i suoi scenari, postazioni ruotate e raggiunte da un lato, spostamenti con o senza pezzo, fasi posizionate sulle postazioni, confronto e animazione.',
+  'nw.t3': 'Planimetrie precise, otto lingue',
+  'nw.s3': 'Planimetrie DXF e layout nei fogli standard, scenari condivisi, otto lingue, la guida e fogli pi\u00f9 completi.',
+  'nw.t3.0': 'Planimetrie precise',
+  'nw.d3.0': 'Planimetrie DXF di AutoCAD con livelli e blocchi, postazioni ritagliate da un\u2019immagine, layout esportato in PNG, DXF e PDF, planimetrie nei fogli standard.',
+  'nw.t3.1': 'Fogli con il layout',
+  'nw.d3.1': 'Le distanze del layout nella TCT, un foglio di layout per operatore, il Work Cell Balancing compilato e un avvio pi\u00f9 rapido.',
+  'nw.t3.2': 'T1 e valori per pezzo',
+  'nw.d3.2': 'T1 a scelta con la sua precisione, i primi 20 cicli ovunque, le attivit\u00e0 periodiche contate ovunque, tutti i valori per pezzo.',
+  'nw.t3.3': 'Scenari comuni e report',
+  'nw.d3.3': 'Ogni scenario contiene il suo bilanciamento e il suo layout, con un\u2019unica cronologia per annullare; un report di miglioramento di una pagina.',
+  'nw.t3.4': 'Posizionare le fasi',
+  'nw.d3.4': 'Le fasi posizionate una domanda alla volta, su punti rotondi intorno alle postazioni. Planimetrie in PDF, scenari confrontati fianco a fianco, cartella Excel di uno scenario, avvio rapido.',
+  'nw.t3.5': 'Otto lingue',
+  'nw.d3.5': 'Inglese, francese, tedesco, spagnolo, ceco, italiano, polacco e portoghese, ognuno sulla sua pagina; gli scenari confrontati in un solo report PDF.',
+  'nw.t3.6': 'Guida',
+  'nw.d3.6': 'Una guida dettagliata in inglese (vts-tool.com/guide/), sezione per sezione, sostituisce le due brevi pagine di guida.',
+  'nw.t3.7': 'Nuova immagine',
+  'nw.d3.7': 'Nuova immagine: il logo ad anello, con i quattro colori delle fasi sotto la linea del takt, e i colori del sito abbinati.',
+  'nw.t3.8': 'Postazione di ogni fase',
+  'nw.d3.8': 'Una colonna Postazione nella scheda Fasi e negli elenchi incollati. Nel layout ogni domanda porta allora alla postazione della fase: fai sempre clic sul punto esatto in cui arriva l\u2019operatore e sul percorso che fa per arrivarci. Novit\u00e0 per versione e pagine pi\u00f9 leggere: il video dell\u2019esempio arriva solo quando lo apri.',
+  'nw.t3.9': 'Fogli standard',
+  'nw.d3.9': 'Nella TCT: lavoro automatico delle macchine, attese e punti di partenza, un unico tempo ciclo di processo per la cella. Attivit\u00e0 periodiche svolte durante un\u2019attesa. Librerie servite dal sito, Cancella tutto, elenco delle lingue.',
   'off.fail': 'Non \u00e8 stato possibile creare la copia offline. Controlla la connessione e riprova.',
   'off.prep': 'Preparazione della copia offline\u2026',
   'ly11.allDone': 'Postazioni aggiunte: {n}. Trascinale al loro posto.',
@@ -10425,7 +10952,7 @@ I18N.it = {
   'xl.making': 'Preparazione della cartella\u2026',
   'cv.bigGo': 'Converti comunque',
   'cv.small': 'Il video convertito \u00e8 in 720p a 30 fotogrammi al secondo: basta per cronometrare le fasi ed \u00e8 pi\u00f9 leggero da scorrere.',
-  'cv.bigTip': 'Consiglio: per un\u2019analisi tempi basta un breve estratto (da 3 a 5 cicli, da 1 a 2 minuti). Oppure filma in MP4 (H.264), che si apre senza conversione: su iPhone, Impostazioni, Fotocamera, Formati, Pi\u00f9 compatibile.',
+  'cv.bigTip': 'Consiglio: per un\u2019analisi tempi bastano una decina di cicli, cio\u00e8 pochi minuti di video. Oppure filma in MP4 (H.264), che si apre senza conversione: su iPhone, Impostazioni, Fotocamera, Formati, Pi\u00f9 compatibile.',
   'cv.bigTxt': 'Questo video pesa {mb} MB ({dur}): convertirlo nel browser pu\u00f2 richiedere diversi minuti e la pagina deve restare aperta.',
   'cv.bigT': 'Un video pesante',
   'ly10.presGo': 'Crea la presentazione',
@@ -10469,21 +10996,9 @@ I18N.it = {
   'ly10.opT': 'Opacit\u00e0 della planimetria',
   'bal.movedLeg': 'Fase data a un altro operatore',
   'bal.movedFrom': 'spostata da {name}',
-  'news.v5.1': 'Una guida dettagliata in inglese (vts-tool.com/guide/), sezione per sezione, sostituisce le due brevi pagine di guida.',
-  'news.n5.1': 'Guida',
-  'news.v5.2': 'Nuova immagine: il logo ad anello, con i quattro colori delle fasi sotto la linea del takt, e i colori del sito abbinati.',
-  'news.n5.2': 'Nuova immagine',
-  'news.v5': 'Inglese, francese, tedesco, spagnolo, ceco, italiano, polacco e portoghese, ognuno con la sua pagina. Sotto lo strumento: l\u2019esempio in cifre, un confronto, gli usi per profilo e le domande frequenti. Confronta / Report: gli stati a confronto, poi un solo report PDF sul layout, sul bilanciamento linea o su entrambi. Un nuovo scenario parte dallo stato attuale o da qualsiasi scenario. Opacit\u00e0 della planimetria, planimetrie PDF nitide con lo zoom, riferimento bloccato dalla barra degli scenari, presentazione A3 del layout, planimetrie nella cartella Excel. Video iPhone pesanti convertiti in 720p. Versioni numerate da V1 a V5.',
-  'news.n5': 'Otto lingue',
-  'news.n4': 'Layout',
-  'news.n3': 'Bilanciamento linea',
-  'news.v2': 'Inglese e francese. I tuoi fogli standard compilati dai tuoi modelli Excel (foglio di rilevazione tempi e tabella di combinazione, macro conservate). Takt time, grafico della saturazione degli operatori e report PDF. Correzione rapida delle fasi, campo Riferimento, temi chiaro e scuro.',
-  'news.n2': 'Fogli standard e report',
-  'news.v1': 'Un tasto per fase per cronometrare un video, con pi\u00f9 operatori e macchine: cicli, T1 e ciclo di riferimento, anomalie, linea del tempo, registro modificabile, esportazione CSV e JSON, salvataggio automatico e copia offline.',
-  'news.n1': 'Analisi tempi da video',
   'about.a8': 'Inglese, francese, tedesco, spagnolo, ceco, italiano, polacco e portoghese, ognuno con la propria pagina.',
   'about.q8': 'In quali lingue?',
-  'about.a7': 'S\u00ec, una volta aperta la pagina. Il menu offre anche una copia offline in un solo file. Solo la lettura delle planimetrie PDF e la conversione dei video di iPhone richiedono internet la prima volta.',
+  'about.a7': 'S\u00ec, una volta aperta la pagina. Il menu offre anche una copia offline in un solo file, che contiene tutto, anche il lettore PDF e il convertitore dei video di iPhone. Sul sito, questi due arrivano da vts-tool.com la prima volta che si usano.',
   'about.q7': 'Funziona senza internet?',
   'about.a6': 'Report PDF (l\u2019analisi tempi e, da Confronta / Report, il bilanciamento linea, il layout o entrambi), una presentazione PDF A3 del layout, una cartella Excel con le planimetrie e i tuoi fogli standard compilati se li usi.',
   'about.q6': 'Cosa posso esportare?',
@@ -10735,6 +11250,31 @@ I18N.it = {
   'hdr.offline': 'Copia offline',
   'hdr.offline.title': 'Scarica questo strumento come un unico file HTML che funziona senza internet',
   'hdr.theme': 'Tema: {v}',
+  'lang.en': 'Inglese',
+  'lang.fr': 'Francese',
+  'lang.de': 'Tedesco',
+  'lang.es': 'Spagnolo',
+  'lang.cs': 'Ceco',
+  'lang.it': 'Italiano',
+  'lang.pl': 'Polacco',
+  'lang.pt': 'Portoghese',
+  'steps.showSp': 'Punti di partenza (SP)',
+  'steps.sp': 'Punto di partenza (SP:) dei fogli',
+  'per.wait': 'durante un\u2019attesa',
+  'per.waitHint': 'Spuntata: svolta mentre l\u2019operatore attende (una macchina, per esempio). Conta nel contenuto di lavoro senza allungare il ciclo.',
+  'per.totWait': 'Di cui {s} s per pezzo durante le attese, senza allungare il ciclo.',
+  'mach.startBy': 'Avviata da',
+  'mach.startAuto': 'Fase ricavata dai tempi',
+  'mach.startNone': 'Nessuna fase (niente nella TCT)',
+  'mach.startHint': 'Il suo tempo attivo va nella TCT, colonna Automated work, sulla riga della fase che la avvia.',
+  'mach.found': 'Trovata: {what}.',
+  'mach.notFound': 'Nessuna fase trovata: scegli quella che la avvia.',
+  'bal.setBy': 'ciclo della linea con le attese di {name}',
+  'u.pts': 'p.p.',
+  'purge.menu': 'Cancella tutto',
+  'purge.title': 'Cancella tutto da questo browser',
+  'purge.text': 'Lo studio e la sua cronologia, le impostazioni, il video convertito qui, le planimetrie e i modelli Excel conservati dallo strumento in questo browser vengono cancellati, poi la pagina si riapre vuota. Niente di tutto ci\u00f2 \u00e8 mai stato inviato. Chiudi prima le altre schede dello strumento.',
+  'purge.ok': 'Cancella tutto',
   'hdr.lang': 'Lingua',
   'theme.auto': 'automatico',
   'theme.light': 'chiaro',
@@ -11066,7 +11606,7 @@ I18N.it = {
   'hint.4': 'Qualcuno o qualcosa interrompe',
   'hint.5': 'Qualsiasi altra cosa',
   'per.title': 'Attivit\u00e0 periodica a {time}',
-  'per.intro': 'Il tempo di un\u2019attivit\u00e0 periodica resta fuori da (a) e il ciclo resta utilizzabile. Con la sua frequenza, viene ripartito sui pezzi.',
+  'per.intro': 'Il tempo di un\u2019attivit\u00e0 periodica resta fuori da (a), e il suo ciclo non conta pi\u00f9 per il T1, come un ciclo con anomalie. Con la sua frequenza, l\u2019attivit\u00e0 viene ripartita sui pezzi.',
   'per.cancel': 'Annulla l\u2019attivit\u00e0 periodica',
   'per.d1': 'Cambio contenitore',
   'per.d2': 'Cestino degli scarti',
@@ -11083,7 +11623,7 @@ I18N.it = {
   'addTl.title': 'Aggiungi una linea del tempo',
   'addTl.text': 'Una nuova linea del tempo sullo stesso video, con le sue fasi.',
   'paste.title': 'Incolla un elenco di fasi per {name}',
-  'paste.text': 'Una fase per riga: <b>Codice; Nome; Tipo; Postazione</b>. Per gli spostamenti metti la distanza in metri al posto della postazione. Il tipo \u00e8 facoltativo ({def} per impostazione predefinita), anche la postazione. Funzionano anche le colonne copiate da Excel.',
+  'paste.text': 'Una fase per riga: <b>Codice; Nome; Tipo; Postazione</b>. Per gli spostamenti metti la distanza in metri al posto della postazione. Il tipo \u00e8 facoltativo ({def} per impostazione predefinita), anche la postazione. Una 6\u00aa colonna indica il punto di partenza (SP:) dei fogli: Codice; Nome; Tipo; Distanza; Postazione; Punto di partenza. Funzionano anche le colonne copiate da Excel.',
   'paste.ph': 'M10; Caricare il pezzo nella termoformatrice; Operazione; Termoformatrice\nM20; Andare al taglio a getto d\u2019acqua; Spostamento; 4\nQ30; Controllare i bordi tagliati; Controllo; Getto d\u2019acqua\nM40; Attendere il taglio a getto d\u2019acqua; Attesa; Getto d\u2019acqua',
   'paste.types': 'Tipi: Operazione, Controllo, Spostamento, Attesa, Macchina. Funzionano anche le parole in inglese e in francese.',
   'paste.replaceNote': 'Sostituire l\u2019elenco conserva la registrazione delle fasi il cui codice resta uguale. Le fasi gi\u00e0 registrate che mancano nel nuovo elenco restano alla fine.',
@@ -11569,7 +12109,7 @@ I18N.it = {
   'takt.title': 'Calcola il takt time',
   'takt.avail': 'Tempo disponibile (min)',
   'takt.demand': 'Domanda del cliente (pezzi)',
-  'takt.note': 'Entrambi sullo stesso periodo: un turno, un giorno\u2026 Il tempo disponibile \u00e8 il tempo di apertura meno le pause.',
+  'takt.note': 'Entrambi sullo stesso periodo: un turno, un giorno\u2026 Il tempo disponibile \u00e8 il tempo di apertura meno le fermate pianificate (pause, riunioni, manutenzione pianificata).',
   'takt.res': 'Takt time: {v} s',
   'takt.bad': 'Inserisci un tempo e una domanda maggiori di 0.',
   'res.disp': 'escursione {r} s \u00b7 dev. std. {sd} s',
@@ -11601,7 +12141,7 @@ I18N.it = {
   'ex.name': 'Linea A: 2 operatori e una pressa',
   'ex.desc': 'Un video fittizio con lo studio gi\u00e0 pronto: fasi elencate, una dozzina di cicli cronometrati, un\u2019attivit\u00e0 periodica, takt time, uno scenario di bilanciamento e il suo layout. Puoi cambiare tutto.',
   'ex.keep': 'Il tuo studio attuale viene messo da parte. Lo ritrovi quando esci dall\u2019esempio.',
-  'ex.net': 'Niente da scaricare: l\u2019esempio \u00e8 integrato nella pagina e funziona offline.',
+  'ex.net': 'Niente da installare: l\u2019esempio \u00e8 incluso nello strumento, e anche la copia offline lo contiene.',
   'ex.load': 'Carica l\u2019esempio',
   'ex.loaded': 'Esempio caricato. Guarda Risultati, poi Bilanciamento linea e Layout.',
   'ex.fail': 'Impossibile aprire l\u2019esempio in questo browser.',
@@ -11728,7 +12268,7 @@ I18N.it = {
   'legal.host': 'Hosting',
   'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Stati Uniti. Telefono: +1 877 448 4820.',
   'legal.data': 'Dati personali',
-  'legal.dataText': 'Le visite sono contate con GoatCounter: pagina vista, sito di provenienza, browser, dimensione dello schermo e paese. Nessun cookie, e gli indirizzi IP non vengono conservati. Il video e i tuoi studi non vengono mai caricati: restano sul tuo dispositivo. Il tuo studio e i tuoi modelli sono conservati in questo browser per ritrovarli; puoi eliminarli nelle impostazioni del browser. Un video filmato o convertito sul sito \u00e8 conservato in questo browser (solo l\u2019ultimo) perch\u00e9 si riapra con il tuo studio; puoi salvarlo sul tuo dispositivo o eliminare questa copia in qualsiasi momento. Per leggere una planimetria PDF o convertire un video iPhone, la prima volta il sito scarica da jsDelivr un lettore (pdf.js) o un convertitore (hevc.js, mp4box.js); i tuoi file non vengono inviati. In qualit\u00e0 di host, GitHub pu\u00f2 registrare dati tecnici di connessione, come gli indirizzi IP, per far funzionare e proteggere il servizio. Se scrivi via email, il tuo messaggio e il tuo indirizzo servono solo a risponderti e a migliorare lo strumento. Non vengono mai ceduti a nessuno. GoatCounter conta anche quali funzioni vengono usate (per esempio: esempio aperto, report stampato), mai il contenuto dei tuoi studi o video.',
+  'legal.dataText': 'Le visite sono contate con GoatCounter: pagina vista, sito di provenienza, browser, dimensione dello schermo e paese. Nessun cookie, e gli indirizzi IP non vengono conservati. Il video e i tuoi studi non vengono mai caricati: restano sul tuo dispositivo. Il tuo studio e i tuoi modelli sono conservati in questo browser per ritrovarli; puoi eliminarli nelle impostazioni del browser. Un video filmato o convertito sul sito \u00e8 conservato in questo browser (solo l\u2019ultimo) perch\u00e9 si riapra con il tuo studio; puoi salvarlo sul tuo dispositivo o eliminare questa copia in qualsiasi momento. Menu, Cancella tutto rimuove tutto in una volta. Per leggere una planimetria PDF o convertire un video iPhone, la prima volta il sito carica un lettore (pdf.js) o un convertitore (hevc.js, mp4box.js), file dello stesso vts-tool.com (la copia offline li contiene); i tuoi file non vengono inviati. In qualit\u00e0 di host, GitHub pu\u00f2 registrare dati tecnici di connessione, come gli indirizzi IP, per far funzionare e proteggere il servizio. Se scrivi via email, il tuo messaggio e il tuo indirizzo servono solo a risponderti e a migliorare lo strumento. Non vengono mai ceduti a nessuno. GoatCounter conta anche quali funzioni vengono usate (per esempio: esempio aperto, report stampato), mai il contenuto dei tuoi studi o video.',
   'legal.ip': 'Propriet\u00e0 intellettuale',
   'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Tutti i diritti riservati. L\u2019uso dello strumento \u00e8 gratuito, anche al lavoro.',
   'load.title': 'Carico degli operatori',
@@ -11786,6 +12326,7 @@ I18N_LOGIC.it = {
   'reason.oov': 'Fuori campo',
   'reason.end': 'Fine dello studio',
   'reason.deleted': 'Fase eliminata',
+  'reason.periodic': 'Attivit\u00e0 periodica',
   'log.head': ['Studio', 'Linea del tempo', 'Tipo evento', 'Ciclo', 'Inizio (s)', 'Fine (s)', 'Durata (s)', 'Codice', 'Fase', 'Tipo', 'Distanza (m)', 'Anomalia', 'Nota'],
   'sum.study': 'Studio',
   'sum.plant': 'Stabilimento',
@@ -11843,7 +12384,10 @@ I18N_LOGIC.it = {
   'sum.ppc': 'Pezzi per ciclo',
   'std.nOp1': '1 operatore',
   'std.nOps': '{n} operatori',
-  'ly.scenN': 'Scenario {n}'
+  'ly.scenN': 'Scenario {n}',
+  'std.ppcNote': '{n} pezzi per ciclo: takt {t} s \u00d7 {n}',
+  'per.waitTag': 'durante un\u2019attesa',
+  'std.c.per': 'attivit\u00e0 periodica {name}, {s} s'
 };
 I18N_XLW.it = {
   'sum': 'Riepilogo',
@@ -11974,13 +12518,13 @@ I18N_EX.it = { names: {
     'Line A': 'Linea A',
     'Operator 1': 'Operatore 1',
     'Take a part from the bin': 'Prendere un pezzo dal contenitore',
-    'Take the part on the table': 'Prendere il pezzo dal tavolo',
     'Walk to the press': 'Andare alla pressa',
     'Load the press': 'Caricare la pressa',
     'Wait for the press': 'Attendere la pressa',
     'Unload and put down': 'Scaricare e appoggiare',
     'Walk back to the bin': 'Tornare al contenitore',
     'Operator 2': 'Operatore 2',
+    'Take the part on the table': 'Prendere il pezzo dal tavolo',
     'Clip the fasteners': 'Inserire le clip',
     'Check the part': 'Controllare il pezzo',
     'Walk to the box': 'Andare alla scatola',
@@ -11989,39 +12533,79 @@ I18N_EX.it = { names: {
     'Fastener dropped': 'Clip caduta',
     'Change the box': 'Cambiare la scatola',
     'Press': 'Pressa',
+    'Press the part': 'Pressare il pezzo',
     'Open and eject': 'Aprire ed espellere',
     'Wait for loading': 'Attendere il carico'
 }, scen: { name: 'Controllo da parte dell\u2019operatore 1', note: '\u201cB30 Controllare il pezzo\u201d passa dall\u2019operatore 2 all\u2019operatore 1, che lo fa mentre la pressa lavora: l\u2019attesa dell\u2019operatore 1 passa da 2,1 s a 0,5 s.' } };
 
 /* LANG-pl: texts of the pl page, made with tools/i18n_lang.py (English where a key is missing) */
 I18N.pl = {
-  'news.v3.0': 'Wykres Yamazumi i jego scenariusze, przeci\u0105ganie mysz\u0105 lub palcem, raport PDF, adres vts-tool.com.',
-  'news.n3.0': 'Balansowanie linii',
-  'news.v3.2': 'Przyk\u0142ad gotowy do wypr\u00f3bowania, z filmem wbudowanym w stron\u0119.',
-  'news.n3.2': 'Przyk\u0142ad',
-  'news.v3.3': 'Maszyny liczone tylko w czasie aktywnym, w\u0105skie gard\u0142o i cykl linii na wykresie, wska\u017anik zbalansowania liczony wzgl\u0119dem w\u0105skiego gard\u0142a.',
-  'news.n3.3': 'Maszyny i w\u0105skie gard\u0142o',
-  'news.v3.4': 'Kontakt i opinie przez e-mail, wersja podana na dole strony.',
-  'news.n3.4': 'Kontakt',
-  'news.v3.5': 'Skoroszyt Excel bez szablonu, sztuki na cykl, czynno\u015bci okresowe z cz\u0119stotliwo\u015bci\u0105.',
-  'news.n3.5': 'Excel dla ka\u017cdej firmy',
-  'news.v3.6': 'Stanowiska umieszczone na rzucie, trasy z ich odleg\u0142o\u015bci\u0105, cofnij i pon\u00f3w, przyk\u0142adowy layout.',
-  'news.n3.6': 'Pierwszy layout',
-  'news.v4.0': 'Obecny layout i jego scenariusze, obracane stanowiska z dost\u0119pem z jednej strony, przej\u015bcia z detalem lub bez, etapy umieszczone na stanowiskach, por\u00f3wnanie i animacja.',
-  'news.n4.0': 'Stan obecny i scenariusze',
-  'news.v4.1': 'Rzuty DXF z AutoCAD-a z warstwami i blokami, stanowiska wyci\u0119te z obrazu, eksport layoutu do PNG, DXF i PDF, rzuty w arkuszach standardowych.',
-  'news.n4.1': 'Dok\u0142adne rzuty',
-  'news.v4.2': 'Ka\u017cdy scenariusz zawiera swoje balansowanie i sw\u00f3j layout. Jednostronicowy raport z usprawnienia, skoroszyt Excel dla ka\u017cdej firmy, T1 do wyboru z dok\u0142adno\u015bci\u0105 przy 95%, r\u0119cznie wpisywane czynno\u015bci okresowe, strona po francusku.',
-  'news.n4.2': 'Wsp\u00f3lne scenariusze i raporty',
-  'news.v4.3': 'Etapy umieszczane pytanie po pytaniu na okr\u0105g\u0142ych punktach wok\u00f3\u0142 stanowisk. Rzuty w PDF, scenariusze por\u00f3wnane obok siebie, skoroszyt Excel jednego scenariusza, szybki start.',
-  'news.n4.3': 'Umieszczanie etap\u00f3w',
-  'news.v5.3': 'Kolumna Stanowisko na karcie Etapy i we wklejanych listach. W layoucie ka\u017cde pytanie prowadzi wtedy do stanowiska etapu: nadal klikasz, gdzie dok\u0142adnie dochodzi operator i kt\u00f3r\u0119dy tam idzie. Nowo\u015bci wed\u0142ug wersji i l\u017cejsze strony: film przyk\u0142adu wczytuje si\u0119 dopiero, gdy go otworzysz.',
-  'news.n5.3': 'Stanowisko ka\u017cdego etapu',
-  'news.s1': 'Jeden klawisz na etap, aby zmierzy\u0107 czas na nagraniu: cykle, T1 i cykl referencyjny.',
-  'news.s2': 'Twoje arkusze standardowe wype\u0142nione na podstawie Twoich w\u0142asnych szablon\u00f3w Excel, czas taktu i raport PDF.',
-  'news.s3': 'Wykres Yamazumi ze scenariuszami zmienianymi przez przeci\u0105ganie, w\u0105skie gard\u0142o i cykl linii.',
-  'news.s4': 'Rzut gniazda, trasy ka\u017cdego operatora i te same scenariusze dla balansowania i layoutu.',
-  'news.s5': 'Narz\u0119dzie w o\u015bmiu j\u0119zykach, scenariusze por\u00f3wnane w raporcie PDF, pe\u0142na instrukcja i nowy wygl\u0105d.',
+  'nw.t1': 'Pomiar czasu i arkusze standardowe',
+  'nw.s1': 'Jeden klawisz na etap, aby zmierzy\u0107 czas na nagraniu, potem Twoje w\u0142asne wype\u0142nione arkusze standardowe, czas taktu i raport PDF.',
+  'nw.t1.0': 'Analiza czasu pracy z wideo',
+  'nw.d1.0': 'Jeden klawisz na etap, aby zmierzy\u0107 czas na nagraniu, z wieloma operatorami i maszynami: cykle, T1 i cykl referencyjny, problemy, o\u015b czasu, edytowalny dziennik, eksport CSV i JSON, automatyczny zapis i kopia offline.',
+  'nw.t1.1': 'Przej\u015bcia i oczekiwania jako etapy',
+  'nw.d1.1': 'Przej\u015bcia i oczekiwania zapisane klawiszami W i A jednym klikni\u0119ciem staj\u0105 si\u0119 etapami listy.',
+  'nw.t1.2': 'Kopia do arkuszy',
+  'nw.d1.2': 'Czasy kopiowane jako tabela do wklejenia w arkusze standardowe; od wersji 1.3 zast\u0105pione wype\u0142nionymi arkuszami.',
+  'nw.t1.3': 'Wype\u0142nione arkusze standardowe',
+  'nw.d1.3': 'Tw\u00f3j arkusz pomiaru czasu i tabela kombinacji wype\u0142nione na podstawie Twoich w\u0142asnych szablon\u00f3w Excel, przechowywanych w tej przegl\u0105darce. Szybka korekta etapu.',
+  'nw.t1.4': 'Jedna regu\u0142a zaokr\u0105glania',
+  'nw.d1.4': 'Wsz\u0119dzie te same zaokr\u0105glone czasy, na ekranie i w arkuszach; standardowe szablony s\u0105 rozpoznawane.',
+  'nw.t1.5': 'L\u017cejszy wygl\u0105d',
+  'nw.d1.5': 'L\u017cejszy wygl\u0105d w kolorach logo, z ciemnym motywem.',
+  'nw.t1.6': 'Nowe logo',
+  'nw.d1.6': 'Nowe logo, ekran startowy, kt\u00f3ry wyja\u015bnia narz\u0119dzie, i przypomnienie o zapisaniu analizy.',
+  'nw.t1.7': 'Czas taktu i raport',
+  'nw.d1.7': 'Czas taktu klienta, wykres obci\u0105\u017cenia operator\u00f3w i raport PDF do druku.',
+  'nw.t1.8': 'Warunki korzystania',
+  'nw.d1.8': 'Wszelkie prawa zastrze\u017cone, korzystanie bezp\u0142atne: warunki s\u0105 podlinkowane na dole strony.',
+  'nw.t1.9': 'Referencja i pe\u0142ny raport',
+  'nw.d1.9': 'Pole Referencja dla arkuszy, wska\u017aniki linii w raporcie PDF, informacje prawne.',
+  'nw.t2': 'Balansowanie linii i layout',
+  'nw.s2': 'Wykres Yamazumi i jego scenariusze, potem rzut gniazda i trasa ka\u017cdego operatora.',
+  'nw.t2.0': 'Balansowanie linii',
+  'nw.d2.0': 'Wykres Yamazumi i jego scenariusze, przeci\u0105ganie mysz\u0105 lub palcem, raport PDF, adres vts-tool.com.',
+  'nw.t2.1': 'Przyk\u0142ad',
+  'nw.d2.1': 'Przyk\u0142ad gotowy do wypr\u00f3bowania: kr\u00f3tkie wideo z analiz\u0105 i scenariuszem balansowania, pomoc i raport PDF balansowania.',
+  'nw.t2.2': 'Nag\u0142\u00f3wek i menu',
+  'nw.d2.2': 'Nazwa analizy w nag\u0142\u00f3wku, menu, obliczanie czasu taktu, dzia\u0142ania kaizen przy etapach i okno eksportu.',
+  'nw.t2.3': 'Maszyny i w\u0105skie gard\u0142o',
+  'nw.d2.3': 'Maszyny liczone tylko w czasie aktywnym, w\u0105skie gard\u0142o i cykl linii na wykresie, wska\u017anik zbalansowania liczony wzgl\u0119dem w\u0105skiego gard\u0142a.',
+  'nw.t2.4': 'Kontakt',
+  'nw.d2.4': 'Kontakt i opinie przez e-mail, wersja podana na dole strony.',
+  'nw.t2.5': 'Excel dla ka\u017cdej firmy',
+  'nw.d2.5': 'Skoroszyt Excel bez szablonu, sztuki na cykl, czynno\u015bci okresowe z cz\u0119stotliwo\u015bci\u0105.',
+  'nw.t2.6': 'Layout',
+  'nw.d2.6': 'Stanowiska rozmieszczone na rzucie w skali, trasa ka\u017cdego operatora z jej odleg\u0142o\u015bci\u0105, eksport DXF.',
+  'nw.t2.7': 'Layout w czterech krokach',
+  'nw.d2.7': 'Rzut, stanowiska, trasy, por\u00f3wnanie: layout prowadzony krok po kroku.',
+  'nw.t2.8': 'Cofnij i punkty po\u015brednie',
+  'nw.d2.8': 'Cofnij i pon\u00f3w w layoucie, punkty po\u015brednie na trasach i przyk\u0142adowy layout.',
+  'nw.t2.9': 'Stan obecny i scenariusze',
+  'nw.d2.9': 'Obecny layout i jego scenariusze, obracane stanowiska z dost\u0119pem z jednej strony, przej\u015bcia z detalem lub bez, etapy umieszczone na stanowiskach, por\u00f3wnanie i animacja.',
+  'nw.t3': 'Precyzyjne rzuty, osiem j\u0119zyk\u00f3w',
+  'nw.s3': 'Rzuty DXF i layout w arkuszach standardowych, wsp\u00f3lne scenariusze, osiem j\u0119zyk\u00f3w, instrukcja i pe\u0142niejsze arkusze.',
+  'nw.t3.0': 'Dok\u0142adne rzuty',
+  'nw.d3.0': 'Rzuty DXF z AutoCAD-a z warstwami i blokami, stanowiska wyci\u0119te z obrazu, eksport layoutu do PNG, DXF i PDF, rzuty w arkuszach standardowych.',
+  'nw.t3.1': 'Arkusze z layoutem',
+  'nw.d3.1': 'Odleg\u0142o\u015bci z layoutu w TCT, arkusz layoutu dla ka\u017cdego operatora, wype\u0142niony Work Cell Balancing i szybszy start.',
+  'nw.t3.2': 'T1 i warto\u015bci na sztuk\u0119',
+  'nw.d3.2': 'T1 do wyboru z jego dok\u0142adno\u015bci\u0105, wsz\u0119dzie pierwsze 20 cykli, czynno\u015bci okresowe liczone wsz\u0119dzie, wszystkie warto\u015bci na sztuk\u0119.',
+  'nw.t3.3': 'Wsp\u00f3lne scenariusze i raporty',
+  'nw.d3.3': 'Ka\u017cdy scenariusz zawiera swoje balansowanie i sw\u00f3j layout, z jedn\u0105 histori\u0105 cofania; jednostronicowy raport usprawnie\u0144.',
+  'nw.t3.4': 'Umieszczanie etap\u00f3w',
+  'nw.d3.4': 'Etapy umieszczane pytanie po pytaniu na okr\u0105g\u0142ych punktach wok\u00f3\u0142 stanowisk. Rzuty w PDF, scenariusze por\u00f3wnane obok siebie, skoroszyt Excel jednego scenariusza, szybki start.',
+  'nw.t3.5': 'Osiem j\u0119zyk\u00f3w',
+  'nw.d3.5': 'Angielski, francuski, niemiecki, hiszpa\u0144ski, czeski, w\u0142oski, polski i portugalski, ka\u017cdy na w\u0142asnej stronie; scenariusze por\u00f3wnane w jednym raporcie PDF.',
+  'nw.t3.6': 'Instrukcja',
+  'nw.d3.6': 'Szczeg\u00f3\u0142owa instrukcja po angielsku (vts-tool.com/guide/), sekcja po sekcji, zast\u0119puje dwie kr\u00f3tkie strony z poradnikiem.',
+  'nw.t3.7': 'Nowy wygl\u0105d',
+  'nw.d3.7': 'Nowy wygl\u0105d: logo w kszta\u0142cie pier\u015bcienia z czterema kolorami krok\u00f3w pod lini\u0105 taktu i dopasowane kolory strony.',
+  'nw.t3.8': 'Stanowisko ka\u017cdego etapu',
+  'nw.d3.8': 'Kolumna Stanowisko na karcie Etapy i we wklejanych listach. W layoucie ka\u017cde pytanie prowadzi wtedy do stanowiska etapu: nadal klikasz, gdzie dok\u0142adnie dochodzi operator i kt\u00f3r\u0119dy tam idzie. Nowo\u015bci wed\u0142ug wersji i l\u017cejsze strony: film przyk\u0142adu wczytuje si\u0119 dopiero, gdy go otworzysz.',
+  'nw.t3.9': 'Arkusze standardowe',
+  'nw.d3.9': 'W TCT: praca automatyczna maszyn, oczekiwania i punkty pocz\u0105tkowe, jeden czas cyklu procesu dla gniazda. Czynno\u015bci okresowe wykonywane podczas oczekiwania. Biblioteki z samej strony, Usu\u0144 wszystko, lista j\u0119zyk\u00f3w.',
   'off.fail': 'Nie uda\u0142o si\u0119 utworzy\u0107 kopii offline. Sprawd\u017a po\u0142\u0105czenie i spr\u00f3buj ponownie.',
   'off.prep': 'Przygotowanie kopii offline\u2026',
   'ly11.allDone': 'Dodane stanowiska: {n}. Przeci\u0105gnij je na ich miejsce.',
@@ -12041,7 +12625,7 @@ I18N.pl = {
   'xl.making': 'Tworzenie skoroszytu\u2026',
   'cv.bigGo': 'Konwertuj mimo to',
   'cv.small': 'Przekonwertowane wideo ma 720p i 30 klatek na sekund\u0119: wystarczy do pomiaru etap\u00f3w i \u0142atwiej si\u0119 po nim porusza\u0107.',
-  'cv.bigTip': 'Wskaz\u00f3wka: do pomiaru czasu wystarczy kr\u00f3tki fragment (3 do 5 cykli, 1 do 2 minut). Albo nagrywaj w MP4 (H.264), kt\u00f3ry otwiera si\u0119 bez konwersji: na iPhonie Ustawienia, Aparat, Formaty, Najbardziej zgodne.',
+  'cv.bigTip': 'Wskaz\u00f3wka: do pomiaru czasu wystarczy oko\u0142o dziesi\u0119ciu cykli, czyli kilka minut nagrania. Albo nagrywaj w MP4 (H.264), kt\u00f3ry otwiera si\u0119 bez konwersji: na iPhonie Ustawienia, Aparat, Formaty, Najbardziej zgodne.',
   'cv.bigTxt': 'To wideo ma {mb} MB ({dur}): konwersja w przegl\u0105darce mo\u017ce potrwa\u0107 kilka minut, a strona musi pozosta\u0107 otwarta.',
   'cv.bigT': 'Du\u017ce wideo',
   'ly10.presGo': 'Utw\u00f3rz prezentacj\u0119',
@@ -12085,21 +12669,9 @@ I18N.pl = {
   'ly10.opT': 'Widoczno\u015b\u0107 rzutu',
   'bal.movedLeg': 'Etap przekazany innemu operatorowi',
   'bal.movedFrom': 'przeniesiony od: {name}',
-  'news.v5.1': 'Szczeg\u00f3\u0142owa instrukcja po angielsku (vts-tool.com/guide/), sekcja po sekcji, zast\u0119puje dwie kr\u00f3tkie strony z poradnikiem.',
-  'news.n5.1': 'Instrukcja',
-  'news.v5.2': 'Nowy wygl\u0105d: logo w kszta\u0142cie pier\u015bcienia z czterema kolorami krok\u00f3w pod lini\u0105 taktu i dopasowane kolory strony.',
-  'news.n5.2': 'Nowy wygl\u0105d',
-  'news.v5': 'Angielski, francuski, niemiecki, hiszpa\u0144ski, czeski, w\u0142oski, polski i portugalski, ka\u017cdy na w\u0142asnej stronie. Pod narz\u0119dziem: przyk\u0142ad w liczbach, por\u00f3wnanie, zastosowania wed\u0142ug profilu i najcz\u0119\u015bciej zadawane pytania. Por\u00f3wnaj / Raporty: por\u00f3wnywane stany, a potem jeden raport PDF o layoucie, balansowaniu linii lub o obu. Nowy scenariusz wychodzi od stanu obecnego lub od dowolnego scenariusza. Widoczno\u015b\u0107 rzutu, ostre rzuty PDF przy powi\u0119kszeniu, punkt odniesienia blokowany z paska scenariuszy, prezentacja layoutu w formacie A3, rzuty w skoroszycie Excel. Du\u017ce filmy z iPhone\u2019a konwertowane do 720p. Wersje numerowane od V1 do V5.',
-  'news.n5': 'Osiem j\u0119zyk\u00f3w',
-  'news.n4': 'Layout',
-  'news.n3': 'Balansowanie linii',
-  'news.v2': 'Angielski i francuski. Twoje arkusze standardowe wype\u0142nione na podstawie Twoich w\u0142asnych szablon\u00f3w Excel (arkusz pomiaru czasu i tabela kombinacji, makra zachowane). Czas taktu, wykres obci\u0105\u017cenia operator\u00f3w i raport PDF. Szybka poprawa etap\u00f3w, pole Referencja, jasny i ciemny motyw.',
-  'news.n2': 'Arkusze standardowe i raporty',
-  'news.v1': 'Jeden klawisz na etap, aby zmierzy\u0107 czas na nagraniu, z wieloma operatorami i maszynami: cykle, T1 i cykl referencyjny, problemy, o\u015b czasu, edytowalny dziennik, eksport CSV i JSON, automatyczny zapis i kopia offline.',
-  'news.n1': 'Analiza czasu pracy z wideo',
   'about.a8': 'Angielski, francuski, niemiecki, hiszpa\u0144ski, czeski, w\u0142oski, polski i portugalski, ka\u017cdy z w\u0142asn\u0105 stron\u0105.',
   'about.q8': 'W jakich j\u0119zykach?',
-  'about.a7': 'Tak, gdy strona jest ju\u017c otwarta. Menu oferuje te\u017c kopi\u0119 offline w jednym pliku. Tylko czytanie rzut\u00f3w w PDF i konwersja film\u00f3w z iPhone\u2019a wymagaj\u0105 internetu za pierwszym razem.',
+  'about.a7': 'Tak, gdy strona jest ju\u017c otwarta. Menu oferuje te\u017c kopi\u0119 offline w jednym pliku, kt\u00f3ra zawiera wszystko, tak\u017ce czytnik PDF i konwerter film\u00f3w z iPhone\u2019a. Na stronie te dwa elementy s\u0105 wczytywane z vts-tool.com przy pierwszym u\u017cyciu.',
   'about.q7': 'Czy dzia\u0142a bez internetu?',
   'about.a6': 'Raporty PDF (pomiar czasu oraz, z Por\u00f3wnaj / Raporty, balansowanie linii, layout lub oba), prezentacja PDF layoutu w formacie A3, skoroszyt Excel z rzutami i Twoje w\u0142asne arkusze standardowe wype\u0142nione, je\u015bli ich u\u017cywasz.',
   'about.q6': 'Co mog\u0119 wyeksportowa\u0107?',
@@ -12359,6 +12931,31 @@ I18N.pl = {
   'hdr.offline': 'Kopia offline',
   'hdr.offline.title': 'Pobierz to narz\u0119dzie jako jeden plik HTML dzia\u0142aj\u0105cy bez internetu',
   'hdr.theme': 'Motyw: {v}',
+  'lang.en': 'Angielski',
+  'lang.fr': 'Francuski',
+  'lang.de': 'Niemiecki',
+  'lang.es': 'Hiszpa\u0144ski',
+  'lang.cs': 'Czeski',
+  'lang.it': 'W\u0142oski',
+  'lang.pl': 'Polski',
+  'lang.pt': 'Portugalski',
+  'steps.showSp': 'Punkty pocz\u0105tkowe (SP)',
+  'steps.sp': 'Punkt pocz\u0105tkowy (SP:) do arkuszy',
+  'per.wait': 'podczas oczekiwania',
+  'per.waitHint': 'Zaznaczone: wykonywana, gdy operator czeka (na przyk\u0142ad na maszyn\u0119). Liczy si\u0119 do zawarto\u015bci pracy, ale nie wyd\u0142u\u017ca cyklu.',
+  'per.totWait': 'W tym {s} s na sztuk\u0119 podczas oczekiwa\u0144, bez wyd\u0142u\u017cania cyklu.',
+  'mach.startBy': 'Uruchamiana przez',
+  'mach.startAuto': 'Etap ustalony na podstawie czas\u00f3w',
+  'mach.startNone': '\u017baden etap (nic w TCT)',
+  'mach.startHint': 'Jej czas aktywny trafia do TCT, kolumna Automated work, w wierszu etapu, kt\u00f3ry j\u0105 uruchamia.',
+  'mach.found': 'Ustalono: {what}.',
+  'mach.notFound': 'Nie znaleziono etapu: wybierz ten, kt\u00f3ry j\u0105 uruchamia.',
+  'bal.setBy': 'cykl linii z oczekiwaniami ({name})',
+  'u.pts': 'p.p.',
+  'purge.menu': 'Usu\u0144 wszystko',
+  'purge.title': 'Usu\u0144 wszystko z tej przegl\u0105darki',
+  'purge.text': 'Analiza i jej historia, ustawienia, przekonwertowane tutaj wideo, rzuty i szablony Excel przechowywane przez narz\u0119dzie w tej przegl\u0105darce zostan\u0105 usuni\u0119te, a strona otworzy si\u0119 ponownie pusta. Nic z tego nigdy nie zosta\u0142o wys\u0142ane. Najpierw zamknij pozosta\u0142e karty narz\u0119dzia.',
+  'purge.ok': 'Usu\u0144 wszystko',
   'hdr.lang': 'J\u0119zyk',
   'theme.auto': 'automatyczny',
   'theme.light': 'jasny',
@@ -12698,7 +13295,7 @@ I18N.pl = {
   'hint.4': 'Kto\u015b lub co\u015b przeszkadza',
   'hint.5': 'Cokolwiek innego',
   'per.title': 'Czynno\u015b\u0107 okresowa o {time}',
-  'per.intro': 'Czas czynno\u015bci okresowej pozostaje poza (a), a cykl pozostaje u\u017cyteczny. Wed\u0142ug cz\u0119stotliwo\u015bci jest rozk\u0142adany na sztuki.',
+  'per.intro': 'Czas czynno\u015bci okresowej pozostaje poza (a), a jej cykl nie liczy si\u0119 ju\u017c do T1, jak cykl z zak\u0142\u00f3ceniem. Wed\u0142ug cz\u0119stotliwo\u015bci czynno\u015b\u0107 jest rozk\u0142adana na sztuki.',
   'per.cancel': 'Anuluj czynno\u015b\u0107 okresow\u0105',
   'per.d1': 'Wymiana pojemnika',
   'per.d2': 'Kosz na odpady',
@@ -12716,7 +13313,7 @@ I18N.pl = {
   'addTl.title': 'Dodaj o\u015b czasu',
   'addTl.text': 'Nowa o\u015b czasu na tym samym wideo, z w\u0142asnymi etapami.',
   'paste.title': 'Wklej list\u0119 etap\u00f3w dla {name}',
-  'paste.text': 'Jeden etap w wierszu: <b>Kod; Nazwa; Typ; Stanowisko</b>. Dla przej\u015b\u0107 wpisz odleg\u0142o\u015b\u0107 w metrach zamiast stanowiska. Typ jest opcjonalny (domy\u015blnie {def}), stanowisko te\u017c. Dzia\u0142aj\u0105 te\u017c kolumny skopiowane z Excela.',
+  'paste.text': 'Jeden etap w wierszu: <b>Kod; Nazwa; Typ; Stanowisko</b>. Dla przej\u015b\u0107 wpisz odleg\u0142o\u015b\u0107 w metrach zamiast stanowiska. Typ jest opcjonalny (domy\u015blnie {def}), stanowisko te\u017c. 6. kolumna podaje punkt pocz\u0105tkowy (SP:) arkuszy: Kod; Nazwa; Typ; Odleg\u0142o\u015b\u0107; Stanowisko; Punkt pocz\u0105tkowy. Dzia\u0142aj\u0105 te\u017c kolumny skopiowane z Excela.',
   'paste.ph': 'M10; Za\u0142adunek detalu do termoformierki; Operacja; Termoformierka\nM20; Przej\u015bcie do wycinarki strumieniem wody; Przej\u015bcie; 4\nQ30; Kontrola ci\u0119tych kraw\u0119dzi; Kontrola; Wycinarka\nM40; Oczekiwanie na wycinark\u0119; Oczekiwanie; Wycinarka',
   'paste.types': 'Typy: Operacja, Kontrola, Przej\u015bcie, Oczekiwanie, Maszyna. Dzia\u0142aj\u0105 te\u017c s\u0142owa angielskie i francuskie.',
   'paste.replaceNote': 'Zast\u0105pienie listy zachowuje zapis etap\u00f3w, kt\u00f3rych kod si\u0119 nie zmienia. Ju\u017c zapisane etapy, kt\u00f3rych brak na nowej li\u015bcie, zostaj\u0105 na ko\u0144cu.',
@@ -13210,7 +13807,7 @@ I18N.pl = {
   'takt.title': 'Oblicz czas taktu',
   'takt.avail': 'Dost\u0119pny czas (min)',
   'takt.demand': 'Popyt klienta (sztuki)',
-  'takt.note': 'Oba w tym samym okresie: jedna zmiana, jeden dzie\u0144\u2026 Dost\u0119pny czas to czas pracy minus przerwy.',
+  'takt.note': 'Oba w tym samym okresie: jedna zmiana, jeden dzie\u0144\u2026 Dost\u0119pny czas to czas pracy minus planowane postoje (przerwy, spotkania, planowana konserwacja).',
   'takt.res': 'Czas taktu: {v} s',
   'takt.bad': 'Wpisz czas i popyt wi\u0119ksze od 0.',
   'res.disp': 'rozst\u0119p {r} s \u00b7 odch. std. {sd} s',
@@ -13242,7 +13839,7 @@ I18N.pl = {
   'ex.name': 'Linia A: 2 operator\u00f3w i prasa',
   'ex.desc': 'Fikcyjne wideo z gotow\u0105 analiz\u0105: wypisane etapy, tuzin zmierzonych cykli, czynno\u015b\u0107 okresowa, czas taktu, scenariusz balansowania i jego layout. Wszystko mo\u017cesz zmieni\u0107.',
   'ex.keep': 'Twoja obecna analiza zostaje od\u0142o\u017cona. Odzyskasz j\u0105 po wyj\u015bciu z przyk\u0142adu.',
-  'ex.net': 'Nic do pobrania: przyk\u0142ad jest wbudowany w stron\u0119 i dzia\u0142a offline.',
+  'ex.net': 'Nic do instalowania: przyk\u0142ad jest cz\u0119\u015bci\u0105 narz\u0119dzia, zawiera go te\u017c kopia offline.',
   'ex.load': 'Wczytaj przyk\u0142ad',
   'ex.loaded': 'Przyk\u0142ad wczytany. Zobacz Wyniki, potem Balansowanie linii i Layout.',
   'ex.fail': 'Nie uda\u0142o si\u0119 otworzy\u0107 przyk\u0142adu w tej przegl\u0105darce.',
@@ -13369,7 +13966,7 @@ I18N.pl = {
   'legal.host': 'Hosting',
   'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Stany Zjednoczone. Telefon: +1 877 448 4820.',
   'legal.data': 'Dane osobowe',
-  'legal.dataText': 'Wizyty s\u0105 liczone przez GoatCounter: wy\u015bwietlona strona, strona odsy\u0142aj\u0105ca, przegl\u0105darka, rozmiar ekranu i kraj. Bez plik\u00f3w cookie, a adresy IP nie s\u0105 zapisywane. Wideo i Twoje analizy nigdy nie s\u0105 przesy\u0142ane: zostaj\u0105 na Twoim urz\u0105dzeniu. Twoja analiza i Twoje szablony s\u0105 przechowywane w tej przegl\u0105darce, aby mo\u017cna je by\u0142o zn\u00f3w znale\u017a\u0107; mo\u017cesz je usun\u0105\u0107 w ustawieniach przegl\u0105darki. Wideo nagrane lub przekonwertowane na stronie jest przechowywane w tej przegl\u0105darce (tylko ostatnie), aby otworzy\u0142o si\u0119 ponownie z Twoj\u0105 analiz\u0105; mo\u017cesz je w ka\u017cdej chwili zapisa\u0107 na urz\u0105dzeniu lub usun\u0105\u0107 t\u0119 kopi\u0119. Aby odczyta\u0107 rzut PDF lub przekonwertowa\u0107 wideo z iPhone\u2019a, strona za pierwszym razem pobiera z jsDelivr czytnik (pdf.js) lub konwerter (hevc.js, mp4box.js); Twoje pliki nie s\u0105 wysy\u0142ane. Jako dostawca hostingu GitHub mo\u017ce rejestrowa\u0107 techniczne dane po\u0142\u0105czenia, takie jak adresy IP, aby obs\u0142ugiwa\u0107 i chroni\u0107 us\u0142ug\u0119. Je\u015bli napiszesz e-mail, Twoja wiadomo\u015b\u0107 i adres s\u0142u\u017c\u0105 tylko do odpowiedzi i ulepszania narz\u0119dzia. Nigdy nie s\u0105 nikomu przekazywane. GoatCounter liczy te\u017c, kt\u00f3re funkcje s\u0105 u\u017cywane (na przyk\u0142ad: otwarty przyk\u0142ad, wydrukowany raport), nigdy tre\u015bci Twoich analiz ani film\u00f3w.',
+  'legal.dataText': 'Wizyty s\u0105 liczone przez GoatCounter: wy\u015bwietlona strona, strona odsy\u0142aj\u0105ca, przegl\u0105darka, rozmiar ekranu i kraj. Bez plik\u00f3w cookie, a adresy IP nie s\u0105 zapisywane. Wideo i Twoje analizy nigdy nie s\u0105 przesy\u0142ane: zostaj\u0105 na Twoim urz\u0105dzeniu. Twoja analiza i Twoje szablony s\u0105 przechowywane w tej przegl\u0105darce, aby mo\u017cna je by\u0142o zn\u00f3w znale\u017a\u0107; mo\u017cesz je usun\u0105\u0107 w ustawieniach przegl\u0105darki. Wideo nagrane lub przekonwertowane na stronie jest przechowywane w tej przegl\u0105darce (tylko ostatnie), aby otworzy\u0142o si\u0119 ponownie z Twoj\u0105 analiz\u0105; mo\u017cesz je w ka\u017cdej chwili zapisa\u0107 na urz\u0105dzeniu lub usun\u0105\u0107 t\u0119 kopi\u0119. Menu, Usu\u0144 wszystko usuwa wszystko naraz. Aby odczyta\u0107 rzut PDF lub przekonwertowa\u0107 wideo z iPhone\u2019a, strona za pierwszym razem wczytuje czytnik (pdf.js) lub konwerter (hevc.js, mp4box.js), pliki z samego vts-tool.com (kopia offline je zawiera); Twoje pliki nie s\u0105 wysy\u0142ane. Jako dostawca hostingu GitHub mo\u017ce rejestrowa\u0107 techniczne dane po\u0142\u0105czenia, takie jak adresy IP, aby obs\u0142ugiwa\u0107 i chroni\u0107 us\u0142ug\u0119. Je\u015bli napiszesz e-mail, Twoja wiadomo\u015b\u0107 i adres s\u0142u\u017c\u0105 tylko do odpowiedzi i ulepszania narz\u0119dzia. Nigdy nie s\u0105 nikomu przekazywane. GoatCounter liczy te\u017c, kt\u00f3re funkcje s\u0105 u\u017cywane (na przyk\u0142ad: otwarty przyk\u0142ad, wydrukowany raport), nigdy tre\u015bci Twoich analiz ani film\u00f3w.',
   'legal.ip': 'W\u0142asno\u015b\u0107 intelektualna',
   'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Wszelkie prawa zastrze\u017cone. Korzystanie z narz\u0119dzia jest bezp\u0142atne, tak\u017ce w pracy.',
   'load.title': 'Obci\u0105\u017cenie operator\u00f3w',
@@ -13427,6 +14024,7 @@ I18N_LOGIC.pl = {
   'reason.oov': 'Poza kadrem',
   'reason.end': 'Koniec analizy',
   'reason.deleted': 'Usuni\u0119ty etap',
+  'reason.periodic': 'Czynno\u015b\u0107 okresowa',
   'log.head': ['Analiza', 'O\u015b czasu', 'Rodzaj', 'Cykl', 'Pocz\u0105tek (s)', 'Koniec (s)', 'Czas trwania (s)', 'Kod', 'Etap', 'Typ', 'Odleg\u0142o\u015b\u0107 (m)', 'Problem', 'Uwaga'],
   'sum.study': 'Analiza',
   'sum.plant': 'Zak\u0142ad',
@@ -13484,7 +14082,10 @@ I18N_LOGIC.pl = {
   'sum.ppc': 'Sztuk na cykl',
   'std.nOp1': '1 operator',
   'std.nOps': 'Operatorzy: {n}',
-  'ly.scenN': 'Scenariusz {n}'
+  'ly.scenN': 'Scenariusz {n}',
+  'std.ppcNote': 'Sztuk na cykl: {n}, takt {t} s \u00d7 {n}',
+  'per.waitTag': 'podczas oczekiwania',
+  'std.c.per': 'czynno\u015b\u0107 okresowa {name}, {s} s'
 };
 I18N_XLW.pl = {
   'sum': 'Podsumowanie',
@@ -13615,54 +14216,94 @@ I18N_EX.pl = { names: {
     'Line A': 'Linia A',
     'Operator 1': 'Operator 1',
     'Take a part from the bin': 'Pobranie detalu z pojemnika',
-    'Take the part on the table': 'Pobranie detalu ze sto\u0142u',
     'Walk to the press': 'Przej\u015bcie do prasy',
     'Load the press': 'Za\u0142adunek prasy',
     'Wait for the press': 'Oczekiwanie na pras\u0119',
     'Unload and put down': 'Wyj\u0119cie i od\u0142o\u017cenie',
     'Walk back to the bin': 'Powr\u00f3t do pojemnika',
     'Operator 2': 'Operator 2',
+    'Take the part on the table': 'Pobranie detalu ze sto\u0142u',
     'Clip the fasteners': 'Monta\u017c klips\u00f3w',
     'Check the part': 'Kontrola detalu',
     'Walk to the box': 'Przej\u015bcie do kartonu',
     'Pack': 'Pakowanie',
     'Walk back to the table': 'Powr\u00f3t do sto\u0142u',
-    'Fastener dropped': 'Upad\u0142y klips',
+    'Fastener dropped': 'Upuszczony klips',
     'Change the box': 'Wymiana kartonu',
     'Press': 'Prasa',
+    'Press the part': 'Prasowanie detalu',
     'Open and eject': 'Otwarcie i wyrzut',
     'Wait for loading': 'Oczekiwanie na za\u0142adunek'
 }, scen: { name: 'Kontrola przez operatora 1', note: '\u201eB30 Kontrola detalu\u201d przechodzi od operatora 2 do operatora 1, kt\u00f3ry wykonuje j\u0105, gdy prasa pracuje: oczekiwanie operatora 1 spada z 2,1 s do 0,5 s.' } };
 
 /* LANG-pt: texts of the pt page, made with tools/i18n_lang.py (English where a key is missing) */
 I18N.pt = {
-  'news.v3.0': 'O gr\u00e1fico Yamazumi e os seus cen\u00e1rios, arrastar e soltar com o mouse ou com o dedo, relat\u00f3rio PDF, o endere\u00e7o vts-tool.com.',
-  'news.n3.0': 'Balanceamento de linha',
-  'news.v3.2': 'Um exemplo pronto para testar, com o seu v\u00eddeo dentro da p\u00e1gina.',
-  'news.n3.2': 'Exemplo',
-  'news.v3.3': 'M\u00e1quinas contadas pelo tempo ativo, gargalo e ciclo da linha tra\u00e7ados no gr\u00e1fico, taxa de balanceamento calculada sobre o gargalo.',
-  'news.n3.3': 'M\u00e1quinas e gargalo',
-  'news.v3.4': 'Contato e opini\u00e3o por e-mail, vers\u00e3o indicada no rodap\u00e9 da p\u00e1gina.',
-  'news.n3.4': 'Contato',
-  'news.v3.5': 'Uma pasta de trabalho do Excel sem modelo, pe\u00e7as por ciclo, tarefas peri\u00f3dicas com a sua frequ\u00eancia.',
-  'news.n3.5': 'Excel para qualquer empresa',
-  'news.v3.6': 'Postos posicionados numa planta, trajetos com a sua dist\u00e2ncia, desfazer e refazer, um exemplo de layout.',
-  'news.n3.6': 'Primeiro layout',
-  'news.v4.0': 'O layout atual e os seus cen\u00e1rios, postos girados e acessados por um lado, deslocamentos com ou sem pe\u00e7a, etapas posicionadas nos postos, compara\u00e7\u00e3o e anima\u00e7\u00e3o.',
-  'news.n4.0': 'Estado atual e cen\u00e1rios',
-  'news.v4.1': 'Plantas DXF do AutoCAD com camadas e blocos, postos recortados de uma imagem, layout exportado em PNG, DXF e PDF, plantas nas planilhas padr\u00e3o.',
-  'news.n4.1': 'Plantas precisas',
-  'news.v4.2': 'Cada cen\u00e1rio re\u00fane o seu balanceamento e o seu layout. Relat\u00f3rio de melhoria de uma p\u00e1gina, pasta de trabalho do Excel para qualquer empresa, T1 \u00e0 escolha com a sua precis\u00e3o a 95%, tarefas peri\u00f3dicas digitadas, p\u00e1gina em franc\u00eas.',
-  'news.n4.2': 'Cen\u00e1rios comuns e relat\u00f3rios',
-  'news.v4.3': 'As etapas posicionadas uma pergunta por vez, em pontos redondos em volta dos postos. Plantas em PDF, cen\u00e1rios comparados lado a lado, pasta de trabalho do Excel de um cen\u00e1rio, in\u00edcio r\u00e1pido.',
-  'news.n4.3': 'Posicionar as etapas',
-  'news.v5.3': 'Uma coluna Posto na aba Etapas e nas listas coladas. No layout, cada pergunta vai ent\u00e3o para o posto da etapa: voc\u00ea continua clicando onde exatamente o operador chega e no caminho que ele faz at\u00e9 l\u00e1. Novidades por vers\u00e3o e p\u00e1ginas mais leves: o v\u00eddeo do exemplo s\u00f3 vem quando voc\u00ea o abre.',
-  'news.n5.3': 'Posto de cada etapa',
-  'news.s1': 'Uma tecla por etapa para cronometrar um v\u00eddeo: os ciclos, o T1 e o ciclo de refer\u00eancia.',
-  'news.s2': 'Suas planilhas padr\u00e3o preenchidas a partir dos seus pr\u00f3prios modelos do Excel, o takt time e o relat\u00f3rio PDF.',
-  'news.s3': 'O gr\u00e1fico Yamazumi, com cen\u00e1rios alterados arrastando e soltando, o gargalo e o ciclo da linha.',
-  'news.s4': 'A planta da c\u00e9lula, os trajetos de cada operador e os mesmos cen\u00e1rios para o balanceamento e o layout.',
-  'news.s5': 'A ferramenta em oito idiomas, os cen\u00e1rios comparados em um relat\u00f3rio PDF, um guia de utiliza\u00e7\u00e3o completo e uma nova imagem.',
+  'nw.t1': 'Estudo de tempos e planilhas padr\u00e3o',
+  'nw.s1': 'Uma tecla por etapa para cronometrar um v\u00eddeo, depois as suas pr\u00f3prias planilhas padr\u00e3o preenchidas, o takt time e o relat\u00f3rio PDF.',
+  'nw.t1.0': 'Estudo de tempos por v\u00eddeo',
+  'nw.d1.0': 'Uma tecla por etapa para cronometrar um v\u00eddeo, com v\u00e1rios operadores e m\u00e1quinas: ciclos, T1 e ciclo de refer\u00eancia, anomalias, linha do tempo, registro edit\u00e1vel, exporta\u00e7\u00e3o CSV e JSON, salvamento autom\u00e1tico e c\u00f3pia offline.',
+  'nw.t1.1': 'Deslocamentos e esperas como etapas',
+  'nw.d1.1': 'Os deslocamentos e esperas registrados com W e A viram etapas da lista com um clique.',
+  'nw.t1.2': 'C\u00f3pia para as planilhas',
+  'nw.d1.2': 'Os tempos copiados como tabela para colar nas planilhas padr\u00e3o; a partir da 1.3, substitu\u00eddos pelas planilhas preenchidas.',
+  'nw.t1.3': 'Planilhas padr\u00e3o preenchidas',
+  'nw.d1.3': 'Sua folha de medi\u00e7\u00e3o de tempos e sua tabela de combina\u00e7\u00e3o preenchidas a partir dos seus pr\u00f3prios modelos do Excel, guardados neste navegador. Corre\u00e7\u00e3o r\u00e1pida de uma etapa.',
+  'nw.t1.4': 'Uma s\u00f3 regra de arredondamento',
+  'nw.d1.4': 'Os mesmos tempos arredondados em todo lugar, na tela e nas planilhas; os modelos padr\u00e3o s\u00e3o reconhecidos.',
+  'nw.t1.5': 'Visual mais leve',
+  'nw.d1.5': 'Um visual mais leve nas cores do logotipo, com tema escuro.',
+  'nw.t1.6': 'Novo logotipo',
+  'nw.d1.6': 'Um novo logotipo, uma tela inicial que explica a ferramenta e um lembrete para salvar o estudo.',
+  'nw.t1.7': 'Takt time e relat\u00f3rio',
+  'nw.d1.7': 'Takt time do cliente, gr\u00e1fico de carga dos operadores e relat\u00f3rio PDF para imprimir.',
+  'nw.t1.8': 'Termos de uso',
+  'nw.d1.8': 'Todos os direitos reservados, uso gratuito: os termos est\u00e3o no link no fim da p\u00e1gina.',
+  'nw.t1.9': 'Refer\u00eancia e relat\u00f3rio completo',
+  'nw.d1.9': 'Um campo Refer\u00eancia para as planilhas, os indicadores da linha no relat\u00f3rio PDF, o aviso legal.',
+  'nw.t2': 'Balanceamento de linha e layout',
+  'nw.s2': 'O gr\u00e1fico Yamazumi e os seus cen\u00e1rios, depois a planta da c\u00e9lula e o trajeto de cada operador.',
+  'nw.t2.0': 'Balanceamento de linha',
+  'nw.d2.0': 'O gr\u00e1fico Yamazumi e os seus cen\u00e1rios, arrastar e soltar com o mouse ou com o dedo, relat\u00f3rio PDF, o endere\u00e7o vts-tool.com.',
+  'nw.t2.1': 'Exemplo',
+  'nw.d2.1': 'Um exemplo pronto para experimentar: um v\u00eddeo curto com o seu estudo e um cen\u00e1rio de balanceamento, a ajuda e o relat\u00f3rio PDF do balanceamento.',
+  'nw.t2.2': 'Cabe\u00e7alho e menu',
+  'nw.d2.2': 'O nome do estudo no cabe\u00e7alho, um menu, o c\u00e1lculo do takt time, a\u00e7\u00f5es kaizen nas etapas e uma janela de exporta\u00e7\u00e3o.',
+  'nw.t2.3': 'M\u00e1quinas e gargalo',
+  'nw.d2.3': 'M\u00e1quinas contadas pelo tempo ativo, gargalo e ciclo da linha tra\u00e7ados no gr\u00e1fico, taxa de balanceamento calculada sobre o gargalo.',
+  'nw.t2.4': 'Contato',
+  'nw.d2.4': 'Contato e opini\u00e3o por e-mail, vers\u00e3o indicada no rodap\u00e9 da p\u00e1gina.',
+  'nw.t2.5': 'Excel para qualquer empresa',
+  'nw.d2.5': 'Uma pasta de trabalho do Excel sem modelo, pe\u00e7as por ciclo, tarefas peri\u00f3dicas com a sua frequ\u00eancia.',
+  'nw.t2.6': 'Layout',
+  'nw.d2.6': 'Postos colocados numa planta em escala, o trajeto de cada operador com a sua dist\u00e2ncia, exporta\u00e7\u00e3o DXF.',
+  'nw.t2.7': 'Layout em quatro passos',
+  'nw.d2.7': 'Planta, postos, trajetos, comparar: o layout guiado passo a passo.',
+  'nw.t2.8': 'Desfazer e pontos de passagem',
+  'nw.d2.8': 'Desfazer e refazer no layout, pontos de passagem nos trajetos e um layout de exemplo.',
+  'nw.t2.9': 'Estado atual e cen\u00e1rios',
+  'nw.d2.9': 'O layout atual e os seus cen\u00e1rios, postos girados e acessados por um lado, deslocamentos com ou sem pe\u00e7a, etapas posicionadas nos postos, compara\u00e7\u00e3o e anima\u00e7\u00e3o.',
+  'nw.t3': 'Plantas precisas, oito idiomas',
+  'nw.s3': 'Plantas DXF e o layout nas planilhas padr\u00e3o, cen\u00e1rios compartilhados, oito idiomas, o guia de utiliza\u00e7\u00e3o e planilhas mais completas.',
+  'nw.t3.0': 'Plantas precisas',
+  'nw.d3.0': 'Plantas DXF do AutoCAD com camadas e blocos, postos recortados de uma imagem, layout exportado em PNG, DXF e PDF, plantas nas planilhas padr\u00e3o.',
+  'nw.t3.1': 'Planilhas com o layout',
+  'nw.d3.1': 'As dist\u00e2ncias do layout na TCT, uma planilha de layout por operador, a Work Cell Balancing preenchida e uma abertura mais r\u00e1pida.',
+  'nw.t3.2': 'T1 e valores por pe\u00e7a',
+  'nw.d3.2': 'T1 \u00e0 escolha com a sua precis\u00e3o, os 20 primeiros ciclos em todo lugar, as tarefas peri\u00f3dicas contadas em todo lugar, todos os valores por pe\u00e7a.',
+  'nw.t3.3': 'Cen\u00e1rios comuns e relat\u00f3rios',
+  'nw.d3.3': 'Cada cen\u00e1rio cont\u00e9m o seu balanceamento e o seu layout, com um s\u00f3 hist\u00f3rico para desfazer; um relat\u00f3rio de melhoria de uma p\u00e1gina.',
+  'nw.t3.4': 'Posicionar as etapas',
+  'nw.d3.4': 'As etapas posicionadas uma pergunta por vez, em pontos redondos em volta dos postos. Plantas em PDF, cen\u00e1rios comparados lado a lado, pasta de trabalho do Excel de um cen\u00e1rio, in\u00edcio r\u00e1pido.',
+  'nw.t3.5': 'Oito idiomas',
+  'nw.d3.5': 'Ingl\u00eas, franc\u00eas, alem\u00e3o, espanhol, tcheco, italiano, polon\u00eas e portugu\u00eas, cada um na sua p\u00e1gina; os cen\u00e1rios comparados em um \u00fanico relat\u00f3rio PDF.',
+  'nw.t3.6': 'Guia de utiliza\u00e7\u00e3o',
+  'nw.d3.6': 'Um guia de utiliza\u00e7\u00e3o detalhado em ingl\u00eas (vts-tool.com/guide/), sec\u00e7\u00e3o a sec\u00e7\u00e3o, substitui as duas p\u00e1ginas de guia curtas.',
+  'nw.t3.7': 'Nova imagem',
+  'nw.d3.7': 'Nova imagem: o log\u00f3tipo em anel, com as quatro cores das etapas sob a linha de takt, e as cores do site a condizer.',
+  'nw.t3.8': 'Posto de cada etapa',
+  'nw.d3.8': 'Uma coluna Posto na aba Etapas e nas listas coladas. No layout, cada pergunta vai ent\u00e3o para o posto da etapa: voc\u00ea continua clicando onde exatamente o operador chega e no caminho que ele faz at\u00e9 l\u00e1. Novidades por vers\u00e3o e p\u00e1ginas mais leves: o v\u00eddeo do exemplo s\u00f3 vem quando voc\u00ea o abre.',
+  'nw.t3.9': 'Planilhas padr\u00e3o',
+  'nw.d3.9': 'Na TCT: trabalho autom\u00e1tico das m\u00e1quinas, esperas e pontos de partida, um \u00fanico tempo de ciclo de processo para a c\u00e9lula. Tarefas peri\u00f3dicas feitas durante uma espera. Bibliotecas servidas pelo site, Apagar tudo, lista de idiomas.',
   'off.fail': 'N\u00e3o foi poss\u00edvel fazer a c\u00f3pia offline. Verifique a conex\u00e3o e tente de novo.',
   'off.prep': 'Preparando a c\u00f3pia offline\u2026',
   'ly11.allDone': 'Postos adicionados: {n}. Arraste-os para o seu lugar.',
@@ -13682,7 +14323,7 @@ I18N.pt = {
   'xl.making': 'Preparando a pasta de trabalho\u2026',
   'cv.bigGo': 'Converter mesmo assim',
   'cv.small': 'O v\u00eddeo convertido fica em 720p a 30 quadros por segundo: suficiente para cronometrar as etapas e mais leve para navegar.',
-  'cv.bigTip': 'Dica: um trecho curto basta para um estudo de tempos (3 a 5 ciclos, 1 a 2 minutos). Ou grave em MP4 (H.264), que abre sem convers\u00e3o: no iPhone, Ajustes, C\u00e2mera, Formatos, Mais Compat\u00edvel.',
+  'cv.bigTip': 'Dica: uns dez ciclos bastam para um estudo de tempos, ou seja, alguns minutos de v\u00eddeo. Ou grave em MP4 (H.264), que abre sem convers\u00e3o: no iPhone, Ajustes, C\u00e2mera, Formatos, Mais Compat\u00edvel.',
   'cv.bigTxt': 'Este v\u00eddeo tem {mb} MB ({dur}): convert\u00ea-lo no navegador pode levar v\u00e1rios minutos, e a p\u00e1gina precisa ficar aberta.',
   'cv.bigT': 'Um v\u00eddeo pesado',
   'ly10.presGo': 'Fazer a apresenta\u00e7\u00e3o',
@@ -13726,21 +14367,9 @@ I18N.pt = {
   'ly10.opT': 'Opacidade da planta',
   'bal.movedLeg': 'Etapa passada para outro operador',
   'bal.movedFrom': 'veio de {name}',
-  'news.v5.1': 'Um guia de utiliza\u00e7\u00e3o detalhado em ingl\u00eas (vts-tool.com/guide/), sec\u00e7\u00e3o a sec\u00e7\u00e3o, substitui as duas p\u00e1ginas de guia curtas.',
-  'news.n5.1': 'Guia de utiliza\u00e7\u00e3o',
-  'news.v5.2': 'Nova imagem: o log\u00f3tipo em anel, com as quatro cores das etapas sob a linha de takt, e as cores do site a condizer.',
-  'news.n5.2': 'Nova imagem',
-  'news.v5': 'Ingl\u00eas, franc\u00eas, alem\u00e3o, espanhol, tcheco, italiano, polon\u00eas e portugu\u00eas, cada um com sua p\u00e1gina. Abaixo da ferramenta: o exemplo em n\u00fameros, uma compara\u00e7\u00e3o, usos por perfil e perguntas frequentes. Comparar / Relat\u00f3rios: os estados comparados, depois um s\u00f3 relat\u00f3rio PDF sobre o layout, o balanceamento de linha ou os dois. Um novo cen\u00e1rio parte do estado atual ou de qualquer cen\u00e1rio. Opacidade da planta, plantas PDF n\u00edtidas no zoom, refer\u00eancia bloqueada pela barra dos cen\u00e1rios, apresenta\u00e7\u00e3o A3 do layout, plantas na pasta de trabalho do Excel. V\u00eddeos pesados de iPhone convertidos em 720p. Vers\u00f5es numeradas de V1 a V5.',
-  'news.n5': 'Oito idiomas',
-  'news.n4': 'Layout',
-  'news.n3': 'Balanceamento de linha',
-  'news.v2': 'Ingl\u00eas e franc\u00eas. Suas planilhas padr\u00e3o preenchidas a partir dos seus pr\u00f3prios modelos do Excel (folha de cronometragem e tabela de combina\u00e7\u00e3o, macros mantidas). Takt time, gr\u00e1fico de carga dos operadores e relat\u00f3rio PDF. Corre\u00e7\u00e3o r\u00e1pida das etapas, campo Refer\u00eancia, temas claro e escuro.',
-  'news.n2': 'Planilhas padr\u00e3o e relat\u00f3rios',
-  'news.v1': 'Uma tecla por etapa para cronometrar um v\u00eddeo, com v\u00e1rios operadores e m\u00e1quinas: ciclos, T1 e ciclo de refer\u00eancia, anomalias, linha do tempo, registro edit\u00e1vel, exporta\u00e7\u00e3o CSV e JSON, salvamento autom\u00e1tico e c\u00f3pia offline.',
-  'news.n1': 'Estudo de tempos por v\u00eddeo',
   'about.a8': 'Ingl\u00eas, franc\u00eas, alem\u00e3o, espanhol, tcheco, italiano, polon\u00eas e portugu\u00eas, cada um com sua pr\u00f3pria p\u00e1gina.',
   'about.q8': 'Em quais idiomas?',
-  'about.a7': 'Sim, depois que a p\u00e1gina est\u00e1 aberta. O menu tamb\u00e9m oferece uma c\u00f3pia offline em um \u00fanico arquivo. S\u00f3 a leitura de plantas em PDF e a convers\u00e3o de v\u00eddeos de iPhone precisam de internet na primeira vez.',
+  'about.a7': 'Sim, depois que a p\u00e1gina est\u00e1 aberta. O menu tamb\u00e9m oferece uma c\u00f3pia offline em um \u00fanico arquivo, que cont\u00e9m tudo, inclusive o leitor de PDF e o conversor de v\u00eddeos de iPhone. No site, esses dois v\u00eam de vts-tool.com na primeira vez que s\u00e3o usados.',
   'about.q7': 'Funciona sem internet?',
   'about.a6': 'Relat\u00f3rios PDF (o estudo de tempos e, em Comparar / Relat\u00f3rios, o balanceamento de linha, o layout ou os dois), uma apresenta\u00e7\u00e3o PDF A3 do layout, uma pasta de trabalho do Excel com as plantas e suas pr\u00f3prias planilhas padr\u00e3o preenchidas, se voc\u00ea as usa.',
   'about.q6': 'O que posso exportar?',
@@ -13992,6 +14621,31 @@ I18N.pt = {
   'hdr.offline': 'C\u00f3pia offline',
   'hdr.offline.title': 'Baixar esta ferramenta como um \u00fanico arquivo HTML que funciona sem internet',
   'hdr.theme': 'Tema: {v}',
+  'lang.en': 'Ingl\u00eas',
+  'lang.fr': 'Franc\u00eas',
+  'lang.de': 'Alem\u00e3o',
+  'lang.es': 'Espanhol',
+  'lang.cs': 'Tcheco',
+  'lang.it': 'Italiano',
+  'lang.pl': 'Polon\u00eas',
+  'lang.pt': 'Portugu\u00eas',
+  'steps.showSp': 'Pontos de partida (SP)',
+  'steps.sp': 'Ponto de partida (SP:) das planilhas',
+  'per.wait': 'durante uma espera',
+  'per.waitHint': 'Marcada: feita enquanto o operador espera (uma m\u00e1quina, por exemplo). Conta no conte\u00fado de trabalho sem alongar o ciclo.',
+  'per.totWait': 'Dos quais {s} s por pe\u00e7a durante esperas, sem alongar o ciclo.',
+  'mach.startBy': 'Acionada por',
+  'mach.startAuto': 'Etapa deduzida dos tempos',
+  'mach.startNone': 'Nenhuma etapa (nada na TCT)',
+  'mach.startHint': 'O seu tempo ativo vai para a TCT, coluna Automated work, na linha da etapa que a aciona.',
+  'mach.found': 'Encontrada: {what}.',
+  'mach.notFound': 'Nenhuma etapa encontrada: escolha a que a aciona.',
+  'bal.setBy': 'ciclo da linha com as esperas de {name}',
+  'u.pts': 'p.p.',
+  'purge.menu': 'Apagar tudo',
+  'purge.title': 'Apagar tudo deste navegador',
+  'purge.text': 'O estudo e o seu hist\u00f3rico, as configura\u00e7\u00f5es, o v\u00eddeo convertido aqui, as plantas e os modelos do Excel guardados pela ferramenta neste navegador s\u00e3o apagados, e a p\u00e1gina reabre vazia. Nada disso foi enviado a lugar nenhum. Feche antes as outras abas da ferramenta.',
+  'purge.ok': 'Apagar tudo',
   'hdr.lang': 'Idioma',
   'theme.auto': 'autom\u00e1tico',
   'theme.light': 'claro',
@@ -14323,7 +14977,7 @@ I18N.pt = {
   'hint.4': 'Algu\u00e9m ou algo interrompe',
   'hint.5': 'Qualquer outra coisa',
   'per.title': 'Tarefa peri\u00f3dica em {time}',
-  'per.intro': 'O tempo de uma tarefa peri\u00f3dica fica fora de (a) e o ciclo continua utiliz\u00e1vel. Com sua frequ\u00eancia, ele \u00e9 distribu\u00eddo entre as pe\u00e7as.',
+  'per.intro': 'O tempo de uma tarefa peri\u00f3dica fica fora de (a), e o seu ciclo deixa de contar para o T1, como um ciclo com anomalia. Com a sua frequ\u00eancia, a tarefa \u00e9 distribu\u00edda entre as pe\u00e7as.',
   'per.cancel': 'Cancelar a tarefa peri\u00f3dica',
   'per.d1': 'Troca de cont\u00eainer',
   'per.d2': 'Lixeira de refugo',
@@ -14340,7 +14994,7 @@ I18N.pt = {
   'addTl.title': 'Adicionar uma linha do tempo',
   'addTl.text': 'Uma nova linha do tempo sobre o mesmo v\u00eddeo, com suas pr\u00f3prias etapas.',
   'paste.title': 'Colar uma lista de etapas para {name}',
-  'paste.text': 'Uma etapa por linha: <b>C\u00f3digo; Nome; Tipo; Posto</b>. Para os deslocamentos, coloque a dist\u00e2ncia em metros no lugar do posto. O tipo \u00e9 opcional ({def} por padr\u00e3o), o posto tamb\u00e9m. Colunas copiadas do Excel tamb\u00e9m funcionam.',
+  'paste.text': 'Uma etapa por linha: <b>C\u00f3digo; Nome; Tipo; Posto</b>. Para os deslocamentos, coloque a dist\u00e2ncia em metros no lugar do posto. O tipo \u00e9 opcional ({def} por padr\u00e3o), o posto tamb\u00e9m. Uma 6.\u00aa coluna indica o ponto de partida (SP:) das planilhas: C\u00f3digo; Nome; Tipo; Dist\u00e2ncia; Posto; Ponto de partida. Colunas copiadas do Excel tamb\u00e9m funcionam.',
   'paste.ph': 'M10; Colocar a pe\u00e7a na termoformadora; Opera\u00e7\u00e3o; Termoformadora\nM20; Ir at\u00e9 o corte a jato de \u00e1gua; Deslocamento; 4\nQ30; Inspecionar as bordas cortadas; Inspe\u00e7\u00e3o; Jato de \u00e1gua\nM40; Esperar o corte a jato de \u00e1gua; Espera; Jato de \u00e1gua',
   'paste.types': 'Tipos: Opera\u00e7\u00e3o, Inspe\u00e7\u00e3o, Deslocamento, Espera, M\u00e1quina. Palavras em ingl\u00eas e em franc\u00eas tamb\u00e9m funcionam.',
   'paste.replaceNote': 'Substituir a lista mant\u00e9m o registro das etapas cujo c\u00f3digo continua igual. As etapas j\u00e1 registradas que faltam na nova lista ficam no final.',
@@ -14826,7 +15480,7 @@ I18N.pt = {
   'takt.title': 'Calcular o takt time',
   'takt.avail': 'Tempo dispon\u00edvel (min)',
   'takt.demand': 'Demanda do cliente (pe\u00e7as)',
-  'takt.note': 'Os dois no mesmo per\u00edodo: um turno, um dia\u2026 O tempo dispon\u00edvel \u00e9 o tempo de abertura menos as pausas.',
+  'takt.note': 'Os dois no mesmo per\u00edodo: um turno, um dia\u2026 O tempo dispon\u00edvel \u00e9 o tempo de abertura menos as paradas planejadas (pausas, reuni\u00f5es, manuten\u00e7\u00e3o planejada).',
   'takt.res': 'Takt time: {v} s',
   'takt.bad': 'Digite um tempo e uma demanda maiores que 0.',
   'res.disp': 'amplitude {r} s \u00b7 desvio padr\u00e3o {sd} s',
@@ -14858,7 +15512,7 @@ I18N.pt = {
   'ex.name': 'Linha A: 2 operadores e uma prensa',
   'ex.desc': 'Um v\u00eddeo fict\u00edcio com o estudo pronto: etapas listadas, uma d\u00fazia de ciclos cronometrados, uma tarefa peri\u00f3dica, takt time, um cen\u00e1rio de balanceamento e seu layout. Voc\u00ea pode mudar tudo.',
   'ex.keep': 'Seu estudo atual fica guardado de lado. Voc\u00ea o recupera ao sair do exemplo.',
-  'ex.net': 'Nada para baixar: o exemplo est\u00e1 embutido na p\u00e1gina e funciona offline.',
+  'ex.net': 'Nada para instalar: o exemplo vem com a ferramenta, e a c\u00f3pia offline tamb\u00e9m o inclui.',
   'ex.load': 'Carregar o exemplo',
   'ex.loaded': 'Exemplo carregado. Veja Resultados, depois Balanceamento de linha e Layout.',
   'ex.fail': 'N\u00e3o foi poss\u00edvel abrir o exemplo neste navegador.',
@@ -14985,7 +15639,7 @@ I18N.pt = {
   'legal.host': 'Hospedagem',
   'legal.hostText': 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Estados Unidos. Telefone: +1 877 448 4820.',
   'legal.data': 'Dados pessoais',
-  'legal.dataText': 'As visitas s\u00e3o contadas com o GoatCounter: p\u00e1gina vista, site de origem, navegador, tamanho da tela e pa\u00eds. Sem cookies, e os endere\u00e7os IP n\u00e3o s\u00e3o guardados. O v\u00eddeo e seus estudos nunca s\u00e3o enviados: ficam no seu aparelho. Seu estudo e seus modelos ficam guardados neste navegador para voc\u00ea reencontr\u00e1-los; voc\u00ea pode apag\u00e1-los nas configura\u00e7\u00f5es do navegador. Um v\u00eddeo gravado ou convertido no site fica guardado neste navegador (s\u00f3 o \u00faltimo) para abrir de novo com seu estudo; voc\u00ea pode salv\u00e1-lo no seu aparelho ou apagar esta c\u00f3pia a qualquer momento. Para ler uma planta em PDF ou converter um v\u00eddeo de iPhone, o site baixa do jsDelivr um leitor (pdf.js) ou um conversor (hevc.js, mp4box.js) na primeira vez; seus arquivos n\u00e3o s\u00e3o enviados. Como hospedagem, o GitHub pode registrar dados t\u00e9cnicos de conex\u00e3o, como endere\u00e7os IP, para operar e proteger o servi\u00e7o. Se voc\u00ea escrever por e-mail, sua mensagem e seu endere\u00e7o s\u00f3 servem para responder a voc\u00ea e melhorar a ferramenta. Nunca s\u00e3o repassados a ningu\u00e9m. O GoatCounter tamb\u00e9m conta quais fun\u00e7\u00f5es s\u00e3o usadas (por exemplo: exemplo aberto, relat\u00f3rio impresso), nunca o conte\u00fado dos seus estudos ou v\u00eddeos.',
+  'legal.dataText': 'As visitas s\u00e3o contadas com o GoatCounter: p\u00e1gina vista, site de origem, navegador, tamanho da tela e pa\u00eds. Sem cookies, e os endere\u00e7os IP n\u00e3o s\u00e3o guardados. O v\u00eddeo e seus estudos nunca s\u00e3o enviados: ficam no seu aparelho. Seu estudo e seus modelos ficam guardados neste navegador para voc\u00ea reencontr\u00e1-los; voc\u00ea pode apag\u00e1-los nas configura\u00e7\u00f5es do navegador. Um v\u00eddeo gravado ou convertido no site fica guardado neste navegador (s\u00f3 o \u00faltimo) para abrir de novo com seu estudo; voc\u00ea pode salv\u00e1-lo no seu aparelho ou apagar esta c\u00f3pia a qualquer momento. Menu, Apagar tudo apaga tudo de uma vez. Para ler uma planta em PDF ou converter um v\u00eddeo de iPhone, o site carrega na primeira vez um leitor (pdf.js) ou um conversor (hevc.js, mp4box.js), arquivos do pr\u00f3prio vts-tool.com (a c\u00f3pia offline os cont\u00e9m); seus arquivos n\u00e3o s\u00e3o enviados. Como hospedagem, o GitHub pode registrar dados t\u00e9cnicos de conex\u00e3o, como endere\u00e7os IP, para operar e proteger o servi\u00e7o. Se voc\u00ea escrever por e-mail, sua mensagem e seu endere\u00e7o s\u00f3 servem para responder a voc\u00ea e melhorar a ferramenta. Nunca s\u00e3o repassados a ningu\u00e9m. O GoatCounter tamb\u00e9m conta quais fun\u00e7\u00f5es s\u00e3o usadas (por exemplo: exemplo aberto, relat\u00f3rio impresso), nunca o conte\u00fado dos seus estudos ou v\u00eddeos.',
   'legal.ip': 'Propriedade intelectual',
   'legal.ipText': '\u00a9 2026 Ilyas Baqloul. Todos os direitos reservados. O uso da ferramenta \u00e9 gratuito, inclusive no trabalho.',
   'load.title': 'Carga dos operadores',
@@ -15043,6 +15697,7 @@ I18N_LOGIC.pt = {
   'reason.oov': 'Fora do quadro',
   'reason.end': 'Fim do estudo',
   'reason.deleted': 'Etapa exclu\u00edda',
+  'reason.periodic': 'Tarefa peri\u00f3dica',
   'log.head': ['Estudo', 'Linha do tempo', 'Tipo de evento', 'Ciclo', 'In\u00edcio (s)', 'Fim (s)', 'Dura\u00e7\u00e3o (s)', 'C\u00f3digo', 'Etapa', 'Tipo', 'Dist\u00e2ncia (m)', 'Anomalia', 'Nota'],
   'sum.study': 'Estudo',
   'sum.plant': 'F\u00e1brica',
@@ -15100,7 +15755,10 @@ I18N_LOGIC.pt = {
   'sum.ppc': 'Pe\u00e7as por ciclo',
   'std.nOp1': '1 operador',
   'std.nOps': '{n} operadores',
-  'ly.scenN': 'Cen\u00e1rio {n}'
+  'ly.scenN': 'Cen\u00e1rio {n}',
+  'std.ppcNote': '{n} pe\u00e7as por ciclo: takt {t} s \u00d7 {n}',
+  'per.waitTag': 'durante uma espera',
+  'std.c.per': 'tarefa peri\u00f3dica {name}, {s} s'
 };
 I18N_XLW.pt = {
   'sum': 'Resumo',
@@ -15231,24 +15889,25 @@ I18N_EX.pt = { names: {
     'Line A': 'Linha A',
     'Operator 1': 'Operador 1',
     'Take a part from the bin': 'Pegar uma pe\u00e7a na caixa de pe\u00e7as',
-    'Take the part on the table': 'Pegar a pe\u00e7a na mesa',
     'Walk to the press': 'Ir at\u00e9 a prensa',
     'Load the press': 'Carregar a prensa',
     'Wait for the press': 'Esperar a prensa',
-    'Unload and put down': 'Retirar e colocar',
+    'Unload and put down': 'Retirar e depositar',
     'Walk back to the bin': 'Voltar \u00e0 caixa de pe\u00e7as',
     'Operator 2': 'Operador 2',
+    'Take the part on the table': 'Pegar a pe\u00e7a na mesa',
     'Clip the fasteners': 'Encaixar os clipes',
     'Check the part': 'Inspecionar a pe\u00e7a',
     'Walk to the box': 'Ir at\u00e9 a caixa de embalagem',
     'Pack': 'Embalar',
-    'Walk back to the table': 'Voltar para a mesa',
-    'Fastener dropped': 'Clipe caiu',
+    'Walk back to the table': 'Voltar \u00e0 mesa',
+    'Fastener dropped': 'Clipe ca\u00eddo',
     'Change the box': 'Trocar a caixa',
     'Press': 'Prensa',
-    'Open and eject': 'Abrir e extrair',
+    'Press the part': 'Prensar a pe\u00e7a',
+    'Open and eject': 'Abrir e ejetar',
     'Wait for loading': 'Esperar o carregamento'
-}, scen: { name: 'Inspe\u00e7\u00e3o pelo operador 1', note: '\u201cB30 Inspecionar a pe\u00e7a\u201d passa do operador 2 para o operador 1, que a faz enquanto a prensa trabalha: a espera do operador 1 passa de 2,1 s para 0,5 s.' } };
+}, scen: { name: 'Inspe\u00e7\u00e3o pelo operador 1', note: '\u201cB30 Inspecionar a pe\u00e7a\u201d passa do operador 2 para o operador 1, que a realiza enquanto a prensa trabalha: a espera do operador 1 passa de 2,1 s para 0,5 s.' } };
 
 /* APP-START */
 (function () {
@@ -15271,6 +15930,8 @@ I18N_EX.pt = { names: {
   };
   var $ = function (id) { return document.getElementById(id); };
   var STORE_KEY = 'vts-study-v1', SET_KEY = 'vts-settings-v1';
+  // 3.9: set by Erase everything: nothing is written in this browser any more until the page is opened again
+  var PURGED = false;
   // On claude.ai a file download needs a signed-in viewer: files are only saved from a normal web host or the HTML file.
   var PLATFORM = !!(window.claude && typeof window.claude.use === 'function') || /(^|\.)claude\.ai$|claudeusercontent\.com$/i.test(location.hostname);
   var CAN_DOWNLOAD = !PLATFORM;
@@ -15298,7 +15959,10 @@ I18N_EX.pt = { names: {
   var PAGE_LANG = document.documentElement.getAttribute('data-vts-lang');
   // V5.3: vts.js holds the eight languages, but a page still switches in place only to its own language and English (the
   // English page also to French), as before: the others open their own page, with its address and its texts for Google
-  function hasLang(l) { var pl = PAGE_LANG || 'en'; return !!(l && I18N[l] && (l === 'en' || l === pl || (l === 'fr' && pl === 'en'))); }
+  // 3.9: outside the site (offline copy), every language this file carries changes in place: there is no page of the
+  // language to open without internet
+  var ON_SITE = /^https?:$/.test(location.protocol) && /(^|[.])vts-tool[.]com$/.test(location.hostname);
+  function hasLang(l) { var pl = PAGE_LANG || 'en'; return !!(l && I18N[l] && (l === 'en' || l === pl || (l === 'fr' && pl === 'en') || !ON_SITE)); }
   var LOC = { en: 'en-GB', fr: 'fr-FR', de: 'de-DE', es: 'es-ES', cs: 'cs-CZ', it: 'it-IT', pl: 'pl-PL', pt: 'pt-BR' };
   function loc() { return LOC[lang] || 'en-GB'; }
 
@@ -15343,6 +16007,8 @@ I18N_EX.pt = { names: {
     lang = hasLang(l) ? l : 'en';
     settings.lang = lang; settings.langPick = true; saveSettings();
     L.setStrings(I18N_LOGIC[lang]);
+    // 3.9: the example open takes the new language too
+    if (exFollowLang()) saveLocalNow();
     anCache = {};
     applyStatic(); buildControls(); renderAll(); showExpected();
     if (!$('videoMsg').hidden && V.msgKind) showVideoMsg(V.msgKind, V.msgCode);
@@ -15356,6 +16022,7 @@ I18N_EX.pt = { names: {
     each('#vts-app [data-i18n-title]', function (el) { el.title = T(el.getAttribute('data-i18n-title')); });
     each('#vts-app [data-i18n-aria]', function (el) { el.setAttribute('aria-label', T(el.getAttribute('data-i18n-aria'))); });
     each('[data-lang]', function (b) { if (b.getAttribute('data-lang') === lang) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    if ($('langSel')) $('langSel').value = lang;
     lastPlay = null; setPlayLabel(); updateMuteUI(); updateThemeLabel();
   }
 
@@ -15409,7 +16076,7 @@ I18N_EX.pt = { names: {
   // ---------- Settings and saving in this browser ----------
   function loadSettings() {
     var d = {
-      theme: 'light', zoom: 60, speed: 1, csvSep: NAV_COMMA ? ';' : ',', decSep: NAV_COMMA ? ',' : '.', fps: 'auto', tab: 'record', muted: false, evOpen: false, autoCode: true,
+      theme: 'light', zoom: 60, speed: 1, csvSep: NAV_COMMA ? ';' : ',', decSep: NAV_COMMA ? ',' : '.', fps: 'auto', tab: 'record', muted: false, evOpen: false, autoCode: true, showSp: false,
       lang: hasLang(PAGE_LANG) ? PAGE_LANG : (hasLang(NAV_LANG) ? NAV_LANG : 'en'), langPick: false
     };
     try {
@@ -15424,12 +16091,13 @@ I18N_EX.pt = { names: {
     if (d.decSep !== ',') d.decSep = '.';
     d.langPick = d.langPick === true;
     d.autoCode = d.autoCode !== false;
+    d.showSp = d.showSp === true;
     if (hasLang(PAGE_LANG) && !d.langPick) d.lang = PAGE_LANG;
     // a language picked on another page that this page does not carry: the language of this page
     if (!hasLang(d.lang)) d.lang = hasLang(PAGE_LANG) ? PAGE_LANG : (hasLang(NAV_LANG) ? NAV_LANG : 'en');
     return d;
   }
-  function saveSettings() { try { localStorage.setItem(SET_KEY, JSON.stringify(settings)); } catch (e) { /* ignore */ } }
+  function saveSettings() { if (PURGED) return; try { localStorage.setItem(SET_KEY, JSON.stringify(settings)); } catch (e) { /* ignore */ } }
   function loadStudy() {
     try {
       var raw = localStorage.getItem(STORE_KEY);
@@ -15443,7 +16111,7 @@ I18N_EX.pt = { names: {
   }
   function saveLocalNow() {
     clearTimeout(saveTimer);
-    if (conflict) return;
+    if (conflict || PURGED) return;
     try {
       localStorage.setItem(STORE_KEY, JSON.stringify(study));
       savedAt = new Date();
@@ -15611,6 +16279,31 @@ I18N_EX.pt = { names: {
   function stationList() {
     return '<datalist id="stationList">' + stationNames().map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('') + '</datalist>';
   }
+  // 3.9: the step that starts a machine: its automated time goes on that row of the TCT (column Automated work).
+  // Found from the times (the machine starts within 1.5 s of the same step, cycle after cycle), chosen, or none.
+  function startByHtml(tl) {
+    if (tl.kind !== 'machine') return '';
+    var cur = tl.startBy === 'none' ? 'none' : (tl.startBy && typeof tl.startBy === 'object' ? tl.startBy.tl + '|' + tl.startBy.step : 'auto');
+    var h = '<div class="field"><label for="tlStartBy">' + esc(T('mach.startBy')) + '</label><select id="tlStartBy">' +
+      opt('auto', cur, T('mach.startAuto')) + opt('none', cur, T('mach.startNone'));
+    study.timelines.forEach(function (o) {
+      if (o.kind !== 'operator' || !o.steps.length) return;
+      h += '<optgroup label="' + esc(o.name) + '">' + o.steps.filter(function (x) { return x.type !== 'Wait' && x.type !== 'Walk'; }).map(function (x) { return opt(o.id + '|' + x.id, cur, stepLabel(x)); }).join('') + '</optgroup>';
+    });
+    h += '</select>';
+    var found = [];
+    if (cur === 'auto') {
+      var ms = L.machineStarts(study);
+      Object.keys(ms).forEach(function (oid) {
+        var o = study.timelines.filter(function (x) { return x.id === oid; })[0];
+        Object.keys(ms[oid]).forEach(function (sid) {
+          if (ms[oid][sid].some(function (x) { return x.id === tl.id; })) { var st = o && L.findStep(o, sid); if (st) found.push(o.name + ' \u00b7 ' + stepLabel(st)); }
+        });
+      });
+    }
+    h += '<p class="hint">' + esc(T('mach.startHint')) + (cur === 'auto' ? ' ' + esc(found.length ? T('mach.found', { what: found.join(', ') }) : T('mach.notFound')) : '') + '</p></div>';
+    return h;
+  }
   function renderSteps() {
     var tl = activeTl();
     var used = {};
@@ -15618,7 +16311,7 @@ I18N_EX.pt = { names: {
     var sid = L.startStepId(tl);
     var html = '<div class="sec"><h2>' + esc(T('steps.timeline')) + '</h2><div class="form-grid">' +
       '<div class="field"><label for="tlName">' + esc(T('steps.name')) + '</label><input type="text" id="tlName" value="' + esc(tl.name) + '"></div>' + ppcHtml(tl) +
-      '<div class="field"><label for="tlKind">' + esc(T('steps.kind')) + '</label><select id="tlKind">' + opt('operator', tl.kind, T('kind.operator')) + opt('machine', tl.kind, T('kind.machine')) + '</select></div></div>' + perHtml(tl) +
+      '<div class="field"><label for="tlKind">' + esc(T('steps.kind')) + '</label><select id="tlKind">' + opt('operator', tl.kind, T('kind.operator')) + opt('machine', tl.kind, T('kind.machine')) + '</select></div>' + startByHtml(tl) + '</div>' + perHtml(tl) +
       '<div class="btn-row"><button type="button" class="btn" data-act="addOp">' + esc(T('tl.addOperator')) + '</button><button type="button" class="btn" data-act="addMach">' + esc(T('tl.addMachine')) + '</button>' +
       '<button type="button" class="btn danger" data-act="delTl">' + esc(T('tl.delete')) + '</button></div></div>';
     html += '<div class="sec"><h2>' + esc(T('steps.of', { name: tl.name })) + '</h2>';
@@ -15629,8 +16322,10 @@ I18N_EX.pt = { names: {
         return opt(s.id, sid, stepLabel(s));
       }).join('') + '</select></div>';
       html += '<div class="steps-head"><span>' + esc(T('steps.h.key')) + '</span><span>' + esc(T('steps.h.code')) + '</span><span>' + esc(T('steps.h.name')) + '</span><span>' + esc(T('steps.h.type')) + '</span><span>' + esc(T('steps.h.station') + ' / ' + T('steps.h.dist')) + '</span><span>' + esc(T('steps.h.used')) + '</span><span></span></div><div id="stepsList">';
+      // 3.9: the starting point of each step (SP: of the sheets), on a line under the step when shown
+      var showSp = !!settings.showSp;
       tl.steps.forEach(function (s, i) {
-        html += '<div class="srow ' + ty(s.type) + '" data-id="' + esc(s.id) + '">' +
+        html += '<div class="srow ' + ty(s.type) + (showSp ? ' has-sp' : '') + '" data-id="' + esc(s.id) + '">' +
           '<span class="s-key" title="' + esc(T('key.label')) + '">' + esc(L.STEP_KEYS[i] || '') + '<i class="sw"></i></span>' +
           '<input type="text" class="s-code" data-f="code" value="' + esc(s.code) + '" aria-label="' + esc(T('steps.h.code')) + '" placeholder="' + esc(T('steps.h.code')) + '">' +
           '<input type="text" class="s-name" data-f="name" value="' + esc(s.name) + '" aria-label="' + esc(T('steps.h.name')) + '" placeholder="' + esc(T('steps.h.name')) + '">' +
@@ -15640,7 +16335,8 @@ I18N_EX.pt = { names: {
           '<span class="s-used" title="' + esc(T('steps.h.used')) + '"><span class="s-used-lbl">' + esc(T('steps.recorded')) + ' </span>' + (used[s.id] || 0) + (s.id === sid ? '<span class="start-tag">' + esc(T('steps.startTag')) + '</span>' : '') + '</span>' +
           '<span class="s-act"><button type="button" class="btn small" data-act="up" aria-label="' + esc(T('steps.up')) + '"' + (i === 0 ? ' disabled' : '') + '>&uarr;</button>' +
           '<button type="button" class="btn small" data-act="down" aria-label="' + esc(T('steps.down')) + '"' + (i === tl.steps.length - 1 ? ' disabled' : '') + '>&darr;</button>' +
-          '<button type="button" class="btn small danger" data-act="delStep">' + esc(T('act.delete')) + '</button></span></div>';
+          '<button type="button" class="btn small danger" data-act="delStep">' + esc(T('act.delete')) + '</button></span>' +
+          (showSp ? '<input type="text" class="s-sp" data-f="sp" maxlength="120" value="' + esc(s.sp || '') + '" aria-label="' + esc(T('steps.sp')) + '" placeholder="' + esc(T('steps.sp')) + '">' : '') + '</div>';
       });
       html += '</div>' + stationList();
     } else {
@@ -15648,7 +16344,8 @@ I18N_EX.pt = { names: {
     }
     html += '<div class="btn-row"><button type="button" class="btn primary" data-act="addStep">' + esc(T('steps.add')) + '</button><button type="button" class="btn" data-act="paste">' + esc(T('steps.paste')) + '</button>' +
       '<button type="button" class="btn" data-act="copyList"' + (tl.steps.length ? '' : ' disabled') + '>' + esc(T('steps.copy')) + '</button>' +
-      '<label class="check steps-auto"><input type="checkbox" id="autoCode"' + (settings.autoCode ? ' checked' : '') + '> ' + esc(T('steps.autoCode')) + '</label></div>' +
+      '<label class="check steps-auto"><input type="checkbox" id="autoCode"' + (settings.autoCode ? ' checked' : '') + '> ' + esc(T('steps.autoCode')) + '</label>' +
+      (tl.steps.length ? '<label class="check steps-sp"><input type="checkbox" id="showSp"' + (settings.showSp ? ' checked' : '') + '> ' + esc(T('steps.showSp')) + '</label>' : '') + '</div>' +
       '<p class="note mt">' + esc(T('steps.note')) + '</p></div>';
     $('tab-steps').innerHTML = html;
   }
@@ -16268,8 +16965,70 @@ I18N_EX.pt = { names: {
   // converted here to MP4 (H.264): an HEVC decoder in WebAssembly (hevc.js, MIT) and the H.264 encoder of the browser
   // (WebCodecs), with mp4box.js (BSD) to cut the file into pieces. Both are loaded only when a video is converted, from
   // a fixed version; the video itself never leaves the device. Sound is not kept: the time study does not need it.
-  var CV_NPM = 'https://cdn.jsdelivr.net/npm/', CV_HEVC = CV_NPM + '@hevcjs/core@1.7.0/dist/', CV_MP4 = CV_NPM + 'mp4box@0.5.4/dist/mp4box.all.min.js';
   var CV = { job: null };
+  // 3.9: the libraries loaded when needed come with the tool, never from another server: mp4box.js and hevc.js (iPhone
+  // videos), pdf.js (PDF plans). On the site they are files of the site (vendor/ next to vts.js, fixed versions); in
+  // the offline copy they are written in the page (blocks vts-vd-*, gzip then base64), read only when used. pdf.js is
+  // its module build (pdf.min.mjs and pdf.worker.min.mjs of pdfjs-dist), named .js so that any host serves it as
+  // JavaScript.
+  var VD = {
+    mp4box: { path: 'mp4box-0.5.4/mp4box.all.min.js', type: 'text/javascript' },
+    hevcWorker: { path: 'hevcjs-1.7.0/transcode-worker.js', type: 'text/javascript' },
+    hevcJs: { path: 'hevcjs-1.7.0/hevc-decode.js', type: 'text/javascript' },
+    hevcWasm: { path: 'hevcjs-1.7.0/hevc-decode.wasm', type: 'application/wasm' },
+    pdf: { path: 'pdfjs-6.2.108/pdf.min.js', type: 'text/javascript' },
+    pdfWorker: { path: 'pdfjs-6.2.108/pdf.worker.min.js', type: 'text/javascript' },
+    lic: { path: 'LICENSES.txt', type: 'text/plain' }
+  };
+  var VD_URL = {};
+  function vdBlock(k) { return document.readyState === 'loading' ? null : document.getElementById('vts-vd-' + k); }
+  function vdBytes(el) {
+    var bin = atob(el.textContent.replace(/\s+/g, '')), u = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+    if (el.getAttribute('data-z') !== 'gzip') return Promise.resolve(u);
+    if (typeof DecompressionStream === 'undefined') return Promise.reject(new Error('old'));
+    return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer().then(function (ab) { return new Uint8Array(ab); });
+  }
+  // the address of a library: a blob made from the page (offline copy), else the file of the site. inWorker: a data:
+  // address instead of a blob (a page opened from the disk has no origin of its own: a worker cannot read its blobs)
+  function vdUrl(k, inWorker) {
+    var key = k + (inWorker ? ':data' : '');
+    if (VD_URL[key]) return Promise.resolve(VD_URL[key]);
+    var el = vdBlock(k);
+    if (el) {
+      return vdBytes(el).then(function (u8) {
+        if (!inWorker) return (VD_URL[key] = URL.createObjectURL(new Blob([u8], { type: VD[k].type })));
+        var s = '', i;
+        for (i = 0; i < u8.length; i += 32768) s += String.fromCharCode.apply(null, u8.subarray(i, i + 32768));
+        return (VD_URL[key] = 'data:' + VD[k].type + ';base64,' + btoa(s));
+      });
+    }
+    return window.VTS_BASE ? Promise.resolve(window.VTS_BASE + 'vendor/' + VD[k].path) : Promise.reject(new Error('net'));
+  }
+  // the blocks of the offline copy: copied from this page, or made from the files of the site (gzip when the browser
+  // can, else as they are; the licences of the libraries as plain text); cb(html or null)
+  function vdBlocks(cb) {
+    var keys = Object.keys(VD), out = [];
+    var tag = function (k, z, body) { return '<script type="text/plain" id="vts-vd-' + k + '" data-z="' + z + '">' + body + '</' + 'script>\n'; };
+    var txt = function (t) { return String(t).replace(/<\//g, '<\\/'); };
+    if (keys.every(function (k) { return vdBlock(k); })) {
+      cb(keys.map(function (k) { var el = vdBlock(k), z = el.getAttribute('data-z') || 'none'; return tag(k, z, z === 'text' ? txt(el.textContent) : el.textContent.replace(/\s+/g, '')); }).join(''));
+      return;
+    }
+    if (!window.VTS_BASE || !window.fetch) { cb(null); return; }
+    var b64 = function (u8) { var s = '', i; for (i = 0; i < u8.length; i += 32768) s += String.fromCharCode.apply(null, u8.subarray(i, i + 32768)); return btoa(s); };
+    var gz = function (u8) {
+      if (typeof CompressionStream === 'undefined') return Promise.resolve(null);
+      return new Response(new Blob([u8]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer().then(function (ab) { return new Uint8Array(ab); }, function () { return null; });
+    };
+    Promise.all(keys.map(function (k, i) {
+      return fetch(window.VTS_BASE + 'vendor/' + VD[k].path).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return k === 'lic' ? r.text() : r.arrayBuffer(); }).then(function (v) {
+        if (k === 'lic') { out[i] = tag(k, 'text', txt(v)); return null; }
+        var u8 = new Uint8Array(v);
+        return gz(u8).then(function (z) { out[i] = z ? tag(k, 'gzip', b64(z)) : tag(k, 'none', b64(u8)); });
+      });
+    })).then(function () { cb(out.join('')); }, function () { cb(null); });
+  }
   // what the header of an MP4 / MOV file says: HEVC or not, HDR or not (the moov box, read alone, often at the end)
   function vidProbe(file) {
     var rd = function (a, b) { return file.slice(a, b).arrayBuffer(); };
@@ -16324,14 +17083,16 @@ I18N_EX.pt = { names: {
         .then(function (r) { return !!(r && r.supported); }, function () { return false; });
     } catch (e) { return Promise.resolve(false); }
   }
-  function cvScript(url) {
-    return new Promise(function (res, rej) {
-      if (window.MP4Box) { res(); return; }
-      var s = document.createElement('script');
-      s.src = url; s.async = true; s.crossOrigin = 'anonymous';
-      s.onload = function () { if (window.MP4Box) res(); else rej(new Error('net')); };
-      s.onerror = function () { rej(new Error('net')); };
-      document.head.appendChild(s);
+  function cvScript() {
+    if (window.MP4Box) return Promise.resolve();
+    return vdUrl('mp4box').then(function (url) {
+      return new Promise(function (res, rej) {
+        var s = document.createElement('script');
+        s.src = url; s.async = true;
+        s.onload = function () { if (window.MP4Box) res(); else rej(new Error('net')); };
+        s.onerror = function () { rej(new Error('net')); };
+        document.head.appendChild(s);
+      });
     });
   }
   // V5: the converted video is made 720p (1280 x 720, or 720 x 1280 upright) at 30 frames a second at most: lighter
@@ -16426,7 +17187,9 @@ I18N_EX.pt = { names: {
         }, fail);
       };
       onProgress('load', 0);
-      Promise.all([cvScript(CV_MP4), fetch(CV_HEVC + 'transcode-worker.js').then(function (r) { if (!r.ok) throw new Error('net'); return r.text(); }, function () { throw new Error('net'); })]).then(function (r) {
+      var wasm = {};
+      Promise.all([cvScript(), vdUrl('hevcWorker').then(function (u) { return fetch(u); }).then(function (r) { if (!r.ok) throw new Error('net'); return r.text(); }, function () { throw new Error('net'); }),
+        vdUrl('hevcJs', true).then(function (u) { wasm.js = u; }), vdUrl('hevcWasm', true).then(function (u) { wasm.bin = u; })]).then(function (r) {
         if (phase === 'done') return;
         // mp4box.js writes its own messages in the console: not needed here
         try { if (window.Log) { window.Log.error = function () { /* quiet */ }; window.Log.warn = function () { /* quiet */ }; } } catch (e) { /* ignore */ }
@@ -16464,7 +17227,7 @@ I18N_EX.pt = { names: {
               worker.postMessage({ type: 'initSegment', data: ib }, [ib]);
             } else if (m.type === 'error') fail(new Error(m.message || 'worker'));
           };
-          worker.postMessage({ type: 'init', config: { wasmUrl: CV_HEVC + 'wasm/hevc-decode.js', wasmBinaryUrl: CV_HEVC + 'wasm/hevc-decode.wasm', fps: fps, bitrate: br } });
+          worker.postMessage({ type: 'init', config: { wasmUrl: wasm.js, wasmBinaryUrl: wasm.bin, fps: fps, bitrate: br } });
         };
         mp4.onSegment = function (id, user, buffer, sampleNum) {
           // a copy: the piece goes to the worker (transferred) while mp4box.js may still use its own buffer
@@ -16575,7 +17338,7 @@ I18N_EX.pt = { names: {
       try {
         var r = indexedDB.open('vts-video', 1);
         r.onupgradeneeded = function () { r.result.createObjectStore('v'); };
-        r.onsuccess = function () { res(r.result); };
+        r.onsuccess = function () { r.result.onversionchange = function () { r.result.close(); }; res(r.result); };
         r.onerror = function () { rej(r.error); };
       } catch (e) { rej(e); }
     });
@@ -17206,6 +17969,8 @@ I18N_EX.pt = { names: {
       if (!r.steps.length) { toast(T('toast.listEmpty')); return; }
       closePanel();
       var res = null;
+      // 3.9: a list that brings starting points shows them
+      if (!settings.showSp && r.steps.some(function (x) { return x.sp; })) { settings.showSp = true; saveSettings(); }
       mutate(function () { res = L.mergeStepList(activeTl(), r.steps, mode); });
       trackOnce('steps-listed');
       var msg = mode === 'append' ? TP(r.steps.length, 'toast.stepsAdded') : TP(r.steps.length, 'toast.listReplaced');
@@ -17530,7 +18295,7 @@ I18N_EX.pt = { names: {
       try {
         var r = indexedDB.open('vts-templates', 1);
         r.onupgradeneeded = function () { r.result.createObjectStore('tpl'); };
-        r.onsuccess = function () { res(r.result); };
+        r.onsuccess = function () { r.result.onversionchange = function () { r.result.close(); }; res(r.result); };
         r.onerror = function () { rej(r.error); };
       } catch (e) { rej(e); }
     });
@@ -17573,6 +18338,16 @@ I18N_EX.pt = { names: {
     base.ops.forEach(function (o) { src[o.id] = o; });
     var ppcOf = function (id) { var t = study.timelines.filter(function (x) { return x.id === id; })[0]; return t && t.ppc > 1 ? Math.round(t.ppc) : 1; };
     var r1 = function (v) { return v == null ? null : Math.round(v * 10) / 10; };
+    // 3.9: starting points of the steps, the machines each step starts (automated work of the scenario: the active
+    // time of the machine column, per cycle of the machine), the line cycle of the scenario for every TCT
+    var spOf = {}, mst = L.machineStarts(study), mTime = {}, takt = L.taktOf(study.meta.takt), kc = L.bal.kpis(bs, takt);
+    study.timelines.forEach(function (t) { t.steps.forEach(function (x) { if (x.sp) spOf[x.id] = x.sp; }); });
+    bs.cols.forEach(function (c) { if (c.kind === 'machine' && c.src) mTime[c.src] = Math.round(L.bal.totals(c).work * ppcOf(c.src) * 10) / 10; });
+    var startsOf = function (sid) {
+      var t = 0, names = [];
+      Object.keys(mst).forEach(function (oid) { (mst[oid][sid] || []).forEach(function (x) { var v = mTime[x.id] != null ? mTime[x.id] : x.time; if (v > t) t = v; names.push(x.name); }); });
+      return names.length ? { t: t, names: names } : null;
+    };
     bs.cols.forEach(function (c) {
       if (c.kind === 'machine' || !c.blocks.length) return;
       var k = c.src ? ppcOf(c.src) : 1, dm = dist ? dist[c.id] : null, tct = [], lead = null, per = [], a = 0;
@@ -17581,24 +18356,33 @@ I18N_EX.pt = { names: {
       c.blocks.forEach(function (b) {
         if (b.type === 'Periodic') {
           var so = b.src ? src[b.src] : null;
-          if (so && so.periodic.length) per = per.concat(so.periodic); else per.push({ name: b.name || 'P', time: b.dur, count: 1, freq: 1 });
+          if (so && so.periodic.length) per = per.concat(so.periodic); else per.push({ name: b.name || 'P', time: b.dur, count: 1, freq: 1, freqCyc: Math.round(1 / k * 100) / 100 });
           return;
         }
         var d = b.dur * k, sid = b.sid || ('b:' + b.id), dd = dm && dm.walk[sid] != null ? dm.walk[sid] : null;
         a += d;
         if (dm && dm.bare[sid] != null) { var lb = leave(); lb.Q = (lb.Q || 0) + dm.bare[sid]; }
-        if (b.type === 'Wait') return;
         if (b.type === 'Walk' && work) { var to = leave(); to.P = (to.P || 0) + d; if (dd != null) to.Q = (to.Q || 0) + dd; return; }
-        var row = { code: b.code || '', name: (b.name || '').toUpperCase(), M: null, N: null, O: null, P: null, Q: null };
+        // 3.9: a wait keeps its row, with the waiting symbol only
+        var row = { code: b.code || '', name: (b.name || '').toUpperCase(), sp: (b.sid && spOf[b.sid]) || '', wait: b.type === 'Wait', M: null, N: null, O: null, P: null, Q: null };
+        if (row.wait) { tct.push(row); return; }
         if (b.type === 'Inspection') row.N = d; else if (b.type === 'Machine') row.O = d;
         else if (b.type === 'Walk') { row.P = d; if (dd != null) row.Q = dd; }
         else row.M = d;
+        var ms = b.sid ? startsOf(b.sid) : null;
+        if (ms) { if (row.O == null) row.O = ms.t; row.mach = ms.names; }
         tct.push(row);
       });
       if (lead && tct.length) { var lr = tct[tct.length - 1]; if (lead.P != null) lr.P = (lr.P || 0) + lead.P; if (lead.Q != null) lr.Q = (lr.Q || 0) + lead.Q; }
       tct.forEach(function (r) { ['M', 'N', 'O', 'P', 'Q'].forEach(function (f) { r[f] = r1(r[f]); }); });
-      ops.push({ id: c.id, name: c.name, tct: tct, periodic: per, aRef: r1(a), cols: [], rows: [], vals: [] });
+      ops.push({ id: c.id, name: c.name, tct: tct, periodic: per, aRef: r1(a), cols: [], rows: [], vals: [], ppc: k,
+        pct: kc.bott ? r1(kc.bott.v * k) : null, taktCyc: takt ? r1(takt * k) : null,
+        ppcNote: k > 1 && takt ? L.str('std.ppcNote', { n: k, t: fmtS(takt, Math.abs(takt - Math.round(takt)) < 0.05 ? 0 : 1).replace(/[\u00a0\u202f]/g, ' ') }) : '' });
     });
+    // 3.9: each operator keeps his number (from the name of the column), in that order
+    var nums = L.opNumbers(ops.map(function (o) { return o.name; }));
+    ops.forEach(function (o, i) { o.no = nums[i]; });
+    ops.sort(function (x, y) { return x.no - y.no; });
     return { meta: base.meta, ops: ops, nOpsText: base.nOpsText, sim: simMark(bs) };
   }
   // the state the standard sheets and the workbook are made for: the current state, or a scenario simulated (4.3)
@@ -17620,8 +18404,13 @@ I18N_EX.pt = { names: {
         var o = { op: 0, insp: 0, walk: 0, wait: 0 };
         c.blocks.forEach(function (b) { if (b.type === 'Inspection') o.insp += b.dur; else if (b.type === 'Walk') o.walk += b.dur; else if (b.type === 'Wait') o.wait += b.dur; else o.op += b.dur; });
         Object.keys(o).forEach(function (k) { o[k] = Math.round(o[k] * 10) / 10; });
+        o.name = c.name;
         ops.push(o);
       });
+      // 3.9: each operator in the column of his number (same numbers as the TCT sheets)
+      var nums = L.opNumbers(ops.map(function (o) { return o.name; }));
+      ops.forEach(function (o, i) { o.no = nums[i]; });
+      ops.sort(function (x, y) { return x.no - y.no; });
       var k = L.bal.kpis(state, takt);
       return { ops: ops, takt: takt, cycle: k.bott ? Math.round(k.bott.v * 10) / 10 : null };
     };
@@ -17653,7 +18442,8 @@ I18N_EX.pt = { names: {
     if (!d.ops.length) html += '<p class="note">' + esc(T('std.noOps')) + '</p>';
     d.ops.forEach(function (o) {
       var use = o.cols.filter(function (c) { return c.usable; }).length;
-      html += '<p class="note"><b>' + esc(o.name) + '</b> ' + esc(o.cols.length ?
+      // 3.9: the number the operator gets in the sheets, when his name does not say it
+      html += '<p class="note"><b>' + esc(o.name) + '</b>' + (o.no && String(o.name).indexOf(String(o.no)) < 0 ? ' (Op. ' + o.no + ')' : '') + ' ' + esc(o.cols.length ?
         T('std.opLine', { cycles: TP(o.cols.length, 'n.cycle'), usable: use, ref: o.refN ? 'C' + o.refN : '\u2013', t1: o.t1 == null ? '\u2013' : fmtS(o.t1, o.res === 0.1 ? 1 : 0) + ' s' }) + (o.nComplete > o.cols.length ? ' ' + T('std.first20') : '') :
         T('std.opNone')) + '</p>';
     });
@@ -17710,20 +18500,51 @@ I18N_EX.pt = { names: {
     else if (a === 'logCopy') copyText(toTSV(L.logRows(study, dec())), T('copy.log'));
     else if (a === 'sumCopy') copyText(toTSV(L.summaryRows(study, dec())), T('copy.sum'));
   }
-  function offlineHtml(code) {
+  function offlineHtml(code, vd) {
     return '<!DOCTYPE html>\n<html lang="' + lang + '" data-vts-lang="' + lang + '">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
       '<meta name="color-scheme" content="light dark">\n' + SRC.head + '<title>Video Time Study</title>\n<style id="vts-style"' + (SRC.styleH ? ' data-h="' + SRC.styleH + '"' : '') + '>' + SRC.style + '</style>\n</head>\n<body>\n' +
-      SRC.app + '\n<script id="vts-script">' + (code || SRC.script) + '</' + 'script>\n<script type="text/plain" id="vts-ex">' + exB64() + '</' + 'script>\n</body>\n</html>\n';
+      SRC.app + '\n<script id="vts-script">' + (code || SRC.script) + '</' + 'script>\n<script type="text/plain" id="vts-ex">' + exB64() + '</' + 'script>\n' + (vd || '') + '</body>\n</html>\n';
+  }
+  // ---------- 3.9: Erase everything kept by the tool in this browser ----------
+  // The study and its history (localStorage, keys vts-*), the settings, the video converted here (IndexedDB vts-video),
+  // the plans (vts-plans) and the Excel templates (vts-templates). Nothing of it was ever sent anywhere.
+  var VTS_DBS = ['vts-video', 'vts-plans', 'vts-templates'];
+  function openPurge() {
+    var hasData = study.timelines.some(function (x) { return x.events.length || x.steps.length; }), buttons = [];
+    if (CAN_DOWNLOAD && hasData) buttons.push({ label: T('open.saveFirst'), onClick: function () { saveStudyFile(); } });
+    buttons.push({ label: T('purge.ok'), kind: 'danger', onClick: function () { closePanel(); purgeNow(); } });
+    buttons.push({ label: T('act.cancel'), onClick: function () { cancelPanel(); } });
+    openPanel({ title: T('purge.title'), body: '<p>' + esc(T('purge.text')) + '</p>', backdrop: true, buttons: buttons, enterSaves: false });
+  }
+  function purgeNow() {
+    PURGED = true;
+    track('purge');
+    try {
+      var keys = [], i;
+      for (i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf('vts-') === 0) keys.push(k); }
+      keys.forEach(function (k) { localStorage.removeItem(k); });
+    } catch (e) { /* storage blocked */ }
+    MADE.rec = null; MADE.kept = false;
+    var left = VTS_DBS.length, done = function () { if (--left === 0) location.reload(); };
+    // the connections of this page close as soon as a database is deleted (onversionchange); after 4 s the page
+    // is opened again anyway (the browser then finishes the deletion)
+    setTimeout(function () { left = 1; done(); }, 4000);
+    VTS_DBS.forEach(function (n) {
+      try { var r = indexedDB.deleteDatabase(n); r.onsuccess = r.onerror = done; } catch (e) { done(); }
+    });
   }
   // the offline copy: one file with the code, the page and the example. V5.3: on the site the code is read again
   // from vts.js (from the cache of the browser), without the start that refreshes old pages, and the example comes
-  // from vts-example.js
+  // from vts-example.js. 3.9: with the libraries it may need (vdBlocks): it never calls any server.
   function offlineMake() {
     var fail = function () { toast(T('off.fail')); };
     var save = function (code) {
       exEnsure(function (ok) {
         if (!ok) { fail(); return; }
-        saveFile('video-time-study.html', offlineHtml(code), 'text/html');
+        vdBlocks(function (vd) {
+          if (!vd) { fail(); return; }
+          saveFile('video-time-study.html', offlineHtml(code, vd), 'text/html');
+        });
       });
     };
     if (SRC.script) { if (document.readyState === 'loading') { toast(T('off.wait')); return; } save(SRC.script); return; }
@@ -18472,21 +19293,17 @@ I18N_EX.pt = { names: {
   // V5: versions numbered V1, V2... (the detail of each one stays in README.md and PASSATION.md of the sources)
   // V5.3: What's new by version: the five versions, the newest first, each opening on the versions it went through.
   // A version without its own list (V1, V2) shows its description. '5' is 5.0, '3.6' covers 3.6 to 3.8.
-  var NEWS = [
-    { v: '5', sub: ['5.3', '5.2', '5.1', '5'] },
-    { v: '4', sub: ['4.3', '4.2', '4.1', '4.0'] },
-    { v: '3', sub: ['3.6', '3.5', '3.4', '3.3', '3.2', '3.0'] },
-    { v: '2', sub: [] },
-    { v: '1', sub: [] }
-  ];
-  var NEWS_LBL = { '5': '5.0', '3.6': '3.6\u20133.8' };
+  // 3.9: one number per real change, counted to .9 before the next major (1.0 to 1.9, 2.0 to 2.9, 3.0 to 3.9): the
+  // versions numbered V1 to V5 before are renumbered (README.md, Versions). Texts: nw.tX (title), nw.sX (summary of a
+  // major), nw.dX.Y (what changed).
+  var NEWS = ['3', '2', '1'].map(function (m) { var sub = []; for (var i = 9; i >= 0; i--) sub.push(m + '.' + i); return { v: m, sub: sub }; });
   function openNews() {
     var body = '<div class="news">' + NEWS.map(function (m) {
-      var det = m.sub.length ? '<ol class="nw-subs">' + m.sub.map(function (v) {
-        return '<li><span class="nw-v">' + esc(NEWS_LBL[v] || v) + '</span><div><b>' + esc(T('news.n' + v)) + '</b><p>' + esc(T('news.v' + v)) + '</p></div></li>';
-      }).join('') + '</ol>' : '<p class="nw-one">' + esc(T('news.v' + m.v)) + '</p>';
+      var det = '<ol class="nw-subs">' + m.sub.map(function (v) {
+        return '<li><span class="nw-v">' + esc(v) + '</span><div><b>' + esc(T('nw.t' + v)) + '</b><p>' + esc(T('nw.d' + v)) + '</p></div></li>';
+      }).join('') + '</ol>';
       return '<details class="nw" data-v="' + m.v + '"><summary><span class="nw-big">' + esc(T('news.version', { v: m.v })) + '</span>' +
-        '<span class="nw-head"><b>' + esc(T('news.n' + m.v)) + '</b><span>' + esc(T('news.s' + m.v)) + '</span></span></summary>' + det + '</details>';
+        '<span class="nw-head"><b>' + esc(T('nw.t' + m.v)) + '</b><span>' + esc(T('nw.s' + m.v)) + '</span></span></summary>' + det + '</details>';
     }).join('') + '</div>';
     openPanel({ title: T('news.title'), body: body, backdrop: true, buttons: [{ label: T('act.close'), kind: 'primary', onClick: function () { cancelPanel(); } }] });
   }
@@ -18497,24 +19314,38 @@ I18N_EX.pt = { names: {
     return '<div class="field"><label for="tlPpc">' + esc(T('steps.ppc')) + '</label><input type="number" id="tlPpc" min="1" max="99" step="1" inputmode="numeric" value="' + ppc + '">' +
       '<p class="hint">' + esc(T('steps.ppcHint')) + '</p></div>';
   }
+  // the total of the periodic tasks; 3.9: kept up to date while the fields are typed in (perTotalRefresh)
+  function perTotalText(per) {
+    return T('per.tot', { s: fmtS(per.perPart, 2) }) + (per.perPartWait > 0 ? ' ' + T('per.totWait', { s: fmtS(per.perPartWait, 2) }) : '') + (per.missing ? ' ' + T('per.totMiss') : '');
+  }
+  function perTotalRefresh() {
+    var sec = $('perSec'), per = L.periodicOf(activeTl());
+    if (!sec || !per.list.length) return;
+    var el = sec.querySelector('.pf-tot');
+    if (!el) { el = document.createElement('p'); el.className = 'hint pf-tot'; sec.appendChild(el); }
+    el.textContent = perTotalText(per);
+  }
   function perHtml(tl) {
-    var per = L.periodicOf(tl), nv = 0;
+    // 3.9: an operator's task can be done during one of his waits (box: in the work content, not in the cycle)
+    var per = L.periodicOf(tl), nv = 0, op = tl.kind === 'operator';
     var h = '<div class="perfreq" id="perSec"><h3>' + swatch('Periodic') + esc(T('per.secTitle')) + '</h3><p class="hint">' + esc(T('per.secHint')) + '</p>';
     per.list.forEach(function (p) {
       if (p.src === 'video') {
         nv++;
         h += '<div class="pf-row"><span class="pf-name">' + esc(p.name) + '</span><span class="pf-t">' + esc(T('per.seenT', { t: fmtS(p.time), n: p.count })) + '</span><span>' + esc(T('steps.every')) + '</span>' +
-          '<input type="number" min="1" step="1" inputmode="numeric" data-perfreq="' + esc(p.name.toLowerCase()) + '" value="' + (p.freq || '') + '" aria-label="' + esc(T('per.freqL') + ' ' + p.name) + '"><span>' + esc(T('steps.parts')) + '</span></div>';
+          '<input type="number" min="1" step="1" inputmode="numeric" data-perfreq="' + esc(p.name.toLowerCase()) + '" value="' + (p.freq || '') + '" aria-label="' + esc(T('per.freqL') + ' ' + p.name) + '"><span>' + esc(T('steps.parts')) + '</span>' +
+          (op ? '<label class="check pf-wait" title="' + esc(T('per.waitHint')) + '"><input type="checkbox" data-perwait="' + esc(p.name.toLowerCase()) + '"' + (p.wait ? ' checked' : '') + '> ' + esc(T('per.wait')) + '</label>' : '') + '</div>';
       }
     });
     (tl.perMan || []).forEach(function (p, j) {
       h += '<div class="pf-row pf-man" data-pm="' + j + '"><input type="text" class="pf-in" data-pm-f="name" maxlength="120" value="' + esc(p.name) + '" aria-label="' + esc(T('per.name')) + '">' +
         '<input type="number" class="pf-time" data-pm-f="time" min="0.1" step="0.1" inputmode="decimal" value="' + esc(fmtS(p.time).replace(',', '.')) + '" aria-label="' + esc(T('per.time')) + '"><span>s</span><span>' + esc(T('steps.every')) + '</span>' +
         '<input type="number" data-pm-f="freq" min="1" step="1" inputmode="numeric" value="' + (p.freq || '') + '" aria-label="' + esc(T('per.freqL') + ' ' + p.name) + '"><span>' + esc(T('steps.parts')) + '</span>' +
+        (op ? '<label class="check pf-wait" title="' + esc(T('per.waitHint')) + '"><input type="checkbox" data-pm-f="wait"' + (p.wait ? ' checked' : '') + '> ' + esc(T('per.wait')) + '</label>' : '') +
         '<button type="button" class="btn small danger" data-act="perDel" data-pm="' + j + '">' + esc(T('act.delete')) + '</button></div>';
     });
     h += '<div class="btn-row"><button type="button" class="btn small" data-act="perAdd">' + esc(T('per.add')) + '</button></div>';
-    if (per.list.length) h += '<p class="hint">' + esc(T('per.tot', { s: fmtS(per.perPart, 2) })) + (per.missing ? ' ' + esc(T('per.totMiss')) : '') + '</p>';
+    if (per.list.length) h += '<p class="hint pf-tot">' + esc(perTotalText(per)) + '</p>';
     return h + '</div>';
   }
 
@@ -18641,8 +19472,19 @@ I18N_EX.pt = { names: {
       }
       if (hasLang(l)) { e.preventDefault(); if (l !== lang) setLang(l); }
     });
+    // 3.9: the list next to Help: the same as a link of the footer (the page of the language on the site, or the
+    // language changed in place when this page carries it and a video is open, or outside the site)
+    $('langSel').addEventListener('change', function () {
+      var l = this.value, a = document.querySelector('.ftr-langs a[data-lang="' + l + '"]');
+      track('lang-' + l);
+      settings.lang = l; settings.langPick = true; saveSettings();
+      var onSite = /^https?:$/.test(location.protocol) && /(^|[.])vts-tool[.]com$/.test(location.hostname);
+      if (hasLang(l) && (!onSite || V.url || (PAGE_LANG || 'en') === l)) { if (l !== lang) setLang(l); return; }
+      if (a) location.href = a.href; else this.value = lang;
+    });
     langHint();
     $('btnOffline').addEventListener('click', offlineMake);
+    $('btnPurge').addEventListener('click', openPurge);
     $('btnLegal').addEventListener('click', openLegal);
     $('btnContact').addEventListener('click', openContact);
     $('btnContactF').addEventListener('click', openContact);
@@ -18705,7 +19547,7 @@ I18N_EX.pt = { names: {
     });
     $('btnSaveVideo').addEventListener('click', madeSave);
     window.addEventListener('beforeunload', function (e) {
-      if (V.made && V.file && !(MADE.rec && MADE.rec.saved && MADE.file === V.file)) { e.preventDefault(); e.returnValue = ''; return ''; }
+      if (!PURGED && V.made && V.file && !(MADE.rec && MADE.rec.saved && MADE.file === V.file)) { e.preventDefault(); e.returnValue = ''; return ''; }
     });
 
     // Record tab
@@ -18750,6 +19592,23 @@ I18N_EX.pt = { names: {
         }
         return;
       }
+      if (el.id === 'showSp') { settings.showSp = el.checked; saveSettings(); renderSteps(); return; }
+      if (el.id === 'tlStartBy') {
+        var sb = el.value;
+        mutate(function () {
+          var t = activeTl();
+          if (sb === 'auto') delete t.startBy;
+          else if (sb === 'none') t.startBy = 'none';
+          else { var q2 = sb.split('|'); t.startBy = { tl: q2[0], step: q2[1] }; }
+        }, { keepTab: true });
+        renderSteps();
+        return;
+      }
+      if (el.getAttribute && el.getAttribute('data-perwait') != null) {
+        var wk = el.getAttribute('data-perwait'), wv = el.checked;
+        mutate(function () { var t = activeTl(); t.perWait = t.perWait || {}; if (wv) t.perWait[wk] = true; else delete t.perWait[wk]; if (!Object.keys(t.perWait).length) delete t.perWait; });
+        return;
+      }
       if (el.id === 'tlName') {
         var v = el.value.trim();
         if (!v) { el.value = activeTl().name; return; }
@@ -18767,15 +19626,18 @@ I18N_EX.pt = { names: {
         mutate(function () {
           var t = activeTl(), m = t.perMan && t.perMan[j];
           if (!m) return false;
-          if (pf2 === 'name') m.name = pv.trim().slice(0, 120) || T('per.newName');
+          if (pf2 === 'wait') { if (el.checked) m.wait = true; else delete m.wait; }
+          else if (pf2 === 'name') m.name = pv.trim().slice(0, 120) || T('per.newName');
           else if (pf2 === 'time') { var x = parseFloat(String(pv).replace(',', '.')); if (x > 0 && x <= 36000) m.time = Math.round(x * 10) / 10; else return false; }
           else { var q = Math.round(+pv); m.freq = q >= 1 ? Math.min(q, 1000000) : null; }
-        }, { keepTab: true });
+        }, pf2 === 'wait' ? {} : { keepTab: true });
+        if (pf2 !== 'wait') perTotalRefresh();
         return;
       }
       if (el.getAttribute && el.getAttribute('data-perfreq') != null) {
         var pk = el.getAttribute('data-perfreq'), pf = Math.round(+el.value);
         mutate(function () { var t = activeTl(); t.perFreq = t.perFreq || {}; if (pf >= 1) t.perFreq[pk] = pf; else delete t.perFreq[pk]; }, { keepTab: true });
+        perTotalRefresh();
         return;
       }
       if (el.id === 'tlKind') { mutate(function () { activeTl().kind = el.value === 'machine' ? 'machine' : 'operator'; }, { keepTab: true }); return; }
@@ -18795,6 +19657,9 @@ I18N_EX.pt = { names: {
       } else if (f === 'station') {
         var sv = L.stationS(el.value);
         mutate(function () { var s = L.findStep(activeTl(), id); if (!s || s.type === 'Walk') return false; if (sv) s.station = sv; else delete s.station; }, { keepTab: true });
+      } else if (f === 'sp') {
+        var spv = L.spS(el.value);
+        mutate(function () { var s = L.findStep(activeTl(), id); if (!s) return false; if (spv) s.sp = spv; else delete s.sp; }, { keepTab: true });
       } else if (f === 'dist') {
         var d = parseFloat(String(el.value).replace(',', '.'));
         mutate(function () { var s = L.findStep(activeTl(), id); if (!s) return false; s.dist = isFinite(d) && d >= 0 ? d : null; }, { keepTab: true });
@@ -18973,17 +19838,20 @@ I18N_EX.pt = { names: {
   madeStart();
   showExpected();
   updateKeys();
-  if (restored) toast(T('toast.restored'));
+  // 3.9: the example opens again with its video by itself (app4.js exVideoAgain): no need to choose it
+  if (restored && !study.example) toast(T('toast.restored'));
   if (window.__VTS_TEST__) {
     window.__vts = {
       get study() { return study; }, L: L, V: V, an: an, activeTl: activeTl, undo: undo, redo: redo, offlineHtml: offlineHtml,
       settings: settings, hist: hist, recordNext: recordNext, seek: seek, CAN_DOWNLOAD: CAN_DOWNLOAD, setLang: setLang, T: T, TPL: TPL, X: X, sheets: neutralSheets, render: function () { anCache = {}; renderAll(); },
-      MADE: MADE, CV: CV, probe: vidProbe, neutralSave: neutralSave, cvPatch: cvPatch, hasLang: hasLang
+      MADE: MADE, CV: CV, probe: vidProbe, neutralSave: neutralSave, cvPatch: cvPatch, hasLang: hasLang,
+      // 3.9: a page without its libraries (to check the message when they cannot be read)
+      vdForget: function () { VD_URL = {}; Array.prototype.slice.call(document.querySelectorAll('[id^="vts-vd-"]')).forEach(function (e) { e.parentNode.removeChild(e); }); window.VTS_BASE = ''; }
     };
   }
 
   // Sample study for "Try an example" (made by example/make_example.py: fictional video, no factory footage).
-  var EX_DATA = {"video":{"name":"vts-example.mp4","size":1202740,"lastModified":1767225600000},"fr":{"app":"video-time-study","version":1,"example":true,"meta":{"name":"Exemple : ligne A","ref":"Panneau de porte","plant":"Usine exemple","line":"Ligne A","observer":"Video Time Study","date":"2026-11-12","takt":7},"video":{"name":"vts-example.mp4","size":1202740,"duration":104.067,"lastModified":1767225600000},"timelines":[{"id":"t086","name":"Op\u00e9rateur 1","kind":"operator","steps":[{"id":"s001","code":"A10","name":"Prendre une pi\u00e8ce dans le bac","type":"Operation","dist":null},{"id":"s002","code":"A20","name":"Aller \u00e0 la presse","type":"Walk","dist":null},{"id":"s003","code":"A30","name":"Charger la presse","type":"Operation","dist":null},{"id":"s004","code":"A40","name":"Attendre la presse","type":"Wait","dist":null},{"id":"s005","code":"A50","name":"D\u00e9charger et poser","type":"Operation","dist":null},{"id":"s006","code":"A60","name":"Retourner au bac","type":"Walk","dist":null}],"startStepId":"s001","events":[{"id":"e007","t":1.0,"kind":"step","stepId":"s001"},{"id":"e008","t":2.0667,"kind":"step","stepId":"s002"},{"id":"e009","t":2.8667,"kind":"step","stepId":"s003"},{"id":"e010","t":3.8,"kind":"step","stepId":"s004"},{"id":"e011","t":5.8667,"kind":"step","stepId":"s005"},{"id":"e012","t":6.8667,"kind":"step","stepId":"s006"},{"id":"e013","t":7.5333,"kind":"step","stepId":"s001"},{"id":"e014","t":8.7333,"kind":"step","stepId":"s002"},{"id":"e015","t":9.5333,"kind":"step","stepId":"s003"},{"id":"e016","t":10.4667,"kind":"step","stepId":"s004"},{"id":"e017","t":12.6,"kind":"step","stepId":"s005"},{"id":"e018","t":13.6,"kind":"step","stepId":"s006"},{"id":"e019","t":14.2667,"kind":"step","stepId":"s001"},{"id":"e020","t":15.4,"kind":"step","stepId":"s002"},{"id":"e021","t":16.2667,"kind":"step","stepId":"s003"},{"id":"e022","t":17.0667,"kind":"step","stepId":"s004"},{"id":"e023","t":19.2,"kind":"step","stepId":"s005"},{"id":"e024","t":20.1333,"kind":"step","stepId":"s006"},{"id":"e025","t":20.7333,"kind":"step","stepId":"s001"},{"id":"e026","t":21.8667,"kind":"step","stepId":"s002"},{"id":"e027","t":22.6,"kind":"step","stepId":"s003"},{"id":"e028","t":23.6,"kind":"step","stepId":"s004"},{"id":"e029","t":25.7333,"kind":"step","stepId":"s005"},{"id":"e030","t":26.8,"kind":"step","stepId":"s006"},{"id":"e031","t":27.5333,"kind":"step","stepId":"s001"},{"id":"e032","t":28.5333,"kind":"step","stepId":"s002"},{"id":"e033","t":29.2667,"kind":"step","stepId":"s003"},{"id":"e034","t":30.2,"kind":"step","stepId":"s004"},{"id":"e035","t":32.3333,"kind":"step","stepId":"s005"},{"id":"e036","t":33.2667,"kind":"step","stepId":"s006"},{"id":"e037","t":33.9333,"kind":"step","stepId":"s001"},{"id":"e038","t":34.9333,"kind":"step","stepId":"s002"},{"id":"e039","t":35.7333,"kind":"step","stepId":"s003"},{"id":"e040","t":36.6,"kind":"step","stepId":"s004"},{"id":"e041","t":38.6667,"kind":"step","stepId":"s005"},{"id":"e042","t":39.7333,"kind":"step","stepId":"s006"},{"id":"e043","t":40.4667,"kind":"step","stepId":"s001"},{"id":"e044","t":41.5333,"kind":"step","stepId":"s002"},{"id":"e045","t":42.3333,"kind":"step","stepId":"s003"},{"id":"e046","t":43.2,"kind":"step","stepId":"s004"},{"id":"e047","t":45.3333,"kind":"step","stepId":"s005"},{"id":"e048","t":46.2667,"kind":"step","stepId":"s006"},{"id":"e049","t":47.0667,"kind":"step","stepId":"s001"},{"id":"e050","t":48.2667,"kind":"step","stepId":"s002"},{"id":"e051","t":49.1333,"kind":"step","stepId":"s003"},{"id":"e052","t":50.0,"kind":"step","stepId":"s004"},{"id":"e053","t":52.1333,"kind":"step","stepId":"s005"},{"id":"e054","t":53.0667,"kind":"step","stepId":"s006"},{"id":"e055","t":53.7333,"kind":"step","stepId":"s001"},{"id":"e056","t":54.8667,"kind":"step","stepId":"s002"},{"id":"e057","t":55.6667,"kind":"step","stepId":"s003"},{"id":"e058","t":56.6667,"kind":"step","stepId":"s004"},{"id":"e059","t":58.7333,"kind":"step","stepId":"s005"},{"id":"e060","t":59.7333,"kind":"step","stepId":"s006"},{"id":"e061","t":60.5333,"kind":"step","stepId":"s001"},{"id":"e062","t":61.5333,"kind":"step","stepId":"s002"},{"id":"e063","t":62.2667,"kind":"step","stepId":"s003"},{"id":"e064","t":63.2667,"kind":"step","stepId":"s004"},{"id":"e065","t":65.4,"kind":"step","stepId":"s005"},{"id":"e066","t":66.4,"kind":"step","stepId":"s006"},{"id":"e067","t":67.2,"kind":"step","stepId":"s001"},{"id":"e068","t":68.2,"kind":"step","stepId":"s002"},{"id":"e069","t":69.0,"kind":"step","stepId":"s003"},{"id":"e070","t":69.9333,"kind":"step","stepId":"s004"},{"id":"e071","t":72.0,"kind":"step","stepId":"s005"},{"id":"e072","t":72.9333,"kind":"step","stepId":"s006"},{"id":"e073","t":73.5333,"kind":"step","stepId":"s001"},{"id":"e074","t":74.7333,"kind":"step","stepId":"s002"},{"id":"e075","t":75.6,"kind":"step","stepId":"s003"},{"id":"e076","t":76.4,"kind":"step","stepId":"s004"},{"id":"e077","t":78.4667,"kind":"step","stepId":"s005"},{"id":"e078","t":79.4,"kind":"step","stepId":"s006"},{"id":"e079","t":80.0,"kind":"step","stepId":"s001"},{"id":"e080","t":81.1333,"kind":"step","stepId":"s002"},{"id":"e081","t":81.8667,"kind":"step","stepId":"s003"},{"id":"e082","t":82.8,"kind":"step","stepId":"s004"},{"id":"e083","t":84.8667,"kind":"step","stepId":"s005"},{"id":"e084","t":85.8667,"kind":"step","stepId":"s006"},{"id":"e085","t":86.5333,"kind":"step","stepId":"s001"}]},{"id":"t167","name":"Op\u00e9rateur 2","kind":"operator","steps":[{"id":"s087","code":"B10","name":"Prendre la pi\u00e8ce sur la table","type":"Operation","dist":null},{"id":"s088","code":"B20","name":"Clipser les agrafes","type":"Operation","dist":null},{"id":"s089","code":"B30","name":"Contr\u00f4ler la pi\u00e8ce","type":"Inspection","dist":null},{"id":"s090","code":"B40","name":"Aller au carton","type":"Walk","dist":null},{"id":"s091","code":"B50","name":"Emballer","type":"Operation","dist":null},{"id":"s092","code":"B60","name":"Revenir \u00e0 la table","type":"Walk","dist":null}],"startStepId":"s087","events":[{"id":"e093","t":6.8667,"kind":"step","stepId":"s087"},{"id":"e094","t":7.5333,"kind":"step","stepId":"s088"},{"id":"e095","t":10.5333,"kind":"step","stepId":"s089"},{"id":"e096","t":12.1333,"kind":"step","stepId":"s090"},{"id":"e097","t":12.9333,"kind":"step","stepId":"s091"},{"id":"e098","t":13.5333,"kind":"step","stepId":"s092"},{"id":"e099","t":14.3333,"kind":"step","stepId":"s087"},{"id":"e100","t":15.0,"kind":"step","stepId":"s088"},{"id":"e101","t":18.0667,"kind":"step","stepId":"s089"},{"id":"e102","t":19.6,"kind":"step","stepId":"s090"},{"id":"e103","t":20.3333,"kind":"step","stepId":"s091"},{"id":"e104","t":20.8667,"kind":"step","stepId":"s092"},{"id":"e105","t":21.6,"kind":"step","stepId":"s087"},{"id":"e106","t":22.3333,"kind":"step","stepId":"s088"},{"id":"e107","t":25.2667,"kind":"step","stepId":"s089"},{"id":"e108","t":26.8667,"kind":"step","stepId":"s090"},{"id":"e109","t":27.6667,"kind":"step","stepId":"s091"},{"id":"e110","t":28.2667,"kind":"step","stepId":"s092"},{"id":"e111","t":29.1333,"kind":"step","stepId":"s087"},{"id":"e112","t":29.8,"kind":"step","stepId":"s088"},{"id":"e113","t":32.8,"kind":"step","stepId":"s089"},{"id":"e114","t":34.4667,"kind":"step","stepId":"s090"},{"id":"e115","t":35.2,"kind":"step","stepId":"s091"},{"id":"e116","t":35.7333,"kind":"step","stepId":"s092"},{"id":"e117","t":36.6,"kind":"step","stepId":"s087"},{"id":"e118","t":37.3333,"kind":"step","stepId":"s088","issue":"Material issue","note":"Agrafe tomb\u00e9e"},{"id":"e119","t":41.9333,"kind":"step","stepId":"s089"},{"id":"e120","t":43.4667,"kind":"step","stepId":"s090"},{"id":"e121","t":44.3333,"kind":"step","stepId":"s091"},{"id":"e122","t":45.0,"kind":"step","stepId":"s092"},{"id":"e123","t":45.7333,"kind":"step","stepId":"s087"},{"id":"e124","t":46.5333,"kind":"step","stepId":"s088"},{"id":"e125","t":49.6,"kind":"step","stepId":"s089"},{"id":"e126","t":51.2,"kind":"step","stepId":"s090"},{"id":"e127","t":52.0,"kind":"step","stepId":"s091"},{"id":"e128","t":52.5333,"kind":"step","stepId":"s092"},{"id":"e129","t":53.2667,"kind":"periodic","label":"Changer le carton"},{"id":"e130","t":57.2667,"kind":"step","stepId":"s087"},{"id":"e131","t":58.0667,"kind":"step","stepId":"s088"},{"id":"e132","t":61.0,"kind":"step","stepId":"s089"},{"id":"e133","t":62.6667,"kind":"step","stepId":"s090"},{"id":"e134","t":63.4,"kind":"step","stepId":"s091"},{"id":"e135","t":64.0667,"kind":"step","stepId":"s092"},{"id":"e136","t":64.8667,"kind":"step","stepId":"s087"},{"id":"e137","t":65.5333,"kind":"step","stepId":"s088"},{"id":"e138","t":68.4667,"kind":"step","stepId":"s089"},{"id":"e139","t":70.1333,"kind":"step","stepId":"s090"},{"id":"e140","t":70.8667,"kind":"step","stepId":"s091"},{"id":"e141","t":71.4,"kind":"step","stepId":"s092"},{"id":"e142","t":72.2,"kind":"step","stepId":"s087"},{"id":"e143","t":73.0,"kind":"step","stepId":"s088"},{"id":"e144","t":76.0,"kind":"step","stepId":"s089"},{"id":"e145","t":77.5333,"kind":"step","stepId":"s090"},{"id":"e146","t":78.4,"kind":"step","stepId":"s091"},{"id":"e147","t":78.9333,"kind":"step","stepId":"s092"},{"id":"e148","t":79.6667,"kind":"step","stepId":"s087"},{"id":"e149","t":80.3333,"kind":"step","stepId":"s088"},{"id":"e150","t":83.3333,"kind":"step","stepId":"s089"},{"id":"e151","t":84.8667,"kind":"step","stepId":"s090"},{"id":"e152","t":85.6,"kind":"step","stepId":"s091"},{"id":"e153","t":86.2,"kind":"step","stepId":"s092"},{"id":"e154","t":87.0,"kind":"step","stepId":"s087"},{"id":"e155","t":87.6,"kind":"step","stepId":"s088"},{"id":"e156","t":90.6,"kind":"step","stepId":"s089"},{"id":"e157","t":92.2667,"kind":"step","stepId":"s090"},{"id":"e158","t":93.1333,"kind":"step","stepId":"s091"},{"id":"e159","t":93.7333,"kind":"step","stepId":"s092"},{"id":"e160","t":94.6,"kind":"step","stepId":"s087"},{"id":"e161","t":95.3333,"kind":"step","stepId":"s088"},{"id":"e162","t":98.2667,"kind":"step","stepId":"s089"},{"id":"e163","t":99.8,"kind":"step","stepId":"s090"},{"id":"e164","t":100.5333,"kind":"step","stepId":"s091"},{"id":"e165","t":101.2,"kind":"step","stepId":"s092"},{"id":"e166","t":102.0667,"kind":"step","stepId":"s087"}],"perFreq":{"changer le carton":40}},{"id":"t208","name":"Presse","kind":"machine","steps":[{"id":"s168","code":"M10","name":"Presser","type":"Machine","dist":null},{"id":"s169","code":"M20","name":"Ouvrir et \u00e9jecter","type":"Machine","dist":null},{"id":"s170","code":"M30","name":"Attendre le chargement","type":"Wait","dist":null}],"startStepId":"s168","events":[{"id":"e171","t":3.8,"kind":"step","stepId":"s168"},{"id":"e172","t":5.8667,"kind":"step","stepId":"s169"},{"id":"e173","t":6.8667,"kind":"step","stepId":"s170"},{"id":"e174","t":10.4667,"kind":"step","stepId":"s168"},{"id":"e175","t":12.6,"kind":"step","stepId":"s169"},{"id":"e176","t":13.6,"kind":"step","stepId":"s170"},{"id":"e177","t":17.0667,"kind":"step","stepId":"s168"},{"id":"e178","t":19.2,"kind":"step","stepId":"s169"},{"id":"e179","t":20.1333,"kind":"step","stepId":"s170"},{"id":"e180","t":23.6,"kind":"step","stepId":"s168"},{"id":"e181","t":25.7333,"kind":"step","stepId":"s169"},{"id":"e182","t":26.8,"kind":"step","stepId":"s170"},{"id":"e183","t":30.2,"kind":"step","stepId":"s168"},{"id":"e184","t":32.3333,"kind":"step","stepId":"s169"},{"id":"e185","t":33.2667,"kind":"step","stepId":"s170"},{"id":"e186","t":36.6,"kind":"step","stepId":"s168"},{"id":"e187","t":38.6667,"kind":"step","stepId":"s169"},{"id":"e188","t":39.7333,"kind":"step","stepId":"s170"},{"id":"e189","t":43.2,"kind":"step","stepId":"s168"},{"id":"e190","t":45.3333,"kind":"step","stepId":"s169"},{"id":"e191","t":46.2667,"kind":"step","stepId":"s170"},{"id":"e192","t":50.0,"kind":"step","stepId":"s168"},{"id":"e193","t":52.1333,"kind":"step","stepId":"s169"},{"id":"e194","t":53.0667,"kind":"step","stepId":"s170"},{"id":"e195","t":56.6667,"kind":"step","stepId":"s168"},{"id":"e196","t":58.7333,"kind":"step","stepId":"s169"},{"id":"e197","t":59.7333,"kind":"step","stepId":"s170"},{"id":"e198","t":63.2667,"kind":"step","stepId":"s168"},{"id":"e199","t":65.4,"kind":"step","stepId":"s169"},{"id":"e200","t":66.4,"kind":"step","stepId":"s170"},{"id":"e201","t":69.9333,"kind":"step","stepId":"s168"},{"id":"e202","t":72.0,"kind":"step","stepId":"s169"},{"id":"e203","t":72.9333,"kind":"step","stepId":"s170"},{"id":"e204","t":76.4,"kind":"step","stepId":"s168"},{"id":"e205","t":78.4667,"kind":"step","stepId":"s169"},{"id":"e206","t":79.4,"kind":"step","stepId":"s170"},{"id":"e207","t":82.8,"kind":"step","stepId":"s168"}]}],"activeId":"t086"},"en":{"app":"video-time-study","version":1,"example":true,"meta":{"name":"Example: line A","ref":"Door panel","plant":"Sample plant","line":"Line A","observer":"Video Time Study","date":"2026-11-12","takt":7},"video":{"name":"vts-example.mp4","size":1202740,"duration":104.067,"lastModified":1767225600000},"timelines":[{"id":"t294","name":"Operator 1","kind":"operator","steps":[{"id":"s209","code":"A10","name":"Take a part from the bin","type":"Operation","dist":null},{"id":"s210","code":"A20","name":"Walk to the press","type":"Walk","dist":null},{"id":"s211","code":"A30","name":"Load the press","type":"Operation","dist":null},{"id":"s212","code":"A40","name":"Wait for the press","type":"Wait","dist":null},{"id":"s213","code":"A50","name":"Unload and put down","type":"Operation","dist":null},{"id":"s214","code":"A60","name":"Walk back to the bin","type":"Walk","dist":null}],"startStepId":"s209","events":[{"id":"e215","t":1.0,"kind":"step","stepId":"s209"},{"id":"e216","t":2.0667,"kind":"step","stepId":"s210"},{"id":"e217","t":2.8667,"kind":"step","stepId":"s211"},{"id":"e218","t":3.8,"kind":"step","stepId":"s212"},{"id":"e219","t":5.8667,"kind":"step","stepId":"s213"},{"id":"e220","t":6.8667,"kind":"step","stepId":"s214"},{"id":"e221","t":7.5333,"kind":"step","stepId":"s209"},{"id":"e222","t":8.7333,"kind":"step","stepId":"s210"},{"id":"e223","t":9.5333,"kind":"step","stepId":"s211"},{"id":"e224","t":10.4667,"kind":"step","stepId":"s212"},{"id":"e225","t":12.6,"kind":"step","stepId":"s213"},{"id":"e226","t":13.6,"kind":"step","stepId":"s214"},{"id":"e227","t":14.2667,"kind":"step","stepId":"s209"},{"id":"e228","t":15.4,"kind":"step","stepId":"s210"},{"id":"e229","t":16.2667,"kind":"step","stepId":"s211"},{"id":"e230","t":17.0667,"kind":"step","stepId":"s212"},{"id":"e231","t":19.2,"kind":"step","stepId":"s213"},{"id":"e232","t":20.1333,"kind":"step","stepId":"s214"},{"id":"e233","t":20.7333,"kind":"step","stepId":"s209"},{"id":"e234","t":21.8667,"kind":"step","stepId":"s210"},{"id":"e235","t":22.6,"kind":"step","stepId":"s211"},{"id":"e236","t":23.6,"kind":"step","stepId":"s212"},{"id":"e237","t":25.7333,"kind":"step","stepId":"s213"},{"id":"e238","t":26.8,"kind":"step","stepId":"s214"},{"id":"e239","t":27.5333,"kind":"step","stepId":"s209"},{"id":"e240","t":28.5333,"kind":"step","stepId":"s210"},{"id":"e241","t":29.2667,"kind":"step","stepId":"s211"},{"id":"e242","t":30.2,"kind":"step","stepId":"s212"},{"id":"e243","t":32.3333,"kind":"step","stepId":"s213"},{"id":"e244","t":33.2667,"kind":"step","stepId":"s214"},{"id":"e245","t":33.9333,"kind":"step","stepId":"s209"},{"id":"e246","t":34.9333,"kind":"step","stepId":"s210"},{"id":"e247","t":35.7333,"kind":"step","stepId":"s211"},{"id":"e248","t":36.6,"kind":"step","stepId":"s212"},{"id":"e249","t":38.6667,"kind":"step","stepId":"s213"},{"id":"e250","t":39.7333,"kind":"step","stepId":"s214"},{"id":"e251","t":40.4667,"kind":"step","stepId":"s209"},{"id":"e252","t":41.5333,"kind":"step","stepId":"s210"},{"id":"e253","t":42.3333,"kind":"step","stepId":"s211"},{"id":"e254","t":43.2,"kind":"step","stepId":"s212"},{"id":"e255","t":45.3333,"kind":"step","stepId":"s213"},{"id":"e256","t":46.2667,"kind":"step","stepId":"s214"},{"id":"e257","t":47.0667,"kind":"step","stepId":"s209"},{"id":"e258","t":48.2667,"kind":"step","stepId":"s210"},{"id":"e259","t":49.1333,"kind":"step","stepId":"s211"},{"id":"e260","t":50.0,"kind":"step","stepId":"s212"},{"id":"e261","t":52.1333,"kind":"step","stepId":"s213"},{"id":"e262","t":53.0667,"kind":"step","stepId":"s214"},{"id":"e263","t":53.7333,"kind":"step","stepId":"s209"},{"id":"e264","t":54.8667,"kind":"step","stepId":"s210"},{"id":"e265","t":55.6667,"kind":"step","stepId":"s211"},{"id":"e266","t":56.6667,"kind":"step","stepId":"s212"},{"id":"e267","t":58.7333,"kind":"step","stepId":"s213"},{"id":"e268","t":59.7333,"kind":"step","stepId":"s214"},{"id":"e269","t":60.5333,"kind":"step","stepId":"s209"},{"id":"e270","t":61.5333,"kind":"step","stepId":"s210"},{"id":"e271","t":62.2667,"kind":"step","stepId":"s211"},{"id":"e272","t":63.2667,"kind":"step","stepId":"s212"},{"id":"e273","t":65.4,"kind":"step","stepId":"s213"},{"id":"e274","t":66.4,"kind":"step","stepId":"s214"},{"id":"e275","t":67.2,"kind":"step","stepId":"s209"},{"id":"e276","t":68.2,"kind":"step","stepId":"s210"},{"id":"e277","t":69.0,"kind":"step","stepId":"s211"},{"id":"e278","t":69.9333,"kind":"step","stepId":"s212"},{"id":"e279","t":72.0,"kind":"step","stepId":"s213"},{"id":"e280","t":72.9333,"kind":"step","stepId":"s214"},{"id":"e281","t":73.5333,"kind":"step","stepId":"s209"},{"id":"e282","t":74.7333,"kind":"step","stepId":"s210"},{"id":"e283","t":75.6,"kind":"step","stepId":"s211"},{"id":"e284","t":76.4,"kind":"step","stepId":"s212"},{"id":"e285","t":78.4667,"kind":"step","stepId":"s213"},{"id":"e286","t":79.4,"kind":"step","stepId":"s214"},{"id":"e287","t":80.0,"kind":"step","stepId":"s209"},{"id":"e288","t":81.1333,"kind":"step","stepId":"s210"},{"id":"e289","t":81.8667,"kind":"step","stepId":"s211"},{"id":"e290","t":82.8,"kind":"step","stepId":"s212"},{"id":"e291","t":84.8667,"kind":"step","stepId":"s213"},{"id":"e292","t":85.8667,"kind":"step","stepId":"s214"},{"id":"e293","t":86.5333,"kind":"step","stepId":"s209"}]},{"id":"t375","name":"Operator 2","kind":"operator","steps":[{"id":"s295","code":"B10","name":"Take the part on the table","type":"Operation","dist":null},{"id":"s296","code":"B20","name":"Clip the fasteners","type":"Operation","dist":null},{"id":"s297","code":"B30","name":"Check the part","type":"Inspection","dist":null},{"id":"s298","code":"B40","name":"Walk to the box","type":"Walk","dist":null},{"id":"s299","code":"B50","name":"Pack","type":"Operation","dist":null},{"id":"s300","code":"B60","name":"Walk back to the table","type":"Walk","dist":null}],"startStepId":"s295","events":[{"id":"e301","t":6.8667,"kind":"step","stepId":"s295"},{"id":"e302","t":7.5333,"kind":"step","stepId":"s296"},{"id":"e303","t":10.5333,"kind":"step","stepId":"s297"},{"id":"e304","t":12.1333,"kind":"step","stepId":"s298"},{"id":"e305","t":12.9333,"kind":"step","stepId":"s299"},{"id":"e306","t":13.5333,"kind":"step","stepId":"s300"},{"id":"e307","t":14.3333,"kind":"step","stepId":"s295"},{"id":"e308","t":15.0,"kind":"step","stepId":"s296"},{"id":"e309","t":18.0667,"kind":"step","stepId":"s297"},{"id":"e310","t":19.6,"kind":"step","stepId":"s298"},{"id":"e311","t":20.3333,"kind":"step","stepId":"s299"},{"id":"e312","t":20.8667,"kind":"step","stepId":"s300"},{"id":"e313","t":21.6,"kind":"step","stepId":"s295"},{"id":"e314","t":22.3333,"kind":"step","stepId":"s296"},{"id":"e315","t":25.2667,"kind":"step","stepId":"s297"},{"id":"e316","t":26.8667,"kind":"step","stepId":"s298"},{"id":"e317","t":27.6667,"kind":"step","stepId":"s299"},{"id":"e318","t":28.2667,"kind":"step","stepId":"s300"},{"id":"e319","t":29.1333,"kind":"step","stepId":"s295"},{"id":"e320","t":29.8,"kind":"step","stepId":"s296"},{"id":"e321","t":32.8,"kind":"step","stepId":"s297"},{"id":"e322","t":34.4667,"kind":"step","stepId":"s298"},{"id":"e323","t":35.2,"kind":"step","stepId":"s299"},{"id":"e324","t":35.7333,"kind":"step","stepId":"s300"},{"id":"e325","t":36.6,"kind":"step","stepId":"s295"},{"id":"e326","t":37.3333,"kind":"step","stepId":"s296","issue":"Material issue","note":"Fastener dropped"},{"id":"e327","t":41.9333,"kind":"step","stepId":"s297"},{"id":"e328","t":43.4667,"kind":"step","stepId":"s298"},{"id":"e329","t":44.3333,"kind":"step","stepId":"s299"},{"id":"e330","t":45.0,"kind":"step","stepId":"s300"},{"id":"e331","t":45.7333,"kind":"step","stepId":"s295"},{"id":"e332","t":46.5333,"kind":"step","stepId":"s296"},{"id":"e333","t":49.6,"kind":"step","stepId":"s297"},{"id":"e334","t":51.2,"kind":"step","stepId":"s298"},{"id":"e335","t":52.0,"kind":"step","stepId":"s299"},{"id":"e336","t":52.5333,"kind":"step","stepId":"s300"},{"id":"e337","t":53.2667,"kind":"periodic","label":"Change the box"},{"id":"e338","t":57.2667,"kind":"step","stepId":"s295"},{"id":"e339","t":58.0667,"kind":"step","stepId":"s296"},{"id":"e340","t":61.0,"kind":"step","stepId":"s297"},{"id":"e341","t":62.6667,"kind":"step","stepId":"s298"},{"id":"e342","t":63.4,"kind":"step","stepId":"s299"},{"id":"e343","t":64.0667,"kind":"step","stepId":"s300"},{"id":"e344","t":64.8667,"kind":"step","stepId":"s295"},{"id":"e345","t":65.5333,"kind":"step","stepId":"s296"},{"id":"e346","t":68.4667,"kind":"step","stepId":"s297"},{"id":"e347","t":70.1333,"kind":"step","stepId":"s298"},{"id":"e348","t":70.8667,"kind":"step","stepId":"s299"},{"id":"e349","t":71.4,"kind":"step","stepId":"s300"},{"id":"e350","t":72.2,"kind":"step","stepId":"s295"},{"id":"e351","t":73.0,"kind":"step","stepId":"s296"},{"id":"e352","t":76.0,"kind":"step","stepId":"s297"},{"id":"e353","t":77.5333,"kind":"step","stepId":"s298"},{"id":"e354","t":78.4,"kind":"step","stepId":"s299"},{"id":"e355","t":78.9333,"kind":"step","stepId":"s300"},{"id":"e356","t":79.6667,"kind":"step","stepId":"s295"},{"id":"e357","t":80.3333,"kind":"step","stepId":"s296"},{"id":"e358","t":83.3333,"kind":"step","stepId":"s297"},{"id":"e359","t":84.8667,"kind":"step","stepId":"s298"},{"id":"e360","t":85.6,"kind":"step","stepId":"s299"},{"id":"e361","t":86.2,"kind":"step","stepId":"s300"},{"id":"e362","t":87.0,"kind":"step","stepId":"s295"},{"id":"e363","t":87.6,"kind":"step","stepId":"s296"},{"id":"e364","t":90.6,"kind":"step","stepId":"s297"},{"id":"e365","t":92.2667,"kind":"step","stepId":"s298"},{"id":"e366","t":93.1333,"kind":"step","stepId":"s299"},{"id":"e367","t":93.7333,"kind":"step","stepId":"s300"},{"id":"e368","t":94.6,"kind":"step","stepId":"s295"},{"id":"e369","t":95.3333,"kind":"step","stepId":"s296"},{"id":"e370","t":98.2667,"kind":"step","stepId":"s297"},{"id":"e371","t":99.8,"kind":"step","stepId":"s298"},{"id":"e372","t":100.5333,"kind":"step","stepId":"s299"},{"id":"e373","t":101.2,"kind":"step","stepId":"s300"},{"id":"e374","t":102.0667,"kind":"step","stepId":"s295"}],"perFreq":{"change the box":40}},{"id":"t416","name":"Press","kind":"machine","steps":[{"id":"s376","code":"M10","name":"Press","type":"Machine","dist":null},{"id":"s377","code":"M20","name":"Open and eject","type":"Machine","dist":null},{"id":"s378","code":"M30","name":"Wait for loading","type":"Wait","dist":null}],"startStepId":"s376","events":[{"id":"e379","t":3.8,"kind":"step","stepId":"s376"},{"id":"e380","t":5.8667,"kind":"step","stepId":"s377"},{"id":"e381","t":6.8667,"kind":"step","stepId":"s378"},{"id":"e382","t":10.4667,"kind":"step","stepId":"s376"},{"id":"e383","t":12.6,"kind":"step","stepId":"s377"},{"id":"e384","t":13.6,"kind":"step","stepId":"s378"},{"id":"e385","t":17.0667,"kind":"step","stepId":"s376"},{"id":"e386","t":19.2,"kind":"step","stepId":"s377"},{"id":"e387","t":20.1333,"kind":"step","stepId":"s378"},{"id":"e388","t":23.6,"kind":"step","stepId":"s376"},{"id":"e389","t":25.7333,"kind":"step","stepId":"s377"},{"id":"e390","t":26.8,"kind":"step","stepId":"s378"},{"id":"e391","t":30.2,"kind":"step","stepId":"s376"},{"id":"e392","t":32.3333,"kind":"step","stepId":"s377"},{"id":"e393","t":33.2667,"kind":"step","stepId":"s378"},{"id":"e394","t":36.6,"kind":"step","stepId":"s376"},{"id":"e395","t":38.6667,"kind":"step","stepId":"s377"},{"id":"e396","t":39.7333,"kind":"step","stepId":"s378"},{"id":"e397","t":43.2,"kind":"step","stepId":"s376"},{"id":"e398","t":45.3333,"kind":"step","stepId":"s377"},{"id":"e399","t":46.2667,"kind":"step","stepId":"s378"},{"id":"e400","t":50.0,"kind":"step","stepId":"s376"},{"id":"e401","t":52.1333,"kind":"step","stepId":"s377"},{"id":"e402","t":53.0667,"kind":"step","stepId":"s378"},{"id":"e403","t":56.6667,"kind":"step","stepId":"s376"},{"id":"e404","t":58.7333,"kind":"step","stepId":"s377"},{"id":"e405","t":59.7333,"kind":"step","stepId":"s378"},{"id":"e406","t":63.2667,"kind":"step","stepId":"s376"},{"id":"e407","t":65.4,"kind":"step","stepId":"s377"},{"id":"e408","t":66.4,"kind":"step","stepId":"s378"},{"id":"e409","t":69.9333,"kind":"step","stepId":"s376"},{"id":"e410","t":72.0,"kind":"step","stepId":"s377"},{"id":"e411","t":72.9333,"kind":"step","stepId":"s378"},{"id":"e412","t":76.4,"kind":"step","stepId":"s376"},{"id":"e413","t":78.4667,"kind":"step","stepId":"s377"},{"id":"e414","t":79.4,"kind":"step","stepId":"s378"},{"id":"e415","t":82.8,"kind":"step","stepId":"s376"}]}],"activeId":"t294"},"scenario":{"move":"B30","after":"A30","wait":"A40","waitDur":0.5,"fr":{"name":"Contr\u00f4le par l\u2019op\u00e9rateur 1","note":"\u00ab\u00a0B30 Contr\u00f4ler la pi\u00e8ce\u00a0\u00bb passe de l\u2019op\u00e9rateur 2 \u00e0 l\u2019op\u00e9rateur 1, qui la fait pendant le cycle de la presse\u00a0: l\u2019attente de l\u2019op\u00e9rateur 1 passe de 2,1\u00a0s \u00e0 0,5\u00a0s."},"en":{"name":"Check by operator 1","note":"\u201cB30 Check the part\u201d moves from operator 2 to operator 1, who does it while the press runs: the wait of operator 1 goes from 2.1 s to 0.5 s."}},"b64":""};
+  var EX_DATA = {"video":{"name":"vts-example.mp4","size":1202740,"lastModified":1767225600000},"fr":{"app":"video-time-study","version":1,"example":true,"meta":{"name":"Exemple : ligne A","ref":"Panneau de porte","plant":"Usine exemple","line":"Ligne A","observer":"Video Time Study","date":"2026-11-12","takt":7},"video":{"name":"vts-example.mp4","size":1202740,"duration":104.067,"lastModified":1767225600000},"timelines":[{"id":"t086","name":"Op\u00e9rateur 1","kind":"operator","steps":[{"id":"s001","code":"A10","name":"Prendre une pi\u00e8ce dans le bac","type":"Operation","dist":null},{"id":"s002","code":"A20","name":"Aller \u00e0 la presse","type":"Walk","dist":null},{"id":"s003","code":"A30","name":"Charger la presse","type":"Operation","dist":null},{"id":"s004","code":"A40","name":"Attendre la presse","type":"Wait","dist":null},{"id":"s005","code":"A50","name":"D\u00e9charger et poser","type":"Operation","dist":null},{"id":"s006","code":"A60","name":"Retourner au bac","type":"Walk","dist":null}],"startStepId":"s001","events":[{"id":"e007","t":1.0,"kind":"step","stepId":"s001"},{"id":"e008","t":2.0667,"kind":"step","stepId":"s002"},{"id":"e009","t":2.8667,"kind":"step","stepId":"s003"},{"id":"e010","t":3.8,"kind":"step","stepId":"s004"},{"id":"e011","t":5.8667,"kind":"step","stepId":"s005"},{"id":"e012","t":6.8667,"kind":"step","stepId":"s006"},{"id":"e013","t":7.5333,"kind":"step","stepId":"s001"},{"id":"e014","t":8.7333,"kind":"step","stepId":"s002"},{"id":"e015","t":9.5333,"kind":"step","stepId":"s003"},{"id":"e016","t":10.4667,"kind":"step","stepId":"s004"},{"id":"e017","t":12.6,"kind":"step","stepId":"s005"},{"id":"e018","t":13.6,"kind":"step","stepId":"s006"},{"id":"e019","t":14.2667,"kind":"step","stepId":"s001"},{"id":"e020","t":15.4,"kind":"step","stepId":"s002"},{"id":"e021","t":16.2667,"kind":"step","stepId":"s003"},{"id":"e022","t":17.0667,"kind":"step","stepId":"s004"},{"id":"e023","t":19.2,"kind":"step","stepId":"s005"},{"id":"e024","t":20.1333,"kind":"step","stepId":"s006"},{"id":"e025","t":20.7333,"kind":"step","stepId":"s001"},{"id":"e026","t":21.8667,"kind":"step","stepId":"s002"},{"id":"e027","t":22.6,"kind":"step","stepId":"s003"},{"id":"e028","t":23.6,"kind":"step","stepId":"s004"},{"id":"e029","t":25.7333,"kind":"step","stepId":"s005"},{"id":"e030","t":26.8,"kind":"step","stepId":"s006"},{"id":"e031","t":27.5333,"kind":"step","stepId":"s001"},{"id":"e032","t":28.5333,"kind":"step","stepId":"s002"},{"id":"e033","t":29.2667,"kind":"step","stepId":"s003"},{"id":"e034","t":30.2,"kind":"step","stepId":"s004"},{"id":"e035","t":32.3333,"kind":"step","stepId":"s005"},{"id":"e036","t":33.2667,"kind":"step","stepId":"s006"},{"id":"e037","t":33.9333,"kind":"step","stepId":"s001"},{"id":"e038","t":34.9333,"kind":"step","stepId":"s002"},{"id":"e039","t":35.7333,"kind":"step","stepId":"s003"},{"id":"e040","t":36.6,"kind":"step","stepId":"s004"},{"id":"e041","t":38.6667,"kind":"step","stepId":"s005"},{"id":"e042","t":39.7333,"kind":"step","stepId":"s006"},{"id":"e043","t":40.4667,"kind":"step","stepId":"s001"},{"id":"e044","t":41.5333,"kind":"step","stepId":"s002"},{"id":"e045","t":42.3333,"kind":"step","stepId":"s003"},{"id":"e046","t":43.2,"kind":"step","stepId":"s004"},{"id":"e047","t":45.3333,"kind":"step","stepId":"s005"},{"id":"e048","t":46.2667,"kind":"step","stepId":"s006"},{"id":"e049","t":47.0667,"kind":"step","stepId":"s001"},{"id":"e050","t":48.2667,"kind":"step","stepId":"s002"},{"id":"e051","t":49.1333,"kind":"step","stepId":"s003"},{"id":"e052","t":50.0,"kind":"step","stepId":"s004"},{"id":"e053","t":52.1333,"kind":"step","stepId":"s005"},{"id":"e054","t":53.0667,"kind":"step","stepId":"s006"},{"id":"e055","t":53.7333,"kind":"step","stepId":"s001"},{"id":"e056","t":54.8667,"kind":"step","stepId":"s002"},{"id":"e057","t":55.6667,"kind":"step","stepId":"s003"},{"id":"e058","t":56.6667,"kind":"step","stepId":"s004"},{"id":"e059","t":58.7333,"kind":"step","stepId":"s005"},{"id":"e060","t":59.7333,"kind":"step","stepId":"s006"},{"id":"e061","t":60.5333,"kind":"step","stepId":"s001"},{"id":"e062","t":61.5333,"kind":"step","stepId":"s002"},{"id":"e063","t":62.2667,"kind":"step","stepId":"s003"},{"id":"e064","t":63.2667,"kind":"step","stepId":"s004"},{"id":"e065","t":65.4,"kind":"step","stepId":"s005"},{"id":"e066","t":66.4,"kind":"step","stepId":"s006"},{"id":"e067","t":67.2,"kind":"step","stepId":"s001"},{"id":"e068","t":68.2,"kind":"step","stepId":"s002"},{"id":"e069","t":69.0,"kind":"step","stepId":"s003"},{"id":"e070","t":69.9333,"kind":"step","stepId":"s004"},{"id":"e071","t":72.0,"kind":"step","stepId":"s005"},{"id":"e072","t":72.9333,"kind":"step","stepId":"s006"},{"id":"e073","t":73.5333,"kind":"step","stepId":"s001"},{"id":"e074","t":74.7333,"kind":"step","stepId":"s002"},{"id":"e075","t":75.6,"kind":"step","stepId":"s003"},{"id":"e076","t":76.4,"kind":"step","stepId":"s004"},{"id":"e077","t":78.4667,"kind":"step","stepId":"s005"},{"id":"e078","t":79.4,"kind":"step","stepId":"s006"},{"id":"e079","t":80.0,"kind":"step","stepId":"s001"},{"id":"e080","t":81.1333,"kind":"step","stepId":"s002"},{"id":"e081","t":81.8667,"kind":"step","stepId":"s003"},{"id":"e082","t":82.8,"kind":"step","stepId":"s004"},{"id":"e083","t":84.8667,"kind":"step","stepId":"s005"},{"id":"e084","t":85.8667,"kind":"step","stepId":"s006"},{"id":"e085","t":86.5333,"kind":"step","stepId":"s001"}]},{"id":"t167","name":"Op\u00e9rateur 2","kind":"operator","steps":[{"id":"s087","code":"B10","name":"Prendre la pi\u00e8ce sur la table","type":"Operation","dist":null},{"id":"s088","code":"B20","name":"Clipser les agrafes","type":"Operation","dist":null},{"id":"s089","code":"B30","name":"Contr\u00f4ler la pi\u00e8ce","type":"Inspection","dist":null},{"id":"s090","code":"B40","name":"Aller au carton","type":"Walk","dist":null},{"id":"s091","code":"B50","name":"Emballer","type":"Operation","dist":null},{"id":"s092","code":"B60","name":"Revenir \u00e0 la table","type":"Walk","dist":null}],"startStepId":"s087","events":[{"id":"e093","t":6.8667,"kind":"step","stepId":"s087"},{"id":"e094","t":7.5333,"kind":"step","stepId":"s088"},{"id":"e095","t":10.5333,"kind":"step","stepId":"s089"},{"id":"e096","t":12.1333,"kind":"step","stepId":"s090"},{"id":"e097","t":12.9333,"kind":"step","stepId":"s091"},{"id":"e098","t":13.5333,"kind":"step","stepId":"s092"},{"id":"e099","t":14.3333,"kind":"step","stepId":"s087"},{"id":"e100","t":15.0,"kind":"step","stepId":"s088"},{"id":"e101","t":18.0667,"kind":"step","stepId":"s089"},{"id":"e102","t":19.6,"kind":"step","stepId":"s090"},{"id":"e103","t":20.3333,"kind":"step","stepId":"s091"},{"id":"e104","t":20.8667,"kind":"step","stepId":"s092"},{"id":"e105","t":21.6,"kind":"step","stepId":"s087"},{"id":"e106","t":22.3333,"kind":"step","stepId":"s088"},{"id":"e107","t":25.2667,"kind":"step","stepId":"s089"},{"id":"e108","t":26.8667,"kind":"step","stepId":"s090"},{"id":"e109","t":27.6667,"kind":"step","stepId":"s091"},{"id":"e110","t":28.2667,"kind":"step","stepId":"s092"},{"id":"e111","t":29.1333,"kind":"step","stepId":"s087"},{"id":"e112","t":29.8,"kind":"step","stepId":"s088"},{"id":"e113","t":32.8,"kind":"step","stepId":"s089"},{"id":"e114","t":34.4667,"kind":"step","stepId":"s090"},{"id":"e115","t":35.2,"kind":"step","stepId":"s091"},{"id":"e116","t":35.7333,"kind":"step","stepId":"s092"},{"id":"e117","t":36.6,"kind":"step","stepId":"s087"},{"id":"e118","t":37.3333,"kind":"step","stepId":"s088","issue":"Material issue","note":"Agrafe tomb\u00e9e"},{"id":"e119","t":41.9333,"kind":"step","stepId":"s089"},{"id":"e120","t":43.4667,"kind":"step","stepId":"s090"},{"id":"e121","t":44.3333,"kind":"step","stepId":"s091"},{"id":"e122","t":45.0,"kind":"step","stepId":"s092"},{"id":"e123","t":45.7333,"kind":"step","stepId":"s087"},{"id":"e124","t":46.5333,"kind":"step","stepId":"s088"},{"id":"e125","t":49.6,"kind":"step","stepId":"s089"},{"id":"e126","t":51.2,"kind":"step","stepId":"s090"},{"id":"e127","t":52.0,"kind":"step","stepId":"s091"},{"id":"e128","t":52.5333,"kind":"step","stepId":"s092"},{"id":"e129","t":53.2667,"kind":"periodic","label":"Changer le carton"},{"id":"e130","t":57.2667,"kind":"step","stepId":"s087"},{"id":"e131","t":58.0667,"kind":"step","stepId":"s088"},{"id":"e132","t":61.0,"kind":"step","stepId":"s089"},{"id":"e133","t":62.6667,"kind":"step","stepId":"s090"},{"id":"e134","t":63.4,"kind":"step","stepId":"s091"},{"id":"e135","t":64.0667,"kind":"step","stepId":"s092"},{"id":"e136","t":64.8667,"kind":"step","stepId":"s087"},{"id":"e137","t":65.5333,"kind":"step","stepId":"s088"},{"id":"e138","t":68.4667,"kind":"step","stepId":"s089"},{"id":"e139","t":70.1333,"kind":"step","stepId":"s090"},{"id":"e140","t":70.8667,"kind":"step","stepId":"s091"},{"id":"e141","t":71.4,"kind":"step","stepId":"s092"},{"id":"e142","t":72.2,"kind":"step","stepId":"s087"},{"id":"e143","t":73.0,"kind":"step","stepId":"s088"},{"id":"e144","t":76.0,"kind":"step","stepId":"s089"},{"id":"e145","t":77.5333,"kind":"step","stepId":"s090"},{"id":"e146","t":78.4,"kind":"step","stepId":"s091"},{"id":"e147","t":78.9333,"kind":"step","stepId":"s092"},{"id":"e148","t":79.6667,"kind":"step","stepId":"s087"},{"id":"e149","t":80.3333,"kind":"step","stepId":"s088"},{"id":"e150","t":83.3333,"kind":"step","stepId":"s089"},{"id":"e151","t":84.8667,"kind":"step","stepId":"s090"},{"id":"e152","t":85.6,"kind":"step","stepId":"s091"},{"id":"e153","t":86.2,"kind":"step","stepId":"s092"},{"id":"e154","t":87.0,"kind":"step","stepId":"s087"},{"id":"e155","t":87.6,"kind":"step","stepId":"s088"},{"id":"e156","t":90.6,"kind":"step","stepId":"s089"},{"id":"e157","t":92.2667,"kind":"step","stepId":"s090"},{"id":"e158","t":93.1333,"kind":"step","stepId":"s091"},{"id":"e159","t":93.7333,"kind":"step","stepId":"s092"},{"id":"e160","t":94.6,"kind":"step","stepId":"s087"},{"id":"e161","t":95.3333,"kind":"step","stepId":"s088"},{"id":"e162","t":98.2667,"kind":"step","stepId":"s089"},{"id":"e163","t":99.8,"kind":"step","stepId":"s090"},{"id":"e164","t":100.5333,"kind":"step","stepId":"s091"},{"id":"e165","t":101.2,"kind":"step","stepId":"s092"},{"id":"e166","t":102.0667,"kind":"step","stepId":"s087"}],"perFreq":{"changer le carton":40}},{"id":"t208","name":"Presse","kind":"machine","steps":[{"id":"s168","code":"M10","name":"Presser la pi\u00e8ce","type":"Machine","dist":null},{"id":"s169","code":"M20","name":"Ouvrir et \u00e9jecter","type":"Machine","dist":null},{"id":"s170","code":"M30","name":"Attendre le chargement","type":"Wait","dist":null}],"startStepId":"s168","events":[{"id":"e171","t":3.8,"kind":"step","stepId":"s168"},{"id":"e172","t":5.8667,"kind":"step","stepId":"s169"},{"id":"e173","t":6.8667,"kind":"step","stepId":"s170"},{"id":"e174","t":10.4667,"kind":"step","stepId":"s168"},{"id":"e175","t":12.6,"kind":"step","stepId":"s169"},{"id":"e176","t":13.6,"kind":"step","stepId":"s170"},{"id":"e177","t":17.0667,"kind":"step","stepId":"s168"},{"id":"e178","t":19.2,"kind":"step","stepId":"s169"},{"id":"e179","t":20.1333,"kind":"step","stepId":"s170"},{"id":"e180","t":23.6,"kind":"step","stepId":"s168"},{"id":"e181","t":25.7333,"kind":"step","stepId":"s169"},{"id":"e182","t":26.8,"kind":"step","stepId":"s170"},{"id":"e183","t":30.2,"kind":"step","stepId":"s168"},{"id":"e184","t":32.3333,"kind":"step","stepId":"s169"},{"id":"e185","t":33.2667,"kind":"step","stepId":"s170"},{"id":"e186","t":36.6,"kind":"step","stepId":"s168"},{"id":"e187","t":38.6667,"kind":"step","stepId":"s169"},{"id":"e188","t":39.7333,"kind":"step","stepId":"s170"},{"id":"e189","t":43.2,"kind":"step","stepId":"s168"},{"id":"e190","t":45.3333,"kind":"step","stepId":"s169"},{"id":"e191","t":46.2667,"kind":"step","stepId":"s170"},{"id":"e192","t":50.0,"kind":"step","stepId":"s168"},{"id":"e193","t":52.1333,"kind":"step","stepId":"s169"},{"id":"e194","t":53.0667,"kind":"step","stepId":"s170"},{"id":"e195","t":56.6667,"kind":"step","stepId":"s168"},{"id":"e196","t":58.7333,"kind":"step","stepId":"s169"},{"id":"e197","t":59.7333,"kind":"step","stepId":"s170"},{"id":"e198","t":63.2667,"kind":"step","stepId":"s168"},{"id":"e199","t":65.4,"kind":"step","stepId":"s169"},{"id":"e200","t":66.4,"kind":"step","stepId":"s170"},{"id":"e201","t":69.9333,"kind":"step","stepId":"s168"},{"id":"e202","t":72.0,"kind":"step","stepId":"s169"},{"id":"e203","t":72.9333,"kind":"step","stepId":"s170"},{"id":"e204","t":76.4,"kind":"step","stepId":"s168"},{"id":"e205","t":78.4667,"kind":"step","stepId":"s169"},{"id":"e206","t":79.4,"kind":"step","stepId":"s170"},{"id":"e207","t":82.8,"kind":"step","stepId":"s168"}]}],"activeId":"t086"},"en":{"app":"video-time-study","version":1,"example":true,"meta":{"name":"Example: line A","ref":"Door panel","plant":"Sample plant","line":"Line A","observer":"Video Time Study","date":"2026-11-12","takt":7},"video":{"name":"vts-example.mp4","size":1202740,"duration":104.067,"lastModified":1767225600000},"timelines":[{"id":"t294","name":"Operator 1","kind":"operator","steps":[{"id":"s209","code":"A10","name":"Take a part from the bin","type":"Operation","dist":null},{"id":"s210","code":"A20","name":"Walk to the press","type":"Walk","dist":null},{"id":"s211","code":"A30","name":"Load the press","type":"Operation","dist":null},{"id":"s212","code":"A40","name":"Wait for the press","type":"Wait","dist":null},{"id":"s213","code":"A50","name":"Unload and put down","type":"Operation","dist":null},{"id":"s214","code":"A60","name":"Walk back to the bin","type":"Walk","dist":null}],"startStepId":"s209","events":[{"id":"e215","t":1.0,"kind":"step","stepId":"s209"},{"id":"e216","t":2.0667,"kind":"step","stepId":"s210"},{"id":"e217","t":2.8667,"kind":"step","stepId":"s211"},{"id":"e218","t":3.8,"kind":"step","stepId":"s212"},{"id":"e219","t":5.8667,"kind":"step","stepId":"s213"},{"id":"e220","t":6.8667,"kind":"step","stepId":"s214"},{"id":"e221","t":7.5333,"kind":"step","stepId":"s209"},{"id":"e222","t":8.7333,"kind":"step","stepId":"s210"},{"id":"e223","t":9.5333,"kind":"step","stepId":"s211"},{"id":"e224","t":10.4667,"kind":"step","stepId":"s212"},{"id":"e225","t":12.6,"kind":"step","stepId":"s213"},{"id":"e226","t":13.6,"kind":"step","stepId":"s214"},{"id":"e227","t":14.2667,"kind":"step","stepId":"s209"},{"id":"e228","t":15.4,"kind":"step","stepId":"s210"},{"id":"e229","t":16.2667,"kind":"step","stepId":"s211"},{"id":"e230","t":17.0667,"kind":"step","stepId":"s212"},{"id":"e231","t":19.2,"kind":"step","stepId":"s213"},{"id":"e232","t":20.1333,"kind":"step","stepId":"s214"},{"id":"e233","t":20.7333,"kind":"step","stepId":"s209"},{"id":"e234","t":21.8667,"kind":"step","stepId":"s210"},{"id":"e235","t":22.6,"kind":"step","stepId":"s211"},{"id":"e236","t":23.6,"kind":"step","stepId":"s212"},{"id":"e237","t":25.7333,"kind":"step","stepId":"s213"},{"id":"e238","t":26.8,"kind":"step","stepId":"s214"},{"id":"e239","t":27.5333,"kind":"step","stepId":"s209"},{"id":"e240","t":28.5333,"kind":"step","stepId":"s210"},{"id":"e241","t":29.2667,"kind":"step","stepId":"s211"},{"id":"e242","t":30.2,"kind":"step","stepId":"s212"},{"id":"e243","t":32.3333,"kind":"step","stepId":"s213"},{"id":"e244","t":33.2667,"kind":"step","stepId":"s214"},{"id":"e245","t":33.9333,"kind":"step","stepId":"s209"},{"id":"e246","t":34.9333,"kind":"step","stepId":"s210"},{"id":"e247","t":35.7333,"kind":"step","stepId":"s211"},{"id":"e248","t":36.6,"kind":"step","stepId":"s212"},{"id":"e249","t":38.6667,"kind":"step","stepId":"s213"},{"id":"e250","t":39.7333,"kind":"step","stepId":"s214"},{"id":"e251","t":40.4667,"kind":"step","stepId":"s209"},{"id":"e252","t":41.5333,"kind":"step","stepId":"s210"},{"id":"e253","t":42.3333,"kind":"step","stepId":"s211"},{"id":"e254","t":43.2,"kind":"step","stepId":"s212"},{"id":"e255","t":45.3333,"kind":"step","stepId":"s213"},{"id":"e256","t":46.2667,"kind":"step","stepId":"s214"},{"id":"e257","t":47.0667,"kind":"step","stepId":"s209"},{"id":"e258","t":48.2667,"kind":"step","stepId":"s210"},{"id":"e259","t":49.1333,"kind":"step","stepId":"s211"},{"id":"e260","t":50.0,"kind":"step","stepId":"s212"},{"id":"e261","t":52.1333,"kind":"step","stepId":"s213"},{"id":"e262","t":53.0667,"kind":"step","stepId":"s214"},{"id":"e263","t":53.7333,"kind":"step","stepId":"s209"},{"id":"e264","t":54.8667,"kind":"step","stepId":"s210"},{"id":"e265","t":55.6667,"kind":"step","stepId":"s211"},{"id":"e266","t":56.6667,"kind":"step","stepId":"s212"},{"id":"e267","t":58.7333,"kind":"step","stepId":"s213"},{"id":"e268","t":59.7333,"kind":"step","stepId":"s214"},{"id":"e269","t":60.5333,"kind":"step","stepId":"s209"},{"id":"e270","t":61.5333,"kind":"step","stepId":"s210"},{"id":"e271","t":62.2667,"kind":"step","stepId":"s211"},{"id":"e272","t":63.2667,"kind":"step","stepId":"s212"},{"id":"e273","t":65.4,"kind":"step","stepId":"s213"},{"id":"e274","t":66.4,"kind":"step","stepId":"s214"},{"id":"e275","t":67.2,"kind":"step","stepId":"s209"},{"id":"e276","t":68.2,"kind":"step","stepId":"s210"},{"id":"e277","t":69.0,"kind":"step","stepId":"s211"},{"id":"e278","t":69.9333,"kind":"step","stepId":"s212"},{"id":"e279","t":72.0,"kind":"step","stepId":"s213"},{"id":"e280","t":72.9333,"kind":"step","stepId":"s214"},{"id":"e281","t":73.5333,"kind":"step","stepId":"s209"},{"id":"e282","t":74.7333,"kind":"step","stepId":"s210"},{"id":"e283","t":75.6,"kind":"step","stepId":"s211"},{"id":"e284","t":76.4,"kind":"step","stepId":"s212"},{"id":"e285","t":78.4667,"kind":"step","stepId":"s213"},{"id":"e286","t":79.4,"kind":"step","stepId":"s214"},{"id":"e287","t":80.0,"kind":"step","stepId":"s209"},{"id":"e288","t":81.1333,"kind":"step","stepId":"s210"},{"id":"e289","t":81.8667,"kind":"step","stepId":"s211"},{"id":"e290","t":82.8,"kind":"step","stepId":"s212"},{"id":"e291","t":84.8667,"kind":"step","stepId":"s213"},{"id":"e292","t":85.8667,"kind":"step","stepId":"s214"},{"id":"e293","t":86.5333,"kind":"step","stepId":"s209"}]},{"id":"t375","name":"Operator 2","kind":"operator","steps":[{"id":"s295","code":"B10","name":"Take the part on the table","type":"Operation","dist":null},{"id":"s296","code":"B20","name":"Clip the fasteners","type":"Operation","dist":null},{"id":"s297","code":"B30","name":"Check the part","type":"Inspection","dist":null},{"id":"s298","code":"B40","name":"Walk to the box","type":"Walk","dist":null},{"id":"s299","code":"B50","name":"Pack","type":"Operation","dist":null},{"id":"s300","code":"B60","name":"Walk back to the table","type":"Walk","dist":null}],"startStepId":"s295","events":[{"id":"e301","t":6.8667,"kind":"step","stepId":"s295"},{"id":"e302","t":7.5333,"kind":"step","stepId":"s296"},{"id":"e303","t":10.5333,"kind":"step","stepId":"s297"},{"id":"e304","t":12.1333,"kind":"step","stepId":"s298"},{"id":"e305","t":12.9333,"kind":"step","stepId":"s299"},{"id":"e306","t":13.5333,"kind":"step","stepId":"s300"},{"id":"e307","t":14.3333,"kind":"step","stepId":"s295"},{"id":"e308","t":15.0,"kind":"step","stepId":"s296"},{"id":"e309","t":18.0667,"kind":"step","stepId":"s297"},{"id":"e310","t":19.6,"kind":"step","stepId":"s298"},{"id":"e311","t":20.3333,"kind":"step","stepId":"s299"},{"id":"e312","t":20.8667,"kind":"step","stepId":"s300"},{"id":"e313","t":21.6,"kind":"step","stepId":"s295"},{"id":"e314","t":22.3333,"kind":"step","stepId":"s296"},{"id":"e315","t":25.2667,"kind":"step","stepId":"s297"},{"id":"e316","t":26.8667,"kind":"step","stepId":"s298"},{"id":"e317","t":27.6667,"kind":"step","stepId":"s299"},{"id":"e318","t":28.2667,"kind":"step","stepId":"s300"},{"id":"e319","t":29.1333,"kind":"step","stepId":"s295"},{"id":"e320","t":29.8,"kind":"step","stepId":"s296"},{"id":"e321","t":32.8,"kind":"step","stepId":"s297"},{"id":"e322","t":34.4667,"kind":"step","stepId":"s298"},{"id":"e323","t":35.2,"kind":"step","stepId":"s299"},{"id":"e324","t":35.7333,"kind":"step","stepId":"s300"},{"id":"e325","t":36.6,"kind":"step","stepId":"s295"},{"id":"e326","t":37.3333,"kind":"step","stepId":"s296","issue":"Material issue","note":"Fastener dropped"},{"id":"e327","t":41.9333,"kind":"step","stepId":"s297"},{"id":"e328","t":43.4667,"kind":"step","stepId":"s298"},{"id":"e329","t":44.3333,"kind":"step","stepId":"s299"},{"id":"e330","t":45.0,"kind":"step","stepId":"s300"},{"id":"e331","t":45.7333,"kind":"step","stepId":"s295"},{"id":"e332","t":46.5333,"kind":"step","stepId":"s296"},{"id":"e333","t":49.6,"kind":"step","stepId":"s297"},{"id":"e334","t":51.2,"kind":"step","stepId":"s298"},{"id":"e335","t":52.0,"kind":"step","stepId":"s299"},{"id":"e336","t":52.5333,"kind":"step","stepId":"s300"},{"id":"e337","t":53.2667,"kind":"periodic","label":"Change the box"},{"id":"e338","t":57.2667,"kind":"step","stepId":"s295"},{"id":"e339","t":58.0667,"kind":"step","stepId":"s296"},{"id":"e340","t":61.0,"kind":"step","stepId":"s297"},{"id":"e341","t":62.6667,"kind":"step","stepId":"s298"},{"id":"e342","t":63.4,"kind":"step","stepId":"s299"},{"id":"e343","t":64.0667,"kind":"step","stepId":"s300"},{"id":"e344","t":64.8667,"kind":"step","stepId":"s295"},{"id":"e345","t":65.5333,"kind":"step","stepId":"s296"},{"id":"e346","t":68.4667,"kind":"step","stepId":"s297"},{"id":"e347","t":70.1333,"kind":"step","stepId":"s298"},{"id":"e348","t":70.8667,"kind":"step","stepId":"s299"},{"id":"e349","t":71.4,"kind":"step","stepId":"s300"},{"id":"e350","t":72.2,"kind":"step","stepId":"s295"},{"id":"e351","t":73.0,"kind":"step","stepId":"s296"},{"id":"e352","t":76.0,"kind":"step","stepId":"s297"},{"id":"e353","t":77.5333,"kind":"step","stepId":"s298"},{"id":"e354","t":78.4,"kind":"step","stepId":"s299"},{"id":"e355","t":78.9333,"kind":"step","stepId":"s300"},{"id":"e356","t":79.6667,"kind":"step","stepId":"s295"},{"id":"e357","t":80.3333,"kind":"step","stepId":"s296"},{"id":"e358","t":83.3333,"kind":"step","stepId":"s297"},{"id":"e359","t":84.8667,"kind":"step","stepId":"s298"},{"id":"e360","t":85.6,"kind":"step","stepId":"s299"},{"id":"e361","t":86.2,"kind":"step","stepId":"s300"},{"id":"e362","t":87.0,"kind":"step","stepId":"s295"},{"id":"e363","t":87.6,"kind":"step","stepId":"s296"},{"id":"e364","t":90.6,"kind":"step","stepId":"s297"},{"id":"e365","t":92.2667,"kind":"step","stepId":"s298"},{"id":"e366","t":93.1333,"kind":"step","stepId":"s299"},{"id":"e367","t":93.7333,"kind":"step","stepId":"s300"},{"id":"e368","t":94.6,"kind":"step","stepId":"s295"},{"id":"e369","t":95.3333,"kind":"step","stepId":"s296"},{"id":"e370","t":98.2667,"kind":"step","stepId":"s297"},{"id":"e371","t":99.8,"kind":"step","stepId":"s298"},{"id":"e372","t":100.5333,"kind":"step","stepId":"s299"},{"id":"e373","t":101.2,"kind":"step","stepId":"s300"},{"id":"e374","t":102.0667,"kind":"step","stepId":"s295"}],"perFreq":{"change the box":40}},{"id":"t416","name":"Press","kind":"machine","steps":[{"id":"s376","code":"M10","name":"Press the part","type":"Machine","dist":null},{"id":"s377","code":"M20","name":"Open and eject","type":"Machine","dist":null},{"id":"s378","code":"M30","name":"Wait for loading","type":"Wait","dist":null}],"startStepId":"s376","events":[{"id":"e379","t":3.8,"kind":"step","stepId":"s376"},{"id":"e380","t":5.8667,"kind":"step","stepId":"s377"},{"id":"e381","t":6.8667,"kind":"step","stepId":"s378"},{"id":"e382","t":10.4667,"kind":"step","stepId":"s376"},{"id":"e383","t":12.6,"kind":"step","stepId":"s377"},{"id":"e384","t":13.6,"kind":"step","stepId":"s378"},{"id":"e385","t":17.0667,"kind":"step","stepId":"s376"},{"id":"e386","t":19.2,"kind":"step","stepId":"s377"},{"id":"e387","t":20.1333,"kind":"step","stepId":"s378"},{"id":"e388","t":23.6,"kind":"step","stepId":"s376"},{"id":"e389","t":25.7333,"kind":"step","stepId":"s377"},{"id":"e390","t":26.8,"kind":"step","stepId":"s378"},{"id":"e391","t":30.2,"kind":"step","stepId":"s376"},{"id":"e392","t":32.3333,"kind":"step","stepId":"s377"},{"id":"e393","t":33.2667,"kind":"step","stepId":"s378"},{"id":"e394","t":36.6,"kind":"step","stepId":"s376"},{"id":"e395","t":38.6667,"kind":"step","stepId":"s377"},{"id":"e396","t":39.7333,"kind":"step","stepId":"s378"},{"id":"e397","t":43.2,"kind":"step","stepId":"s376"},{"id":"e398","t":45.3333,"kind":"step","stepId":"s377"},{"id":"e399","t":46.2667,"kind":"step","stepId":"s378"},{"id":"e400","t":50.0,"kind":"step","stepId":"s376"},{"id":"e401","t":52.1333,"kind":"step","stepId":"s377"},{"id":"e402","t":53.0667,"kind":"step","stepId":"s378"},{"id":"e403","t":56.6667,"kind":"step","stepId":"s376"},{"id":"e404","t":58.7333,"kind":"step","stepId":"s377"},{"id":"e405","t":59.7333,"kind":"step","stepId":"s378"},{"id":"e406","t":63.2667,"kind":"step","stepId":"s376"},{"id":"e407","t":65.4,"kind":"step","stepId":"s377"},{"id":"e408","t":66.4,"kind":"step","stepId":"s378"},{"id":"e409","t":69.9333,"kind":"step","stepId":"s376"},{"id":"e410","t":72.0,"kind":"step","stepId":"s377"},{"id":"e411","t":72.9333,"kind":"step","stepId":"s378"},{"id":"e412","t":76.4,"kind":"step","stepId":"s376"},{"id":"e413","t":78.4667,"kind":"step","stepId":"s377"},{"id":"e414","t":79.4,"kind":"step","stepId":"s378"},{"id":"e415","t":82.8,"kind":"step","stepId":"s376"}]}],"activeId":"t294"},"scenario":{"move":"B30","after":"A30","wait":"A40","waitDur":0.5,"fr":{"name":"Contr\u00f4le par l\u2019op\u00e9rateur 1","note":"\u00ab\u00a0B30 Contr\u00f4ler la pi\u00e8ce\u00a0\u00bb passe de l\u2019op\u00e9rateur 2 \u00e0 l\u2019op\u00e9rateur 1, qui la fait pendant le cycle de la presse\u00a0: l\u2019attente de l\u2019op\u00e9rateur 1 passe de 2,1\u00a0s \u00e0 0,5\u00a0s."},"en":{"name":"Check by operator 1","note":"\u201cB30 Check the part\u201d moves from operator 2 to operator 1, who does it while the press runs: the wait of operator 1 goes from 2.1 s to 0.5 s."}},"b64":""};
 
   // ---------- Line balancing view (Yamazumi) ----------
   // Its own view in the same page (#equilibrage). It reads the study and only writes study.balance: the
@@ -19303,10 +20171,10 @@ I18N_EX.pt = { names: {
     var d = function (cur, base, better, fmt) { return withDelta ? balDelta(cur, base, better, fmt) : null; };
     return [
       { l: T('bal.kOps'), v: String(k.nOps), d: d(k.nOps, ka.nOps, -1, function (v) { return balSign(v, 0); }) },
-      { l: T('bal.kBott'), v: k.bott ? fmtS(k.bott.v, 1) + ' s' : '\u2013', s: k.bott ? k.bott.name + (k.bott.machine ? ' \u00b7 ' + T('bal.machine') : '') : '', d: d(k.bott && k.bott.v, ka.bott && ka.bott.v, -1, function (v) { return balSign(v, 1) + ' s'; }) },
+      { l: T('bal.kBott'), v: k.bott ? fmtS(k.bott.v, 1) + ' s' : '\u2013', s: k.bott ? k.bott.name + (k.bott.machine ? ' \u00b7 ' + T('bal.machine') : '') + (k.bott.setBy ? ' \u00b7 ' + T('bal.setBy', { name: k.bott.setBy }) : '') : '', d: d(k.bott && k.bott.v, ka.bott && ka.bott.v, -1, function (v) { return balSign(v, 1) + ' s'; }) },
       { l: T('bal.kOutput'), v: k.output ? T('rep.perH', { n: fmtS(k.output, 0) }) : '\u2013', d: d(k.output, ka.output, 1, function (v) { return T('rep.perH', { n: balSign(v, 0) }); }) },
       { l: T('bal.kTheo'), v: k.theo != null ? fmtS(k.theo, 1) + ' \u2192 ' + k.theoN : '\u2013', s: takt ? '\u03a3(c) / takt' : '', d: d(k.theoN, ka.theoN, -1, function (v) { return balSign(v, 0); }) },
-      { l: T('bal.kBalance'), v: k.balance != null ? k.balance + ' %' : '\u2013', d: d(k.balance, ka.balance, 1, function (v) { return balSign(v, 0) + ' pts'; }) }
+      { l: T('bal.kBalance'), v: k.balance != null ? k.balance + ' %' : '\u2013', d: d(k.balance, ka.balance, 1, function (v) { return balSign(v, 0) + ' ' + T('u.pts'); }) }
     ];
   }
   function balSrcName(id) {
@@ -19371,7 +20239,8 @@ I18N_EX.pt = { names: {
     var ka = L.bal.kpis(act, takt), k = sc ? L.bal.kpis(sc, takt) : ka;
     // line cycle = the bottleneck, drawn as its own line; the column that sets it is marked
     s.kinds = {}; s.cycleV = k.bott ? k.bott.v : null; s.cycleCol = null;
-    if (k.bott) state.cols.some(function (c) { if (c.blocks.length && c.name === k.bott.name && Math.abs(L.bal.cycle(c) - k.bott.v) < 1e-9) { s.cycleCol = c.id; return true; } return false; });
+    // 3.9: the column named the bottleneck by L.bal.kpis (bott.id), even when the line cycle comes from the waits of another
+    if (k.bott) state.cols.some(function (c) { if (c.blocks.length && (k.bott.id ? c.id === k.bott.id : c.name === k.bott.name && Math.abs(L.bal.cycle(c) - k.bott.v) < 1e-9)) { s.cycleCol = c.id; return true; } return false; });
     s.info = {}; s.totals = {}; s.actTotals = {};
     act.cols.forEach(function (c) { s.actTotals[c.id] = L.bal.cycle(c); });
     // one scale for the current state and the scenario, so the heights compare
@@ -19904,7 +20773,7 @@ I18N_EX.pt = { names: {
         if (i && r0 != null) {
           var d = rnd(v - r0, r.dec), p = r.pct ? lyPct(v - r0, r0) : null, txt;
           if (!d) txt = '=';
-          else if (r.pts) txt = lySign(d, 0) + ' pts';
+          else if (r.pts) txt = lySign(d, 0) + ' ' + T('u.pts');
           else if (p != null) txt = lySign(p, 0) + ' %';
           else txt = lySign(d, r.dec) + r.unit;
           cell += '<small class="' + (!d ? 'same' : ((r.up ? d > 0 : d < 0) ? 'good' : 'bad')) + '">' + esc(txt) + '</small>';
@@ -20098,7 +20967,7 @@ I18N_EX.pt = { names: {
           var po = ka.output ? Math.round((kb.output - ka.output) / ka.output * 100) : 0;
           tiles += tile(T('ly6.k.bott'), fmtS(ka.bott.v, 1), fmtS(kb.bott.v, 1) + ' s', sgn(kb.bott.v - ka.bott.v, 1, ' s'), good(kb.bott.v - ka.bott.v, false)) +
             tile(T('ly7.k.out'), fmtS(ka.output, 0), fmtS(kb.output, 0), sgn(po, 0, ' %'), good(po, true));
-          if (ka.balance != null && kb.balance != null) tiles += tile(T('ly6.k.bal'), ka.balance + ' %', kb.balance + ' %', sgn(kb.balance - ka.balance, 0, ' pts'), good(kb.balance - ka.balance, true));
+          if (ka.balance != null && kb.balance != null) tiles += tile(T('ly6.k.bal'), ka.balance + ' %', kb.balance + ' %', sgn(kb.balance - ka.balance, 0, ' ' + T('u.pts')), good(kb.balance - ka.balance, true));
           tiles += tile(T('bal.kOps'), String(ka.nOps), String(kb.nOps), sgn(kb.nOps - ka.nOps, 0), good(kb.nOps - ka.nOps, false));
         } else {
           tiles += tile(T('ly6.k.bott'), null, fmtS(ka.bott.v, 1) + ' s', takt ? T('cmp.takt', { t: fmtS(takt, 1) }) + colon() + sgn(ka.bott.v - takt, 1, ' s') : '', null) +
@@ -20211,7 +21080,44 @@ I18N_EX.pt = { names: {
     lyExampleBuild(st);
     // it opens on the current state; the way through the example (banner) shows the compact cell
     st.balance.active = 'actual'; L.scen.pair(st, false);
+    st.exLang = lang;
     return st;
+  }
+  // 3.9: the example follows the language of the page: each of its texts (names of the study, the timelines, the steps,
+  // the stations, the events, the scenarios and their notes, the periodic tasks) still as it was built takes the new
+  // language; a text changed by the user stays as typed. The two languages are compared on the example built in each.
+  var EX_TEXT = { name: 1, label: 1, note: 1, ref: 1, plant: 1, line: 1, station: 1 };
+  function exFollowLang() {
+    if (!study || !study.example || !study.exLang || study.exLang === lang || !I18N[study.exLang]) return false;
+    var from = study.exLang, cur = lang, a, b;
+    try { lang = from; a = exBuild(); } catch (e) { a = null; } finally { lang = cur; }
+    try { b = exBuild(); } catch (e) { b = null; }
+    if (!a || !b) return false;
+    var map = {}, bad = {};
+    var pair = function (x, y) { if (x === y) return; if (map[x] != null && map[x] !== y) bad[x] = 1; else map[x] = y; };
+    var walk = function (x, y) {
+      if (!x || typeof x !== 'object' || !y || typeof y !== 'object') return;
+      Object.keys(x).forEach(function (k) {
+        if (typeof x[k] === 'string' && typeof y[k] === 'string') { if (EX_TEXT[k]) pair(x[k], y[k]); }
+        else if (k === 'perFreq' || k === 'perWait') return;
+        else walk(x[k], y[k]);
+      });
+    };
+    walk(a, b);
+    // periodic tasks are kept by their name in lower case (frequency, done during a wait)
+    Object.keys(map).forEach(function (k) { if (!bad[k] && map[k.toLowerCase()] == null) map[k.toLowerCase()] = map[k].toLowerCase(); });
+    var tr = function (v) { return map[v] != null && !bad[v] ? map[v] : v; };
+    var apply = function (o) {
+      if (!o || typeof o !== 'object') return;
+      Object.keys(o).forEach(function (k) {
+        if (typeof o[k] === 'string') { if (EX_TEXT[k]) o[k] = tr(o[k]); }
+        else if ((k === 'perFreq' || k === 'perWait') && o[k]) { var n = {}; Object.keys(o[k]).forEach(function (q) { n[tr(q)] = o[k][q]; }); o[k] = n; }
+        else apply(o[k]);
+      });
+    };
+    apply(study);
+    study.exLang = lang;
+    return true;
   }
   // an example kept in this browser from before 4.2: made again the 4.2 way (layout and two scenarios)
   function exUpgrade() {
@@ -20277,6 +21183,16 @@ I18N_EX.pt = { names: {
     saveLocalNow(); renderAll();
     openVideo(new File([blob], EX_DATA.video.name, { type: 'video/mp4', lastModified: EX_DATA.video.lastModified }));
     toast(T('ex.loaded')); track('example-start');
+  }
+  function exVideoAgain() {
+    exEnsure(function (ok) {
+      if (!ok || !study.example || V.file || typeof File !== 'function') return;
+      try {
+        var bin = atob(exB64()), u = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+        openVideo(new File([new Blob([u], { type: 'video/mp4' })], EX_DATA.video.name, { type: 'video/mp4', lastModified: EX_DATA.video.lastModified }));
+      } catch (e) { /* the user can still open the example again */ }
+    });
   }
   // how to film a workstation, with the way straight to choosing the video
   function filmTips() {
@@ -20501,6 +21417,10 @@ I18N_EX.pt = { names: {
     // after the whole script (the layout code runs last): an example from before 4.2 is made again
     setTimeout(function () {
       exUpgrade();
+      // 3.9: an example kept from a page in another language takes the language of this one
+      if (exFollowLang()) { saveLocalNow(); renderAll(); }
+      // 3.9: the example kept in this browser opens again with its video (it comes with the tool: nothing to choose)
+      if (study.example && !V.file) exVideoAgain();
       if (location.hash === '#equilibrage') balOpen(true, true);
       // 4.3: a link to the example (the guide pages): it is offered at once, the address stays clean
       else if (location.hash === '#example' || location.hash === '#exemple') {
@@ -20794,7 +21714,7 @@ I18N_EX.pt = { names: {
         var po = ka.output ? Math.round((kb.output - ka.output) / ka.output * 100) : 0;
         out += two(T('ly6.k.bott'), fmtS(ka.bott.v, 1), fmtS(kb.bott.v, 1) + ' s', lySign(kb.bott.v - ka.bott.v, 1) + ' s', cl(kb.bott.v - ka.bott.v));
         out += two(T('ly7.k.out'), fmtS(ka.output, 0), fmtS(kb.output, 0), lySign(po, 0) + ' %', cl(po, true));
-        if (ka.balance != null && kb.balance != null) out += two(T('ly6.k.bal'), ka.balance + ' %', kb.balance + ' %', lySign(kb.balance - ka.balance, 0) + ' pts', cl(kb.balance - ka.balance, true));
+        if (ka.balance != null && kb.balance != null) out += two(T('ly6.k.bal'), ka.balance + ' %', kb.balance + ' %', lySign(kb.balance - ka.balance, 0) + ' ' + T('u.pts'), cl(kb.balance - ka.balance, true));
       }
     }
     return out ? '<div class="ly-kpis">' + out + '</div>' : '';
@@ -22200,7 +23120,7 @@ I18N_EX.pt = { names: {
       try {
         var r = indexedDB.open('vts-plans', 1);
         r.onupgradeneeded = function () { r.result.createObjectStore('plan'); };
-        r.onsuccess = function () { res(r.result); };
+        r.onsuccess = function () { r.result.onversionchange = function () { r.result.close(); }; res(r.result); };
         r.onerror = function () { rej(r.error); };
       } catch (e) { rej(e); }
     });
@@ -22304,23 +23224,34 @@ I18N_EX.pt = { names: {
     img.onerror = function () { URL.revokeObjectURL(url); toast(T('ly5.planBad')); };
     img.src = url;
   }
-  // PDF plan: the PDF reader (pdf.js, about 1 MB) is fetched only when a PDF is chosen, never kept in the page. The
-  // page that holds the plan becomes a picture, used like any other picture. The PDF itself stays on the computer.
-  // V5: isEvalSupported false on every document (CVE-2024-4367: a PDF made to attack pdf.js up to 4.1.392 runs code through its fonts)
-  var LY_PDFJS = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/';
+  // PDF plan: the PDF reader (pdf.js) is loaded only when a PDF is chosen. The page that holds the plan becomes a
+  // picture, used like any other picture. The PDF itself stays on the computer.
+  // V5: isEvalSupported false on every document (CVE-2024-4367: a PDF made to attack pdf.js up to 4.1.392 runs code
+  // through its fonts). 3.9: pdf.js 6.2.108 (flaw fixed since 4.2.67; the option is kept, ignored by this version), from
+  // the files of the tool (vdUrl: the site, or the offline copy itself). pdf.js is a module: a small module script loads
+  // it, so that this code keeps no import() and is still read by older browsers.
+  var LY_PDF = null;
   function lyPdfLib() {
-    if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
-    return new Promise(function (ok, ko) {
-      var sc = document.createElement('script');
-      sc.src = LY_PDFJS + 'pdf.min.js'; sc.async = true;
-      sc.onload = function () {
-        if (!window.pdfjsLib) { ko(new Error('bad')); return; }
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc = LY_PDFJS + 'pdf.worker.min.js';
-        ok(window.pdfjsLib);
-      };
-      sc.onerror = function () { ko(new Error('net')); };
-      document.head.appendChild(sc);
+    if (LY_PDF) return LY_PDF;
+    LY_PDF = Promise.all([vdUrl('pdf'), vdUrl('pdfWorker')]).then(function (u) {
+      return new Promise(function (ok, ko) {
+        var id = '__vtsPdf' + (+new Date()), sc = document.createElement('script'), tm = null;
+        var end = function (lib, err) {
+          if (tm == null) return;
+          clearTimeout(tm); tm = null;
+          try { delete window[id]; } catch (e) { window[id] = undefined; }
+          if (lib && lib.getDocument && lib.GlobalWorkerOptions) { lib.GlobalWorkerOptions.workerSrc = u[1]; ok(lib); } else ko(err || new Error('bad'));
+        };
+        window[id] = function (lib) { end(lib); };
+        tm = setTimeout(function () { end(null, new Error('net')); }, 60000);
+        sc.type = 'module';
+        sc.onerror = function () { end(null, new Error('net')); };
+        sc.textContent = 'import * as p from ' + JSON.stringify(u[0]) + '; window[' + JSON.stringify(id) + '](p);';
+        document.head.appendChild(sc);
+      });
     });
+    LY_PDF['catch'](function () { LY_PDF = null; });
+    return LY_PDF;
   }
   function lyPdfFile(f) {
     toast(T('ly9.pdfLoading'));
